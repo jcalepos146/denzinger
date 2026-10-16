@@ -1,0 +1,22 @@
+<header class="top">
+  <button class="tbtn menu-btn" id="menuBtn" aria-label="Show contents" aria-expanded="false">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"/></svg>
+  </button>
+  <a class="brand" href="#home" id="brand"><b>Denzinger</b><span>Sources of Catholic Dogma</span></a>
+  <div class="search">
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="7" cy="7" r="5"/><path d="m11 11 3.5 3.5"/></svg>
+    <input id="q" type="search" placeholder="Search words, &quot;phrases&quot;, 1839, or Matt 16:18" autocomplete="off" spellcheck="false" aria-label="Search Denzinger">
+    <kbd>/</kbd>
+  </div>
+  <button class="tbtn" id="savedBtn" aria-pressed="false">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 2h8v12l-4-3-4 3z"/></svg>
+    <span class="lbl">Saved</span><span class="badge" id="savedCount"></span>
+  </button>
+</header>
+
+<div class="shell">
+  <nav class="rail" id="rail" aria-label="Guides, popes and councils"></nav>
+  <main id="main"><div class="col" id="view"></div></main>
+</div>
+<div class="scrim" id="scrim"></div>
+<div class="toast" id="toast" hidden></div>

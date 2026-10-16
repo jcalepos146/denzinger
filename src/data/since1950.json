@@ -1,0 +1,883 @@
+[
+ {
+  "id": "lg",
+  "date": "1964-11-21",
+  "pope": "Paul VI",
+  "council": true,
+  "title": "Lumen Gentium",
+  "kind": "Dogmatic constitution, Vatican II",
+  "level": "dogma",
+  "summary": "The Council's teaching on the Church: the Church as mystery and as People of God, the hierarchy with bishops forming a college with and under the Pope, the laity, the universal call to holiness, religious life, and Mary in the mystery of Christ and the Church. It restates existing dogma and defines nothing new.",
+  "continuity": "Chapter 3 repeats Vatican I on the primacy and infallibility of the Pope and frames collegiality so that the college never acts without its head; the Preliminary Note of Explanation attached by order of Paul VI fixes that reading. Its description of who belongs to the Church builds on Mystici Corporis.",
+  "refs": [
+   "1821",
+   "1826",
+   "1831",
+   "1839",
+   "2286"
+  ],
+  "disputed": [
+   "subsistit",
+   "collegiality"
+  ],
+  "url": "https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19641121_lumen-gentium_en.html",
+  "checked": "link"
+ },
+ {
+  "id": "dv",
+  "date": "1965-11-18",
+  "pope": "Paul VI",
+  "council": true,
+  "title": "Dei Verbum",
+  "kind": "Dogmatic constitution, Vatican II",
+  "level": "dogma",
+  "summary": "Revelation, its transmission through Scripture and Tradition under the Magisterium, the inspiration and truth of Scripture, the Old and New Testaments, and Scripture in the life of the Church.",
+  "continuity": "Restates Trent and Vatican I on the sources of revelation and the Church's role in interpreting them, and the inspiration of the whole canon. How its wording on Scripture's truth relates to Leo XIII and Benedict XV is discussed under inerrancy.",
+  "refs": [
+   "783",
+   "1785",
+   "1787",
+   "1788",
+   "1951",
+   "2186"
+  ],
+  "disputed": [
+   "inerrancy"
+  ],
+  "url": "https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19651118_dei-verbum_en.html",
+  "checked": "link"
+ },
+ {
+  "id": "sc",
+  "date": "1963-12-04",
+  "pope": "Paul VI",
+  "council": true,
+  "title": "Sacrosanctum Concilium",
+  "kind": "Constitution, Vatican II",
+  "level": "discipline",
+  "summary": "Principles for the reform of the liturgy: the liturgy as the work of Christ and the Church, full and active participation, revision of the rites, and a wider use of the vernacular while Latin is to be preserved in the Latin rites.",
+  "continuity": "Trent condemned the claim that Mass must be in the vernacular only, while judging that vernacular celebration everywhere was not expedient at that time. Choosing the language of the rites is a disciplinary judgment the Church can revise, a power Trent itself affirms over the administration of the sacraments, provided their substance is kept.",
+  "refs": [
+   "931",
+   "946",
+   "956",
+   "1566"
+  ],
+  "disputed": [
+   "vernacular",
+   "liturgy"
+  ],
+  "url": "https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html",
+  "checked": "link"
+ },
+ {
+  "id": "gs",
+  "date": "1965-12-07",
+  "pope": "Paul VI",
+  "council": true,
+  "title": "Gaudium et Spes",
+  "kind": "Pastoral constitution, Vatican II",
+  "level": "authentic",
+  "summary": "The Church in the modern world: human dignity, community, human activity, marriage and family, culture, economic and political life, war and peace. Its principles are authoritative teaching; many of its applications to circumstances are prudential.",
+  "continuity": "Its teaching on marriage and procreation stands in line with Casti Connubii; its social teaching develops Leo XIII and Pius XI. The Council itself calls the constitution pastoral and notes that parts depend on changing circumstances.",
+  "refs": [
+   "2225",
+   "2240",
+   "1938a"
+  ],
+  "disputed": [
+   "prudential-social"
+  ],
+  "url": "https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19651207_gaudium-et-spes_en.html",
+  "checked": "link"
+ },
+ {
+  "id": "dh",
+  "date": "1965-12-07",
+  "pope": "Paul VI",
+  "council": true,
+  "title": "Dignitatis Humanae",
+  "kind": "Declaration, Vatican II",
+  "level": "authentic",
+  "summary": "Teaches that the human person has a right to immunity from coercion in religious matters, privately and publicly, within the just limits of public order, grounded in the dignity of the person. It states that it leaves untouched the traditional doctrine on the moral duty of individuals and societies toward the true religion and the one Church of Christ.",
+  "continuity": "This is the flagship case for the hermeneutic of continuity. Pius IX condemned indifferentism and a supposed right to all manner of liberty; Leo XIII already taught that rulers may tolerate other worships for a great good. Dignitatis Humanae speaks of civil immunity, not a right to be in error.",
+  "refs": [
+   "1690",
+   "1715",
+   "1777",
+   "1874"
+  ],
+  "disputed": [
+   "religious-liberty"
+  ],
+  "url": "https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_decl_19651207_dignitatis-humanae_en.html",
+  "checked": "link"
+ },
+ {
+  "id": "ur",
+  "date": "1964-11-21",
+  "pope": "Paul VI",
+  "council": true,
+  "title": "Unitatis Redintegratio",
+  "kind": "Decree, Vatican II",
+  "level": "authentic",
+  "summary": "Catholic principles of ecumenism: the one Church of Christ, elements of sanctification and truth that exist outside its visible structure, and the conduct of dialogue with other Christians.",
+  "continuity": "Holds that the fullness of the means of salvation is found in the Catholic Church, while recognizing real but imperfect communion with baptized Christians, in line with the older teaching on invincible ignorance and baptism.",
+  "refs": [
+   "1647",
+   "1677",
+   "2286"
+  ],
+  "disputed": [
+   "subsistit",
+   "outside-church"
+  ],
+  "url": "https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_decree_19641121_unitatis-redintegratio_en.html",
+  "checked": "link"
+ },
+ {
+  "id": "na",
+  "date": "1965-10-28",
+  "pope": "Paul VI",
+  "council": true,
+  "title": "Nostra Aetate",
+  "kind": "Declaration, Vatican II",
+  "level": "authentic",
+  "summary": "The Church's relation to non-Christian religions: what is true and holy in them, esteem for Muslims, the spiritual bond with the Jewish people, rejection of the charge of collective Jewish guilt for the Passion, and condemnation of discrimination.",
+  "continuity": "Does not deny that Christ is the one way of salvation or that the Church is necessary; it is read together with Florence and Pius IX on salvation and invincible ignorance.",
+  "refs": [
+   "714",
+   "1647",
+   "1677"
+  ],
+  "disputed": [
+   "outside-church"
+  ],
+  "url": "https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_decl_19651028_nostra-aetate_en.html",
+  "checked": "link"
+ },
+ {
+  "id": "mf",
+  "date": "1965-09-03",
+  "pope": "Paul VI",
+  "title": "Mysterium Fidei",
+  "kind": "Encyclical",
+  "level": "dogma",
+  "summary": "Reaffirms the Real Presence and transubstantiation against new theories that reduced the change in the Eucharist to a change of meaning or purpose alone.",
+  "continuity": "Restates Trent's decree and canons on transubstantiation and insists that the Church's established terms keep their meaning.",
+  "refs": [
+   "877",
+   "884"
+  ],
+  "url": "https://www.vatican.va/content/paul-vi/en/encyclicals/documents/hf_p-vi_enc_03091965_mysterium.html",
+  "checked": "link"
+ },
+ {
+  "id": "paen",
+  "date": "1966-02-17",
+  "pope": "Paul VI",
+  "title": "Paenitemini",
+  "kind": "Apostolic constitution",
+  "level": "discipline",
+  "summary": "Reorganizes the Church's penitential discipline: keeps the divine duty of penance while reducing and simplifying the days of fasting and abstinence and giving bishops' conferences room to adapt them.",
+  "continuity": "The obligation to do penance is unchanged; only the ecclesiastical determination of how and when was revised.",
+  "refs": [],
+  "disputed": [
+   "disciplines"
+  ],
+  "url": "https://www.vatican.va/content/paul-vi/en/apost_constitutions/documents/hf_p-vi_apc_19660217_paenitemini.html",
+  "checked": "link"
+ },
+ {
+  "id": "credo",
+  "date": "1968-06-30",
+  "pope": "Paul VI",
+  "title": "Credo of the People of God",
+  "kind": "Profession of faith (Solemni hac liturgia)",
+  "level": "dogma",
+  "summary": "A solemn profession of faith at the close of the Year of Faith, restating the Trinity, Christ, Mary, original sin, the Church, the Mass and transubstantiation, and the last things. Paul VI said it was not a dogmatic definition, though it repeats defined doctrine.",
+  "continuity": "A compendium of the creeds and of defined teaching found throughout Denzinger.",
+  "refs": [
+   "54",
+   "86",
+   "39",
+   "1641",
+   "2333"
+  ],
+  "url": "https://www.vatican.va/content/paul-vi/en/motu_proprio/documents/hf_p-vi_motu-proprio_19680630_credo.html",
+  "checked": "link"
+ },
+ {
+  "id": "hv",
+  "date": "1968-07-25",
+  "pope": "Paul VI",
+  "title": "Humanae Vitae",
+  "kind": "Encyclical",
+  "level": "authentic",
+  "summary": "Teaches that each marital act must remain open to the transmission of life and that direct contraception is intrinsically wrong, while permitting recourse to natural infertile periods for serious reasons.",
+  "continuity": "Repeats Casti Connubii. Whether the teaching is also infallible by the ordinary universal magisterium is debated.",
+  "refs": [
+   "2240",
+   "2241"
+  ],
+  "disputed": [
+   "humanae-vitae"
+  ],
+  "url": "https://www.vatican.va/content/paul-vi/en/encyclicals/documents/hf_p-vi_enc_25071968_humanae-vitae.html",
+  "checked": "link"
+ },
+ {
+  "id": "mr",
+  "date": "1969-04-03",
+  "pope": "Paul VI",
+  "title": "Missale Romanum",
+  "kind": "Apostolic constitution",
+  "level": "discipline",
+  "summary": "Promulgates the revised Roman Missal prepared after the Council, with a new Order of Mass, more eucharistic prayers and a larger lectionary.",
+  "continuity": "Rites are disciplinary and can be revised; the doctrine of the Mass as a true and proper sacrifice defined at Trent stands.",
+  "refs": [
+   "931",
+   "948"
+  ],
+  "disputed": [
+   "liturgy"
+  ],
+  "url": "https://www.vatican.va/content/paul-vi/la/apost_constitutions/documents/hf_p-vi_apc_19690403_missale-romanum.html",
+  "checked": "link"
+ },
+ {
+  "id": "mq",
+  "date": "1972-08-15",
+  "pope": "Paul VI",
+  "title": "Ministeria Quaedam",
+  "kind": "Apostolic letter (motu proprio)",
+  "level": "discipline",
+  "summary": "Suppresses first tonsure, the minor orders and the subdiaconate in the Latin Church and replaces them with the instituted ministries of lector and acolyte.",
+  "continuity": "Trent taught that there are orders besides the priesthood, major and minor, but the number and form of the lower grades has always been ecclesiastical.",
+  "refs": [
+   "958",
+   "962"
+  ],
+  "disputed": [
+   "disciplines"
+  ],
+  "url": "https://www.vatican.va/content/paul-vi/la/motu_proprio/documents/hf_p-vi_motu-proprio_19720815_ministeria-quaedam.html",
+  "checked": "link"
+ },
+ {
+  "id": "me",
+  "date": "1973-07-05",
+  "pope": "Paul VI",
+  "title": "Mysterium Ecclesiae",
+  "kind": "Declaration, Congregation for the Doctrine of the Faith",
+  "level": "authentic",
+  "summary": "Defends the Church's unity, infallibility and the irreformability of definitions. It grants that dogmatic formulas are shaped by the language of their time and can be expressed more fully, while their meaning stays true and binding.",
+  "continuity": "The modern Magisterium's own statement of the Vatican I rule that dogma keeps the same sense, and of the anti-Modernist insistence that dogmas do not evolve into other meanings.",
+  "refs": [
+   "1800",
+   "1818",
+   "2145"
+  ],
+  "url": "https://www.vatican.va/roman_curia/congregations/cfaith/documents/rc_con_cfaith_doc_19730705_mysterium-ecclesiae_en.html",
+  "checked": "link"
+ },
+ {
+  "id": "abort",
+  "date": "1974-11-18",
+  "pope": "Paul VI",
+  "title": "Declaration on Procured Abortion",
+  "kind": "Declaration, Congregation for the Doctrine of the Faith",
+  "level": "authentic",
+  "summary": "Restates that direct abortion is gravely wrong from conception. A footnote leaves the philosophical question of the moment of ensoulment open, and the text argues that even a probable human life may not be taken.",
+  "continuity": "Continues Innocent XI's condemnation of propositions that excused abortion before animation, and the Holy Office replies on direct killing of the fetus.",
+  "refs": [
+   "1184",
+   "1185",
+   "1890"
+  ],
+  "disputed": [
+   "ensoulment"
+  ],
+  "url": "https://www.vatican.va/roman_curia/congregations/cfaith/documents/rc_con_cfaith_doc_19741118_declaration-abortion_en.html",
+  "checked": "text"
+ },
+ {
+  "id": "ii",
+  "date": "1976-10-15",
+  "pope": "Paul VI",
+  "title": "Inter Insigniores",
+  "kind": "Declaration, Congregation for the Doctrine of the Faith",
+  "level": "authentic",
+  "summary": "Explains why the Church does not consider herself authorized to admit women to priestly ordination: Christ's choice of men, the constant practice of the Church, and the priest's sacramental representation of Christ.",
+  "continuity": "Sets out the reasons later confirmed as definitive in Ordinatio Sacerdotalis.",
+  "refs": [],
+  "disputed": [
+   "women-ordination"
+  ],
+  "url": "https://www.vatican.va/roman_curia/congregations/cfaith/documents/rc_con_cfaith_doc_19761015_inter-insigniores_en.html",
+  "checked": "link"
+ },
+ {
+  "id": "fc",
+  "date": "1981-11-22",
+  "pope": "John Paul II",
+  "title": "Familiaris Consortio",
+  "kind": "Apostolic exhortation",
+  "level": "authentic",
+  "summary": "The Christian family's role. Section 84 holds that the divorced and civilly remarried may not receive Communion unless they separate, or, where serious reasons prevent that, commit to living in complete continence.",
+  "continuity": "Applies Trent's teaching on the indissolubility of marriage and the requirements of worthy Communion.",
+  "refs": [
+   "977"
+  ],
+  "disputed": [
+   "amoris"
+  ],
+  "url": "https://www.vatican.va/content/john-paul-ii/en/apost_exhortations/documents/hf_jp-ii_exh_19811122_familiaris-consortio.html",
+  "checked": "link"
+ },
+ {
+  "id": "cic",
+  "date": "1983-01-25",
+  "pope": "John Paul II",
+  "title": "Code of Canon Law",
+  "kind": "Apostolic constitution Sacrae disciplinae leges",
+  "level": "discipline",
+  "summary": "The revised code of law for the Latin Church, replacing the 1917 Code; it translates the Council's ecclesiology into law.",
+  "continuity": "Law serves doctrine and can change; doctrinal content embedded in canons keeps its own weight.",
+  "refs": [],
+  "disputed": [
+   "disciplines"
+  ],
+  "url": "https://www.vatican.va/archive/cod-iuris-canonici/cic_index_en.html",
+  "checked": "link"
+ },
+ {
+  "id": "donum",
+  "date": "1990-05-24",
+  "pope": "John Paul II",
+  "title": "Donum Veritatis",
+  "kind": "Instruction, Congregation for the Doctrine of the Faith",
+  "level": "authentic",
+  "summary": "On the vocation of the theologian. It distinguishes the assent owed to defined dogma, to definitive teaching, to authentic non-definitive teaching and to prudential interventions, and admits that some prudential documents may not be free of all deficiencies. It rejects organized public dissent.",
+  "continuity": "The key text for sorting teaching by weight; it builds on Pius IX's teaching that Catholics are bound by more than defined dogma.",
+  "refs": [
+   "1683",
+   "1684",
+   "1350"
+  ],
+  "disputed": [
+   "prudential-social"
+  ],
+  "url": "https://www.vatican.va/roman_curia/congregations/cfaith/documents/rc_con_cfaith_doc_19900524_theologian-vocation_en.html",
+  "checked": "text"
+ },
+ {
+  "id": "ccc",
+  "date": "1992-10-11",
+  "pope": "John Paul II",
+  "title": "Catechism of the Catholic Church",
+  "kind": "Apostolic constitution Fidei depositum (typical edition 1997)",
+  "level": "authentic",
+  "summary": "A full exposition of Catholic faith and morals for the universal Church, presented as a sure norm for teaching. Each statement keeps the weight of its sources; the Catechism itself does not raise or lower them.",
+  "continuity": "Cites councils, popes and Fathers throughout. Its 2018 revision on the death penalty is the one text treated as a contested case.",
+  "refs": [],
+  "disputed": [
+   "death-penalty"
+  ],
+  "url": "https://www.vatican.va/archive/ENG0015/_INDEX.HTM",
+  "checked": "link"
+ },
+ {
+  "id": "vs",
+  "date": "1993-08-06",
+  "pope": "John Paul II",
+  "title": "Veritatis Splendor",
+  "kind": "Encyclical",
+  "level": "authentic",
+  "summary": "Fundamental moral theology: there are intrinsically evil acts that no intention or circumstance can justify; it rejects proportionalism and consequentialism and defends the link between freedom and truth.",
+  "continuity": "Restates Trent on keeping the commandments with grace and the classical teaching on the object of the act.",
+  "refs": [
+   "804",
+   "828"
+  ],
+  "disputed": [
+   "amoris"
+  ],
+  "url": "https://www.vatican.va/content/john-paul-ii/en/encyclicals/documents/hf_jp-ii_enc_06081993_veritatis-splendor.html",
+  "checked": "link"
+ },
+ {
+  "id": "os",
+  "date": "1994-05-22",
+  "pope": "John Paul II",
+  "title": "Ordinatio Sacerdotalis",
+  "kind": "Apostolic letter",
+  "level": "definitive",
+  "summary": "Declares that the Church has no authority to confer priestly ordination on women and that this judgment is to be definitively held by all the faithful. A 1995 response of the Congregation for the Doctrine of the Faith said the teaching belongs to the deposit of faith and is taught infallibly by the ordinary universal magisterium.",
+  "continuity": "Confirms the Church's constant practice and the reasons given in Inter Insigniores.",
+  "refs": [],
+  "disputed": [
+   "women-ordination",
+   "women-deacons"
+  ],
+  "url": "https://www.vatican.va/content/john-paul-ii/en/apost_letters/1994/documents/hf_jp-ii_apl_19940522_ordinatio-sacerdotalis.html",
+  "extra": {
+   "label": "1995 response on its weight",
+   "url": "https://www.vatican.va/roman_curia/congregations/cfaith/documents/rc_con_cfaith_doc_19951028_dubium-ordinatio-sac_en.html"
+  },
+  "checked": "link"
+ },
+ {
+  "id": "ev",
+  "date": "1995-03-25",
+  "pope": "John Paul II",
+  "title": "Evangelium Vitae",
+  "kind": "Encyclical",
+  "level": "definitive",
+  "summary": "On the value of human life. In three solemn passages (57, 62, 65), invoking Petrine authority in communion with the bishops, the Pope confirms that the direct killing of the innocent, direct abortion and euthanasia are gravely immoral. It also narrows the cases in which the death penalty could be justified.",
+  "continuity": "Confirms teaching found in Innocent XI's condemned propositions and the Holy Office replies on abortion; the death-penalty passages are continued in the Catechism revision of 2018.",
+  "refs": [
+   "1184",
+   "1185",
+   "1890"
+  ],
+  "disputed": [
+   "death-penalty"
+  ],
+  "url": "https://www.vatican.va/content/john-paul-ii/en/encyclicals/documents/hf_jp-ii_enc_25031995_evangelium-vitae.html",
+  "checked": "link"
+ },
+ {
+  "id": "uus",
+  "date": "1995-05-25",
+  "pope": "John Paul II",
+  "title": "Ut Unum Sint",
+  "kind": "Encyclical",
+  "level": "authentic",
+  "summary": "On ecumenism. It invites other Christians to help find a way of exercising the papal primacy that could serve unity, while affirming the primacy itself.",
+  "continuity": "What it opens for discussion is the manner of exercise, not the defined substance of primacy and infallibility.",
+  "refs": [
+   "1826",
+   "1831",
+   "1839"
+  ],
+  "url": "https://www.vatican.va/content/john-paul-ii/en/encyclicals/documents/hf_jp-ii_enc_25051995_ut-unum-sint.html",
+  "checked": "link"
+ },
+ {
+  "id": "atf",
+  "date": "1998-05-18",
+  "pope": "John Paul II",
+  "title": "Ad Tuendam Fidem",
+  "kind": "Apostolic letter (motu proprio) with doctrinal commentary",
+  "level": "authentic",
+  "summary": "Adds to canon law the duty to accept definitively proposed truths. The Congregation's accompanying commentary on the Profession of Faith sorts teaching into three tiers and gives examples of definitive truths: the male priesthood, the illicitness of euthanasia, prostitution and fornication, the legitimacy of papal elections and councils, canonizations, and the invalidity of Anglican orders.",
+  "continuity": "Names Leo XIII's judgment on Anglican orders as a truth to be held definitively.",
+  "refs": [
+   "1963",
+   "1966",
+   "1839"
+  ],
+  "url": "https://www.vatican.va/content/john-paul-ii/en/motu_proprio/documents/hf_jp-ii_motu-proprio_30061998_ad-tuendam-fidem.html",
+  "extra": {
+   "label": "Doctrinal commentary on the Profession of Faith",
+   "url": "https://www.vatican.va/roman_curia/congregations/cfaith/documents/rc_con_cfaith_doc_1998_professio-fidei_en.html"
+  },
+  "checked": "text"
+ },
+ {
+  "id": "assyr",
+  "date": "1994-11-11",
+  "pope": "John Paul II",
+  "title": "Common Christological Declaration with the Assyrian Church of the East",
+  "kind": "Ecumenical agreement",
+  "level": "dialogue",
+  "summary": "John Paul II and Patriarch Mar Dinkha IV confess together that Christ is true God and true man, one person in two natures, and recognize the Catholic title Mother of God and the Assyrian title Mother of Christ as expressions of the same faith.",
+  "continuity": "Measures the Assyrian tradition against Ephesus and Chalcedon rather than setting them aside.",
+  "refs": [
+   "111a",
+   "113",
+   "148"
+  ],
+  "disputed": [
+   "christology-east"
+  ],
+  "url": "https://www.ewtn.com/catholicism/library/common-christological-declaration-between-catholic-church-and-assyrian-church-of-the-east-7988",
+  "checked": "link"
+ },
+ {
+  "id": "jddj",
+  "date": "1999-10-31",
+  "pope": "John Paul II",
+  "title": "Joint Declaration on the Doctrine of Justification",
+  "kind": "Ecumenical agreement with the Lutheran World Federation",
+  "level": "dialogue",
+  "summary": "Catholics and Lutherans state a consensus on basic truths of justification and say that the mutual condemnations of the sixteenth century do not apply to the other side's teaching as set out in the declaration. It is an agreement, not a magisterial definition.",
+  "continuity": "The text itself says Trent's canons keep their force against what they condemn; the question is whether present Lutheran teaching is what they condemned.",
+  "refs": [
+   "793",
+   "811",
+   "843"
+  ],
+  "disputed": [
+   "justification"
+  ],
+  "url": "https://www.ewtn.com/catholicism/library/joint-declaration-on-the-doctrine-of-justification-28863",
+  "checked": "link"
+ },
+ {
+  "id": "di",
+  "date": "2000-08-06",
+  "pope": "John Paul II",
+  "title": "Dominus Iesus",
+  "kind": "Declaration, Congregation for the Doctrine of the Faith",
+  "level": "authentic",
+  "summary": "On the unicity and salvific universality of Jesus Christ and the Church. It rejects relativist theologies of religion, teaches that the Church of Christ subsists in the Catholic Church, and states that some of its content is to be held definitively.",
+  "continuity": "Reaffirms the necessity of the Church for salvation in line with Florence and Pius IX, including the teaching on invincible ignorance.",
+  "refs": [
+   "714",
+   "1647",
+   "1677",
+   "2286"
+  ],
+  "disputed": [
+   "subsistit",
+   "outside-church"
+  ],
+  "url": "https://www.vatican.va/roman_curia/congregations/cfaith/documents/rc_con_cfaith_doc_20000806_dominus-iesus_en.html",
+  "checked": "link"
+ },
+ {
+  "id": "rosmini",
+  "date": "2001-07-01",
+  "pope": "John Paul II",
+  "title": "Note on the Doctrinal Decrees concerning Antonio Rosmini",
+  "kind": "Note, Congregation for the Doctrine of the Faith",
+  "level": "authentic",
+  "summary": "Judges that the concerns behind the 1887 condemnation of forty propositions drawn from Rosmini can now be regarded as superseded, because read within his own system they do not carry the condemned meaning. The condemnation still holds for anyone who reads them in an idealist or ontologist sense.",
+  "continuity": "A clear instance of a condemned proposition being judged in the sense intended; Rosmini was beatified in 2007.",
+  "refs": [
+   "1891",
+   "1930"
+  ],
+  "disputed": [
+   "rosmini"
+  ],
+  "url": "https://www.vatican.va/roman_curia/congregations/cfaith/documents/rc_con_cfaith_doc_20010701_rosmini_en.html",
+  "checked": "text"
+ },
+ {
+  "id": "b16",
+  "date": "2005-12-22",
+  "pope": "Benedict XVI",
+  "title": "Address to the Roman Curia",
+  "kind": "Christmas address",
+  "level": "study",
+  "summary": "Contrasts a hermeneutic of discontinuity and rupture with a hermeneutic of reform, of renewal in the continuity of the one subject Church, and uses religious liberty as the worked example: contingent historical applications changed while the principles remained.",
+  "continuity": "Not a magisterial act in itself, but the classic statement of the reading this guide follows.",
+  "refs": [
+   "1690",
+   "1777"
+  ],
+  "disputed": [
+   "religious-liberty"
+  ],
+  "url": "https://www.vatican.va/content/benedict-xvi/en/speeches/2005/december/documents/hf_ben_xvi_spe_20051222_roman-curia.html",
+  "checked": "link"
+ },
+ {
+  "id": "itc",
+  "date": "2007-04-19",
+  "pope": "Benedict XVI",
+  "title": "The Hope of Salvation for Infants Who Die Without Being Baptised",
+  "kind": "International Theological Commission study",
+  "level": "study",
+  "summary": "Concludes that there are serious theological grounds to hope that unbaptized infants are saved, while noting that limbo remains a possible theological opinion and that this is a hope, not certain knowledge.",
+  "continuity": "Pius VI condemned calling limbo a Pelagian fable; he did not define limbo. The study keeps baptism necessary and does not deny original sin.",
+  "refs": [
+   "410",
+   "693",
+   "1526"
+  ],
+  "disputed": [
+   "limbo"
+  ],
+  "url": "https://www.vatican.va/roman_curia/congregations/cfaith/cti_documents/rc_con_cfaith_doc_20070419_un-baptised-infants_en.html",
+  "checked": "link"
+ },
+ {
+  "id": "resp07",
+  "date": "2007-06-29",
+  "pope": "Benedict XVI",
+  "title": "Responses on Certain Aspects of the Doctrine on the Church",
+  "kind": "Responses, Congregation for the Doctrine of the Faith",
+  "level": "authentic",
+  "summary": "Answers five questions: Vatican II did not change the doctrine on the Church; subsists in means the Church of Christ continues to exist fully only in the Catholic Church; elements of the Church outside it are real; Orthodox churches are true particular churches though wounded; Protestant communities are ecclesial communities.",
+  "continuity": "Reads Lumen Gentium 8 together with Mystici Corporis.",
+  "refs": [
+   "2286"
+  ],
+  "disputed": [
+   "subsistit"
+  ],
+  "url": "https://www.vatican.va/roman_curia/congregations/cfaith/documents/rc_con_cfaith_doc_20070629_responsa-quaestiones_en.html",
+  "checked": "link"
+ },
+ {
+  "id": "sp",
+  "date": "2007-07-07",
+  "pope": "Benedict XVI",
+  "title": "Summorum Pontificum",
+  "kind": "Apostolic letter (motu proprio)",
+  "level": "discipline",
+  "summary": "Declares that the 1962 Missal was never juridically abrogated and permits its free use as an extraordinary form of the one Roman rite.",
+  "continuity": "Treats the older and newer missals as two uses of one rite, expressing one faith.",
+  "refs": [
+   "931"
+  ],
+  "disputed": [
+   "liturgy"
+  ],
+  "url": "https://www.vatican.va/content/benedict-xvi/en/motu_proprio/documents/hf_ben-xvi_motu-proprio_20070707_summorum-pontificum.html",
+  "checked": "link"
+ },
+ {
+  "id": "ac",
+  "date": "2009-11-04",
+  "pope": "Benedict XVI",
+  "title": "Anglicanorum Coetibus",
+  "kind": "Apostolic constitution",
+  "level": "discipline",
+  "summary": "Creates personal ordinariates for Anglican groups entering full communion, keeping elements of their liturgical and spiritual patrimony. Former Anglican clergy, including married men, may be ordained Catholic priests.",
+  "continuity": "Their ordination as Catholic priests presupposes Leo XIII's judgment that Anglican orders are invalid.",
+  "refs": [
+   "1963",
+   "1966"
+  ],
+  "disputed": [
+   "disciplines"
+  ],
+  "url": "https://www.vatican.va/content/benedict-xvi/en/apost_constitutions/documents/hf_ben-xvi_apc_20091104_anglicanorum-coetibus.html",
+  "checked": "link"
+ },
+ {
+  "id": "ls",
+  "date": "2015-05-24",
+  "pope": "Francis",
+  "title": "Laudato Si'",
+  "kind": "Encyclical",
+  "level": "prudential",
+  "summary": "Care for creation and integral ecology. Its moral principles (stewardship, the universal destination of goods, the dignity of the poor) are authoritative teaching; its scientific and policy judgments are prudential, and the text itself says the Church does not settle scientific questions.",
+  "continuity": "Develops the social teaching tradition on property and the common good.",
+  "refs": [
+   "1938a"
+  ],
+  "disputed": [
+   "prudential-social"
+  ],
+  "url": "https://www.vatican.va/content/francesco/en/encyclicals/documents/papa-francesco_20150524_enciclica-laudato-si.html",
+  "checked": "link"
+ },
+ {
+  "id": "al",
+  "date": "2016-03-19",
+  "pope": "Francis",
+  "title": "Amoris Laetitia",
+  "kind": "Apostolic exhortation",
+  "level": "authentic",
+  "summary": "On love in the family. Chapter 8 discusses discernment for people in irregular unions and, in a footnote, mentions the help of the sacraments in certain cases. How far this changes Familiaris Consortio 84 is the central dispute.",
+  "continuity": "A strict-continuity reading interprets chapter 8 in light of Trent on indissolubility, Familiaris Consortio 84 and Veritatis Splendor.",
+  "refs": [
+   "977"
+  ],
+  "disputed": [
+   "amoris"
+  ],
+  "url": "https://www.vatican.va/content/francesco/en/apost_exhortations/documents/papa-francesco_esortazione-ap_20160319_amoris-laetitia.html",
+  "checked": "link"
+ },
+ {
+  "id": "dp",
+  "date": "2018-08-02",
+  "pope": "Francis",
+  "title": "Revision of Catechism 2267 (death penalty)",
+  "kind": "Rescript and letter of the Congregation for the Doctrine of the Faith",
+  "level": "authentic",
+  "summary": "Rewrites the Catechism to say that, in light of the Gospel, the death penalty is inadmissible because it attacks the dignity of the person, and commits the Church to work for its abolition. The accompanying letter presents this as a development, not a contradiction.",
+  "continuity": "Innocent III required the Waldensians to accept that civil power may impose death without mortal sin. A strict-continuity reading takes 2267 as a judgment about present conditions and the purposes of punishment.",
+  "refs": [
+   "425"
+  ],
+  "disputed": [
+   "death-penalty"
+  ],
+  "url": "https://press.vatican.va/content/salastampa/en/bollettino/pubblico/2018/08/02/180802a.html",
+  "checked": "link"
+ },
+ {
+  "id": "ft",
+  "date": "2020-10-03",
+  "pope": "Francis",
+  "title": "Fratelli Tutti",
+  "kind": "Encyclical",
+  "level": "prudential",
+  "summary": "On fraternity and social friendship. It doubts that the just-war criteria can still be met given modern weapons, repeats opposition to the death penalty, and addresses migration and politics.",
+  "continuity": "The just-war doctrine in the Catechism (2309) is not repealed; the encyclical's doubt about its present application is a prudential judgment.",
+  "refs": [],
+  "disputed": [
+   "prudential-social",
+   "death-penalty"
+  ],
+  "url": "https://www.vatican.va/content/francesco/en/encyclicals/documents/papa-francesco_20201003_enciclica-fratelli-tutti.html",
+  "checked": "link"
+ },
+ {
+  "id": "spd",
+  "date": "2021-01-10",
+  "pope": "Francis",
+  "title": "Spiritus Domini",
+  "kind": "Apostolic letter (motu proprio)",
+  "level": "discipline",
+  "summary": "Amends canon 230 so that women as well as men may be instituted as lectors and acolytes.",
+  "continuity": "These are lay ministries rooted in baptism, not orders; the reservation of holy orders is untouched.",
+  "refs": [],
+  "disputed": [
+   "disciplines"
+  ],
+  "url": "https://www.vatican.va/content/francesco/en/motu_proprio/documents/papa-francesco-motu-proprio-20210110_spiritus-domini.html",
+  "checked": "link"
+ },
+ {
+  "id": "tc",
+  "date": "2021-07-16",
+  "pope": "Francis",
+  "title": "Traditionis Custodes",
+  "kind": "Apostolic letter (motu proprio)",
+  "level": "discipline",
+  "summary": "Restricts use of the pre-1970 Roman liturgy, places it under the bishop's authority, and calls the reformed books the unique expression of the Roman rite's law of prayer.",
+  "continuity": "A disciplinary reversal of Summorum Pontificum; neither document changes doctrine on the Mass.",
+  "refs": [
+   "931"
+  ],
+  "disputed": [
+   "liturgy"
+  ],
+  "url": "https://www.vatican.va/content/francesco/en/motu_proprio/documents/20210716-motu-proprio-traditionis-custodes.html",
+  "checked": "link"
+ },
+ {
+  "id": "pe",
+  "date": "2022-03-19",
+  "pope": "Francis",
+  "title": "Praedicate Evangelium",
+  "kind": "Apostolic constitution",
+  "level": "discipline",
+  "summary": "Reorganizes the Roman Curia into dicasteries and allows lay members of the faithful to head them, grounding curial authority in delegation from the Pope.",
+  "continuity": "Whether power of governance can be exercised without holy orders is a disputed question that this reform touches.",
+  "refs": [],
+  "disputed": [
+   "lay-governance"
+  ],
+  "url": "https://www.vatican.va/content/francesco/en/apost_constitutions/documents/20220319-costituzione-ap-praedicate-evangelium.html",
+  "checked": "link"
+ },
+ {
+  "id": "fs",
+  "date": "2023-12-18",
+  "pope": "Francis",
+  "title": "Fiducia Supplicans",
+  "kind": "Declaration, Dicastery for the Doctrine of the Faith",
+  "level": "authentic",
+  "summary": "Allows brief, spontaneous, non-liturgical blessings of persons in irregular situations, including same-sex couples, while stating that the doctrine of marriage is unchanged and that no rite may resemble a wedding.",
+  "continuity": "Its own text says it blesses persons, not unions. Several bishops' conferences declined to apply it.",
+  "refs": [
+   "977"
+  ],
+  "disputed": [
+   "fiducia"
+  ],
+  "url": "https://www.vatican.va/roman_curia/congregations/cfaith/documents/rc_ddf_doc_20231218_fiducia-supplicans_en.html",
+  "checked": "link"
+ },
+ {
+  "id": "dinf",
+  "date": "2024-04-02",
+  "pope": "Francis",
+  "title": "Dignitas Infinita",
+  "kind": "Declaration, Dicastery for the Doctrine of the Faith",
+  "level": "authentic",
+  "summary": "On human dignity, grounded in creation and redemption, with a list of grave violations including poverty, war, abortion, euthanasia, surrogacy, and the denial of sexual difference.",
+  "continuity": "Restates the moral teaching of Evangelium Vitae and earlier condemnations of killing the innocent.",
+  "refs": [
+   "1184"
+  ],
+  "url": "https://www.vatican.va/roman_curia/congregations/cfaith/documents/rc_ddf_doc_20240402_dignitas-infinita_en.html",
+  "checked": "link"
+ },
+ {
+  "id": "dilexi",
+  "date": "2025-10-04",
+  "pope": "Leo XIV",
+  "title": "Dilexi Te",
+  "kind": "Apostolic exhortation",
+  "level": "authentic",
+  "summary": "Leo XIV's first major document, on love for the poor as central to the Gospel, drawing on Scripture, the Fathers, the saints and the social teaching tradition.",
+  "continuity": "Continues the line from Leo XIII's social teaching.",
+  "refs": [
+   "1938a"
+  ],
+  "url": "https://www.vatican.va/content/leo-xiv/en/apost_exhortations/documents/20251004-dilexi-te.html",
+  "checked": "link"
+ },
+ {
+  "id": "mpf",
+  "date": "2025-11-04",
+  "pope": "Leo XIV",
+  "title": "Mater Populi Fidelis",
+  "kind": "Doctrinal note, Dicastery for the Doctrine of the Faith",
+  "level": "authentic",
+  "summary": "On Marian titles about Mary's cooperation in salvation. It judges the title Co-redemptrix inappropriate and urges care with Mediatrix of all graces, while affirming Mary's real, subordinate cooperation in the work of her Son.",
+  "continuity": "Neither title was ever defined. Leo XIII and Pius X used mediatrix language, which the note qualifies rather than rejects.",
+  "refs": [
+   "1940a",
+   "1978a"
+  ],
+  "disputed": [
+   "coredemptrix"
+  ],
+  "url": "https://www.vatican.va/roman_curia/congregations/cfaith/documents/rc_ddf_doc_20251104_mater-populi-fidelis_en.html",
+  "checked": "link"
+ },
+ {
+  "id": "iuf",
+  "date": "2025-11-23",
+  "pope": "Leo XIV",
+  "title": "In Unitate Fidei",
+  "kind": "Apostolic letter",
+  "level": "dogma",
+  "summary": "Marks the 1700th anniversary of the Council of Nicaea and presents the Nicene faith in the divinity of Christ as the shared foundation of Christian unity.",
+  "continuity": "Restates the Nicene and Nicene-Constantinopolitan creeds.",
+  "refs": [
+   "54",
+   "86"
+  ],
+  "url": "https://www.vatican.va/content/leo-xiv/en/apost_letters/documents/20251123-in-unitate-fidei.html",
+  "checked": "link"
+ },
+ {
+  "id": "petrocchi",
+  "date": "2025-12",
+  "pope": "Leo XIV",
+  "title": "Report of the Petrocchi Commission on the female diaconate",
+  "kind": "Study commission report",
+  "level": "study",
+  "summary": "An advisory commission concluded that present historical and theological research rules out admitting women to the diaconate as a degree of holy orders, while saying this is not a definitive judgment like that on the priesthood and recommending further study.",
+  "continuity": "Leaves the question open in principle; Ordinatio Sacerdotalis concerns the priesthood only.",
+  "refs": [],
+  "disputed": [
+   "women-deacons"
+  ],
+  "url": "https://www.vaticannews.va/en/vatican-city/news/2025-12/petrocchi-commission-female-diaconate-no-judgment-not-definitive.html",
+  "checked": "text"
+ }
+]

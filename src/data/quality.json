@@ -1,0 +1,57 @@
+{
+ "missing": [
+  3,
+  7,
+  10,
+  11,
+  499,
+  730,
+  736,
+  737,
+  2211,
+  2284,
+  2291
+ ],
+ "dups": [
+  "57b",
+  "57d",
+  "85",
+  "86",
+  "148",
+  "149",
+  "336",
+  "337",
+  "338",
+  "340",
+  "956",
+  "1890"
+ ],
+ "greek": [
+  "12",
+  "41",
+  "42",
+  "45",
+  "57a",
+  "120",
+  "201",
+  "268",
+  "276",
+  "2166",
+  "2181"
+ ],
+ "fixes": 89,
+ "fixSamples": [
+  "predecessorof -> predecessor of",
+  "hea ven -> heaven",
+  "concerningthe -> concerning the",
+  "rec eive -> receive",
+  "becausethe -> because the",
+  "notagainst -> not against",
+  "andfrom -> and from",
+  "howthe -> how the",
+  "uponone -> upon one",
+  "haveplaced -> have placed",
+  "waythe -> way the",
+  "whatsoeverall -> whatsoever all"
+ ]
+}

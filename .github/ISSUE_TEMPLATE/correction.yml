@@ -1,0 +1,47 @@
+name: Suggest a correction
+description: Something on the site is wrong or could be better — a text, a number, a weight, a summary or a cross-reference.
+title: "Correction: "
+labels: [correction]
+body:
+  - type: input
+    id: item
+    attributes:
+      label: Which item?
+      description: The entry number (n. 1839, DS 3074, Suppl. C8), or the guide item. Filled in when you come from the site.
+    validations:
+      required: true
+  - type: input
+    id: page
+    attributes:
+      label: Link
+      description: The page where you saw it.
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What kind of problem?
+      options:
+        - A typo or scanning error in the English text
+        - The Latin text or a DS number
+        - The weight or grade of a text
+        - A summary in a guide (Since 1950, disputed questions, threads)
+        - A Roman Catechism cross-reference
+        - A date, heading or session
+        - Something else
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: What is wrong?
+    validations:
+      required: true
+  - type: textarea
+    id: fix
+    attributes:
+      label: What should it say?
+      description: Optional, but it helps.
+  - type: textarea
+    id: source
+    attributes:
+      label: Source
+      description: A printed edition, a scan, an official text — with a page, column or link if you have one.

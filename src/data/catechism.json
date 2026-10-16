@@ -1,0 +1,726 @@
+{
+ "title": "The Roman Catechism",
+ "subtitle": "Catechism of the Council of Trent",
+ "about": "Trent asked for a catechism for parish priests (Session XXIV, 1563). It was published under Pius V in 1566 and was the Church's standard exposition of doctrine until the twentieth century. This guide follows its four parts and lists, for each chapter, the texts in this collection that teach the same doctrine. Those up to 1566 are the texts the Catechism explains; later texts are listed separately. The cross-references are made by topic for this site; the Catechism itself rarely cites texts by number.",
+ "texts": [
+  {
+   "label": "English translation by McHugh and Callan (1923), online text at Fordham's Internet History Sourcebooks",
+   "url": "https://sourcebooks.fordham.edu/mod/romancat.asp"
+  }
+ ],
+ "parts": [
+  {
+   "id": "creed",
+   "title": "Part I. The Creed",
+   "chapters": [
+    {
+     "id": "faith",
+     "title": "Introduction: faith and the Creed",
+     "summary": "What faith is, why it is necessary, and why the Apostles summed it up in twelve articles.",
+     "refs": [
+      "2",
+      "6",
+      "39",
+      "782",
+      "783",
+      "786",
+      "994",
+      "1789",
+      "1810"
+     ]
+    },
+    {
+     "id": "art1",
+     "title": "Article 1. I believe in God, the Father almighty, Creator of heaven and earth",
+     "summary": "One God in three persons; the Father; God's omnipotence; creation of all things, visible and invisible, out of nothing.",
+     "refs": [
+      "39",
+      "54",
+      "86",
+      "275",
+      "428",
+      "706",
+      "1782",
+      "1783",
+      "1801"
+     ]
+    },
+    {
+     "id": "art2",
+     "title": "Article 2. And in Jesus Christ, His only Son, our Lord",
+     "summary": "The name Jesus and the title Christ; the eternal generation of the Son, consubstantial with the Father.",
+     "refs": [
+      "54",
+      "86",
+      "40",
+      "276",
+      "703",
+      "704"
+     ]
+    },
+    {
+     "id": "art3",
+     "title": "Article 3. Conceived by the Holy Ghost, born of the Virgin Mary",
+     "summary": "The Incarnation: one person in two natures; Mary truly Mother of God and ever a virgin.",
+     "refs": [
+      "111a",
+      "113",
+      "143",
+      "148",
+      "255",
+      "256",
+      "290",
+      "709",
+      "1100",
+      "1641"
+     ]
+    },
+    {
+     "id": "art4",
+     "title": "Article 4. Suffered under Pontius Pilate, was crucified, died and was buried",
+     "summary": "The Passion as the work of redemption, suffered in Christ's human nature, and the satisfaction He made for all.",
+     "refs": [
+      "124",
+      "286",
+      "462",
+      "794",
+      "795",
+      "938"
+     ]
+    },
+    {
+     "id": "art5",
+     "title": "Article 5. He descended into hell; the third day He rose again from the dead",
+     "summary": "Christ's soul among the dead; the Resurrection in the same body.",
+     "refs": [
+      "6",
+      "40",
+      "429",
+      "462",
+      "709",
+      "2084"
+     ]
+    },
+    {
+     "id": "art6",
+     "title": "Article 6. He ascended into heaven, sits at the right hand of God the Father almighty",
+     "summary": "The Ascension in body and soul, and Christ's glory and power at the Father's right hand.",
+     "refs": [
+      "2",
+      "86",
+      "344",
+      "429",
+      "462",
+      "709"
+     ]
+    },
+    {
+     "id": "art7",
+     "title": "Article 7. From thence He shall come to judge the living and the dead",
+     "summary": "The particular judgment at death and the general judgment at the end of the world.",
+     "refs": [
+      "40",
+      "429",
+      "463",
+      "464",
+      "530",
+      "693"
+     ]
+    },
+    {
+     "id": "art8",
+     "title": "Article 8. I believe in the Holy Ghost",
+     "summary": "The divinity of the Holy Ghost and His procession from the Father and the Son; His gifts.",
+     "refs": [
+      "86",
+      "277",
+      "460",
+      "691",
+      "704",
+      "2288"
+     ]
+    },
+    {
+     "id": "art9",
+     "title": "Article 9. The holy Catholic Church; the communion of saints",
+     "summary": "The Church one, holy, catholic and apostolic, with Peter's successor at its head; no salvation outside it; the sharing of spiritual goods among all its members.",
+     "refs": [
+      "6",
+      "86",
+      "423",
+      "430",
+      "468",
+      "464",
+      "694",
+      "714",
+      "1821",
+      "1822",
+      "1826",
+      "1839",
+      "1677",
+      "2286",
+      "2287"
+     ]
+    },
+    {
+     "id": "art10",
+     "title": "Article 10. The forgiveness of sins",
+     "summary": "The power to forgive sins given to the Church, exercised in baptism and in penance.",
+     "refs": [
+      "86",
+      "792",
+      "894",
+      "899",
+      "902",
+      "994"
+     ]
+    },
+    {
+     "id": "art11",
+     "title": "Article 11. The resurrection of the body",
+     "summary": "All the dead will rise in the same bodies they had in life.",
+     "refs": [
+      "6",
+      "40",
+      "287",
+      "429",
+      "462",
+      "464"
+     ]
+    },
+    {
+     "id": "art12",
+     "title": "Article 12. Life everlasting",
+     "summary": "The vision of God for the blessed, the punishment of the damned, and purgatory for those still to be cleansed.",
+     "refs": [
+      "40",
+      "456",
+      "464",
+      "530",
+      "531",
+      "693",
+      "840",
+      "983",
+      "998"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "sacraments",
+   "title": "Part II. The Sacraments",
+   "chapters": [
+    {
+     "id": "sacr",
+     "title": "The sacraments in general",
+     "summary": "What a sacrament is; why there are seven; matter, form and minister; the intention required; the character of baptism, confirmation and orders.",
+     "refs": [
+      "424",
+      "695",
+      "843a",
+      "844",
+      "846",
+      "847",
+      "849",
+      "850",
+      "851",
+      "852",
+      "853",
+      "854",
+      "855",
+      "856"
+     ]
+    },
+    {
+     "id": "baptism",
+     "title": "Baptism",
+     "summary": "Its matter and form; its necessity; the minister in case of need; the baptism of infants; its effects and character.",
+     "refs": [
+      "102",
+      "410",
+      "412",
+      "413",
+      "388",
+      "696",
+      "791",
+      "857",
+      "858",
+      "859",
+      "860",
+      "861",
+      "862",
+      "863",
+      "864",
+      "865",
+      "866",
+      "867",
+      "868",
+      "869",
+      "870",
+      "1966a",
+      "1977",
+      "2304"
+     ]
+    },
+    {
+     "id": "confirmation",
+     "title": "Confirmation",
+     "summary": "A true sacrament, with chrism as its matter; the bishop as its ordinary minister; the strength it gives.",
+     "refs": [
+      "419",
+      "424",
+      "572",
+      "573",
+      "697",
+      "871",
+      "872",
+      "873",
+      "1458"
+     ]
+    },
+    {
+     "id": "eucharist",
+     "title": "The Eucharist",
+     "summary": "The Real Presence; transubstantiation; communion and its dispositions; communion under one kind; the Mass as a true sacrifice.",
+     "refs": [
+      "414",
+      "416",
+      "626",
+      "698",
+      "873a",
+      "874",
+      "875",
+      "876",
+      "877",
+      "878",
+      "879",
+      "880",
+      "881",
+      "882",
+      "883",
+      "884",
+      "885",
+      "886",
+      "887",
+      "888",
+      "889",
+      "890",
+      "891",
+      "892",
+      "893",
+      "929a",
+      "930",
+      "931",
+      "932",
+      "933",
+      "934",
+      "935",
+      "936",
+      "937",
+      "937a",
+      "938",
+      "939",
+      "940",
+      "941",
+      "942",
+      "943",
+      "944",
+      "945",
+      "946",
+      "947",
+      "948",
+      "949",
+      "950",
+      "951",
+      "952",
+      "953",
+      "954",
+      "955",
+      "956",
+      "997",
+      "1147",
+      "1528",
+      "1530",
+      "1937",
+      "1981",
+      "2137",
+      "2297",
+      "2300"
+     ]
+    },
+    {
+     "id": "penance",
+     "title": "Penance",
+     "summary": "Penance as a virtue and a sacrament; contrition, confession and satisfaction; absolution by the priest; indulgences.",
+     "refs": [
+      "145",
+      "146",
+      "437",
+      "467",
+      "551",
+      "699",
+      "740a",
+      "893a",
+      "894",
+      "895",
+      "896",
+      "897",
+      "898",
+      "899",
+      "900",
+      "901",
+      "902",
+      "903",
+      "904",
+      "905",
+      "906",
+      "911",
+      "912",
+      "913",
+      "914",
+      "915",
+      "916",
+      "917",
+      "918",
+      "919",
+      "920",
+      "921",
+      "922",
+      "923",
+      "924",
+      "925",
+      "989",
+      "1146",
+      "1207",
+      "1208",
+      "1209",
+      "1220",
+      "1534",
+      "1540"
+     ]
+    },
+    {
+     "id": "unction",
+     "title": "Extreme Unction",
+     "summary": "The anointing of the sick: its matter, form and minister, who may receive it, and its effects.",
+     "refs": [
+      "700",
+      "907",
+      "908",
+      "909",
+      "910",
+      "926",
+      "927",
+      "928",
+      "929",
+      "1628"
+     ]
+    },
+    {
+     "id": "orders",
+     "title": "Holy Orders",
+     "summary": "The priesthood of the New Law; the degrees of orders; the hierarchy; the bishop as minister; the character.",
+     "refs": [
+      "701",
+      "956-2",
+      "957",
+      "958",
+      "959",
+      "960",
+      "961",
+      "962",
+      "963",
+      "964",
+      "965",
+      "966",
+      "967",
+      "968",
+      "1963",
+      "2274",
+      "2275",
+      "2301"
+     ]
+    },
+    {
+     "id": "matrimony",
+     "title": "Matrimony",
+     "summary": "Marriage as a natural contract raised to a sacrament; its unity and indissolubility; its ends; the Church's authority over it.",
+     "refs": [
+      "404",
+      "405",
+      "702",
+      "969",
+      "970",
+      "971",
+      "972",
+      "973",
+      "974",
+      "975",
+      "976",
+      "977",
+      "978",
+      "979",
+      "980",
+      "981",
+      "982",
+      "990",
+      "992",
+      "1600",
+      "1640",
+      "1853",
+      "1854",
+      "2225",
+      "2232",
+      "2234",
+      "2235",
+      "2295",
+      "5006"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "decalogue",
+   "title": "Part III. The Ten Commandments",
+   "chapters": [
+    {
+     "id": "law",
+     "title": "Introduction: the law of God",
+     "summary": "The commandments bind Christians, and with grace they can be kept.",
+     "refs": [
+      "804",
+      "828",
+      "829",
+      "830",
+      "1033",
+      "2279"
+     ]
+    },
+    {
+     "id": "c1",
+     "title": "First Commandment: I am the Lord thy God, thou shalt not have strange gods",
+     "summary": "Faith, hope and charity owed to God; idolatry and superstition; the lawful honor of saints, relics and images.",
+     "refs": [
+      "302",
+      "440",
+      "952",
+      "984",
+      "985",
+      "986",
+      "987",
+      "988",
+      "998",
+      "1653",
+      "1154",
+      "1215"
+     ]
+    },
+    {
+     "id": "c2",
+     "title": "Second Commandment: Thou shalt not take the name of the Lord thy God in vain",
+     "summary": "Reverence for God's name; lawful oaths and vows; perjury and blasphemy.",
+     "refs": [
+      "1174",
+      "1175",
+      "1176",
+      "1178",
+      "1575"
+     ]
+    },
+    {
+     "id": "c3",
+     "title": "Third Commandment: Remember that thou keep holy the Sabbath day",
+     "summary": "Sunday and the feasts, kept by worship and by rest from servile work.",
+     "refs": [
+      "1573",
+      "1574"
+     ]
+    },
+    {
+     "id": "c4",
+     "title": "Fourth Commandment: Honor thy father and thy mother",
+     "summary": "Duties of children and parents, and of subjects and those who govern.",
+     "refs": [
+      "1855",
+      "1866",
+      "2202"
+     ]
+    },
+    {
+     "id": "c5",
+     "title": "Fifth Commandment: Thou shalt not kill",
+     "summary": "The sanctity of life; what is and is not murder; anger and revenge.",
+     "refs": [
+      "1117",
+      "1118",
+      "1119",
+      "1180",
+      "1181",
+      "1184",
+      "1185",
+      "1491",
+      "1492",
+      "1493",
+      "1494",
+      "1889",
+      "1890",
+      "2242",
+      "2243",
+      "2244"
+     ]
+    },
+    {
+     "id": "c6",
+     "title": "Sixth Commandment: Thou shalt not commit adultery",
+     "summary": "Chastity, and the sins against it in deed and desire.",
+     "refs": [
+      "1198",
+      "1199",
+      "2201",
+      "2239",
+      "5005"
+     ]
+    },
+    {
+     "id": "c7",
+     "title": "Seventh Commandment: Thou shalt not steal",
+     "summary": "Theft, usury and fraud; restitution; the right use of property.",
+     "refs": [
+      "394",
+      "403",
+      "479",
+      "739",
+      "1186",
+      "1191",
+      "1192",
+      "1475",
+      "1478",
+      "1479",
+      "1938a",
+      "2254"
+     ]
+    },
+    {
+     "id": "c8",
+     "title": "Eighth Commandment: Thou shalt not bear false witness",
+     "summary": "Truthfulness in court and in speech; lies, detraction and flattery.",
+     "refs": [
+      "1174",
+      "1176",
+      "1178"
+     ]
+    },
+    {
+     "id": "c9",
+     "title": "Ninth and Tenth Commandments: Thou shalt not covet",
+     "summary": "Interior desires against chastity and against another's goods.",
+     "refs": [
+      "174",
+      "792",
+      "1199"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "prayer",
+   "title": "Part IV. The Lord's Prayer",
+   "chapters": [
+    {
+     "id": "prayer",
+     "title": "Prayer",
+     "summary": "The necessity, kinds and fruits of prayer, and the dispositions it requires.",
+     "refs": [
+      "804",
+      "806",
+      "1238",
+      "1240",
+      "1241",
+      "1243",
+      "1244",
+      "1245",
+      "1327",
+      "1342"
+     ]
+    },
+    {
+     "id": "father",
+     "title": "Our Father who art in heaven",
+     "summary": "God as Father, and the confidence with which His children approach Him.",
+     "refs": []
+    },
+    {
+     "id": "p1",
+     "title": "First Petition: Hallowed be thy name",
+     "summary": "That God's name be known, praised and honored by all.",
+     "refs": []
+    },
+    {
+     "id": "p2",
+     "title": "Second Petition: Thy kingdom come",
+     "summary": "The kingdom of grace in the Church and the kingdom of glory to come.",
+     "refs": [
+      "2194",
+      "2195",
+      "2196"
+     ]
+    },
+    {
+     "id": "p3",
+     "title": "Third Petition: Thy will be done on earth as it is in heaven",
+     "summary": "Obedience to God's commandments, made possible by His grace.",
+     "refs": [
+      "804",
+      "828"
+     ]
+    },
+    {
+     "id": "p4",
+     "title": "Fourth Petition: Give us this day our daily bread",
+     "summary": "Bodily needs and the bread of the soul, above all the Eucharist.",
+     "refs": [
+      "1981"
+     ]
+    },
+    {
+     "id": "p5",
+     "title": "Fifth Petition: Forgive us our trespasses",
+     "summary": "All the just must ask forgiveness for daily sins; the duty to forgive others.",
+     "refs": [
+      "106",
+      "107",
+      "108",
+      "804",
+      "833"
+     ]
+    },
+    {
+     "id": "p6",
+     "title": "Sixth Petition: Lead us not into temptation",
+     "summary": "Temptation is not sin; God's help to resist it; the gift of perseverance.",
+     "refs": [
+      "804",
+      "806",
+      "826",
+      "832"
+     ]
+    },
+    {
+     "id": "p7",
+     "title": "Seventh Petition: Deliver us from evil",
+     "summary": "Deliverance from every evil, and patience in what God permits.",
+     "refs": [
+      "805",
+      "806"
+     ]
+    },
+    {
+     "id": "amen",
+     "title": "The seal of the Lord's Prayer: Amen",
+     "summary": "The confidence with which the prayer is closed.",
+     "refs": []
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,872 @@
+[
+ {
+  "id": "trinity",
+  "title": "The Trinity",
+  "summary": "From the Nicene homoousios to the Council of Florence: one God in three persons, each fully God, distinct only by their relations of origin.",
+  "steps": [
+   {
+    "ref": "54",
+    "note": "Nicaea: the Son is of one substance with the Father, against Arius."
+   },
+   {
+    "ref": "86",
+    "note": "Constantinople I: the Holy Spirit is Lord and giver of life, adored and glorified with the Father and the Son."
+   },
+   {
+    "ref": "74",
+    "note": "Damasus's synod: the Holy Spirit is truly God, of the divine substance, like the Son."
+   },
+   {
+    "ref": "39",
+    "note": "The Athanasian Creed: unity in Trinity and Trinity in unity, persons not confused, substance not divided."
+   },
+   {
+    "ref": "275",
+    "note": "Toledo XI: a full Latin confession of the Trinity, persons distinguished by relation."
+   },
+   {
+    "ref": "428",
+    "note": "Lateran IV: one supreme reality, Father, Son and Spirit; against Joachim's account of the divine unity (n. 431)."
+   },
+   {
+    "ref": "460",
+    "note": "Lyons II: the Spirit proceeds from the Father and the Son as from one principle."
+   },
+   {
+    "ref": "691",
+    "note": "Florence: the Greek \"through the Son\" means the same faith as the Latin \"and the Son.\""
+   },
+   {
+    "ref": "703",
+    "note": "Florence, for the Jacobites: in God all is one except where there is opposition of relation."
+   },
+   {
+    "since": "iuf",
+    "note": "Leo XIV marks 1700 years of Nicaea and presents its faith as the ground of Christian unity."
+   }
+  ]
+ },
+ {
+  "id": "christ",
+  "title": "Christ, true God and true man",
+  "summary": "The councils from Ephesus to Constantinople III fix the confession of one person in two natures with two wills, and later ecumenical agreements measure other traditions by it.",
+  "steps": [
+   {
+    "ref": "111a",
+    "note": "Ephesus receives Cyril's letter: the Word united flesh to himself hypostatically."
+   },
+   {
+    "ref": "113",
+    "note": "Ephesus: Mary is Mother of God, because the one she bore is God the Word made flesh."
+   },
+   {
+    "ref": "143",
+    "note": "Leo's Tome: each nature keeps its properties, joined in one person."
+   },
+   {
+    "ref": "148",
+    "note": "Chalcedon: one and the same Christ in two natures, without confusion, change, division or separation."
+   },
+   {
+    "ref": "220",
+    "note": "Constantinople II: Cyril's \"one nature of the Word made flesh\" is accepted only in the Fathers' sense."
+   },
+   {
+    "ref": "251",
+    "note": "Honorius writes ambiguously of one will (the case later debated, see the disputed questions)."
+   },
+   {
+    "ref": "291",
+    "note": "Constantinople III: two natural wills and two operations, the human will following the divine."
+   },
+   {
+    "ref": "429",
+    "note": "Lateran IV: the Son incarnate by the whole Trinity, true God and true man."
+   },
+   {
+    "since": "assyr",
+    "note": "1994: the Assyrian Church of the East and Rome confess the same faith under different titles for Mary."
+   }
+  ]
+ },
+ {
+  "id": "mary",
+  "title": "Mary",
+  "summary": "From Mother of God to the Assumption, with the Immaculate Conception moving from permitted opinion to dogma, and titles of mediation left undefined.",
+  "steps": [
+   {
+    "ref": "113",
+    "note": "Ephesus: Theotokos, Mother of God, defended against Nestorius."
+   },
+   {
+    "ref": "91",
+    "note": "Siricius: Mary's virginity after the birth of Christ."
+   },
+   {
+    "ref": "256",
+    "note": "Lateran Synod of 649: Mary ever-virgin, conceiving without seed and giving birth without corruption."
+   },
+   {
+    "ref": "734",
+    "note": "Sixtus IV approves a feast of the Immaculate Conception while the question is still debated."
+   },
+   {
+    "ref": "735",
+    "note": "Sixtus IV forbids each side to call the other heretical."
+   },
+   {
+    "ref": "792",
+    "note": "Trent declines to include Mary in its decree on original sin."
+   },
+   {
+    "ref": "1100",
+    "note": "Alexander VII describes the belief in her preservation from original sin from the first instant."
+   },
+   {
+    "ref": "1641",
+    "note": "Pius IX defines the Immaculate Conception (1854)."
+   },
+   {
+    "ref": "1940a",
+    "note": "Leo XIII: Mary as mediatrix to the Mediator, in a subordinate sense."
+   },
+   {
+    "ref": "2333",
+    "note": "Pius XII defines the Assumption (1950), the last dogma defined."
+   },
+   {
+    "since": "lg",
+    "note": "Lumen Gentium 8 places Mary within the mystery of Christ and the Church."
+   },
+   {
+    "since": "mpf",
+    "note": "2025: Co-redemptrix judged inappropriate; Mary's subordinate cooperation reaffirmed."
+   }
+  ]
+ },
+ {
+  "id": "primacy",
+  "title": "Primacy and infallibility of the Pope",
+  "summary": "From Clement's letter to Corinth to Vatican I's definitions, and the post-conciliar discussion of how the primacy is exercised.",
+  "steps": [
+   {
+    "ref": "41",
+    "note": "Clement of Rome intervenes in the church of Corinth."
+   },
+   {
+    "ref": "57b",
+    "note": "Serdica: bishops may appeal to the bishop of Rome."
+   },
+   {
+    "ref": "87",
+    "note": "Siricius: Peter bears the burdens of all in his successor."
+   },
+   {
+    "ref": "100",
+    "note": "Innocent I: matters from all provinces are referred to the Apostolic See."
+   },
+   {
+    "ref": "110",
+    "note": "Boniface I: what Rome has decided may not be reopened."
+   },
+   {
+    "ref": "112",
+    "note": "At Ephesus the papal legate: Peter lives and judges in his successors."
+   },
+   {
+    "ref": "469",
+    "note": "Unam Sanctam: subjection to the Roman Pontiff is necessary for salvation."
+   },
+   {
+    "ref": "C1",
+    "note": "Constance, amid three rival claimants, asserts authority over anyone \"even if papal\" (Haec Sancta); its standing is disputed."
+   },
+   {
+    "ref": "694",
+    "note": "Florence: the Pope has primacy over the whole world and full power to rule the Church."
+   },
+   {
+    "ref": "B11",
+    "note": "Florence condemns Basel's claim that a council's superiority over the pope is a truth of faith."
+   },
+   {
+    "ref": "717",
+    "note": "Pius II forbids appeals from the pope to a future council."
+   },
+   {
+    "ref": "740",
+    "note": "Lateran V: the pope alone convokes, transfers and dissolves councils."
+   },
+   {
+    "ref": "1826",
+    "note": "Vatican I: the primacy of jurisdiction is immediate and episcopal over all the faithful."
+   },
+   {
+    "ref": "1831",
+    "note": "Vatican I: the Pope's power is full and supreme, not merely supervision."
+   },
+   {
+    "ref": "1839",
+    "note": "Vatican I defines papal infallibility and its conditions."
+   },
+   {
+    "since": "lg",
+    "note": "Lumen Gentium repeats Vatican I and sets collegiality under and with the head."
+   },
+   {
+    "since": "uus",
+    "note": "John Paul II invites discussion of the exercise, not the substance, of the primacy."
+   }
+  ]
+ },
+ {
+  "id": "scripture",
+  "title": "Scripture and Tradition",
+  "summary": "The canon, the two channels of revelation, inspiration and inerrancy, and the Church's authority to interpret.",
+  "steps": [
+   {
+    "ref": "84",
+    "note": "Damasus's council lists the canon of Scripture."
+   },
+   {
+    "ref": "92",
+    "note": "Carthage gives the same canon."
+   },
+   {
+    "ref": "783",
+    "note": "Trent: the Gospel comes in written books and unwritten traditions, both received with equal reverence; the canon fixed."
+   },
+   {
+    "ref": "786",
+    "note": "Trent: no one may interpret Scripture against the Church's sense or the consent of the Fathers."
+   },
+   {
+    "ref": "1787",
+    "note": "Vatican I: the books are sacred because written under the Spirit's inspiration with God as author."
+   },
+   {
+    "ref": "1951",
+    "note": "Leo XIII: inspiration excludes error from the whole of Scripture."
+   },
+   {
+    "ref": "2113",
+    "note": "Pius X requires obedience to the Biblical Commission's decisions."
+   },
+   {
+    "ref": "2186",
+    "note": "Benedict XV rejects limiting inerrancy to religious matters."
+   },
+   {
+    "ref": "2294",
+    "note": "Pius XII: the interpreter must attend to the literary forms of the ancient writers."
+   },
+   {
+    "since": "dv",
+    "note": "Dei Verbum restates the doctrine and speaks of the truth recorded for our salvation."
+   }
+  ]
+ },
+ {
+  "id": "grace",
+  "title": "Grace and justification",
+  "summary": "From the African councils against Pelagius to Trent's decree, the Jansenist condemnations, and the Joint Declaration with Lutherans.",
+  "steps": [
+   {
+    "ref": "103",
+    "note": "Carthage: grace helps us not to sin, not only forgives past sins."
+   },
+   {
+    "ref": "105",
+    "note": "Carthage: without grace we can do nothing, not merely do good with more difficulty."
+   },
+   {
+    "ref": "141",
+    "note": "The Indiculus: God is the author of every good disposition, and free choice is set free, not destroyed."
+   },
+   {
+    "ref": "186",
+    "note": "Orange II: free will weakened in Adam is repaired only by the grace of baptism."
+   },
+   {
+    "ref": "797",
+    "note": "Trent: the beginning of justification is from prevenient grace, with free cooperation."
+   },
+   {
+    "ref": "811",
+    "note": "Trent's canons on justification, from the first against Pelagianism to the last against misreadings of the decree."
+   },
+   {
+    "ref": "1090",
+    "note": "Paul V: Thomists and Molinists may each teach their view on efficacious grace."
+   },
+   {
+    "ref": "1092",
+    "note": "Innocent X condemns Jansen's first proposition: some commandments impossible to the just."
+   },
+   {
+    "ref": "1379",
+    "note": "Clement XI condemns Quesnel's claim that no grace is given outside the Church."
+   },
+   {
+    "since": "jddj",
+    "note": "1999: Catholics and Lutherans state a consensus on basic truths of justification."
+   }
+  ]
+ },
+ {
+  "id": "original-sin",
+  "title": "Original sin and the unity of the human race",
+  "summary": "The doctrine defended against Pelagius, defined at Trent, and kept as the fixed point in modern questions about evolution and unbaptized infants.",
+  "steps": [
+   {
+    "ref": "101",
+    "note": "Carthage: Adam was not made subject to death by nature but by sin."
+   },
+   {
+    "ref": "102",
+    "note": "Carthage: infants are baptized for the remission of sin they contract from Adam."
+   },
+   {
+    "ref": "175",
+    "note": "Orange II: Adam's sin passed death and sin to the whole human race."
+   },
+   {
+    "ref": "789",
+    "note": "Trent: Adam's transgression harmed his posterity, transmitting sin and death."
+   },
+   {
+    "ref": "791",
+    "note": "Trent: newborn infants are to be baptized for the remission of original sin."
+   },
+   {
+    "ref": "1526",
+    "note": "Pius VI rejects calling limbo a Pelagian fable."
+   },
+   {
+    "ref": "2327",
+    "note": "Pius XII permits research on the evolution of the human body."
+   },
+   {
+    "ref": "2328",
+    "note": "Pius XII: polygenism cannot be held while it is not apparent how it fits original sin."
+   },
+   {
+    "since": "itc",
+    "note": "2007: a theological study on hope for unbaptized infants."
+   }
+  ]
+ },
+ {
+  "id": "eucharist",
+  "title": "The Eucharist",
+  "summary": "Real presence, transubstantiation and sacrifice, from Berengarius to Trent and Paul VI.",
+  "steps": [
+   {
+    "ref": "355",
+    "note": "Berengarius's oath: bread and wine are substantially changed into Christ's body and blood."
+   },
+   {
+    "ref": "430",
+    "note": "Lateran IV: the bread and wine are transubstantiated."
+   },
+   {
+    "ref": "581",
+    "note": "Constance condemns Wycliffe's claim that the substance of bread remains."
+   },
+   {
+    "ref": "626",
+    "note": "Constance defends communion under one kind for the laity."
+   },
+   {
+    "ref": "874",
+    "note": "Trent: Christ is truly, really and substantially contained under the species."
+   },
+   {
+    "ref": "877",
+    "note": "Trent: the change is fittingly and properly called transubstantiation."
+   },
+   {
+    "ref": "931",
+    "note": "Trent: the Church may change how sacraments are administered, preserving their substance."
+   },
+   {
+    "ref": "948",
+    "note": "Trent: the Mass is a true and proper sacrifice."
+   },
+   {
+    "ref": "1843",
+    "note": "The Holy Office judges a proposed philosophical account of transubstantiation intolerable."
+   },
+   {
+    "since": "mf",
+    "note": "Paul VI reaffirms transubstantiation against theories of mere change of meaning."
+   },
+   {
+    "since": "mr",
+    "note": "The revised Missal changes the rites, not the doctrine of the Mass."
+   }
+  ]
+ },
+ {
+  "id": "penance",
+  "title": "Penance and confession",
+  "summary": "From private confession under Leo the Great to the annual precept and Trent's canons, and reconciliation of the dying.",
+  "steps": [
+   {
+    "ref": "95",
+    "note": "Innocent I: penance and communion for the dying."
+   },
+   {
+    "ref": "111",
+    "note": "Celestine I: penance must not be refused to the dying who ask for it."
+   },
+   {
+    "ref": "145",
+    "note": "Leo the Great: secret confession to priests suffices; public reading of sins is forbidden."
+   },
+   {
+    "ref": "437",
+    "note": "Lateran IV: every Catholic confesses at least once a year."
+   },
+   {
+    "ref": "699",
+    "note": "Florence: the matter and form of penance."
+   },
+   {
+    "ref": "899",
+    "note": "Trent: confession of all mortal sins is of divine law."
+   },
+   {
+    "ref": "911",
+    "note": "Trent: penance is truly and properly a sacrament."
+   },
+   {
+    "ref": "916",
+    "note": "Trent: sacramental confession is instituted by divine law and necessary for salvation."
+   },
+   {
+    "since": "paen",
+    "note": "Paul VI reorganizes penitential practice while keeping the duty of penance."
+   }
+  ]
+ },
+ {
+  "id": "marriage",
+  "title": "Marriage",
+  "summary": "Indissolubility, sacramentality and the ends of marriage, and the post-conciliar questions about Communion and blessings.",
+  "steps": [
+   {
+    "ref": "52a",
+    "note": "Elvira: a woman who leaves an adulterous husband may not remarry while he lives."
+   },
+   {
+    "ref": "424",
+    "note": "Innocent III's profession for the Waldensians affirms that marriage is lawful and good."
+   },
+   {
+    "ref": "702",
+    "note": "Florence: marriage is the seventh sacrament, sign of Christ and the Church."
+   },
+   {
+    "ref": "977",
+    "note": "Trent: the Church does not err in teaching that adultery does not dissolve the bond."
+   },
+   {
+    "ref": "1853",
+    "note": "Leo XIII, Arcanum: the Church's authority over Christian marriage."
+   },
+   {
+    "ref": "2225",
+    "note": "Pius XI, Casti Connubii: marriage instituted and restored by God, not by man."
+   },
+   {
+    "ref": "2240",
+    "note": "Casti Connubii: any use of marriage deliberately frustrated of its power to procreate is grave sin."
+   },
+   {
+    "ref": "2250",
+    "note": "Casti Connubii against divorce."
+   },
+   {
+    "since": "hv",
+    "note": "Humanae Vitae repeats the teaching on contraception."
+   },
+   {
+    "since": "fc",
+    "note": "Familiaris Consortio 84 on the divorced and remarried."
+   },
+   {
+    "since": "al",
+    "note": "Amoris Laetitia, chapter 8, and the dispute over its reading."
+   },
+   {
+    "since": "fs",
+    "note": "Fiducia Supplicans: blessings of persons, with the doctrine of marriage restated."
+   }
+  ]
+ },
+ {
+  "id": "church-salvation",
+  "title": "The Church and salvation",
+  "summary": "From Pelagius II and Lateran IV to Florence, Pius IX on invincible ignorance, and Vatican II's teaching on the Church.",
+  "steps": [
+   {
+    "ref": "247",
+    "note": "Pelagius II: one slain outside the Church cannot attain its rewards."
+   },
+   {
+    "ref": "423",
+    "note": "Innocent III's profession: the one Church outside which no one is saved."
+   },
+   {
+    "ref": "430",
+    "note": "Lateran IV: one universal Church of the faithful, outside which no one at all is saved."
+   },
+   {
+    "ref": "469",
+    "note": "Unam Sanctam: subjection to the Roman Pontiff necessary for salvation."
+   },
+   {
+    "ref": "714",
+    "note": "Florence: those outside the Church cannot share eternal life unless joined to it before death."
+   },
+   {
+    "ref": "796",
+    "note": "Trent: justification requires baptism or the desire for it."
+   },
+   {
+    "ref": "1379",
+    "note": "Clement XI condemns the claim that no grace is given outside the Church."
+   },
+   {
+    "ref": "1647",
+    "note": "Pius IX: outside the Church no salvation, and invincible ignorance is no fault before God."
+   },
+   {
+    "ref": "1677",
+    "note": "Pius IX: those in invincible ignorance who keep the natural law can attain eternal life by grace."
+   },
+   {
+    "ref": "2286",
+    "note": "Pius XII, Mystici Corporis: who are members of the Church."
+   },
+   {
+    "since": "lg",
+    "note": "Lumen Gentium 8 and 14-16."
+   },
+   {
+    "since": "di",
+    "note": "Dominus Iesus: Christ the one Savior, the Church necessary."
+   }
+  ]
+ },
+ {
+  "id": "church-state",
+  "title": "Church, state and religious liberty",
+  "summary": "From the two swords to Leo XIII's Christian state, Pius IX's condemnations, and Dignitatis Humanae.",
+  "steps": [
+   {
+    "ref": "469",
+    "note": "Unam Sanctam: the two swords, temporal and spiritual."
+   },
+   {
+    "ref": "1690",
+    "note": "Pius IX, Quanta Cura: liberty of conscience and worship as a right of every man condemned."
+   },
+   {
+    "ref": "1715",
+    "note": "Syllabus 15: the claim that each is free to embrace any religion reason judges true, condemned."
+   },
+   {
+    "ref": "1777",
+    "note": "Syllabus 77: the claim that the Catholic religion should no longer be the religion of the state, condemned."
+   },
+   {
+    "ref": "1866",
+    "note": "Leo XIII, Immortale Dei: two powers, each supreme in its sphere."
+   },
+   {
+    "ref": "1874",
+    "note": "Leo XIII: rulers may tolerate other worships for a great good or to avoid evil."
+   },
+   {
+    "since": "dh",
+    "note": "Dignitatis Humanae: civil immunity from coercion, with the duty toward the true religion untouched."
+   },
+   {
+    "since": "b16",
+    "note": "Benedict XVI on this case as reform in continuity."
+   }
+  ]
+ },
+ {
+  "id": "last-things",
+  "title": "Death, judgment, heaven, hell and purgatory",
+  "summary": "From the condemnation of universal restoration to Benedictus Deus and Trent on purgatory.",
+  "steps": [
+   {
+    "ref": "211",
+    "note": "Against Origenism: the punishment of the damned does not end."
+   },
+   {
+    "ref": "457",
+    "note": "Innocent IV: those who die unrepentant in mortal sin suffer forever."
+   },
+   {
+    "ref": "464",
+    "note": "Lyons II: purgatory, the immediate vision for the purified, and hell for those in mortal sin."
+   },
+   {
+    "ref": "530",
+    "note": "Benedict XII defines the immediate beatific vision for the purified."
+   },
+   {
+    "ref": "531",
+    "note": "Benedict XII: those who die in mortal sin descend immediately to hell."
+   },
+   {
+    "ref": "693",
+    "note": "Florence: the purified are received into heaven; those in mortal or original sin alone go to hell with unequal punishments."
+   },
+   {
+    "ref": "983",
+    "note": "Trent: there is a purgatory, and souls there are helped by the prayers of the faithful."
+   },
+   {
+    "ref": "1526",
+    "note": "Pius VI on limbo."
+   },
+   {
+    "since": "itc",
+    "note": "2007: hope for unbaptized infants."
+   }
+  ]
+ },
+ {
+  "id": "faith-reason",
+  "title": "Faith and reason",
+  "summary": "Nineteenth-century debates over rationalism and fideism, settled at Vatican I and restated against Modernism.",
+  "steps": [
+   {
+    "ref": "1622",
+    "note": "Propositions Bautain was required to sign: reason can prove God's existence, against fideism."
+   },
+   {
+    "ref": "1634",
+    "note": "Pius IX, Qui pluribus: faith and reason do not conflict."
+   },
+   {
+    "ref": "1785",
+    "note": "Vatican I: God can be known with certainty by the natural light of reason."
+   },
+   {
+    "ref": "1789",
+    "note": "Vatican I: faith is assent to God revealing, on his authority."
+   },
+   {
+    "ref": "1795",
+    "note": "Vatican I: two orders of knowledge, distinct in principle and object."
+   },
+   {
+    "ref": "1797",
+    "note": "Vatican I: there can never be real disagreement between faith and reason."
+   },
+   {
+    "ref": "2145",
+    "note": "The Oath against Modernism: God can be known and proved by reason."
+   },
+   {
+    "ref": "2305",
+    "note": "Pius XII, Humani Generis: errors threatening the foundations of doctrine."
+   },
+   {
+    "since": "donum",
+    "note": "Donum Veritatis on the vocation of the theologian."
+   }
+  ]
+ },
+ {
+  "id": "development",
+  "title": "Development of doctrine",
+  "summary": "How dogma can grow in understanding without changing its meaning: the key principle of the hermeneutic of continuity.",
+  "steps": [
+   {
+    "ref": "161",
+    "note": "Gelasius: what has once been condemned is not to be reopened."
+   },
+   {
+    "ref": "1800",
+    "note": "Vatican I: the understanding of dogma grows, but in the same doctrine, the same sense, the same meaning."
+   },
+   {
+    "ref": "1818",
+    "note": "Vatican I: anathema to anyone who says dogmas may take a sense other than the Church's."
+   },
+   {
+    "ref": "2054",
+    "note": "Lamentabili 54 condemns the claim that dogmas and sacraments evolve as mere interpretations."
+   },
+   {
+    "ref": "2058",
+    "note": "Lamentabili 58: truth is not mutable with man."
+   },
+   {
+    "ref": "2080",
+    "note": "Pascendi on the Modernist theory that dogma must evolve and change."
+   },
+   {
+    "ref": "2145",
+    "note": "The Oath against Modernism rejects the evolution of dogma from one meaning to another."
+   },
+   {
+    "since": "me",
+    "note": "Mysterium Ecclesiae: formulas are historically conditioned, but their meaning remains true."
+   },
+   {
+    "since": "b16",
+    "note": "Benedict XVI's hermeneutic of reform in continuity."
+   }
+  ]
+ },
+ {
+  "id": "life",
+  "title": "The dignity of human life",
+  "summary": "Abortion, the killing of the innocent and the death penalty, from the medieval professions to Evangelium Vitae and the 2018 revision.",
+  "steps": [
+   {
+    "ref": "425",
+    "note": "Innocent III: civil power may impose the death penalty without mortal sin."
+   },
+   {
+    "ref": "1184",
+    "note": "Innocent XI condemns permitting abortion before animation."
+   },
+   {
+    "ref": "1185",
+    "note": "Innocent XI condemns the claim that the fetus probably lacks a rational soul until birth."
+   },
+   {
+    "ref": "1890",
+    "note": "Holy Office: any operation directly killing the fetus or the mother cannot be safely taught."
+   },
+   {
+    "ref": "2242",
+    "note": "Pius XI, Casti Connubii: the killing of the unborn."
+   },
+   {
+    "ref": "2303",
+    "note": "Pius XII on artificial fertilization."
+   },
+   {
+    "since": "abort",
+    "note": "1974: abortion gravely wrong from conception, ensoulment left open."
+   },
+   {
+    "since": "ev",
+    "note": "Evangelium Vitae's three solemn confirmations."
+   },
+   {
+    "since": "dp",
+    "note": "2018: the death penalty called inadmissible; read in continuity with n. 425."
+   },
+   {
+    "since": "dinf",
+    "note": "Dignitas Infinita on grave violations of human dignity."
+   }
+  ]
+ },
+ {
+  "id": "social",
+  "title": "Property, work and the social order",
+  "summary": "From the condemnation of usury to the social encyclicals of Leo XIII and Pius XI, and their successors.",
+  "steps": [
+   {
+    "ref": "365",
+    "note": "Lateran II condemns usurers."
+   },
+   {
+    "ref": "739",
+    "note": "Lateran V approves the Mountains of Piety and their modest charges."
+   },
+   {
+    "ref": "1475",
+    "note": "Benedict XIV, Vix pervenit: profit from a loan by reason of the loan itself is usury."
+   },
+   {
+    "ref": "1938a",
+    "note": "Leo XIII, Rerum Novarum: the natural right to private property and a just wage."
+   },
+   {
+    "ref": "2253",
+    "note": "Pius XI, Quadragesimo Anno: the Church's authority in social and economic questions."
+   },
+   {
+    "ref": "2254",
+    "note": "Pius XI: property has an individual and a social character."
+   },
+   {
+    "ref": "2270",
+    "note": "Pius XI: socialism cannot be reconciled with Catholic teaching."
+   },
+   {
+    "since": "gs",
+    "note": "Gaudium et Spes on economic and social life."
+   },
+   {
+    "since": "ls",
+    "note": "Laudato Si' on the universal destination of goods and creation."
+   },
+   {
+    "since": "dilexi",
+    "note": "Leo XIV on love for the poor."
+   }
+  ]
+ },
+ {
+  "id": "orders",
+  "title": "Holy orders and ministry",
+  "summary": "The grades of orders, the matter and form of ordination, Anglican orders, and post-conciliar changes in ministry.",
+  "steps": [
+   {
+    "ref": "52c",
+    "note": "Elvira: continence required of bishops, priests and deacons."
+   },
+   {
+    "ref": "958",
+    "note": "Trent: there are several orders, major and minor, ordered to the priesthood."
+   },
+   {
+    "ref": "962",
+    "note": "Trent: other orders besides the priesthood exist in the Church."
+   },
+   {
+    "ref": "1963",
+    "note": "Leo XIII judges Anglican orders invalid."
+   },
+   {
+    "ref": "2301",
+    "note": "Pius XII fixes the matter and form of ordination."
+   },
+   {
+    "since": "mq",
+    "note": "Paul VI suppresses the minor orders and the subdiaconate."
+   },
+   {
+    "since": "ii",
+    "note": "1976: the reasons for reserving priesthood to men."
+   },
+   {
+    "since": "os",
+    "note": "1994: the reservation declared to be held definitively."
+   },
+   {
+    "since": "ac",
+    "note": "2009: married former Anglican clergy ordained Catholic priests."
+   },
+   {
+    "since": "petrocchi",
+    "note": "2025: the commission on women deacons, not definitive."
+   }
+  ]
+ }
+]

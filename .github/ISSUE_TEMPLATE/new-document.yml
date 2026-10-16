@@ -1,0 +1,41 @@
+name: Propose a document
+description: A text to add — for example a decree of Constance or Basel that Denzinger leaves out, or a papal letter about one.
+title: "New document: "
+labels: [new document]
+body:
+  - type: input
+    id: title
+    attributes:
+      label: Title or opening words
+      placeholder: Ad ea ex debito pastoralis
+    validations:
+      required: true
+  - type: input
+    id: author
+    attributes:
+      label: Author and date
+      placeholder: Eugene IV, 5 February 1447
+    validations:
+      required: true
+  - type: textarea
+    id: latin
+    attributes:
+      label: Latin (or original) text
+      description: The passage you want quoted. Mark omissions with an ellipsis.
+  - type: textarea
+    id: english
+    attributes:
+      label: English translation
+      description: Say whose translation it is, or that it is your own.
+  - type: textarea
+    id: citations
+    attributes:
+      label: Where it is printed
+      description: Edition, volume, page or column, and a link to a scan if there is one (Mansi, Hardt, Mercati, a register…).
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Why it belongs here
+      description: What it shows, and how much weight it carries.
