@@ -5,6 +5,7 @@ A searchable, organized reader for Denzinger's *Enchiridion Symbolorum* in Engli
 ## What it has
 
 - **The full text:** 2,464 entries, from the creeds to Pius XII, with an appendix numbered from 5000. Scanning errors are corrected conservatively.
+- **After 1958:** John XXIII and the Second Vatican Council, one entry per article of each document, numbered by the document and article (`LG 25`, `GS 22`). Later popes are being added.
 - **A page for every entry** at `/n/<number>/`, so that search engines find them and shared links show the text. Each page links back to its place in the reader.
 - **Old and new numbers:** each entry shows its Denzinger–Schönmetzer (DS) number, which Denzinger–Hünermann keeps. The Latin text can be shown below each entry or side by side with the English.
 - **Weights:** every entry carries a grade (defined dogma, definitive, authoritative teaching, discipline, condemned, prudential and others), checked by hand in 328 ranges, each with a note on why. Condemned propositions also show their censures.
@@ -50,6 +51,7 @@ Every entry and guide item has a link that opens an issue here with the item fil
 ## Sources
 
 - **English text:** the translation of the older-numbered Denzinger as published on [patristica.net](https://patristica.net/denzinger/), archived from catecheticsonline.com. It appears to be Roy J. Deferrari's translation of the 30th edition (*The Sources of Catholic Dogma*, B. Herder, 1957). Its copyright status is uncertain.
+- **Texts after 1958:** the English is the Holy See's own translation on [vatican.va](https://www.vatican.va/). The passages were chosen by following the selection in J. Neuner and J. Dupuis, *The Christian Faith in the Doctrinal Documents of the Catholic Church* (7th ed., 2001), whose numbers each entry records; its own translation is not used. The DS numbers of John XXIII's encyclicals come from its concordance.
 - **Latin text and DS numbers:** the Latin page of the same site, which prints both numbers. Accented characters it lost (mostly French *é*) were restored by context. The Latin is otherwise as that page gives it, and has not been proofread.
 - **Roman Catechism:** chapter titles follow McHugh and Callan's translation (1923). The cross-references to Denzinger were made by topic for this site.
 - **Summaries:** the guides were written for this site. Use the linked official texts before citing.

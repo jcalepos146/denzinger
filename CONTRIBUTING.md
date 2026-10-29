@@ -23,6 +23,7 @@ Every file in `src/data/` can be edited on github.com: open the file, choose the
 - `text` is a list of paragraphs. Correct scanning errors; leave the translator's spelling and bracketed insertions as printed.
 - `era` is the line number (counting from 0) of the pope or council in `eras.json`.
 - `ds` lists the Denzinger–Schönmetzer numbers. `dsHow` is `series` when the number is inferred from the neighboring entries, `checked` when it was matched by hand.
+- After 1958 an entry is one article of a document, and its `id` is the document's usual abbreviation and the article (`LG25`, shown as "LG 25"). Its text is the Holy See's English from vatican.va; `nd` lists the numbers of the passages in Neuner–Dupuis, *The Christian Faith*, that the entry gives.
 - `weight` is the rule-based label: `papal-def`, `conc-def`, `conc-canon`, `conc-decree`, `papal`, `particular`, `curia`, `pbc`, `condemned`, `creed`, `note` or `supplement`.
 
 ### A weight

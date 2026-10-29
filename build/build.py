@@ -63,7 +63,12 @@ def enc_id(i):
 
 
 def disp_id(i):
-    return re.sub(r'-\d+$', '', i)
+    return re.sub(r'^([A-Z]{2,})(\d)', r'\1 \2', re.sub(r'-\d+$', '', i))
+
+
+def n_label(i):
+    """n. 1839; LG 11 for a document after 1958, cited by its own article."""
+    return disp_id(i) if re.match(r'[A-Z]{2}', i) else f'n. {disp_id(i)}'
 
 
 # --------------------------------------------------------------------------- load and check
@@ -384,7 +389,7 @@ def entry_pages(d, raw, derived, out, url):
     for k, e in enumerate(E):
         er = eras[e['era']]
         eid = e['id']
-        label = f'Supplement {eid}' if e.get('supplement') else f'Denzinger n. {disp_id(eid)}'
+        label = f'Supplement {eid}' if e.get('supplement') else disp_id(eid) if re.match(r'[A-Z]{2}', eid) else f'Denzinger n. {disp_id(eid)}'
         ds = e.get('ds') or []
         ds_txt = (' (cf. DS ' if e.get('dsHow') == 'series' else ' (DS ') + ds_range(ds) + ')' if ds else ''
         topic = e.get('topic') or ''
@@ -425,15 +430,15 @@ def entry_pages(d, raw, derived, out, url):
             parts.append(f'<details class="latin" lang="la"><summary>Latin text · DS {esc(ds_range(ds))}</summary>{lat}</details>\n')
         if hk is not None:
             w = weights[hk]
-            rng = f' (n. {esc(w["from"])}–{esc(disp_id(w["to"]))})' if w['to'] != w['from'] else ''
+            rng = f' ({esc(n_label(w["from"]))}–{esc(disp_id(w["to"]))})' if w['to'] != w['from'] else ''
             parts.append(f'<p class="curnote"><b>Checked by hand · {esc(GRADE_LABEL[w["g"]][0])}{rng}.</b> {static_text(w["n"], by_id, by_base)}</p>\n')
         if e.get('links'):
             parts.append('<p class="rel">Full text: ' + ' · '.join(f'<a href="{esc(l["url"])}" rel="noopener">{esc(l["label"])} ↗</a>' for l in e['links']) + '</p>\n')
         rel = []
         if derived['cites'].get(eid):
-            rel.append('<div><b>Refers to</b> ' + ', '.join(f'<a href="../{esc(enc_id(t))}/">n. {esc(disp_id(t))}</a>' for t in derived['cites'][eid]) + '</div>')
+            rel.append('<div><b>Refers to</b> ' + ', '.join(f'<a href="../{esc(enc_id(t))}/">{esc(n_label(t))}</a>' for t in derived['cites'][eid]) + '</div>')
         if derived['cited'].get(eid):
-            rel.append('<div><b>Cited by</b> ' + ', '.join(f'<a href="../{esc(enc_id(t))}/">n. {esc(disp_id(t))}</a>' for t in derived['cited'][eid]) + '</div>')
+            rel.append('<div><b>Cited by</b> ' + ', '.join(f'<a href="../{esc(enc_id(t))}/">{esc(n_label(t))}</a>' for t in derived['cited'][eid]) + '</div>')
         if derived['rc'].get(eid):
             rel.append('<div><b>Roman Catechism</b> ' + ', '.join(f'<a href="../../#rc-{c}">{esc(ch_by[c][0]["title"].split(".")[0])}, {esc(ch_by[c][1]["title"])}</a>' for c in derived['rc'][eid]) + '</div>')
         if disc.get(eid):
@@ -442,8 +447,8 @@ def entry_pages(d, raw, derived, out, url):
             parts.append('<div class="rel">' + ''.join(rel) + '</div>\n')
         prev_e, next_e = (E[k - 1] if k else None), (E[k + 1] if k + 1 < len(E) else None)
         nav = []
-        nav.append(f'<a href="../{esc(enc_id(prev_e["id"]))}/" rel="prev"><small>Previous</small>n. {esc(disp_id(prev_e["id"]))}</a>' if prev_e else '<span></span>')
-        nav.append(f'<a class="next" href="../{esc(enc_id(next_e["id"]))}/" rel="next"><small>Next</small>n. {esc(disp_id(next_e["id"]))}</a>' if next_e else '<span></span>')
+        nav.append(f'<a href="../{esc(enc_id(prev_e["id"]))}/" rel="prev"><small>Previous</small>{esc(n_label(prev_e["id"]))}</a>' if prev_e else '<span></span>')
+        nav.append(f'<a class="next" href="../{esc(enc_id(next_e["id"]))}/" rel="next"><small>Next</small>{esc(n_label(next_e["id"]))}</a>' if next_e else '<span></span>')
         parts.append(f'<nav class="pager">{"".join(nav)}</nav>\n')
         parts.append('<p class="colophon">Text: Denzinger, <i>Enchiridion Symbolorum</i>, in the English translation with the older numbering, '
                      'as published on patristica.net. Weights and cross-references are a reading aid made for this site, not an official classification. '
@@ -504,6 +509,7 @@ def open_data(d, raw, derived, out, url, built):
         o = {'id': e['id'], 'ds': e.get('ds', []), 'dsMatch': e.get('dsHow', 'printed' if e.get('ds') else None),
              'era': eras[e['era']]['name'], 'eraDates': eras[e['era']]['dates'], 'year': abs(y), 'yearExact': y > 0,
              'session': e.get('session'), 'topic': e.get('topic'), 'source': e.get('source'), 'text': e['text'],
+             'neunerDupuis': e.get('nd', []),
              'weight': 'papal-teaching' if e['weight'] == 'papal' else e['weight'],
              'grade': d['weights'][hk]['g'] if hk is not None else None,
              'kinds': e.get('kinds', []), 'supplement': bool(e.get('supplement')),

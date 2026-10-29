@@ -119,8 +119,9 @@ const $ = id => document.getElementById(id);
 const view = $('view'), rail = $('rail'), qInput = $('q');
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 const fmt = n => n.toLocaleString('en-US');
-const dispId = id => id.replace(/-\d+$/, '');
-const nlab = id => /^[A-Z]/.test(id) ? 'Suppl. ' + id : 'n. ' + dispId(id);
+// Ids: 1839 (Denzinger), C1 and B1 (supplement), LG11 (a document after 1958 and its article, shown "LG 11").
+const dispId = id => id.replace(/-\d+$/, '').replace(/^([A-Z]{2,})(\d)/, '$1 $2');
+const nlab = id => /^[A-Z]{2}/.test(id) ? dispId(id) : /^[A-Z]/.test(id) ? 'Suppl. ' + id : 'n. ' + dispId(id);
 const store = {
   get(k) { try { return localStorage.getItem(k); } catch (_) { return null; } },
   set(k, v) { try { localStorage.setItem(k, v); } catch (_) {} },
@@ -394,7 +395,7 @@ function todayHtml() {
   const ex = text.length > 420 ? text.slice(0, 420).replace(/\s\S*$/, '') + '…' : text;
   return `<h2 class="sect-h">Text for today</h2>
     <a class="today" href="#n${esc(e.id)}">
-      <span class="ctx"><b>n. ${esc(dispId(e.id))}</b>${e.ds.length ? ' · ' + esc(dsText(e)) : ''} · ${esc(e.era.name)} · ${e.year}</span>
+      <span class="ctx"><b>${esc(nlab(e.id))}</b>${e.ds.length ? ' · ' + esc(dsText(e)) : ''} · ${esc(e.era.name)} · ${e.year}</span>
       ${e.topic ? `<span class="tt">${esc(e.topic)}</span>` : ''}
       <span class="ex">${esc(ex)}</span>
       <span class="go">Read in context →</span>
@@ -417,7 +418,7 @@ function renderHome() {
         <div><b>${nCouncils}</b>councils and synods</div>
       </div>
       <div class="actions">
-        ${lastE ? `<a class="btn primary" href="#n${esc(lastE.id)}">Continue at n. ${esc(dispId(lastE.id))}</a><a class="btn" href="#n1">Start at n. 1</a>` : `<a class="btn primary" href="#n1">Start reading at n. 1</a>`}
+        ${lastE ? `<a class="btn primary" href="#n${esc(lastE.id)}">Continue at ${esc(nlab(lastE.id))}</a><a class="btn" href="#n1">Start at n. 1</a>` : `<a class="btn primary" href="#n1">Start reading at n. 1</a>`}
       </div>
     </section>
     ${todayHtml()}
@@ -460,7 +461,7 @@ function markHtml(e) {
   const m = Marks.get(e.id);
   let h = '';
   if (Marks.editing === e.id) {
-    h += `<div class="noteedit"><textarea id="noteText" aria-label="Your note on n. ${esc(dispId(e.id))}" placeholder="Your note on n. ${esc(dispId(e.id))}">${esc(m && m.note || '')}</textarea>
+    h += `<div class="noteedit"><textarea id="noteText" aria-label="Your note on ${esc(nlab(e.id))}" placeholder="Your note on ${esc(nlab(e.id))}">${esc(m && m.note || '')}</textarea>
       <div class="row"><button class="btn small primary" data-note-save="${esc(e.id)}">Save note</button><button class="btn small" data-note-cancel="1">Cancel</button>${m && m.note ? `<button class="btn small" data-note-del="${esc(e.id)}">Delete note</button>` : ''}</div></div>`;
   } else if (m && m.note) {
     h += `<div class="mynote">${esc(m.note)}</div>`;
@@ -471,7 +472,7 @@ function weightPill(w) { const x = W(w); return `<a class="pill lv-${x[1]}" href
 function censHtml(e) {
   if (e.cens === null || !CENS[e.cens]) return '';
   const c = CENS[e.cens];
-  const at = c.at && c.at !== e.id ? ` <span>(verdict at <a class="xref" href="#n${esc(c.at)}">n. ${esc(dispId(c.at))}</a>)</span>` : '';
+  const at = c.at && c.at !== e.id ? ` <span>(verdict at <a class="xref" href="#n${esc(c.at)}">${esc(nlab(c.at))}</a>)</span>` : '';
   return `<span>Censured as ${esc(c.w.join(', '))}${c.r ? ', respectively' : ''}</span>${at}`;
 }
 function curPill(e) {
@@ -481,7 +482,7 @@ function curPill(e) {
 }
 function curNote(e) {
   const c = CURATED[e.cur];
-  return `<div class="curnote"><b>Checked by hand · ${GRADES[c.g][0]}${c.to !== c.from ? ` (n. ${esc(c.from)}–${esc(dispId(c.to))})` : ''}.</b> ${renderText(c.n, null)}${reviewRow('w:' + c.from)}</div>`;
+  return `<div class="curnote"><b>Checked by hand · ${GRADES[c.g][0]}${c.to !== c.from ? ` (${esc(nlab(c.from))}–${esc(dispId(c.to))})` : ''}.</b> ${renderText(c.n, null)}${reviewRow('w:' + c.from)}</div>`;
 }
 function entryHtml(e, re, showCur) {
   const m = Marks.get(e.id);
@@ -496,7 +497,7 @@ function entryHtml(e, re, showCur) {
     ${e.links.length ? `<div class="discussed">Full text: ${e.links.map(l => `<a href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.label)} ↗</a>`).join(' · ')}</div>` : ''}
     ${e.cur !== null && CURATED[e.cur] && (showCur || CURATED[e.cur].from === e.id) ? curNote(e) : ''}
     ${disc ? `<div class="discussed">Discussed in ${disc.slice(0, 4).map(d => `<a href="${d.href}">${esc(d.label)}</a>`).join(', ')}</div>` : ''}
-    ${e.citedBy.length ? `<div class="discussed">Cited by ${e.citedBy.map(id => `<a href="#n${esc(id)}">n. ${esc(dispId(id))}</a>`).join(', ')}</div>` : ''}
+    ${e.citedBy.length ? `<div class="discussed">Cited by ${e.citedBy.map(id => `<a href="#n${esc(id)}">${esc(nlab(id))}</a>`).join(', ')}</div>` : ''}
     ${e.rc.length ? `<div class="discussed">Roman Catechism: ${e.rc.map(id => { const c = RC_CH.get(id); return c ? `<a href="#rc-${esc(id)}" title="${esc(c.title)}">${esc(rcShort(c))}</a>` : ''; }).join('; ')}</div>` : ''}
     ${Cite.open === e.id ? citePanel(e) : ''}
     <div class="slot-note" style="display:contents">${markHtml(e)}</div>
@@ -545,7 +546,7 @@ function renderEra(er, focusId) {
     <div class="eyebrow">${er.sup ? 'Supplement · not in Denzinger' : kind(er)}${er.app ? ' · Appendix' : ''}</div>
     <h1>${esc(er.name)}</h1>
     ${seeAlso(er)}
-    <div class="meta">${er.dates ? `<span>${esc(er.dates)}</span>` : ''}${er.sub ? `<span>${esc(er.sub)}</span>` : ''}<span>n. ${first === last ? first : first + '–' + last}</span><span>${er.entries.length} ${er.entries.length === 1 ? 'entry' : 'entries'}</span></div>
+    <div class="meta">${er.dates ? `<span>${esc(er.dates)}</span>` : ''}${er.sub ? `<span>${esc(er.sub)}</span>` : ''}<span>${/^\d/.test(first) ? 'n. ' : ''}${first === last ? first : first + '–' + last}</span><span>${er.entries.length} ${er.entries.length === 1 ? 'entry' : 'entries'}</span></div>
     <div class="era-tools">${er.sup ? '' : latinSeg()}${PAGES ? '<button class="btn small" data-print="1">Print</button>' : ''}</div>
   </header>`;
   let ses = null, topic, src;
@@ -584,7 +585,7 @@ function citeFormats(e) {
   const dsp = e.ds.length ? ` (${dsText(e)})` : '';
   const short = e.sup ? `Suppl. ${e.id}` : `D ${dispId(e.id)}${e.ds.length ? '; ' + dsText(e) : ''}`;
   const where = `${e.era.name}${e.ses ? ', ' + e.ses.replace(/\s*\(.*\)$/, '') : ''}`;
-  const site = `“${e.sup ? 'Supplement ' + e.id : 'n. ' + dispId(e.id)}${e.topic ? ': ' + e.topic.replace(/\s+/g, ' ') : ''},” <i>Sources of Catholic Dogma</i> (online reader), ${where}, accessed ${acc}, ${url}.`;
+  const site = `“${e.sup ? 'Supplement ' + e.id : nlab(e.id)}${e.topic ? ': ' + e.topic.replace(/\s+/g, ' ') : ''},” <i>Sources of Catholic Dogma</i> (online reader), ${where}, accessed ${acc}, ${url}.`;
   const f = [];
   f.push({ label: 'Short reference', html: esc(short) });
   if (!e.sup) {
@@ -614,7 +615,7 @@ async function copyRich(htmlStr, okMsg, el) {
 function citation(e) {
   if (e.sup) return `${e.topic} (${e.era.name.replace(/:.*$/, '')}, ${e.ses}); Sources of Catholic Dogma reader, supplement ${e.id}.`;
   const where = [e.era.name, e.ses ? e.ses.replace(/\s*\(.*\)$/, '') : null].filter(Boolean).join(', ');
-  return `Denzinger, Sources of Catholic Dogma, n. ${dispId(e.id)}${e.ds.length ? ` [${dsText(e)}]` : ''} (${where}${e.era.dates ? ', ' + e.era.dates : ''}).`;
+  return `Denzinger, Sources of Catholic Dogma, ${nlab(e.id)}${e.ds.length ? ` [${dsText(e)}]` : ''} (${where}${e.era.dates ? ', ' + e.era.dates : ''}).`;
 }
 
 /* ---------- old and new numbers ---------- */
@@ -645,7 +646,7 @@ function dsNeighbors(e) {
   for (let k = e.k + 1; k < ENTRIES.length && !after; k++) if (ENTRIES[k].ds.length && !ENTRIES[k].sup) after = ENTRIES[k];
   return [before, after].filter(Boolean);
 }
-const nbLink = x => `<a class="xref" href="#n${esc(x.id)}">n. ${esc(dispId(x.id))}</a> = DS ${esc(dsRange(x.ds))}`;
+const nbLink = x => `<a class="xref" href="#n${esc(x.id)}">${esc(nlab(x.id))}</a> = DS ${esc(dsRange(x.ds))}`;
 function latinHtml(e) {
   if (!e.ds.length) {
     const nb = dsNeighbors(e);
@@ -749,6 +750,8 @@ const FILTER_LABEL = { pope: 'Pope', council: 'Council', era: 'Pope or council',
 function numberQuery(q) {
   const d = dsQuery(q);
   if (d !== null) return (byDS.get(d) || [])[0] || null;
+  const doc = q.trim().match(/^([a-z]{2,3})\s*(\d{1,3})$/i);
+  if (doc && byId.has(doc[1].toUpperCase() + doc[2])) return byId.get(doc[1].toUpperCase() + doc[2]);
   const m = q.trim().match(/^(?:d\.?|dz\.?|n\.?|no\.?|#)?\s*(\d{1,4}[a-z]?)$/i);
   if (!m) return null;
   return byId.get(m[1].toLowerCase()) || byBase.get(parseInt(m[1], 10)) || null;
@@ -827,16 +830,16 @@ function renderResults() {
   const plain = !filters.length;
   const num = !state.topic && plain ? numberQuery(state.query) : null;
   const dq = !state.topic && plain ? dsQuery(state.query) : null;
-  if (dq !== null && num) html += `<div class="jump">DS ${dq} is <a class="xref" href="#n${esc(num.id)}"><b>n. ${esc(dispId(num.id))}</b></a> in the older numbering${(byDS.get(dq) || []).length > 1 ? ` (also ${byDS.get(dq).slice(1).map(x => `<a class="xref" href="#n${esc(x.id)}">n. ${esc(dispId(x.id))}</a>`).join(', ')})` : ''} · ${esc(num.era.name)}${num.dsHow ? ` · ${DS_HOW[num.dsHow][0]}` : ''}</div>`;
+  if (dq !== null && num) html += `<div class="jump">DS ${dq} is <a class="xref" href="#n${esc(num.id)}"><b>${esc(nlab(num.id))}</b></a> in the older numbering${(byDS.get(dq) || []).length > 1 ? ` (also ${byDS.get(dq).slice(1).map(x => `<a class="xref" href="#n${esc(x.id)}">${esc(nlab(x.id))}</a>`).join(', ')})` : ''} · ${esc(num.era.name)}${num.dsHow ? ` · ${DS_HOW[num.dsHow][0]}` : ''}</div>`;
   else if (dq !== null) { const nb = dsNearest(dq); html += `<div class="jump">DS ${dq} has no counterpart in this collection${nb.length ? `. Nearest: ${nb.map(nbLink).join('; ')}` : ''}. <a class="xref" href="#concordance">Old and new numbers</a></div>`; }
-  else if (num) html += `<div class="jump">Go to <a class="xref" href="#n${esc(num.id)}"><b>n. ${esc(dispId(num.id))}</b></a>${num.ds.length ? ' (' + esc(dsText(num)) + ')' : ''} · ${esc(num.era.name)}${num.topic ? ' · ' + esc(num.topic) : ''}</div>`;
+  else if (num) html += `<div class="jump">Go to <a class="xref" href="#n${esc(num.id)}"><b>${esc(nlab(num.id))}</b></a>${num.ds.length ? ' (' + esc(dsText(num)) + ')' : ''} · ${esc(num.era.name)}${num.topic ? ' · ' + esc(num.topic) : ''}</div>`;
   const sq = !state.topic && plain && scriptureQuery(state.query);
   if (sq) {
     const ch = sq.book.refs.get(sq.ch);
     let list = [];
     if (ch) for (const [v, es] of ch) if (!sq.v || v === sq.v) list.push(...es.map(e => [v, e]));
     list.sort((a, b) => a[0] - b[0] || a[1].k - b[1].k);
-    html += `<div class="jump">${esc(sq.book.name)} ${sq.ch}${sq.v ? ':' + sq.v : ''} is cited in ${list.length ? list.map(([v, e]) => `<a class="xref" href="#n${esc(e.id)}">n. ${esc(dispId(e.id))}</a>${sq.v ? '' : ` <span class="count">(${sq.ch}:${v})</span>`}`).join(', ') : 'no entries'} · <a class="xref" href="#book-${sq.book.i}">all of ${esc(sq.book.name)}</a></div>`;
+    html += `<div class="jump">${esc(sq.book.name)} ${sq.ch}${sq.v ? ':' + sq.v : ''} is cited in ${list.length ? list.map(([v, e]) => `<a class="xref" href="#n${esc(e.id)}">${esc(nlab(e.id))}</a>${sq.v ? '' : ` <span class="count">(${sq.ch}:${v})</span>`}`).join(', ') : 'no entries'} · <a class="xref" href="#book-${sq.book.i}">all of ${esc(sq.book.name)}</a></div>`;
   }
   if (!state.topic) {
     html += `<div class="chips" role="group" aria-label="Filter by period"><span class="lbl">Period</span>${PERIODS.map(([name], i) =>
@@ -910,7 +913,7 @@ function renderDisputed(focus) {
       <div class="links">
         ${d.refs.length ? `<div>Texts: ${refLinks(d.refs)}</div>` : ''}
         ${rel.length ? `<div>Since 1950: ${rel.map(s => `<a href="#since-${s.id}">${esc(s.title)}</a>`).join(' · ')}</div>` : ''}
-        ${d.refs.length >= 2 ? `<div><a href="#cmp-${encId(d.refs[0])}~${encId(d.refs[d.refs.length - 1])}">Compare n. ${esc(dispId(d.refs[0]))} with n. ${esc(dispId(d.refs[d.refs.length - 1]))}</a></div>` : ''}
+        ${d.refs.length >= 2 ? `<div><a href="#cmp-${encId(d.refs[0])}~${encId(d.refs[d.refs.length - 1])}">Compare ${esc(nlab(d.refs[0]))} with ${esc(nlab(d.refs[d.refs.length - 1]))}</a></div>` : ''}
       </div>
       ${reviewRow('q:' + d.id)}
     </article>`;
@@ -1087,7 +1090,7 @@ function renderBook(b) {
   for (const c of chs) {
     html += `<div class="ch">Chapter ${c}</div>`;
     const vs = [...b.refs.get(c).entries()].sort((x, y) => x[0] - y[0]);
-    for (const [v, es] of vs) html += `<div class="v"><b>${c}:${v}</b><span>${es.map(e => `<a href="#n${esc(e.id)}">n. ${esc(dispId(e.id))}</a>`).join('')}</span></div>`;
+    for (const [v, es] of vs) html += `<div class="v"><b>${c}:${v}</b><span>${es.map(e => `<a href="#n${esc(e.id)}">${esc(nlab(e.id))}</a>`).join('')}</span></div>`;
   }
   view.innerHTML = html + '</div>';
   window.scrollTo(0, 0);
@@ -1124,7 +1127,7 @@ function renderTopics(filter = '') {
   for (const t of shown) {
     const L = (t.sort[0] || '#').toUpperCase();
     if (L !== letter && !f) { html += `<div class="tletter">${esc(L)}</div>`; letter = L; }
-    html += `<button data-topic="${esc(t.name)}"><span class="tn">${esc(t.name)}</span><span class="tc">${t.count > 1 ? t.count + ' entries' : 'n. ' + esc(dispId(t.first.id))}</span></button>`;
+    html += `<button data-topic="${esc(t.name)}"><span class="tn">${esc(t.name)}</span><span class="tc">${t.count > 1 ? t.count + ' entries' : esc(nlab(t.first.id))}</span></button>`;
   }
   view.innerHTML = html + '</div>';
   const inp = $('tfilter');
@@ -1233,7 +1236,7 @@ function renderThread(t) {
 /* ---------- study packets ---------- */
 let Downloads = null;
 function entryMd(e, note) {
-  const lines = [`## n. ${dispId(e.id)}${e.ds.length ? ' (' + dsText(e) + ')' : ''} · ${e.era.name}${e.era.dates ? ' (' + e.era.dates + ')' : ''}`, ''];
+  const lines = [`## ${nlab(e.id)}${e.ds.length ? ' (' + dsText(e) + ')' : ''} · ${e.era.name}${e.era.dates ? ' (' + e.era.dates + ')' : ''}`, ''];
   lines.push(`*${W(e.weight)[0]}${e.ses ? ' · ' + e.ses : ''}${e.topic ? ' · ' + e.topic : ''}*`, '');
   if (e.src) lines.push(`${e.src}`, '');
   for (const p of e.paras) lines.push(p, '');
@@ -1281,7 +1284,7 @@ const encId = id => id.replace(/\*/g, '_s');
 const decId = s => s.replace(/_s/g, '*');
 function cmpCol(e) {
   if (!e) return `<div><p class="empty">Enter an entry number above.</p></div>`;
-  return `<div><div class="hd"><a href="#n${esc(e.id)}">n. ${esc(dispId(e.id))}</a> · ${esc(e.era.name)}${e.era.dates ? ' · ' + esc(e.era.dates) : ''}</div>
+  return `<div><div class="hd"><a href="#n${esc(e.id)}">${esc(nlab(e.id))}</a> · ${esc(e.era.name)}${e.era.dates ? ' · ' + esc(e.era.dates) : ''}</div>
     <div class="wline">${dsTag(e)}${curPill(e) || weightPill(e.weight)}${censHtml(e)}</div>
     ${e.cur !== null && CURATED[e.cur] ? `<p class="checked">${esc(CURATED[e.cur].n)}</p>` : ''}
     ${e.topic ? `<h3>${esc(e.topic)}</h3>` : ''}${e.src ? `<p class="src">${renderText(e.src, null)}</p>` : ''}
@@ -1345,7 +1348,7 @@ function guideContext(question) {
 function buildPrompt(question, ents, ctx) {
   const texts = ents.map(e => {
     const t = e.paras.join(' ');
-    return `[n. ${dispId(e.id)}] ${e.era.name}${e.era.dates ? ' (' + e.era.dates + ')' : ''} · ${W(e.weight)[0]}${e.topic ? ' · ' + e.topic : ''}\n${t.length > 1400 ? t.slice(0, 1400) + ' …' : t}`;
+    return `[${nlab(e.id)}] ${e.era.name}${e.era.dates ? ' (' + e.era.dates + ')' : ''} · ${W(e.weight)[0]}${e.topic ? ' · ' + e.topic : ''}\n${t.length > 1400 ? t.slice(0, 1400) + ' …' : t}`;
   }).join('\n\n');
   const guides = [
     ...ctx.ss.map(s => `[${s.title}, ${s.date.slice(0, 4)}] ${LEVELS[s.level][0]}. ${s.summary} Continuity: ${s.continuity}`),
@@ -1401,7 +1404,7 @@ async function runAsk() {
   for (const t of ctx.ts) for (const st of t.steps) if (st.ref) fromGuides.push(st.ref);
   const seen = new Set(), ents = [];
   for (const e of [...fromGuides.map(r => byId.get(r)).filter(Boolean), ...retrieve(q)]) { if (!seen.has(e.id) && ents.length < 30) { seen.add(e.id); ents.push(e); } }
-  const srcHtml = `<h2 class="sect-h">Texts given to Claude</h2><div class="numgrid">${ents.map(e => `<a href="#n${esc(e.id)}">n. ${esc(dispId(e.id))}</a>`).join('')}${ctx.ss.map(s => `<a href="#since-${s.id}">${esc(s.title)}</a>`).join('')}${ctx.ds.map(d => `<a href="#q-${d.id}">${esc(d.title)}</a>`).join('')}</div>`;
+  const srcHtml = `<h2 class="sect-h">Texts given to Claude</h2><div class="numgrid">${ents.map(e => `<a href="#n${esc(e.id)}">${esc(nlab(e.id))}</a>`).join('')}${ctx.ss.map(s => `<a href="#since-${s.id}">${esc(s.title)}</a>`).join('')}${ctx.ds.map(d => `<a href="#q-${d.id}">${esc(d.title)}</a>`).join('')}</div>`;
   const out = $('askOut');
   out.innerHTML = `<div class="answer"><div class="aiflag">Answer written by Claude from the texts listed below</div><div id="askText"><p class="status">Thinking…</p></div></div>${srcHtml}`;
   $('askGo').disabled = true; $('askStop').hidden = false; $('askNote').textContent = '';
@@ -1530,15 +1533,15 @@ function cwLookup(q) {
   const d = dsQuery(q) ?? (/^\d{1,4}$/.test(q) && +q > 2400 && +q < 5000 ? +q : null);
   if (d !== null) {
     const hits = byDS.get(d) || [];
-    if (hits.length) return `DS ${d} = ${hits.map(e => `<a class="xref" href="#n${esc(e.id)}"><b>n. ${esc(dispId(e.id))}</b></a>${e.dsHow ? ` (${DS_HOW[e.dsHow][0]})` : ''}`).join(', ')} in the older numbering.`;
+    if (hits.length) return `DS ${d} = ${hits.map(e => `<a class="xref" href="#n${esc(e.id)}"><b>${esc(nlab(e.id))}</b></a>${e.dsHow ? ` (${DS_HOW[e.dsHow][0]})` : ''}`).join(', ')} in the older numbering.`;
     const nb = dsNearest(d);
     return `DS ${d} has no counterpart in this collection; it is a text the 1963 edition added, or one this translation leaves out.${nb.length ? ` Nearest: ${nb.map(nbLink).join('; ')}.` : ''}`;
   }
   const e = numberQuery(q);
   if (!e) return 'Not a number in this collection. Type an old number (1839) or a new one after DS (DS 3074).';
   if (e.sup) return `<a class="xref" href="#n${esc(e.id)}">${esc(nlab(e.id))}</a> is a supplement entry and has no Denzinger number.`;
-  if (!e.ds.length) { const nb = dsNeighbors(e); return `<a class="xref" href="#n${esc(e.id)}"><b>n. ${esc(dispId(e.id))}</b></a> has no number on the Latin page.${nb.length ? ` Nearest: ${nb.map(nbLink).join('; ')}.` : ''}`; }
-  return `<a class="xref" href="#n${esc(e.id)}"><b>n. ${esc(dispId(e.id))}</b></a> = <b>${esc(dsText(e))}</b>${e.dsHow ? ` (${DS_HOW[e.dsHow][0]})` : ''}.`;
+  if (!e.ds.length) { const nb = dsNeighbors(e); return `<a class="xref" href="#n${esc(e.id)}"><b>${esc(nlab(e.id))}</b></a> has no number on the Latin page.${nb.length ? ` Nearest: ${nb.map(nbLink).join('; ')}.` : ''}`; }
+  return `<a class="xref" href="#n${esc(e.id)}"><b>${esc(nlab(e.id))}</b></a> = <b>${esc(dsText(e))}</b>${e.dsHow ? ` (${DS_HOW[e.dsHow][0]})` : ''}.`;
 }
 function cwTable() {
   const keep = e => !e.sup && (!CW.f || (CW.f === 'none' ? !e.ds.length : e.dsHow === CW.f));
@@ -1734,7 +1737,7 @@ view.addEventListener('click', async ev => {
   }
   if ((el = t.closest('[data-cmp]'))) {
     const id = el.dataset.cmp;
-    if (!state.cmpA || state.cmpA === id) { state.cmpA = state.cmpA === id ? null : id; refreshEntry(id); toast(state.cmpA ? `Picked n. ${dispId(id)}. Choose Compare on a second entry.` : 'Compare cleared'); return; }
+    if (!state.cmpA || state.cmpA === id) { state.cmpA = state.cmpA === id ? null : id; refreshEntry(id); toast(state.cmpA ? `Picked ${nlab(id)}. Choose Compare on a second entry.` : 'Compare cleared'); return; }
     const a = state.cmpA; state.cmpA = null; go(`#cmp-${encId(a)}~${encId(id)}`); return;
   }
   if ((el = t.closest('[data-level]'))) { state.sinceLevel = el.dataset.level; renderSince(null); return; }
