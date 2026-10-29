@@ -132,6 +132,10 @@ def check(d):
                 pass  # some DS numbers have no Latin text on the source page; the page says so
         if e.get('dsHow') not in (None, 'series', 'checked'):
             P.add(where, f'unknown dsHow "{e.get("dsHow")}"')
+    used = {e.get('era') for e in E}
+    for i, er in enumerate(eras):
+        if i not in used:
+            P.add(f'eras.json, line {i + 2} ({er.get("name")})', 'no entry belongs to this era; add its entries in the same change')
     ID_AT[:] = [e['id'] for e in E]
     for i, w in enumerate(d['weights']):
         where = f'weights.json, line {i + 2}'
