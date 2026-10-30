@@ -135,6 +135,7 @@ main { min-width: 0; padding-inline: 16px; padding-block: 2rem 6rem; }
 .lv-discipline { color: var(--lv-disc); background: var(--lv-disc-bg); }
 .lv-prudential { color: var(--lv-prud); background: var(--lv-prud-bg); }
 .lv-dialogue, .lv-study { color: var(--lv-other); background: var(--lv-other-bg); }
+.lv-private { color: var(--lv-other); background: transparent; box-shadow: inset 0 0 0 1px var(--lv-other); }
 .tag { display: inline-block; font: 500 .72rem/1.5 var(--sans); color: var(--muted); border: 1px solid var(--rule); border-radius: 4px; padding: 0 .4rem; margin-right: .3rem; white-space: nowrap; }
 .count { font-family: var(--sans); font-size: .88rem; color: var(--faint); font-variant-numeric: tabular-nums; }
 .xref { color: var(--rubric); text-decoration: none; border-bottom: 1px dotted currentColor; font-variant-numeric: tabular-nums; }
