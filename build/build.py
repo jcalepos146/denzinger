@@ -27,6 +27,35 @@ DESC = ("Denzinger's Enchiridion in English (older numbering), searchable, with 
 WEIGHT_KEYS = {'papal-def', 'conc-def', 'conc-canon', 'conc-decree', 'papal', 'papal-teaching', 'particular',
                'curia', 'pbc', 'condemned', 'creed', 'note', 'supplement', 'cdf', 'liturgy', 'catechism',
                'papal-address', 'interview', 'commission', 'synod', 'bishops', 'ecumenical'}
+# For AI clients and agents that read the site: what the data is, how to cite it, and how to read condemnations.
+LLMS = """# Sources of Catholic Dogma
+
+> Denzinger's Enchiridion in English (older numbering) from the creeds to Pius XII, and the documents of the Church from John XXIII to Leo XIV, with each text labelled by the kind of document it comes from and many graded by hand.
+
+## Data
+
+- [entries.json]({url}data/entries.json): every entry: id, text, DS numbers, era, year, weight (kind of document), hand-checked grade with its reason, censure, cross-references.
+- [weights.csv]({url}data/weights.csv): the hand-checked grades and the reason for each.
+- [latin.json]({url}data/latin.json): the Latin text by DS number.
+- [guides.json]({url}data/guides.json): the disputed questions, the guide to documents since 1950, and the doctrinal threads.
+- A page for each entry: {url}n/<id>/
+
+## Citing
+
+Before 1958, cite by the older Denzinger number: n. 1839. After 1958, by document and article: LG 25, EV 62, CCC 2267; addresses by date: AD 19641203. Each entry gives its source.
+
+## Weight
+
+The weight label says what kind of document a text comes from: a conciliar definition, papal teaching, a document of the Doctrine of the Faith, an address or homily, an interview (private opinion, not magisterial), a commission study, and so on. A hand-checked grade, where present, says what the text itself proposes: defined dogma, definitive, authoritative teaching, discipline, prudential judgment, or weight disputed.
+
+## Reading condemned propositions
+
+- A condemnation targets a proposition in a determinate sense, not every meaning its words could bear. Establish that sense from the source the proposition was taken from, the wording of the condemnation (named senses, censures), and authoritative explanations; never supply an intention the evidence does not show.
+- With censures given respectively or in globo, each proposition deserves at least one of the listed censures, not necessarily the gravest; condemned is not the same as declared heretical.
+- Rejecting a proposition in a sense does not affirm its unrestricted opposite.
+- The same words can express different doctrines; a definition is what is proposed to be held, not the reasoning around it.
+- An apparent contradiction between texts is a question to examine with these distinctions, not a refutation. See {url}#reading
+"""
 GRADE_KEYS = {'dogma', 'definitive', 'authentic', 'discipline', 'condemned', 'condemned-heresy', 'profession',
               'disputed', 'act', 'void', 'prudential', 'witness', 'editorial'}
 # label and colour level of each rule-based weight and each hand-checked grade (mirrors app.js)
@@ -609,6 +638,7 @@ def pages_build(args):
     version = f'{built}-{zlib.crc32(index.encode()) & 0xffffffff:08x}'
     write(os.path.join(out, 'sw.js'), read_src('sw.js').replace('__VERSION__', version))
     write(os.path.join(out, '.nojekyll'), '')
+    write(os.path.join(out, 'llms.txt'), LLMS.replace('{url}', url or './'))
     write(os.path.join(out, 'robots.txt'), 'User-agent: *\nAllow: /\n' + (f'Sitemap: {url}sitemap.xml\n' if url else ''))
     if url:
         sm = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',

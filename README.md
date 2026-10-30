@@ -16,6 +16,8 @@ A searchable, organized reader for Denzinger's *Enchiridion Symbolorum* in Engli
   - doctrinal threads that follow a teaching through the collection;
   - *Since 1950*, read by the hermeneutic of continuity;
   - disputed questions.
+- **Reading a condemnation:** a guide to reading condemned propositions in the sense they were condemned, with the case of Unigenitus; every condemned proposition links to it.
+- **Ask or check a statement:** ask a question, or test a statement against the texts for formation; an AI answers from the entries and cites them. Opened in Claude it answers in the page; anywhere else it copies a prompt with the texts and the reading rules for any AI client. `llms.txt` describes the data for AI clients and agents.
 - **Cross-references:** "cited by" links between entries that refer to each other by number.
 - **Search:** words, phrases, numbers (`1839`, `DS 3074`), Scripture (`Matt 16:18`) and filters:
 
