@@ -22,7 +22,7 @@ def nd_clean(lines):
             break                                                  # heading of the next document
         if re.match(r'^\d{1,2}\.\s+(Cf\.|See|AAS|DS|PL|PG|Ibid|Ib\.)', st): continue   # footnote
         if re.match(r'^\s{4,}\d{1,2}[.,]\s', l) and len(st) < 100 and re.search(r'\d', st[3:]): continue   # footnote with its citation
-        if re.match(r'^(Chapters?|Part|Section|Article)\s+[IVXL0-9]+\b.{0,80}$', st) and not st.endswith('.'):
+        if (re.match(r'^(Chapters?|Part|Section)\s+[IVXL0-9]+\b.{0,80}$', st) or re.fullmatch(r'Article\s+\d+\.?', st)) and not st.endswith('.'):
             break                                                  # editorial summary of the next section follows
         if re.match(r'^\s*\(.*\)\s*$', l): continue             # ND's own subheadings
         if re.search(r'THE CHRISTIAN\s+FAITH', l): continue

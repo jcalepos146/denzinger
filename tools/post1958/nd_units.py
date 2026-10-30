@@ -18,7 +18,7 @@ for ch, a, b in bounds:
         m = start_re.match(l)
         if not m or not m.group(4).strip() or re.match(r'\s*[),;]', l[m.end(3) if m.group(3) else (m.end(2) if m.group(2) else m.end(1)):]): continue
         n = int(m.group(1))
-        inch = (n // 100 == ch) or (ch == 0 and n < 100) or (ch == 19 and n == 2000)
+        inch = (n // 100 == ch) or (ch == 0 and n < 100) or n == (ch + 1) * 100   # a chapter runs n01 to (n+1)00
         if inch and not head_re.match(l):
             cands.append((key(m), i, m))
     # longest non-decreasing run of ids drops stray margin numbers

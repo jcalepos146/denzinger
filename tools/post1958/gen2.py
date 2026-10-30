@@ -35,6 +35,7 @@ for x in B:
     S = doc(x['doc']); numbered = len({s['art'] for s in S if s['art']}) >= 3 and M[x['doc']][1] not in ('AD', 'JD')   # an address is one entry
     for j in x['idx']:
         a = S[j]['art'] if numbered else 0
+        if numbered and a is None and S[j].get('note') is not None: a = 'N'    # norms appended after the numbered text
         if numbered and a is None: continue
         sel.setdefault((x['doc'], a), set()).add(j)
         if x['nd'] not in refs.setdefault((x['doc'], a), []): refs[(x['doc'], a)].append(x['nd'])
@@ -42,7 +43,7 @@ entries = []
 for (k, a), js in sel.items():
     key, pre, era, weight, kind, title, spec, url = M[k]
     S = doc(k); d = date_of(url)
-    allj = [j for j, s in enumerate(S) if (s['art'] == a if a else True)]
+    allj = [j for j, s in enumerate(S) if (s.get('note') is not None if a == 'N' else s['art'] == a if a else True)]
     paras, cur, curp, gap = [], [], None, False
     for j in allj:
         if j not in js:
@@ -62,7 +63,11 @@ for (k, a), js in sel.items():
     eid = pre + (f'{d[0]}{d[1]:02d}{d[2]:02d}' if pre in ('AD', 'JD') else '') + (str(a) if a else '')
     src = f'[From the {kind}, "{title}," {fmt(d)}]' if title else f'[From the {kind}, {fmt(d)}]'
     entries.append({'id': eid, 'era': era, 'topic': hs or title or kind, 'source': src, 'text': text,
-                    'weight': weight, 'nd': refs[(k, a)], '_sort': (d[0], d[1] or 0, d[2] or 0, a)})
+                    'weight': weight, 'nd': refs[(k, a)], '_sort': (d[0], d[1] or 0, d[2] or 0, 999 if a == 'N' else a)})
+# documents with no English on vatican.va, translated for this site from the official text
+for t in json.load(open('translations.json')):
+    y, m, dd = t.pop('date').split('-')
+    t['_sort'] = (y, int(m), int(dd), 0); entries.append(t)
 entries.sort(key=lambda e: e['_sort'])
 ids = {}
 for e in entries:

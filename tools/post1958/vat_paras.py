@@ -23,7 +23,7 @@ def paras(path):
         if re.fullmatch(r'[IVXL]{1,6}\.?', t):                # a section numbered only by a Roman numeral
             R = {'I': 1, 'V': 5, 'X': 10, 'L': 50}; v = [R[c] for c in t.rstrip('.')]
             art = sum(-x if i + 1 < len(v) and x < v[i + 1] else x for i, x in enumerate(v)); continue
-        if re.match(r'Preliminary Note of Explanation\s*$', t, re.I):
+        if re.match(r'Preliminary Note of Explanation\s*$|COMPLEMENTARY NORMS\b', t, re.I):
             NOTE[0] = True                                  # LG's Nota praevia numbers its points 1-4 again
         if len(t) < 140 and not re.search(r'[.:;?!"”]$', t) or t.isupper() and len(t) < 200:  # heading
             if not re.search(r'\b(AR|EN|ES)\b.*-', t): HEAD.append(t)
