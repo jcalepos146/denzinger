@@ -338,9 +338,10 @@ const GUIDES = [
   ['#disputed', 'Disputed questions', DISPUTED.length + ' questions'],
   ['#catechism', 'Roman Catechism', RC_CH.size + ' chapters'],
   ['#timeline', 'Timeline', ''],
-  ...(PAGES ? [] : [['#ask', 'Ask the collection', '']]),
+  ['#ask', 'Ask or check a statement', ''],
   ['#compare', 'Compare two texts', ''],
   ['#weights', 'Weight and censures', ''],
+  ['#reading', 'Reading a condemnation', ''],
   ['#scripture', 'Scripture index', ''],
   ['#concordance', 'Old and new numbers', ''],
   ['#topics', 'Topics', ''],
@@ -372,7 +373,7 @@ function markRail() {
   let b = null;
   if (state.view === 'read' && state.era) b = rail.querySelector(`[data-era="${state.era.i}"]`);
   else {
-    const map = { home: '#home', catechism: '#catechism', timeline: '#timeline', since: '#since', disputed: '#disputed', scripture: '#scripture', book: '#scripture', topics: '#topics', saved: '#saved', threads: '#threads', thread: '#threads', ask: '#ask', compare: '#compare', weights: '#weights', edition: '#edition', concordance: '#concordance' };
+    const map = { home: '#home', catechism: '#catechism', timeline: '#timeline', since: '#since', disputed: '#disputed', scripture: '#scripture', book: '#scripture', topics: '#topics', saved: '#saved', threads: '#threads', thread: '#threads', ask: '#ask', compare: '#compare', weights: '#weights', reading: '#reading', edition: '#edition', concordance: '#concordance' };
     if (map[state.view]) b = rail.querySelector(`[data-go="${map[state.view]}"]`);
   }
   if (b) {
@@ -437,13 +438,14 @@ function renderHome() {
       <a class="guide" href="#catechism"><b>Roman Catechism</b><span>The Catechism of the Council of Trent, chapter by chapter, with the texts in this collection that each chapter explains.</span></a>
       <a class="guide" href="#timeline"><b>Timeline</b><span>Every entry by date and weight: where definitions, canons and condemnations cluster across twenty centuries.</span></a>
       <a class="guide" href="#threads"><b>Doctrinal threads</b><span>One doctrine at a time, traced in order from the early Church to Leo XIV, with a note on each step.</span></a>
-      ${PAGES ? '' : `<a class="guide" href="#ask"><b>Ask the collection</b><span>Ask a question; Claude answers from the entries and cites each by number.</span></a>`}
+      <a class="guide" href="#ask"><b>Ask or check a statement</b><span>Ask a question, or test a statement against the texts; an AI answers from the entries and cites each by number.</span></a>
       <a class="guide" href="#since"><b>Since 1950</b><span>Vatican II to Leo XIV, sorted by weight: restated dogma, definitive teaching, authentic teaching, discipline and prudence.</span></a>
       <a class="guide" href="#disputed"><b>Disputed questions</b><span>Open questions, contested continuity, and condemned propositions that can bear an orthodox sense.</span></a>
       <a class="guide" href="#concordance"><b>Old and new numbers</b><span>Every entry's older number beside its DS number, with the Latin text under any entry.</span></a>
       <a class="guide" href="#scripture"><b>Scripture index</b><span>Every bracketed Scripture reference, by book, chapter and verse.</span></a>
       <a class="guide" href="#topics"><b>Topics</b><span>The section headings of the whole collection, A to Z.</span></a>
       <a class="guide" href="#weights"><b>Weight and censures</b><span>What each kind of text binds, the theological notes, and the grades of censure.</span></a>
+      <a class="guide" href="#reading"><b>Reading a condemnation</b><span>Why a condemned proposition is read in the sense condemned, how that sense is established, and the case of Unigenitus.</span></a>
       <a class="guide" href="#e${ERAS.find(x => x.sup).i}"><b>Constance and Basel</b><span>The conciliar decrees Denzinger leaves out, from Haec Sancta to Basel's "three truths," with their standing.</span></a>
       <a class="guide" href="#compare"><b>Compare two texts</b><span>Read two entries side by side, with the guides that discuss them together.</span></a>
     </div>
@@ -506,6 +508,7 @@ function entryHtml(e, re, showCur) {
     ${!side && !e.sup && latinShown(e.id) ? latinHtml(e) : ''}
     ${e.links.length ? `<div class="discussed">Full text: ${e.links.map(l => `<a href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.label)} ↗</a>`).join(' · ')}</div>` : ''}
     ${e.cur !== null && CURATED[e.cur] && (showCur || CURATED[e.cur].from === e.id) ? curNote(e) : ''}
+    ${e.cens !== null && CENS[e.cens] || e.weight === 'condemned' ? `<div class="discussed">Condemned in a determinate sense: <a href="#reading">how to read a condemnation</a></div>` : ''}
     ${disc ? `<div class="discussed">Discussed in ${disc.slice(0, 4).map(d => `<a href="${d.href}">${esc(d.label)}</a>`).join(', ')}</div>` : ''}
     ${e.citedBy.length ? `<div class="discussed">Cited by ${e.citedBy.map(id => `<a href="#n${esc(id)}">${esc(nlab(id))}</a>`).join(', ')}</div>` : ''}
     ${e.rc.length ? `<div class="discussed">Roman Catechism: ${e.rc.map(id => { const c = RC_CH.get(id); return c ? `<a href="#rc-${esc(id)}" title="${esc(c.title)}">${esc(rcShort(c))}</a>` : ''; }).join('; ')}</div>` : ''}
@@ -1204,6 +1207,66 @@ function renderWeights() {
   window.scrollTo(0, 0);
 }
 
+/* ---------- reading a condemnation ---------- */
+const refl = ids => refLinks(ids.map(String));
+// [case, the principle it shows, the reading, entries, disputed question]
+const READING_CASES = [
+  ['Baius (1567)', 'the sense intended by the author', 'Pius V grants that "some of them could be maintained in some way", yet condemns them "in the strict and proper sense intended by those asserting them", respectively. A famously misplaced comma left unclear which clause the concession belongs to.', [1080], 'baius'],
+  ['Jansen\'s five propositions (1653–1705)', 'the sense can itself be judged', 'Innocent X condemned the propositions; Alexander VII declared them taken from the Augustinus and "condemned in the sense understood by" Jansen; Clement XI ruled that respectful silence about that fact does not satisfy obedience. Here the Church judged which sense the author held, rather than leaving it open.', [1092, 1098, 1350], 'jansen-fact'],
+  ['Eckhart (1329)', 'graded censures', 'John XXII condemned seventeen articles as "heretical" and eleven others only as "evil-sounding, rash, and suspected of heresy". To quote one of the eleven as a condemned heresy is to misread the bull.', [529], 'eckhart'],
+  ['Fénelon (1699)', 'the obvious sense, or the sense of the connected opinions', 'Innocent XII condemned the twenty-three propositions "in the obvious sense of these words, or in the extended meaning of the thoughts": what is condemned is giving up the hope of salvation as a motive in the "pure love" of the perfect, not the primacy of charity.', [1349], 'fenelon'],
+  ['Rosmini (1887)', 'the condemned sense may not be the author\'s', 'The Holy Office condemned forty propositions drawn from his works. In 2001 the Congregation for the Doctrine of the Faith declared that the sense in which they were condemned does not belong to Rosmini\'s own position, though the decree keeps its force against that sense; he was beatified in 2007.', [1891, 1930], 'rosmini'],
+  ['Honorius (634; 681)', 'the same words, different doctrines', 'Honorius wrote of "one will" in Christ. John IV explained that he meant Christ had no contrary will of sinful flesh, not one natural will; Constantinople III anathematized him, and Leo II confirmed it as a failure to suppress heresy. Neither the letters nor the condemnation is a definition about papal infallibility.', [251, 253], 'honorius'],
+  ['Luther, proposition 33 (1520)', 'rejecting a sense does not affirm its opposite', '"That heretics be burned is against the will of the Spirit" was condemned among forty-one propositions with censures given respectively, none assigned to it. Rejecting Luther\'s denial of the Church\'s right to punish does not define that burning is God\'s will.', [773, 781], 'luther-33'],
+  ['Unam Sanctam (1302)', 'a definition is not its reasoning', 'Only the closing declaration, that subjection to the Roman Pontiff is necessary for salvation, is defined. The argument about the two swords and the subjection of temporal power is the reasoning of the bull.', [468, 469], 'unam-sanctam'],
+  ['The Syllabus, proposition 80 (1864)', 'read each proposition in its source', 'Every proposition of the Syllabus refers to the act it was drawn from. "The Roman Pontiff can and should reconcile himself with progress, liberalism and modern civilization" comes from the allocution Iamdudum cernimus (1861), where these words name the anticlerical programme of the time.', [1700, 1780], 'syllabus-80'],
+  ['Mirari Vos and Quanta Cura beside Dignitatis Humanae', 'the reason given names the sense, and tension can remain', 'Gregory XVI condemned the "liberty of conscience" that flows from indifferentism, the view that any profession of faith can save; Pius IX the claim that it is every man\'s right without restraint. Dignitatis Humanae teaches civil immunity from coercion and says it leaves the moral duty toward the true religion untouched. Whether that fully reconciles them is still argued, and the site lists it as disputed.', [1613, 1690, 'DH1', 'DH2'], 'religious-liberty'],
+];
+function renderReading() {
+  view.className = 'col';
+  const qs = DISPUTED.filter(d => d.cat === 'censure');
+  view.innerHTML = `<div class="eyebrow">Guide</div><h1 class="page-h">Reading a condemnation</h1>
+    <p class="lede">Condemned propositions and controversial bulls are the texts most easily misread. A common shortcut runs: read the bare words of a condemned proposition; notice that, taken as written, they seem to clash with Scripture, a Father or earlier teaching; conclude that Catholic teaching contradicts itself. Each step skips the question the condemnation itself raises: in what sense was this proposition condemned?</p>
+    <p>Magisterial texts are written against something: an error in view, an adversary's terms, the argument they answer. Reading them without that setting is reading them wrongly. But the setting has to be shown from evidence, not supplied by assumption.</p>
+    <h2 class="sect-h">What a condemnation targets</h2>
+    <div class="tips" style="font-size:.95rem">
+      <div><b>A proposition in a determinate sense, not every meaning its words could bear.</b> Pius V condemned the propositions of Baius in the strict and proper sense their authors intended, granting that some could be held in some sense (${refl([1080])}). Pius VI often names the sense outright: a proposition on the power given to the Church is heretical "if thus understood" that the power comes from the community (${refl([1502])}); the Church as "one mystical body", language the Church herself uses, is censured only "understood in this sense" that no one belongs to the Church but the perfect (${refl([1515])}).</div>
+      <div><b>The condemned sense is established, not assumed.</b> The evidence is the source the proposition was taken from and the argument it served there; the wording of the condemnation, with its clauses, conditions and censures; and authoritative explanations or later acts. An intention that none of these shows is not evidence, whether it is used to accuse or to excuse.</div>
+      <div><b>Condemned is not the same as declared heretical.</b> When propositions are condemned "respectively" or in globo, a list of censures covers the whole set, and each proposition deserves at least one of them, not necessarily the gravest. Exsurge Domine (${refl([781])}) and Unigenitus (${refl([1451])}) assign none individually.</div>
+      <div><b>Rejecting a sense does not affirm its unrestricted opposite.</b> The contradictory of a condemned proposition is not thereby defined.</div>
+      <div><b>The same words can carry different doctrines.</b> Agreement in vocabulary, above all Augustinian vocabulary on grace, freedom and necessity, can hide real disagreement. A sentence that repeats a Father almost word for word can be condemned for the sense it has in its new setting, and that sense has to be found in the argument around it.</div>
+      <div><b>A definition is not its reasoning.</b> What is defined is what is proposed to be held; the arguments, illustrations and history around it are not (see the disputed question on Unam Sanctam).</div>
+    </div>
+    <h2 class="sect-h">A hard case: Unigenitus</h2>
+    <p>Clement XI's bull Unigenitus (1713) condemned 101 propositions taken from Quesnel's Réflexions morales (${refl([1351, 1451])}). Jacques M. Gres-Gayer's study of its Roman preparation, drawing on Lucien Ceyssens's edition of the documents, shows why reading it well takes work:</p>
+    <div class="tips" style="font-size:.95rem">
+      <div>The examiners judged the 155 propositions first submitted as excerpts from a book presumed suspect, "in the sense of Jansenius", and at times reasoned: "Even though he did not say it, I understood what he meant" (p. 267).</div>
+      <div>Some propositions are near-quotations of the Fathers. Proposition 13 (${refl([1363])}) is almost Augustine's De correptione et gratia: Clement suspended judgment because "it could be interpreted in a Catholic sense," yet it remained in the bull. He hesitated over proposition 23 (${refl([1373])}), a patristic reference, and noted "posse omitti" on proposition 33 (${refl([1383])}) before it was kept. On proposition 12 (${refl([1362])}) he qualified his own verdict: "unless these are the very words of St. Prosper, which remains to be seen" (pp. 268–69).</div>
+      <div>Proposition 90 (${refl([1440])}), on excommunication with the consent of the whole body, was kept despite the Pope's fear that it would provoke a Gallican rejection (p. 269).</div>
+      <div>Against Fénelon's advice, the censures were given in globo, so the bull never says which note fits which proposition; the book as a whole was condemned (pp. 269–70).</div>
+    </div>
+    <p>Two conclusions follow, and they pull against each other. The bare words of proposition 13 cannot show that the Church condemned Augustine: what was condemned is the sense the propositions had in Quesnel's work and system, under censures not all of which fit each one. But that sense is not self-evident either. It has to be shown from Quesnel's text and argument, and the record shows that the Pope himself found some cases close. An apparent contradiction is a question to examine, not a refutation, and not something to dissolve by assuming whatever intention is convenient.</p>
+    <p style="font-size:.9rem;color:var(--muted)">Source: Jacques M. Gres-Gayer, "The Unigenitus of Clement XI: A Fresh Look at the Issues," Theological Studies 49 (1988) 259–82. See also the disputed question on Quesnel.</p>
+    <h2 class="sect-h">More cases</h2>
+    <p>Unigenitus is one example. The same distinctions decide most of the texts that are quoted against the Church's consistency.</p>
+    <div class="tips" style="font-size:.95rem">
+      ${READING_CASES.map(c => `<div><b>${c[0]}</b> <span style="color:var(--muted)">· ${c[1]}</span><br>${c[2]} ${refl(c[3])}${c[4] ? ` · <a class="xref" href="#q-${c[4]}">disputed question</a>` : ''}</div>`).join('')}
+    </div>
+    <h2 class="sect-h">Before concluding that a text contradicts earlier teaching</h2>
+    <ol style="font-size:.95rem">
+      <li>Read the condemnation's own wording. Is a sense named ("if thus understood", "in the sense of", "as they lie")? Are the censures one per proposition, respective, or in globo?</li>
+      <li>Find the source: the book, sermon, synod or system the proposition came from, and the argument it served there.</li>
+      <li>Establish what the words meant in that argument, from the source, not by guessing at hidden intentions.</li>
+      <li>Look for authoritative explanations: the bull's preamble, its documents of preparation, later papal acts.</li>
+      <li>Ask what is actually affirmed by rejecting the proposition, and what is not.</li>
+      <li>Weigh it: a definition, a censure of heresy, a lighter note, or a disciplinary measure.</li>
+      <li>If a tension remains after all this, name it as an open question rather than a conclusion.</li>
+    </ol>
+    <h2 class="sect-h">Condemned propositions discussed on this site</h2>
+    <div class="tips" style="font-size:.95rem">${qs.map(d => `<div><a class="xref" href="#q-${esc(d.id)}">${esc(d.title)}</a> · ${esc(d.status)}</div>`).join('')}</div>`;
+  window.scrollTo(0, 0);
+}
+
 /* ---------- threads ---------- */
 function stepWhen(st) {
   if (st.since) { const s = SINCE_BY_ID.get(st.since); return s ? s.date.slice(0, 4) : ''; }
@@ -1355,27 +1418,54 @@ function guideContext(question) {
   const ts = THREADS.map(t => [score(t.title + ' ' + t.summary), t]).filter(x => x[0] > 0).sort((a, b) => b[0] - a[0]).slice(0, 1).map(x => x[1]);
   return { ds, ss, ts };
 }
-function buildPrompt(question, ents, ctx) {
+function entryHeader(e) {
+  const g = e.cur !== null && CURATED[e.cur] ? ` · checked by hand: ${GRADES[CURATED[e.cur].g][0]} (${CURATED[e.cur].n})` : '';
+  const c = e.cens !== null && CENS[e.cens] ? ` · censured as ${CENS[e.cens].w.join(', ')}${CENS[e.cens].r ? ', respectively' : ''}` : '';
+  return `[${nlab(e.id)}] ${e.era.name}${e.era.dates ? ' (' + e.era.dates + ')' : ''} · ${W(e.weight)[0]}${g}${c}${e.topic ? ' · ' + e.topic : ''}${e.src ? ' ' + e.src : ''}`;
+}
+const READING_RULES = `How to read condemned propositions and controversial bulls:
+- A condemnation targets a proposition in a determinate doctrinal sense, not every meaning its words could bear. Establish that sense from the source the proposition was taken from, the wording of the condemnation (named senses such as "if thus understood"; censures), and authoritative explanations. Never supply an intention the evidence does not show, whether to accuse or to excuse.
+- "Condemned" is not "declared heretical": with censures given respectively or in globo, each proposition deserves at least one of the listed censures, not necessarily the gravest.
+- Rejecting a proposition in a sense does not affirm its unrestricted opposite.
+- The same words can express different doctrines; agreement in vocabulary (for example Augustinian language on grace) can hide disagreement, and the reverse.
+- A definition is what is proposed to be held, not the reasoning around it.
+- If a text seems to contradict earlier teaching, treat it as a question to examine with these distinctions, not as a refutation; where a tension remains, say so plainly.`;
+function buildPrompt(question, ents, ctx, mode) {
   const texts = ents.map(e => {
     const t = e.paras.join(' ');
-    return `[${nlab(e.id)}] ${e.era.name}${e.era.dates ? ' (' + e.era.dates + ')' : ''} · ${W(e.weight)[0]}${e.topic ? ' · ' + e.topic : ''}\n${t.length > 1400 ? t.slice(0, 1400) + ' …' : t}`;
+    return `${entryHeader(e)}\n${t.length > 1400 ? t.slice(0, 1400) + ' …' : t}`;
   }).join('\n\n');
   const guides = [
     ...ctx.ss.map(s => `[${s.title}, ${s.date.slice(0, 4)}] ${LEVELS[s.level][0]}. ${s.summary} Continuity: ${s.continuity}`),
     ...ctx.ds.map(d => `[Disputed question: ${d.title}] Settled: ${d.settled} Open: ${d.open} Continuity reading: ${d.reading}`),
   ].join('\n\n');
-  return `You answer questions about Catholic doctrine using ONLY the texts below, which come from Denzinger's Sources of Catholic Dogma (English translation, older numbering) and from summaries of documents since 1950.
+  const intro = `The texts below come from an online edition of Denzinger's Sources of Catholic Dogma (older numbering, cited "n. 1234") and of the documents after 1958 (cited by document and article, such as "LG 25" or "EV 62"). Each text is labelled with the kind of document, and some with a grade checked by hand and the censure it received.`;
+  const common = `- Use ONLY the texts below. If they do not settle the matter, say so plainly and say what is missing.
+- Cite every claim by the number given in brackets, such as (n. 1839) or (LG 25).
+- Distinguish defined dogma, definitive teaching, authoritative teaching, discipline, prudential judgment, and texts that are not magisterial (addresses, commission studies, interviews), using the labels given.
+- Read later teaching in continuity with earlier binding texts. Where others see a break, say so briefly and fairly.
+
+${READING_RULES}`;
+  const task = mode === 'check'
+    ? `Task: the reader is studying how a statement stands with the Church's teaching, for formation. Assess the statement, never a person: do not judge anyone's faith, standing or intention, and say that your assessment is not an act of the Church's authority.
+1. Restate what the statement claims. Note any ambiguity and the different senses it could bear.
+2. For each sense, say which texts bear on it, and whether that sense agrees with them, goes beyond them, or contradicts them. Give the weight of the teaching involved: contradicting a defined dogma is not the same as disagreeing with a prudential judgment.
+3. If a relevant text is a condemned proposition, apply the reading rules: show the sense that was condemned before comparing.
+4. End with one line: consonant with the texts; consonant in one sense and not in another; contrary to the teaching cited (name its weight); or not settled by these texts.
+Write plain prose, at most about 450 words.
+
+Statement: ${question}`
+    : `Task: answer the question in plain prose in short paragraphs, at most about 350 words, without headings.
+
+Question: ${question}`;
+  return `${intro}
 
 Rules:
-- Cite every claim from a Denzinger text by its number in the form (n. 1234). Cite post-1950 documents by name.
-- Do not use facts that are not in the texts below. If they do not answer the question, say so plainly and say what is missing.
-- Distinguish defined dogma, definitive teaching, ordinary teaching, discipline and prudential judgment, using the label given with each text.
-- Read later teaching in continuity with earlier binding texts (the hermeneutic of continuity). Where others see a break, say so briefly and fairly.
-- Write plain prose in short paragraphs, at most about 350 words. No headings.
+${common}
 
-Question: ${question}
+${task}
 
-Denzinger texts:
+Texts:
 ${texts || '(none found)'}
 
 ${guides ? 'Guide summaries (written for this site, not magisterial texts):\n' + guides : ''}`;
@@ -1390,38 +1480,61 @@ function mdLite(text) {
     return e ? m.replace(num, `<a class="xref" href="#n${esc(e.id)}">${num}</a>`) : m;
   });
 }
-const EXAMPLES = ['What did the Church teach about baptism of desire before 1950?', 'How is the primacy of the Pope taught from the early centuries to Vatican I?', 'What does the Church teach about purgatory?', 'How do Florence and Pius IX speak about salvation outside the Church?'];
-function renderAsk() {
-  view.className = 'col';
-  view.innerHTML = `<div class="eyebrow">Tool</div><h1 class="page-h">Ask the collection</h1>
-    <p class="lede">Ask a question and Claude answers from the most relevant entries in this collection, citing each by number, and reading later teaching in continuity with earlier binding texts. Answers are written by AI; check every claim against the entries it cites.</p>
-    <div class="askbox"><textarea id="askQ" aria-label="Your question" placeholder="Ask about a doctrine, a council, a condemned proposition…">${esc(askLast ? askLast.q : '')}</textarea>
-      <div class="row"><button class="btn primary" id="askGo">Ask</button><button class="btn" id="askStop" hidden>Stop</button><span class="count" id="askNote"></span></div></div>
-    <div class="examples" style="margin-top:.8rem">${EXAMPLES.map(x => `<button class="chip" data-example="${esc(x)}">${esc(x)}</button>`).join('')}</div>
-    <div id="askOut">${askLast && askLast.html ? askLast.html : ''}</div>`;
-  if (!Sample) $('askNote').textContent = window.claude ? 'Connecting…' : 'Asking needs this page opened in Claude.';
-  $('askGo').onclick = runAsk;
-  $('askStop').onclick = () => { if (askCtl) askCtl.abort(); };
-  window.scrollTo(0, 0);
-}
-async function runAsk() {
-  const q = $('askQ').value.trim();
-  if (!q) { $('askQ').focus(); return; }
-  if (!Sample) { $('askNote').textContent = 'Asking isn\'t available in this view.'; return; }
+const EXAMPLES = ['What did the Church teach about baptism of desire before 1950?', 'How is the primacy of the Pope taught from the early centuries to Vatican I?', 'What does the Church teach about purgatory?', 'Did Unigenitus condemn Augustine on grace?'];
+const CHECKS = ['Anyone who dies outside the visible Church is damned.', 'Grace is irresistible: when God moves the will, it cannot refuse.', 'Every pope who changed a discipline contradicted his predecessors.', 'Women could be ordained priests if the Church chose.'];
+let askMode = 'ask';
+function askSources(q) {
   const ctx = guideContext(q);
   const fromGuides = [];
   for (const d of ctx.ds) for (const r of d.refs) fromGuides.push(r);
   for (const t of ctx.ts) for (const st of t.steps) if (st.ref) fromGuides.push(st.ref);
   const seen = new Set(), ents = [];
   for (const e of [...fromGuides.map(r => byId.get(r)).filter(Boolean), ...retrieve(q)]) { if (!seen.has(e.id) && ents.length < 30) { seen.add(e.id); ents.push(e); } }
-  const srcHtml = `<h2 class="sect-h">Texts given to Claude</h2><div class="numgrid">${ents.map(e => `<a href="#n${esc(e.id)}">${esc(nlab(e.id))}</a>`).join('')}${ctx.ss.map(s => `<a href="#since-${s.id}">${esc(s.title)}</a>`).join('')}${ctx.ds.map(d => `<a href="#q-${d.id}">${esc(d.title)}</a>`).join('')}</div>`;
+  return { ctx, ents };
+}
+function sourcesHtml(ents, ctx, who) {
+  return `<h2 class="sect-h">Texts given to ${who}</h2><div class="numgrid">${ents.map(e => `<a href="#n${esc(e.id)}">${esc(nlab(e.id))}</a>`).join('')}${ctx.ss.map(s => `<a href="#since-${s.id}">${esc(s.title)}</a>`).join('')}${ctx.ds.map(d => `<a href="#q-${d.id}">${esc(d.title)}</a>`).join('')}</div>`;
+}
+function renderAsk() {
+  view.className = 'col';
+  const check = askMode === 'check';
+  view.innerHTML = `<div class="eyebrow">Tool</div><h1 class="page-h">${check ? 'Check a statement' : 'Ask the collection'}</h1>
+    <div class="chips" role="group" aria-label="Mode"><button class="chip" data-askmode="ask" aria-pressed="${!check}">Ask a question</button><button class="chip" data-askmode="check" aria-pressed="${check}">Check a statement</button></div>
+    <p class="lede">${check
+      ? 'For formation: write a statement, and an AI tests it against the most relevant texts in this collection. It distinguishes the senses the statement could bear, weighs the teaching each sense meets, and reads condemned propositions in the sense they were condemned (<a href="#reading">how</a>). It assesses statements, never persons, and is not a judgment of the Church.'
+      : 'Ask a question, and an AI answers from the most relevant entries in this collection, citing each by number, and reading later teaching in continuity with earlier binding texts.'} Answers are written by AI; check every claim against the entries it cites.</p>
+    <div class="askbox"><textarea id="askQ" aria-label="${check ? 'Statement to check' : 'Your question'}" placeholder="${check ? 'Write a statement to test, for example a claim about grace, the Church or a condemned proposition…' : 'Ask about a doctrine, a council, a condemned proposition…'}">${esc(askLast && askLast.mode === askMode ? askLast.q : '')}</textarea>
+      <div class="row">${Sample ? `<button class="btn primary" id="askGo">${check ? 'Check' : 'Ask'}</button><button class="btn" id="askStop" hidden>Stop</button>` : ''}<button class="btn${Sample ? '' : ' primary'}" id="askCopy">Copy prompt for any AI</button><span class="count" id="askNote"></span></div></div>
+    <div class="examples" style="margin-top:.8rem">${(check ? CHECKS : EXAMPLES).map(x => `<button class="chip" data-example="${esc(x)}">${esc(x)}</button>`).join('')}</div>
+    ${Sample ? '' : `<p style="font-size:.9rem;color:var(--muted)">Opened in Claude, this page answers here. Anywhere else, "Copy prompt for any AI" copies the instructions, the reading rules and the selected texts, so you can paste them into the AI client you use. The data is also published for programs: <a class="xref" href="${esc((SITE.url || '') + 'llms.txt')}">llms.txt</a>.</p>`}
+    <div id="askOut">${askLast && askLast.mode === askMode && askLast.html ? askLast.html : ''}</div>`;
+  view.querySelectorAll('[data-askmode]').forEach(b => b.onclick = () => { askMode = b.dataset.askmode; renderAsk(); });
+  if (Sample) { $('askGo').onclick = runAsk; $('askStop').onclick = () => { if (askCtl) askCtl.abort(); }; }
+  $('askCopy').onclick = copyAskPrompt;
+  window.scrollTo(0, 0);
+}
+async function copyAskPrompt() {
+  const q = $('askQ').value.trim();
+  if (!q) { $('askQ').focus(); return; }
+  const { ctx, ents } = askSources(q);
+  $('askOut').innerHTML = sourcesHtml(ents, ctx, 'the prompt');
+  try { await navigator.clipboard.writeText(buildPrompt(q, ents, ctx, askMode)); $('askNote').textContent = `Copied, with ${ents.length} texts. Paste it into your AI client.`; }
+  catch (err) { $('askNote').textContent = 'Copying was blocked by the browser.'; }
+}
+async function runAsk() {
+  const q = $('askQ').value.trim();
+  if (!q) { $('askQ').focus(); return; }
+  if (!Sample) { $('askNote').textContent = 'Answering here needs this page opened in Claude; copy the prompt instead.'; return; }
+  const { ctx, ents } = askSources(q);
+  const mode = askMode;
+  const srcHtml = sourcesHtml(ents, ctx, 'Claude');
   const out = $('askOut');
   out.innerHTML = `<div class="answer"><div class="aiflag">Answer written by Claude from the texts listed below</div><div id="askText"><p class="status">Thinking…</p></div></div>${srcHtml}`;
   $('askGo').disabled = true; $('askStop').hidden = false; $('askNote').textContent = '';
   askCtl = new AbortController();
   const setText = t => { const el = $('askText'); if (el) el.innerHTML = mdLite(t); };
   try {
-    const { text, truncated } = await Sample(buildPrompt(q, ents, ctx), { signal: askCtl.signal, onText: ({ text }) => setText(text) });
+    const { text, truncated } = await Sample(buildPrompt(q, ents, ctx, mode), { signal: askCtl.signal, onText: ({ text }) => setText(text) });
     setText(text);
     if (truncated) $('askNote').textContent = 'The answer was cut short. Try a narrower question.';
   } catch (err) {
@@ -1431,7 +1544,7 @@ async function runAsk() {
     if (code !== 'cancelled') $('askNote').textContent = msg || 'Something went wrong. Try again.';
   } finally {
     $('askGo').disabled = false; $('askStop').hidden = true;
-    askLast = { q, html: $('askOut') ? $('askOut').innerHTML : '' };
+    askLast = { q, mode, html: $('askOut') ? $('askOut').innerHTML : '' };
   }
 }
 
@@ -1625,8 +1738,8 @@ function route() {
   } else if ((m = h.match(/^weight-([a-z-]+)$/)) && WEIGHTS[m[1]]) {
     state.weight = m[1]; state.kind = ''; state.query = ''; state.topic = null; state.limit = 60; qInput.value = '';
     setView('search'); renderResults(); window.scrollTo(0, 0);
-  } else if (h === 'ask' && PAGES) {
-    setView('ask'); view.className = 'col'; view.innerHTML = `<div class="eyebrow">Tool</div><h1 class="page-h">Ask the collection</h1><p class="lede">Asking questions of the collection needs Claude, so it is not part of this public site. Search, the guides and the indexes all work here.</p>`;
+  } else if (h === 'reading') {
+    setView('reading'); highlightTerms = []; renderReading();
   } else if (h === 'ask') {
     setView('ask'); highlightTerms = []; renderAsk();
   } else if (h === 'compare' || h.startsWith('cmp-')) {
