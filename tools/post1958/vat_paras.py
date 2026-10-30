@@ -16,7 +16,7 @@ def paras(path):
         if not t or t.startswith('PDF generation in progress'): continue
         if re.match(r'^(NOTES|Footnotes)\s*$', t, re.I): break
         if re.match(r'^[\[(]?1[\])]?\.?\s', t) and re.search(r'\b(AAS|Cf\.|cf\.|PL|PG|Mansi|Denz|ASS|op\. cit|Ibid)\b', t[:200]) and art and len(out) > 20: break
-        m = re.match(r'^(\d{1,3}|\d \d{1,2})\s?\.(?:\s+(.*)|$)', t)       # "14." and the split "1 4."
+        m = re.match(r'^(\d{1,4}|\d \d{1,2})\s?\.(?:\s+(.*)|$)' if 'ccc' in path else r'^(\d{1,3}|\d \d{1,2})\s?\.(?:\s+(.*)|$)', t)   # "14.", the split "1 4."; the Catechism runs to 2865
         if m:
             art = int(m.group(1).replace(' ', '')); t = m.group(2) or ''
             if not t: continue

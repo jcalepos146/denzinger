@@ -41,8 +41,8 @@ for x in B:
         if x['nd'] not in refs.setdefault((x['doc'], a), []): refs[(x['doc'], a)].append(x['nd'])
 entries = []
 for (k, a), js in sel.items():
-    key, pre, era, weight, kind, title, spec, url = M[k]
-    S = doc(k); d = date_of(url)
+    key, pre, era, weight, kind, title, spec, url = M[k][:8]
+    S = doc(k); d = date_of(url) if len(M[k]) < 9 else tuple(int(x) if i else x for i, x in enumerate(M[k][8].split('-')))
     allj = [j for j, s in enumerate(S) if (s.get('note') is not None if a == 'N' else s['art'] == a if a else True)]
     paras, cur, curp, gap = [], [], None, False
     for j in allj:
@@ -61,7 +61,10 @@ for (k, a), js in sel.items():
         hs = head(S[j]['head'], title)
         if hs: break
     eid = pre + (f'{d[0]}{d[1]:02d}{d[2]:02d}' if pre in ('AD', 'JD') else '') + (str(a) if a else '')
-    src = f'[From the {kind}, "{title}," {fmt(d)}]' if title else f'[From the {kind}, {fmt(d)}]'
+    if len(M[k]) > 8:   # the issuing body, not the kind of document
+        src = f'[From "{title}," {kind}, {fmt(d)}]' if title else f'[From the {kind}, {fmt(d)}]'
+    else:
+        src = f'[From the {kind}, "{title}," {fmt(d)}]' if title else f'[From the {kind}, {fmt(d)}]'
     entries.append({'id': eid, 'era': era, 'topic': hs or title or kind, 'source': src, 'text': text,
                     'weight': weight, 'nd': refs[(k, a)], '_sort': (d[0], d[1] or 0, d[2] or 0, 999 if a == 'N' else a)})
 # documents with no English on vatican.va, translated for this site from the official text

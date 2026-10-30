@@ -86,3 +86,20 @@ DOCS = [
  ('eam', 'EAM', 'John Paul II', 'papal', 'Post-Synodal Apostolic Exhortation', 'Ecclesia in America', '2199d', J2 + 'apost_exhortations/documents/hf_jp-ii_exh_22011999_ecclesia-in-america.html'),
  ('eas', 'EAS', 'John Paul II', 'papal', 'Post-Synodal Apostolic Exhortation', 'Ecclesia in Asia', '900f, 1184', J2 + 'apost_exhortations/documents/hf_jp-ii_exh_06111999_ecclesia-in-asia.html'),
 ]
+# Documents of other bodies (1983-1999) with an official English text on vatican.va or christianunity.va; the date is given
+# because their addresses carry none.
+CU = 'https://www.christianunity.va/content/unitacristiani/en/'
+DOCS += [
+ ('hl', 'EGHL', 'John Paul II', 'curia', 'Congregation for Catholic Education', 'Educational Guidance in Human Love', '2239a-2240d', '/roman_curia/congregations/ccatheduc/documents/rc_con_ccatheduc_doc_19831101_sexual-education_en.html', '1983-11-01'),
+ ('nj85', 'NJ', 'John Paul II', 'commission', 'Commission for Religious Relations with the Jews', 'Notes on the Correct Way to Present the Jews and Judaism in Preaching and Catechesis', '263-264', CU + 'commissione-per-i-rapporti-religiosi-con-l-ebraismo/commissione-per-i-rapporti-religiosi-con-l-ebraismo-crre/documenti-della-commissione/en2.html', '1985-06-24'),
+ ('dp', 'DP', 'John Paul II', 'commission', 'Pontifical Council for Interreligious Dialogue and Congregation for the Evangelization of Peoples', 'Dialogue and Proclamation', '1059-1065, 1176-1179', '/roman_curia/pontifical_councils/interelg/documents/rc_pc_interelg_doc_19051991_dialogue-and-proclamatio_en.html', '1991-05-19'),
+ ('ccc', 'CCC', 'John Paul II', 'catechism', 'Catechism of the Catholic Church', None, '185-188, 270-271, 434, 520a-523f, 1241a, 1691, 1759, 2000d/1-7, 2269, 2318a-2325b', '/archive/ENG0015/_INDEX.HTM', '1992-10-11'),
+ ('ed93', 'DEC', 'John Paul II', 'curia', 'Pontifical Council for Promoting Christian Unity, approved by John Paul II', 'Directory for the Application of Principles and Norms on Ecumenism', '932a-g, 1850-1852', CU + 'documenti/testo-in-inglese.html', '1993-03-25'),
+ ('hung', 'WH', 'John Paul II', 'commission', 'Pontifical Council Cor Unum', 'World Hunger: A Challenge for All', '2198d', '/roman_curia/pontifical_councils/corunum/documents/rc_pc_corunum_doc_04101996_world-hunger_en.html', '1996-10-04'),
+ ('vad', 'VC', 'John Paul II', 'commission', 'Pontifical Council for the Family', 'Vademecum for Confessors concerning Some Aspects of the Morality of Conjugal Life', '2266-2268', '/roman_curia/pontifical_councils/family/documents/rc_pc_family_doc_12021997_vademecum_en.html', '1997-02-12'),
+ ('edm', 'EDM', 'John Paul II', 'curia', 'Instruction of eight dicasteries on the collaboration of the non-ordained faithful in the sacred ministry of priests', 'Ecclesiae de Mysterio', '1449-1450', '/roman_curia/pontifical_councils/laity/documents/rc_con_interdic_doc_15081997_en.html', '1997-08-15'),
+ ('dea', 'BNFD', 'John Paul II', 'curia', 'Congregation for Catholic Education', 'Basic Norms for the Formation of Permanent Deacons', '1762', '/roman_curia/congregations/ccatheduc/documents/rc_con_ccatheduc_doc_31031998_directorium-diaconi_en.html', '1998-02-22'),
+ ('wr', 'WR', 'John Paul II', 'commission', 'Commission for Religious Relations with the Jews', 'We Remember: A Reflection on the Shoah', '1067-1070', CU + 'commissione-per-i-rapporti-religiosi-con-l-ebraismo/commissione-per-i-rapporti-religiosi-con-l-ebraismo-crre/documenti-della-commissione/en1.html', '1998-03-16'),
+ ('jddj', 'JDDJ', 'John Paul II', 'ecumenical', 'Lutheran World Federation and the Catholic Church', 'Joint Declaration on the Doctrine of Justification', '527, 2000k-s', CU + 'dialoghi/sezione-occidentale/luterani.html', '1999-10-31'),
+ ('ocs', 'OCS', 'John Paul II', 'ecumenical', 'Lutheran World Federation and the Catholic Church', 'Official Common Statement on the Joint Declaration', '940', CU + 'dialoghi/sezione-occidentale/luterani.html', '1999-10-31'),
+]

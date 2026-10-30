@@ -42,6 +42,7 @@ R = [
  ("CA32", "CA58", "prudential", "On the market economy, profit, the welfare state and consumerism: John Paul II accepts a free economy within a juridical framework and rejects the \"social assistance state\" that displaces subsidiarity. The principles are teaching; the assessment of economic systems is a judgment the encyclical says the Church offers as no model of its own (CA 43)."),
  ("PDV51", "PDV52", "authentic", "Theology and its relation to faith and the Magisterium in the formation of priests."),
  ("CN8", "CN13", "authentic", "The universal Church is not the sum of particular Churches but is ontologically and temporally prior to every particular Church; communion as the key to the Church's mystery."),
+ ("DEC9", "DEC145", "discipline", "Norms for ecumenical practice approved by John Paul II: what Catholics share with other Christians, including the conditions under which the sacraments of penance, Eucharist and anointing may be given to other Christians and received from Eastern Churches (DEC 122-136). Binding norms; the principles restate Unitatis Redintegratio."),
  ("VS22", "VS120", "authentic", "The foundations of moral theology: freedom and law, conscience, the fundamental option, and intrinsically evil acts which no intention or circumstance can make good (VS 80). Many theologians hold the teaching on intrinsically evil acts to be definitive; the encyclical presents it as the constant teaching of the Church."),
  ("GRS7", "GRS10", "authentic", "The family as a communion of persons and the civilization of love."),
  ("OS4", "OS4", "definitive", "\"I declare that the Church has no authority whatsoever to confer priestly ordination on women and that this judgment is to be definitively held by all the Church's faithful.\" The CDF stated in 1995 that this teaching belongs to the deposit of faith and has been set forth infallibly by the ordinary and universal magisterium."),
@@ -53,6 +54,7 @@ R = [
  ("EV65", "EV65", "definitive", "Euthanasia is a grave violation of the law of God: confirmed in the same form as EV 57."),
  ("EV70", "LW8", "authentic", "Civil law and the moral law, conscientious objection, and the duty to oppose laws against life; Eastern traditions; Ut Unum Sint on ecumenism and on the papacy, with the invitation to find a way of exercising the primacy open to a new situation (UUS 95); the Letter to Women."),
  ("RDOS", "RDOS", "definitive", "The Congregation's reply: the teaching of Ordinatio Sacerdotalis belongs to the deposit of faith, requires definitive assent, and has been set forth infallibly by the ordinary and universal magisterium; the pope confirmed it by a formal declaration."),
+ ("EDM4", "EDM4", "discipline", "Collaboration of the non-ordained faithful in the ministry of priests: the essential difference of the ministerial priesthood, and norms against confusing lay functions with the ordained ministry. Approved in specific form by John Paul II."),
  ("DCPF11", "DCPF11", "authentic", "The Congregation's commentary on the three paragraphs of the Profession of Faith, with examples of truths held definitively. The examples illustrate; they are not themselves new definitions."),
  ("ATF4", "ATF4", "act", "Canon law is amended to require assent to truths held definitively and to provide a penalty for those who reject them. A juridical act."),
  ("DD9", "DD84", "authentic", "The Lord's Day: its meaning and the obligation of Sunday Mass."),
@@ -61,5 +63,6 @@ R = [
  ("FR14", "FR98", "authentic", "Faith and reason, the autonomy of philosophy and its service to theology, and the errors of fideism, rationalism and historicism."),
  ("PSP4", "PSP15", "authentic", "The Congregation's considerations on the primacy: of divine institution and not a mere primacy of honour; its essential content distinguished from the changing ways it has been exercised; in view of John Paul II's invitation in Ut Unum Sint 95."),
  ("IM2", "IM12", "authentic", "The Jubilee and its indulgence, with the purification of memory."),
- ("EAM20", "EAS22", "authentic", "The post-synodal exhortations for America and Asia: conversion, solidarity, and Christ as the one Saviour proclaimed in Asia."),
+ ("EAM20", "EAM22", "authentic", "The post-synodal exhortation for America: conversion, communion and solidarity."),
+ ("EAS22", "EAS22", "authentic", "The post-synodal exhortation for Asia: Jesus Christ as the one Saviour, proclaimed amid the religions of Asia."),
 ]
