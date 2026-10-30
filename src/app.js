@@ -1209,6 +1209,19 @@ function renderWeights() {
 
 /* ---------- reading a condemnation ---------- */
 const refl = ids => refLinks(ids.map(String));
+// [case, the principle it shows, the reading, entries, disputed question]
+const READING_CASES = [
+  ['Baius (1567)', 'the sense intended by the author', 'Pius V grants that "some of them could be maintained in some way", yet condemns them "in the strict and proper sense intended by those asserting them", respectively. A famously misplaced comma left unclear which clause the concession belongs to.', [1080], 'baius'],
+  ['Jansen\'s five propositions (1653–1705)', 'the sense can itself be judged', 'Innocent X condemned the propositions; Alexander VII declared them taken from the Augustinus and "condemned in the sense understood by" Jansen; Clement XI ruled that respectful silence about that fact does not satisfy obedience. Here the Church judged which sense the author held, rather than leaving it open.', [1092, 1098, 1350], 'jansen-fact'],
+  ['Eckhart (1329)', 'graded censures', 'John XXII condemned seventeen articles as "heretical" and eleven others only as "evil-sounding, rash, and suspected of heresy". To quote one of the eleven as a condemned heresy is to misread the bull.', [529], 'eckhart'],
+  ['Fénelon (1699)', 'the obvious sense, or the sense of the connected opinions', 'Innocent XII condemned the twenty-three propositions "in the obvious sense of these words, or in the extended meaning of the thoughts": what is condemned is giving up the hope of salvation as a motive in the "pure love" of the perfect, not the primacy of charity.', [1349], 'fenelon'],
+  ['Rosmini (1887)', 'the condemned sense may not be the author\'s', 'The Holy Office condemned forty propositions drawn from his works. In 2001 the Congregation for the Doctrine of the Faith declared that the sense in which they were condemned does not belong to Rosmini\'s own position, though the decree keeps its force against that sense; he was beatified in 2007.', [1891, 1930], 'rosmini'],
+  ['Honorius (634; 681)', 'the same words, different doctrines', 'Honorius wrote of "one will" in Christ. John IV explained that he meant Christ had no contrary will of sinful flesh, not one natural will; Constantinople III anathematized him, and Leo II confirmed it as a failure to suppress heresy. Neither the letters nor the condemnation is a definition about papal infallibility.', [251, 253], 'honorius'],
+  ['Luther, proposition 33 (1520)', 'rejecting a sense does not affirm its opposite', '"That heretics be burned is against the will of the Spirit" was condemned among forty-one propositions with censures given respectively, none assigned to it. Rejecting Luther\'s denial of the Church\'s right to punish does not define that burning is God\'s will.', [773, 781], 'luther-33'],
+  ['Unam Sanctam (1302)', 'a definition is not its reasoning', 'Only the closing declaration, that subjection to the Roman Pontiff is necessary for salvation, is defined. The argument about the two swords and the subjection of temporal power is the reasoning of the bull.', [468, 469], 'unam-sanctam'],
+  ['The Syllabus, proposition 80 (1864)', 'read each proposition in its source', 'Every proposition of the Syllabus refers to the act it was drawn from. "The Roman Pontiff can and should reconcile himself with progress, liberalism and modern civilization" comes from the allocution Iamdudum cernimus (1861), where these words name the anticlerical programme of the time.', [1700, 1780], 'syllabus-80'],
+  ['Mirari Vos and Quanta Cura beside Dignitatis Humanae', 'the reason given names the sense, and tension can remain', 'Gregory XVI condemned the "liberty of conscience" that flows from indifferentism, the view that any profession of faith can save; Pius IX the claim that it is every man\'s right without restraint. Dignitatis Humanae teaches civil immunity from coercion and says it leaves the moral duty toward the true religion untouched. Whether that fully reconciles them is still argued, and the site lists it as disputed.', [1613, 1690, 'DH1', 'DH2'], 'religious-liberty'],
+];
 function renderReading() {
   view.className = 'col';
   const qs = DISPUTED.filter(d => d.cat === 'censure');
@@ -1234,6 +1247,11 @@ function renderReading() {
     </div>
     <p>Two conclusions follow, and they pull against each other. The bare words of proposition 13 cannot show that the Church condemned Augustine: what was condemned is the sense the propositions had in Quesnel's work and system, under censures not all of which fit each one. But that sense is not self-evident either. It has to be shown from Quesnel's text and argument, and the record shows that the Pope himself found some cases close. An apparent contradiction is a question to examine, not a refutation, and not something to dissolve by assuming whatever intention is convenient.</p>
     <p style="font-size:.9rem;color:var(--muted)">Source: Jacques M. Gres-Gayer, "The Unigenitus of Clement XI: A Fresh Look at the Issues," Theological Studies 49 (1988) 259–82. See also the disputed question on Quesnel.</p>
+    <h2 class="sect-h">More cases</h2>
+    <p>Unigenitus is one example. The same distinctions decide most of the texts that are quoted against the Church's consistency.</p>
+    <div class="tips" style="font-size:.95rem">
+      ${READING_CASES.map(c => `<div><b>${c[0]}</b> <span style="color:var(--muted)">· ${c[1]}</span><br>${c[2]} ${refl(c[3])}${c[4] ? ` · <a class="xref" href="#q-${c[4]}">disputed question</a>` : ''}</div>`).join('')}
+    </div>
     <h2 class="sect-h">Before concluding that a text contradicts earlier teaching</h2>
     <ol style="font-size:.95rem">
       <li>Read the condemnation's own wording. Is a sense named ("if thus understood", "in the sense of", "as they lie")? Are the censures one per proposition, respective, or in globo?</li>
