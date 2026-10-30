@@ -3,7 +3,7 @@ import re, json
 from align import doc
 from artalign import articles
 DOCS = {  # key: (abbrev, era name, kind, title, date, order)
- 'pp': ('PP', 'John XXIII', 'Encyclical Letter', 'Princeps Pastorum', 'Nov. 28, 1959'),
+ 'pp': ('PRP', 'John XXIII', 'Encyclical Letter', 'Princeps Pastorum', 'Nov. 28, 1959'),
  'mm': ('MM', 'John XXIII', 'Encyclical Letter', 'Mater et Magistra', 'May 15, 1961'),
  'pt': ('PT', 'John XXIII', 'Encyclical Letter', 'Pacem in Terris', 'April 11, 1963'),
  'sc': ('SC', 'Vatican II', 'Constitution on the Sacred Liturgy', 'Sacrosanctum Concilium', 'Dec. 4, 1963'),

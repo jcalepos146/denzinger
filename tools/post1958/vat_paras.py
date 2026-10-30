@@ -12,11 +12,17 @@ def paras(path):
     HEAD.clear(); HEADS.clear(); NOTE[0] = False
     for b in blocks:
         t = re.sub(r'\s+', ' ', html.unescape(re.sub(r'<[^>]+>', ' ', b))).strip()
-        if not t: continue
+        t = t.replace('\ufeff', '').replace('ï»¿', '').strip()
+        if not t or t.startswith('PDF generation in progress'): continue
         if re.match(r'^(NOTES|Footnotes)\s*$', t, re.I): break
         if re.match(r'^[\[(]?1[\])]?\.?\s', t) and re.search(r'\b(AAS|Cf\.|cf\.|PL|PG|Mansi|Denz|ASS|op\. cit|Ibid)\b', t[:200]) and art and len(out) > 20: break
-        m = re.match(r'^(\d{1,3})\s?\.\s+(.*)', t)
-        if m: art = int(m.group(1)); t = m.group(2)
+        m = re.match(r'^(\d{1,3}|\d \d{1,2})\s?\.(?:\s+(.*)|$)', t)       # "14." and the split "1 4."
+        if m:
+            art = int(m.group(1).replace(' ', '')); t = m.group(2) or ''
+            if not t: continue
+        if re.fullmatch(r'[IVXL]{1,6}\.?', t):                # a section numbered only by a Roman numeral
+            R = {'I': 1, 'V': 5, 'X': 10, 'L': 50}; v = [R[c] for c in t.rstrip('.')]
+            art = sum(-x if i + 1 < len(v) and x < v[i + 1] else x for i, x in enumerate(v)); continue
         if re.match(r'Preliminary Note of Explanation\s*$', t, re.I):
             NOTE[0] = True                                  # LG's Nota praevia numbers its points 1-4 again
         if len(t) < 140 and not re.search(r'[.:;?!"”]$', t) or t.isupper() and len(t) < 200:  # heading

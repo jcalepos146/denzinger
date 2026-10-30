@@ -120,6 +120,8 @@
 {"name": "Pius XII", "dates": "1939–1958", "note": "", "year": 1939},
 {"name": "John XXIII", "dates": "1958–1963", "note": "", "year": 1958},
 {"name": "The Second Vatican Council", "dates": "1962–1965", "note": "Ecumenical XXI", "year": 1962},
+{"name": "Paul VI", "dates": "1963–1978", "note": "", "year": 1963},
+{"name": "John Paul II", "dates": "1978–2005", "note": "", "year": 1978},
 {"name": "St. Boniface I", "dates": "418–422", "note": "", "year": 418, "appendix": true},
 {"name": "St. Sixtus III", "dates": "432–440", "note": "", "year": 432, "appendix": true},
 {"name": "Urban IV", "dates": "1261–1264", "note": "", "year": 1261, "appendix": true},

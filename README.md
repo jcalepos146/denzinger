@@ -5,7 +5,7 @@ A searchable, organized reader for Denzinger's *Enchiridion Symbolorum* in Engli
 ## What it has
 
 - **The full text:** 2,464 entries, from the creeds to Pius XII, with an appendix numbered from 5000. Scanning errors are corrected conservatively.
-- **After 1958:** John XXIII and the Second Vatican Council, one entry per article of each document, numbered by the document and article (`LG 25`, `GS 22`). Later popes are being added.
+- **After 1958:** John XXIII, the Second Vatican Council, Paul VI and John Paul II to 1999, one entry per article of each document, numbered by the document and article (`LG 25`, `GS 22`, `EV 62`); addresses are numbered by their date (`AD 19641203`). Each is labelled by kind of document: encyclical, address or homily, document of the Doctrine of the Faith, and so on. Later years are being added.
 - **A page for every entry** at `/n/<number>/`, so that search engines find them and shared links show the text. Each page links back to its place in the reader.
 - **Old and new numbers:** each entry shows its Denzinger–Schönmetzer (DS) number, which Denzinger–Hünermann keeps. The Latin text can be shown below each entry or side by side with the English.
 - **Weights:** every entry carries a grade (defined dogma, definitive, authoritative teaching, discipline, condemned, prudential and others), checked by hand in 328 ranges, each with a note on why. Condemned propositions also show their censures.
