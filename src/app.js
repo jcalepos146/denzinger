@@ -81,6 +81,7 @@ const LEVELS = {
   prudential: ['Prudential', 'Applications of principle to circumstances. Owed serious respect; reasoned disagreement is possible (Donum Veritatis 24).'],
   dialogue: ['Ecumenical agreement', 'A joint statement with other Christians, not a magisterial definition in itself.'],
   study: ['Study or address', 'A commission study, address or report. Weighty, but not binding in itself.'],
+  private: ['Private opinion', 'An interview, press conference or book written as a private person. Not an act of the Magisterium; it carries the weight of its reasons.'],
 };
 const WEIGHTS = {
   'papal-def': ['Papal definition', 'dogma', 'A pope defining a doctrine of faith or morals to be held by the whole Church, in the form Vatican I describes (ex cathedra).'],
@@ -89,11 +90,20 @@ const WEIGHTS = {
   'conc-decree': ['Conciliar decree', 'authentic', 'Doctrinal chapters, reform decrees and letters of an ecumenical council. Authoritative teaching; only what is proposed as defined is infallible.'],
   'papal-teaching': ['Papal teaching', 'authentic', 'Encyclicals, bulls and letters of popes. Owed religious assent; infallible only when the conditions of a definition are met or the teaching is otherwise definitive.'],
   'particular': ['Particular council', 'study', 'A regional council or synod. Its authority comes from its reception and from papal approval; some, like Orange II, became widely normative.'],
-  'curia': ['Curial response', 'prudential', 'A reply or decree of the Holy Office or another Roman congregation, approved by the pope. Authoritative and binding in practice, not infallible.'],
+  'curia': ['Curial response', 'prudential', 'A reply or decree of the Holy Office or another Roman congregation, approved by the pope. Authoritative and binding in practice, not infallible. After 1958 the doctrinal documents of the Doctrine of the Faith have their own label.'],
   'pbc': ['Biblical Commission', 'prudential', 'A response of the Pontifical Biblical Commission (1902 onward). Binding as a disciplinary safeguard in its time; see the disputed question on these decrees.'],
   'condemned': ['Condemned proposition', 'definitive', 'A proposition the Church censured. What is rejected is the proposition in its condemned sense; its contradictory is not thereby defined, and the weight depends on the censure.'],
   'creed': ['Creed', 'dogma', 'A creed, profession of faith or the early formulas collected at the start of the book.'],
   'note': ['Editorial note', 'study', 'A cross-reference or note by the editors, not a text of the Magisterium.'],
+  'cdf': ['Doctrine of the Faith', 'authentic', 'A doctrinal document of the Congregation (since 2022 the Dicastery) for the Doctrine of the Faith, approved by the pope and published by his order. Part of the ordinary Magisterium and owed religious assent; it is the pope\'s own act when he approves it in specific form.'],
+  'liturgy': ['Liturgical norm', 'discipline', 'A rite, liturgical book or norm of the Roman congregations for worship. Binds as law and can be changed by competent authority; what it presupposes about the faith keeps its own weight.'],
+  'catechism': ['Catechism', 'authentic', 'The Catechism of the Catholic Church (1992, Latin edition 1997), promulgated as "a sure norm for teaching the faith". Each statement keeps the weight of the teaching it presents.'],
+  'papal-address': ['Address or homily', 'study', 'A pope\'s address, homily, message, catechesis or letter to a particular group. His ordinary teaching, but its weight depends on the manner of speaking and how often it is repeated (Lumen Gentium 25); less than an encyclical.'],
+  'interview': ['Interview', 'private', 'An interview, press conference or book a pope wrote as a private theologian. Not an act of the Magisterium.'],
+  'commission': ['Commission or council study', 'study', 'A document of a pontifical council or commission: the Biblical Commission after 1971, the International Theological Commission, Christian Unity, Justice and Peace and the like. Not magisterial in itself.'],
+  'synod': ['Synod of Bishops', 'study', 'A document or message of the Synod of Bishops. Consultative unless the pope makes it his own.'],
+  'bishops': ['Bishops\' conference', 'study', 'A statement of a national or regional conference of bishops. Teaches with the authority of those bishops for their own territory.'],
+  'ecumenical': ['Ecumenical agreement', 'dialogue', 'A joint declaration or agreed statement with other Christians. Binds the Church only so far as it restates Catholic doctrine.'],
   'supplement': ['Not in Denzinger', 'study', 'Added to this site: decrees of Constance and Basel that Denzinger leaves out, mostly because no pope approved them or they came from a schismatic assembly. Mostly summaries; one translation.'],
 };
 const GRADES = {

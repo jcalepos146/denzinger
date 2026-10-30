@@ -24,7 +24,13 @@ Every file in `src/data/` can be edited on github.com: open the file, choose the
 - `era` is the line number (counting from 0) of the pope or council in `eras.json`.
 - `ds` lists the Denzinger–Schönmetzer numbers. `dsHow` is `series` when the number is inferred from the neighboring entries, `checked` when it was matched by hand.
 - After 1958 an entry is one article of a document, and its `id` is the document's usual abbreviation and the article (`LG25`, shown as "LG 25"). Its text is the Holy See's English from vatican.va; `nd` lists the numbers of the passages in Neuner–Dupuis, *The Christian Faith*, that the entry gives.
-- `weight` is the rule-based label: `papal-def`, `conc-def`, `conc-canon`, `conc-decree`, `papal`, `particular`, `curia`, `pbc`, `condemned`, `creed`, `note` or `supplement`.
+- `weight` is the rule-based label: `papal-def`, `conc-def`, `conc-canon`, `conc-decree`, `papal`, `particular`, `curia`, `pbc`, `condemned`, `creed`, `note` or `supplement`. After 1958 it says what kind of document the text comes from:
+  - `papal`: encyclicals, apostolic constitutions, exhortations and letters, bulls, motu proprios;
+  - `cdf`: doctrinal documents of the Doctrine of the Faith; `curia` for other congregations' replies, `liturgy` for rites and liturgical norms;
+  - `catechism`: the Catechism of the Catholic Church;
+  - `papal-address`: addresses, homilies, messages, catecheses, letters to particular groups;
+  - `interview`: interviews, press conferences and books written as a private person;
+  - `commission`: pontifical councils and commissions; `synod`: the Synod of Bishops; `bishops`: conferences of bishops; `ecumenical`: joint declarations with other Christians.
 
 ### A weight
 

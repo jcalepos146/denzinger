@@ -25,7 +25,8 @@ TITLE = 'Sources of Catholic Dogma'
 DESC = ("Denzinger's Enchiridion in English (older numbering), searchable, with DS numbers, the Latin text, "
         "hand-checked weights, the Roman Catechism, doctrinal threads and guides to disputed questions.")
 WEIGHT_KEYS = {'papal-def', 'conc-def', 'conc-canon', 'conc-decree', 'papal', 'papal-teaching', 'particular',
-               'curia', 'pbc', 'condemned', 'creed', 'note', 'supplement'}
+               'curia', 'pbc', 'condemned', 'creed', 'note', 'supplement', 'cdf', 'liturgy', 'catechism',
+               'papal-address', 'interview', 'commission', 'synod', 'bishops', 'ecumenical'}
 GRADE_KEYS = {'dogma', 'definitive', 'authentic', 'discipline', 'condemned', 'condemned-heresy', 'profession',
               'disputed', 'act', 'void', 'prudential', 'witness', 'editorial'}
 # label and colour level of each rule-based weight and each hand-checked grade (mirrors app.js)
@@ -36,6 +37,11 @@ WEIGHT_LABEL = {
     'curia': ('Curial response', 'prudential'), 'pbc': ('Biblical Commission', 'prudential'),
     'condemned': ('Condemned proposition', 'definitive'), 'creed': ('Creed', 'dogma'),
     'note': ('Editorial note', 'study'), 'supplement': ('Not in Denzinger', 'study'),
+    'cdf': ('Doctrine of the Faith', 'authentic'), 'liturgy': ('Liturgical norm', 'discipline'),
+    'catechism': ('Catechism', 'authentic'), 'papal-address': ('Address or homily', 'study'),
+    'interview': ('Interview', 'private'), 'commission': ('Commission or council study', 'study'),
+    'synod': ('Synod of Bishops', 'study'), 'bishops': ("Bishops' conference", 'study'),
+    'ecumenical': ('Ecumenical agreement', 'dialogue'),
 }
 GRADE_LABEL = {
     'dogma': ('Defined dogma', 'dogma'), 'definitive': ('Definitive', 'definitive'),

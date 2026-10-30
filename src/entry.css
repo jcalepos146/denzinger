@@ -51,6 +51,7 @@ h1 .num { font: 700 .5em var(--sans); color: var(--rubric); display: block; lett
 .lv-dogma { color: var(--lv-dogma); background: var(--lv-dogma-bg); } .lv-definitive { color: var(--lv-def); background: var(--lv-def-bg); }
 .lv-authentic { color: var(--lv-auth); background: var(--lv-auth-bg); } .lv-discipline { color: var(--lv-disc); background: var(--lv-disc-bg); }
 .lv-prudential { color: var(--lv-prud); background: var(--lv-prud-bg); } .lv-study, .lv-dialogue { color: var(--lv-other); background: var(--lv-other-bg); }
+.lv-private { color: var(--lv-other); background: transparent; box-shadow: inset 0 0 0 1px var(--lv-other); }
 .dsno { font: 600 .74rem/1.5 var(--sans); color: var(--ink); border: 1px solid var(--rule); border-radius: 4px; padding: 0 .4rem; }
 .body p { margin: 0 0 .8rem; hyphens: auto; overflow-wrap: break-word; }
 .cite { font: .85em var(--sans); color: var(--muted); }

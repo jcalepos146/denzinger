@@ -10,7 +10,7 @@ def sentences(P):
     out = []
     for pi, (art, t) in enumerate(P):
         for s in re.split(r'(?:(?<=[.?!;:])|(?<=[.?!;:]["”’)]))\s+(?=["“‘(]?[A-Z])', t):
-            if s.strip(): out.append({'art': art, 'p': pi, 's': s.strip(), 'head': heads[pi] if pi < len(heads) else None})
+            if s.strip(): out.append({'art': art if not isinstance(art, tuple) else None, 'note': art[1] if isinstance(art, tuple) else None, 'p': pi, 's': s.strip(), 'head': heads[pi] if pi < len(heads) else None})
     return out
 def nd_clean(lines):
     keep = []

@@ -1,6 +1,6 @@
 # Official text -> list of (article number, paragraph text) from a vatican.va page.
 import re, html, sys, json
-HEAD, HEADS = [], []
+HEAD, HEADS, NOTE = [], [], [False]
 def paras(path):
     s = open(path, encoding='utf-8', errors='replace').read()
     s = re.sub(r'(?is)<(script|style|head)\b.*?</\1>', ' ', s)
@@ -9,7 +9,7 @@ def paras(path):
     s = re.sub(r'(?is)</?(p|div|h\d|li|blockquote|td)\b[^>]*>', '\x01', s)   # unclosed <p> on some pages
     blocks = s.split('\x01')
     out, art = [], None
-    HEAD.clear(); HEADS.clear()
+    HEAD.clear(); HEADS.clear(); NOTE[0] = False
     for b in blocks:
         t = re.sub(r'\s+', ' ', html.unescape(re.sub(r'<[^>]+>', ' ', b))).strip()
         if not t: continue
@@ -17,10 +17,12 @@ def paras(path):
         if re.match(r'^[\[(]?1[\])]?\.?\s', t) and re.search(r'\b(AAS|Cf\.|cf\.|PL|PG|Mansi|Denz|ASS|op\. cit|Ibid)\b', t[:200]) and art and len(out) > 20: break
         m = re.match(r'^(\d{1,3})\s?\.\s+(.*)', t)
         if m: art = int(m.group(1)); t = m.group(2)
+        if re.match(r'Preliminary Note of Explanation\s*$', t, re.I):
+            NOTE[0] = True                                  # LG's Nota praevia numbers its points 1-4 again
         if len(t) < 140 and not re.search(r'[.:;?!"”]$', t) or t.isupper() and len(t) < 200:  # heading
             if not re.search(r'\b(AR|EN|ES)\b.*-', t): HEAD.append(t)
             continue
-        out.append((art, t))
+        out.append((('NP', art) if NOTE[0] else art, t))
         HEADS.append(HEAD[-1] if HEAD else None)
     return out
 if __name__ == '__main__':

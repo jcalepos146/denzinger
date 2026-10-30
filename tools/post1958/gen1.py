@@ -39,7 +39,7 @@ def clean(t):
 def head(h):
     if not h or len(h) < 4 or re.match(r'^[A-Z]{1,2}$|^(JANUARY|FEBRUARY|MARCH|APRIL|MAY|JUNE|JULY|AUGUST|SEPTEMBER|OCTOBER|NOVEMBER|DECEMBER)\b', h) or h.endswith(')') or h.endswith('."'):
         return None
-    h = re.sub(r'^(CHAPTER|PART)\s+[IVXL]+\.?\s*', '', h)
+    h = re.sub(r'^(CHAPTER|PART|SECTION|ARTICLE)\s+[IVXL0-9]+[.:]?\s*|^[A-Z]\)\s*', '', h)
     h = re.sub(r'^[IVXL]+\.\s+', '', h)
     if h.isupper():
         small = {'of', 'the', 'and', 'in', 'on', 'to', 'a', 'an', 'for', 'with', 'its', 'as', 'by'}
@@ -47,6 +47,19 @@ def head(h):
         h = ' '.join(x if i and x in small else x.capitalize() for i, x in enumerate(w))
         h = re.sub(r"'S\b", "'s", h)
     return h
+HEADC = {}
+def head_at(d, j):
+    """The nearest real section heading at or before sentence j."""
+    if d not in HEADC:
+        S, cur, out = doc(d), None, []
+        title = DOCS[d][3].lower()
+        for x in S:
+            h = head(x['head'])
+            if h and title not in h.lower() and not re.search(r'proclaimed|promulgated|solemnly|his holiness|encyclical', h, re.I):
+                cur = h
+            out.append(cur)
+        HEADC[d] = out
+    return HEADC[d][j]
 def art_text(d, arts):
     S = doc(d); out, prev, heads = [], None, []
     for a in arts:
@@ -74,6 +87,12 @@ for x in B:
         if a is None: continue
         sel.setdefault((d, a), set()).add(j)
         refs.setdefault((d, a), []).append(nd) if nd not in refs.get((d, a), []) else None
+# Texts Neuner-Dupuis does not quote but Denzinger-Hunermann gives: whole articles, no ND number.
+ADD = {'lg': [1, 8, 14, 15, 18, 19, 20, 22, 23, 24, 25, 39], 'na': [3, 4], 'dv': [7, 19], 'dh': [1], 'gs': [19, 21, 24]}
+for d, arts in ADD.items():
+    for a in arts:
+        sel.setdefault((d, a), set()).update(j for j, s in enumerate(doc(d)) if s['art'] == a)
+        refs.setdefault((d, a), [])
 entries = []
 for (d, a), js in sorted(sel.items(), key=lambda t: (list(DOCS).index(t[0][0]), t[0][1])):
     S = doc(d); ab, era, kind, title, date = DOCS[d]
@@ -92,12 +111,20 @@ for (d, a), js in sorted(sel.items(), key=lambda t: (list(DOCS).index(t[0][0]), 
     if allj[-1] not in js: paras[-1] += ' ...'
     text = [clean(p) for p in paras]
     ds = sorted({int(m) for nd in refs[(d, a)] for l in units[nd]['lines'] for m in re.findall(r'^\s*(39\d\d)\b', l)})
-    h = head(S[allj[0]]['head'])
+    h = head_at(d, allj[0])
     e = {'id': f'{ab}{a}', 'era': ERA[era], 'topic': h or title,
          'source': f'[From the {kind}, "{title}," {date}]',
          'text': text, 'weight': 'papal' if era == 'John XXIII' else 'conc-decree', 'nd': refs[(d, a)]}
     if ds and d in ('mm', 'pt'): e['dsND'] = [str(n) for n in ds]
     entries.append(e)
+# Lumen Gentium's Preliminary Note of Explanation, after its last article
+S = doc('lg'); ps = {}
+for x in S:
+    if x['note']: ps.setdefault(x['p'], []).append(x['s'])
+at = max(i for i, e in enumerate(entries) if e['id'].startswith('LG')) + 1
+entries.insert(at, {'id': 'LGNP', 'era': ERA['Vatican II'], 'topic': 'Preliminary Note of Explanation',
+    'source': '[From the Preliminary Note of Explanation on chapter III of the Dogmatic Constitution "Lumen Gentium," communicated to the Council Fathers on Nov. 16, 1964]',
+    'text': [clean(' '.join(v)) for v in ps.values()], 'weight': 'conc-decree', 'nd': []})
 json.dump(entries, open('entries1.json', 'w'), ensure_ascii=False, indent=1)
 print(len(entries), 'entries,', sum(len(' '.join(e['text']).split()) for e in entries), 'words')
 from collections import Counter
