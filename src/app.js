@@ -1483,6 +1483,58 @@ function mdLite(text) {
 const EXAMPLES = ['What did the Church teach about baptism of desire before 1950?', 'How is the primacy of the Pope taught from the early centuries to Vatican I?', 'What does the Church teach about purgatory?', 'Did Unigenitus condemn Augustine on grace?'];
 const CHECKS = ['Anyone who dies outside the visible Church is damned.', 'Grace is irresistible: when God moves the will, it cannot refuse.', 'Every pope who changed a discipline contradicted his predecessors.', 'Women could be ordained priests if the Church chose.'];
 let askMode = 'ask';
+/* Answering outside Claude: the visitor's own Anthropic API key, kept in this browser and sent only to
+   api.anthropic.com. The site has no build step, so this calls the Messages API with fetch. */
+const ApiKey = {
+  get() { try { return sessionStorage.getItem('dz-key') || localStorage.getItem('dz-key') || ''; } catch (_) { return ''; } },
+  set(k, remember) {
+    try { sessionStorage.setItem('dz-key', k); if (remember) localStorage.setItem('dz-key', k); else localStorage.removeItem('dz-key'); } catch (_) {}
+  },
+  remembered() { try { return !!localStorage.getItem('dz-key'); } catch (_) { return false; } },
+  clear() { try { sessionStorage.removeItem('dz-key'); localStorage.removeItem('dz-key'); } catch (_) {} },
+};
+async function apiSample(prompt, { signal, onText }) {
+  const fail = (code, text, detail) => Object.assign(new Error(code), { code, text, detail });
+  let res;
+  try {
+    res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST', signal,
+      headers: {
+        'content-type': 'application/json', 'x-api-key': ApiKey.get(), 'anthropic-version': '2026-10-21',
+        'anthropic-dangerous-direct-browser-access': 'true', 'anthropic-beta': 'server-side-fallback-2026-07-01',
+      },
+      // a safety-classifier decline is retried server-side on the model Anthropic recommends for it
+      body: JSON.stringify({ model: 'claude-opus-5-5', max_tokens: 16000, stream: true, fallbacks: 'default',
+        output_config: { effort: 'medium' }, messages: [{ role: 'user', content: prompt }] }),
+    });
+  } catch (err) { throw fail(signal && signal.aborted ? 'cancelled' : 'network'); }
+  if (!res.ok) {
+    let msg = ''; try { msg = (await res.json()).error.message; } catch (_) {}
+    throw fail({ 401: 'bad_key', 403: 'forbidden', 429: 'rate_limited', 529: 'overloaded' }[res.status] || (res.status >= 500 ? 'overloaded' : 'api_error'), '', msg);
+  }
+  const reader = res.body.getReader(), dec = new TextDecoder();
+  let buf = '', text = '', stop = null;
+  try {
+    for (;;) {
+      const { value, done } = await reader.read();
+      if (done) break;
+      buf += dec.decode(value, { stream: true });
+      let i;
+      while ((i = buf.indexOf('\n\n')) >= 0) {
+        const block = buf.slice(0, i); buf = buf.slice(i + 2);
+        const data = block.split('\n').filter(l => l.startsWith('data:')).map(l => l.slice(5).trim()).join('');
+        if (!data) continue;
+        const ev = JSON.parse(data);
+        if (ev.type === 'content_block_delta' && ev.delta.type === 'text_delta') { text += ev.delta.text; onText({ text }); }
+        else if (ev.type === 'message_delta' && ev.delta.stop_reason) stop = ev.delta.stop_reason;
+        else if (ev.type === 'error') throw fail(ev.error && ev.error.type === 'overloaded_error' ? 'overloaded' : 'api_error', text, ev.error && ev.error.message);
+      }
+    }
+  } catch (err) { if (err.code) throw err; throw fail(signal && signal.aborted ? 'cancelled' : 'network', text); }
+  if (stop === 'refusal') throw fail('refused');
+  return { text, truncated: stop === 'max_tokens' };
+}
+const answerer = () => Sample || (ApiKey.get() ? apiSample : null);
 function askSources(q) {
   const ctx = guideContext(q);
   const fromGuides = [];
@@ -1504,12 +1556,23 @@ function renderAsk() {
       ? 'For formation: write a statement, and an AI tests it against the most relevant texts in this collection. It distinguishes the senses the statement could bear, weighs the teaching each sense meets, and reads condemned propositions in the sense they were condemned (<a href="#reading">how</a>). It assesses statements, never persons, and is not a judgment of the Church.'
       : 'Ask a question, and an AI answers from the most relevant entries in this collection, citing each by number, and reading later teaching in continuity with earlier binding texts.'} Answers are written by AI; check every claim against the entries it cites.</p>
     <div class="askbox"><textarea id="askQ" aria-label="${check ? 'Statement to check' : 'Your question'}" placeholder="${check ? 'Write a statement to test, for example a claim about grace, the Church or a condemned proposition…' : 'Ask about a doctrine, a council, a condemned proposition…'}">${esc(askLast && askLast.mode === askMode ? askLast.q : '')}</textarea>
-      <div class="row">${Sample ? `<button class="btn primary" id="askGo">${check ? 'Check' : 'Ask'}</button><button class="btn" id="askStop" hidden>Stop</button>` : ''}<button class="btn${Sample ? '' : ' primary'}" id="askCopy">Copy prompt for any AI</button><span class="count" id="askNote"></span></div></div>
+      <div class="row">${answerer() ? `<button class="btn primary" id="askGo">${check ? 'Check' : 'Ask'}</button><button class="btn" id="askStop" hidden>Stop</button>` : ''}<button class="btn${answerer() ? '' : ' primary'}" id="askCopy">Copy prompt for any AI</button><span class="count" id="askNote"></span></div></div>
     <div class="examples" style="margin-top:.8rem">${(check ? CHECKS : EXAMPLES).map(x => `<button class="chip" data-example="${esc(x)}">${esc(x)}</button>`).join('')}</div>
-    ${Sample ? '' : `<p style="font-size:.9rem;color:var(--muted)">Opened in Claude, this page answers here. Anywhere else, "Copy prompt for any AI" copies the instructions, the reading rules and the selected texts, so you can paste them into the AI client you use. The data is also published for programs: <a class="xref" href="${esc((SITE.url || '') + 'llms.txt')}">llms.txt</a>.</p>`}
+    ${Sample ? '' : `<details class="keybox" style="margin:.8rem 0;font-size:.92rem"${ApiKey.get() ? '' : ' open'}><summary><b>Answer here with your own Anthropic API key</b>${ApiKey.get() ? ' · key set' : ''}</summary>
+      <p style="color:var(--muted)">Answers come from Claude Opus 5.5 and are billed to your Anthropic API account (a few cents a question). The key stays in this browser and is sent only to api.anthropic.com; this site has no server. Without "remember", it is forgotten when you close the tab. Don't save a key on a shared computer. Get one at <a href="https://console.anthropic.com/" target="_blank" rel="noopener">console.anthropic.com ↗</a>.</p>
+      <div class="row" style="display:flex;gap:.5rem;flex-wrap:wrap;align-items:center"><input id="apiKey" type="password" autocomplete="off" spellcheck="false" placeholder="sk-ant-…" aria-label="Anthropic API key" style="flex:1;min-width:12rem" value="${esc(ApiKey.get())}">
+        <label style="white-space:nowrap"><input type="checkbox" id="apiRemember"${ApiKey.remembered() ? ' checked' : ''}> remember on this device</label>
+        <button class="btn small" id="apiSave">Use key</button>${ApiKey.get() ? '<button class="btn small" id="apiClear">Forget key</button>' : ''}</div></details>
+      <p style="font-size:.9rem;color:var(--muted)">Or open this page in Claude to answer here, or use "Copy prompt for any AI" and paste the instructions, reading rules and selected texts into the AI client you use. The data is also published for programs: <a class="xref" href="${esc((SITE.url || '') + 'llms.txt')}">llms.txt</a>.</p>`}
     <div id="askOut">${askLast && askLast.mode === askMode && askLast.html ? askLast.html : ''}</div>`;
   view.querySelectorAll('[data-askmode]').forEach(b => b.onclick = () => { askMode = b.dataset.askmode; renderAsk(); });
-  if (Sample) { $('askGo').onclick = runAsk; $('askStop').onclick = () => { if (askCtl) askCtl.abort(); }; }
+  if (answerer()) { $('askGo').onclick = runAsk; $('askStop').onclick = () => { if (askCtl) askCtl.abort(); }; }
+  if ($('apiSave')) $('apiSave').onclick = () => {
+    const k = $('apiKey').value.trim();
+    if (!/^sk-ant-/.test(k)) { $('askNote').textContent = 'That does not look like an Anthropic API key (it starts with sk-ant-).'; return; }
+    const q = $('askQ').value; ApiKey.set(k, $('apiRemember').checked); renderAsk(); $('askQ').value = q; $('askNote').textContent = 'Key set. Ask away.';
+  };
+  if ($('apiClear')) $('apiClear').onclick = () => { const q = $('askQ').value; ApiKey.clear(); renderAsk(); $('askQ').value = q; $('askNote').textContent = 'Key forgotten.'; };
   $('askCopy').onclick = copyAskPrompt;
   window.scrollTo(0, 0);
 }
@@ -1524,7 +1587,8 @@ async function copyAskPrompt() {
 async function runAsk() {
   const q = $('askQ').value.trim();
   if (!q) { $('askQ').focus(); return; }
-  if (!Sample) { $('askNote').textContent = 'Answering here needs this page opened in Claude; copy the prompt instead.'; return; }
+  const run = answerer();
+  if (!run) { $('askNote').textContent = 'Add an API key, open the page in Claude, or copy the prompt instead.'; return; }
   const { ctx, ents } = askSources(q);
   const mode = askMode;
   const srcHtml = sourcesHtml(ents, ctx, 'Claude');
@@ -1534,13 +1598,13 @@ async function runAsk() {
   askCtl = new AbortController();
   const setText = t => { const el = $('askText'); if (el) el.innerHTML = mdLite(t); };
   try {
-    const { text, truncated } = await Sample(buildPrompt(q, ents, ctx, mode), { signal: askCtl.signal, onText: ({ text }) => setText(text) });
+    const { text, truncated } = await run(buildPrompt(q, ents, ctx, mode), { signal: askCtl.signal, onText: ({ text }) => setText(text) });
     setText(text);
     if (truncated) $('askNote').textContent = 'The answer was cut short. Try a narrower question.';
   } catch (err) {
     const code = err && err.code;
     if (err && err.text) setText(err.text); else if (code !== 'cancelled') { const el = $('askText'); if (el) el.innerHTML = ''; }
-    const msg = { not_granted: 'Asking was not allowed for this page.', sampling_disabled: 'Claude isn\'t available for this account.', rate_limited: 'Too many questions at once. Try again in a little while.', session_expired: 'Sign in to Claude again, then retry.', refused: 'Claude declined this question. Try rephrasing it.', prompt_too_large: 'The question pulled in too much text. Try a narrower question.' }[code];
+    const msg = { not_granted: 'Asking was not allowed for this page.', sampling_disabled: 'Claude isn\'t available for this account.', rate_limited: 'Too many questions at once. Try again in a little while.', session_expired: 'Sign in to Claude again, then retry.', refused: 'Claude declined this question. Try rephrasing it.', prompt_too_large: 'The question pulled in too much text. Try a narrower question.', bad_key: 'The API key was not accepted. Check it under "Answer here".', forbidden: 'This API key is not allowed to use this model.', overloaded: 'The API is busy. Try again in a moment.', network: 'Could not reach api.anthropic.com. Check your connection.', api_error: 'The API returned an error' + (err && err.detail ? ': ' + err.detail : '.') }[code];
     if (code !== 'cancelled') $('askNote').textContent = msg || 'Something went wrong. Try again.';
   } finally {
     $('askGo').disabled = false; $('askStop').hidden = true;
