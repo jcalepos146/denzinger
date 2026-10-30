@@ -341,7 +341,7 @@ main { min-width: 0; padding-inline: 16px; padding-block: 2rem 6rem; }
 .cwr.hd .o, .cwr.hd .d { color: var(--muted); }
 .cwh { font: 600 .82rem var(--sans); margin: 1rem 0 .2rem; color: var(--ink); }
 .cwh span { color: var(--faint); font-weight: 400; margin-left: .35rem; }
-button.chip[aria-pressed="true"] { border-color: var(--rubric); color: var(--rubric); }
+button.chip[aria-pressed="true"] { border-color: var(--rubric); color: var(--rubric); background: var(--rubric-soft); }
 @media (max-width: 560px) { .cwr { grid-template-columns: 3.8rem 5.6rem 1fr; gap: .4rem; } }
 .checked { font-family: var(--sans); font-size: .78rem; color: var(--faint); margin-top: .35rem; }
 
