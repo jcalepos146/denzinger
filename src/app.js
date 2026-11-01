@@ -1390,39 +1390,318 @@ function renderCompare(a, b) {
 
 /* ---------- ask ---------- */
 let Sample = null, askCtl = null, askLast = null;
-const STOP = new Set('a an the of and or to in on for by with is are was were be been what which who whom whose how why when where did does do can could should would may might about from as at that this these those it its into than then there their they them we our you your i me my not no yes all any each more most some such only also over under after before between church catholic teach teaching taught say said says'.split(' '));
-function retrieve(question, k = 22) {
-  const words = norm(question).split(' ').filter(w => w.length > 2 && !STOP.has(w));
-  const uniq = [...new Set(words)];
-  if (!uniq.length) return [];
-  const df = uniq.map(w => ENTRIES.reduce((a, e) => a + (e.hay.includes(' ' + w) || e.meta.includes(' ' + w) ? 1 : 0), 0));
-  const scored = [];
-  for (const e of ENTRIES) {
-    let sc = 0;
-    uniq.forEach((w, i) => {
-      if (!df[i]) return;
-      const idf = Math.log(1 + ENTRIES.length / df[i]);
-      const inBody = e.hay.includes(' ' + w), inMeta = e.meta.includes(' ' + w);
-      if (inBody) sc += idf; if (inMeta) sc += idf * 1.5;
-    });
-    if (sc > 0) scored.push([sc / Math.sqrt(1 + e.hay.length / 2500), e]);
+const CONCEPTS = (() => { try { return JSON.parse(document.getElementById('concepts-data').textContent); } catch (_) { return []; } })();
+const STOP = new Set('a an the of and or to in on for by with is are was were be been what which who whom whose how why when where did does do can could should would may might about from as at that this these those it its into than then there their they them we our you your i me my not no yes all any each more most some such only also over under after before between church catholic teach teaching taught say said says has have had if but so just must shall being because really actually very mean means meaning relate relates related tell explain doctrine'.split(' '));
+
+/* A light stemmer, the same for the texts and the question, so that "baptized", "baptism" and "baptismal" meet. */
+const STEMS = new Map();
+const DERIV = [['ification', 'ify'], ['ibility', 'ibl'], ['ability', 'abl'], ['ization', 'iz'], ['ation', ''], ['ious', ''], ['ance', ''], ['ence', ''], ['ion', ''], ['ity', ''], ['ism', 'iz'], ['ist', 'iz'], ['ness', ''], ['ful', ''], ['al', '']];
+function stem(w) {
+  let s = STEMS.get(w);
+  if (s !== undefined) return s;
+  s = w;
+  if (s.length > 3 && !/\d/.test(s)) {
+    if (s.endsWith('sses')) s = s.slice(0, -2);
+    else if (s.endsWith('ies') && s.length > 4) s = s.slice(0, -3) + 'y';
+    else if (s.endsWith('s') && !/(ss|us|is)$/.test(s)) s = s.slice(0, -1);
+    if (s.length > 5 && /[aeiouy].*(ed|ing)$/.test(s)) s = s.replace(/(ed|ing)$/, '');
+    else if (s.length > 5 && s.endsWith('ly')) s = s.slice(0, -2);
+    for (let pass = 0; pass < 2; pass++) {
+      const d = DERIV.find(([a]) => s.endsWith(a) && s.length - a.length >= 4);
+      if (!d) break;
+      s = s.slice(0, -d[0].length) + d[1];
+    }
+    if (/([b-df-hj-np-tv-z])\1$/.test(s) && !/(ll|ss|zz)$/.test(s)) s = s.slice(0, -1);
+    if (s.length > 4 && s.endsWith('e')) s = s.slice(0, -1);
+    if (s.length > 4 && s.endsWith('y')) s = s.slice(0, -1) + 'i';
   }
-  scored.sort((a, b) => b[0] - a[0]);
-  return scored.slice(0, k).map(x => x[1]);
+  STEMS.set(w, s);
+  return s;
 }
-function guideContext(question) {
-  const words = new Set(norm(question).split(' ').filter(w => w.length > 3 && !STOP.has(w)));
-  const score = t => { let n = 0; for (const w of norm(t).split(' ')) if (words.has(w)) n++; return n; };
-  const ds = DISPUTED.map(d => [score(d.title + ' ' + d.question + ' ' + d.settled + ' ' + d.open), d]).filter(x => x[0] > 0).sort((a, b) => b[0] - a[0]).slice(0, 3).map(x => x[1]);
-  const ss = SINCE.map(s => [score(s.title + ' ' + s.summary), s]).filter(x => x[0] > 0).sort((a, b) => b[0] - a[0]).slice(0, 4).map(x => x[1]);
-  const ts = THREADS.map(t => [score(t.title + ' ' + t.summary), t]).filter(x => x[0] > 0).sort((a, b) => b[0] - a[0]).slice(0, 1).map(x => x[1]);
-  return { ds, ss, ts };
+const stemSeq = s => norm(s).trim().split(' ').filter(Boolean).map(stem).join(' ');
+const contentSeq = s => norm(s).trim().split(' ').filter(w => w.length > 1 && !STOP.has(w)).map(stem).join(' ');
+
+/* an index of stems, built the first time Ask is used */
+let IX = null;
+function askIndex() {
+  if (IX) return IX;
+  const post = new Map(), len = new Array(ENTRIES.length);
+  for (const e of ENTRIES) {
+    const st = e.hay.trim().split(' ').filter(Boolean).map(stem);
+    e.stems = ' ' + st.join(' ') + ' ';
+    e.mstems = ' ' + e.meta.trim().split(' ').filter(Boolean).map(stem).join(' ') + ' ';
+    len[e.k] = st.length || 1;
+    const tf = new Map();
+    for (const s of st) tf.set(s, (tf.get(s) || 0) + 1);
+    for (const [s, n] of tf) { let l = post.get(s); if (!l) post.set(s, l = []); l.push(e.k, n); }
+  }
+  const avg = len.reduce((a, b) => a + b, 0) / len.length;
+  for (const g of [...DISPUTED, ...SINCE, ...THREADS]) {
+    g._title = ' ' + stemSeq(g.title) + ' ';
+    g._body = ' ' + stemSeq([g.question, g.summary, g.settled, g.open].filter(Boolean).join(' ')) + ' ';
+  }
+  for (const c of CONCEPTS) {
+    c._terms = c.terms.map(t => ({ t, st: stemSeq(t), cs: contentSeq(t), words: contentSeq(t).split(' ').filter(Boolean).length }));
+    c._find = [...c.terms, ...(c.also || [])].map(t => ({ t, st: stemSeq(t) }));
+  }
+  return IX = { post, len, avg, N: ENTRIES.length };
 }
-function entryHeader(e) {
-  const g = e.cur !== null && CURATED[e.cur] ? ` · checked by hand: ${GRADES[CURATED[e.cur].g][0]} (${CURATED[e.cur].n})` : '';
-  const c = e.cens !== null && CENS[e.cens] ? ` · censured as ${CENS[e.cens].w.join(', ')}${CENS[e.cens].r ? ', respectively' : ''}` : '';
-  return `[${nlab(e.id)}] ${e.era.name}${e.era.dates ? ' (' + e.era.dates + ')' : ''} · ${W(e.weight)[0]}${g}${c}${e.topic ? ' · ' + e.topic : ''}${e.src ? ' ' + e.src : ''}`;
+
+/* numbers named in the question: n. 1839, D 1839, DS 3074, LG 25, CCC 2267; and Scripture such as Matt 16:18 */
+function namedRefs(q) {
+  const named = [], verses = [];
+  const add = e => { if (e && !named.includes(e)) named.push(e); };
+  q.replace(/\b(?:DS|DH|DzS)\.?\s?(\d{1,4})\b/gi, (m, n) => { add((byDS.get(+n) || [])[0]); return m; });
+  q.replace(/(?:^|[^A-Za-z])(?:nn?\.|no\.|D\.?|Dz\.?|Denz\.?|Denzinger)\s?(\d{1,4}[a-z]?)\b/g, (m, n) => { add(byId.get(n.toLowerCase()) || byBase.get(parseInt(n, 10))); return m; });
+  q.replace(/\b([A-Z]{2,5})\s?(\d{1,8})\b/g, (m, a, n) => { add(byId.get(a + n)); return m; });
+  q.replace(/((?:[1-3]\s?)?[A-Za-z]+)\.?\s+(\d{1,3}):(\d{1,3})/g, (m, b, c, v) => {
+    const sq = scriptureQuery(`${b} ${c} ${v}`);
+    if (sq) { const list = ((sq.book.refs.get(sq.ch) || new Map()).get(sq.v)) || []; verses.push({ label: `${sq.book.name} ${sq.ch}:${sq.v}`, list }); }
+    return m;
+  });
+  return { named, verses };
 }
+
+/* how the question is read: its words, its phrases, the doctrines it names */
+function readQuestion(q) {
+  askIndex();
+  const words = norm(q).trim().split(' ').filter(Boolean);
+  const content = words.filter(w => w.length > 2 && !STOP.has(w) && !/^\d+$/.test(w));
+  const terms = new Map();
+  for (const w of content) { const s = stem(w); if (!terms.has(s)) terms.set(s, { wt: 1, word: w, direct: true }); }
+  const phrases = [];
+  const cs = content.map(stem);
+  for (let i = 0; i + 1 < cs.length; i++) phrases.push({ st: ' ' + cs[i] + ' ' + cs[i + 1] + ' ', wt: 1.2, loose: true });
+  const cq = ' ' + contentSeq(q) + ' ', sq = ' ' + stemSeq(q) + ' ';
+  const concepts = [];
+  for (const c of CONCEPTS) {
+    // the whole phrase, or its content words in order when there are at least two of them
+    const m = c._terms.filter(x => x.st && (sq.includes(' ' + x.st + ' ') || (x.words > 1 && cq.includes(' ' + x.cs + ' '))));
+    if (!m.length) continue;
+    concepts.push({ c, strong: m.some(x => x.words > 1 || x.cs.length >= 8), via: m[0].t });
+    for (const f of c._find) {
+      if (!f.st) continue;
+      if (!f.st.includes(' ')) { if (!terms.has(f.st) && !STOP.has(f.st)) terms.set(f.st, { wt: .55, word: f.t, direct: false }); }
+      else phrases.push({ st: ' ' + f.st + ' ', wt: 1.6, label: f.t });
+    }
+  }
+  return { q, terms, phrases, concepts, ...namedRefs(q) };
+}
+
+const LEVEL_PRIOR = { dogma: 1.3, definitive: 1.2, authentic: 1.1, discipline: 1, prudential: .95, dialogue: .9, study: .85, private: .7 };
+function guideMatches(qa) {
+  const direct = [...qa.terms].filter(([, t]) => t.direct && t.idf);
+  const total = direct.reduce((a, [, t]) => a + t.idf, 0) || 1;
+  const conceptRefs = new Set(qa.concepts.flatMap(x => x.c.refs));
+  const rate = g => {
+    let s = 0, n = 0;
+    for (const [st, t] of direct) {
+      const inT = g._title.includes(' ' + st + ' '), inB = g._body.includes(' ' + st + ' ');
+      if (inT || inB) { n++; s += t.idf * (inT ? 1.4 : 1); }
+    }
+    const refs = g.refs || (g.steps || []).map(x => x.ref).filter(Boolean);
+    const shared = refs.filter(r => conceptRefs.has(r)).length;
+    const r = Math.min(1, s / total + (shared ? .25 : 0));
+    return (n >= Math.min(2, direct.length) && r >= .45) || shared >= 2 ? r : 0;
+  };
+  const top = (list, k) => list.map(g => [rate(g), g]).filter(x => x[0] > 0).sort((a, b) => b[0] - a[0]).slice(0, k);
+  return { ds: top(DISPUTED, 3), ss: top(SINCE, 3), ts: top(THREADS, 1) };
+}
+
+/* score every entry for a question; returns the ranked list with the reasons for each */
+function askRank(qa, k = 22) {
+  const { post, len, avg, N } = askIndex();
+  const sc = new Float64Array(N), cov = new Float64Array(N);
+  const k1 = 1.2, b = .75;
+  let covTotal = 0;
+  for (const [s, t] of qa.terms) {
+    const l = post.get(s);
+    if (!l) continue;
+    const df = l.length / 2;
+    t.idf = Math.log(1 + (N - df + .5) / (df + .5));
+    if (t.direct) covTotal += t.idf;
+    for (let i = 0; i < l.length; i += 2) {
+      const e = l[i], tf = l[i + 1];
+      sc[e] += t.wt * t.idf * tf * (k1 + 1) / (tf + k1 * (1 - b + b * len[e] / avg));
+      if (t.direct) cov[e] += t.idf;
+    }
+  }
+  for (const e of ENTRIES) {
+    if (!sc[e.k]) continue;
+    for (const [s, t] of qa.terms) if (t.idf && e.mstems.includes(' ' + s + ' ')) sc[e.k] += t.wt * t.idf * .8;
+    for (const p of qa.phrases) if (e.stems.includes(p.st) || e.mstems.includes(p.st)) sc[e.k] += p.wt * 2.2;
+    const lv = levelOf(e);
+    sc[e.k] *= (covTotal ? .35 + .65 * Math.min(1, cov[e.k] / covTotal) : 1) * (LEVEL_PRIOR[lv] || 1) * (e.note || e.weight === 'note' ? .45 : 1) * (e.sup ? .6 : 1);
+  }
+  let top = 0;
+  for (let i = 0; i < N; i++) if (sc[i] > top) top = sc[i];
+  top = top || 1;
+  const why = new Map();
+  const note = (e, w) => { if (!why.has(e.id)) why.set(e.id, []); const l = why.get(e.id); if (!l.includes(w)) l.push(w); };
+  for (const { c, strong } of qa.concepts) {
+    c.refs.slice(0, 8).forEach((r, i) => { const e = byId.get(r); if (!e) return; sc[e.k] += top * (strong ? .9 : .4) * (1 - i * .04); note(e, `key text on ${c.label}`); });
+  }
+  const ctx = guideMatches(qa);
+  for (const [r, g] of [...ctx.ds, ...ctx.ss, ...ctx.ts]) {
+    const refs = g.refs || (g.steps || []).map(x => x.ref).filter(Boolean);
+    for (const id of refs) { const e = byId.get(id); if (!e) continue; sc[e.k] += top * .45 * r * (cov[e.k] ? 1 : .3); note(e, `discussed in “${g.title}”`); }
+  }
+  for (const v of qa.verses) for (const e of v.list) { sc[e.k] += top * .6; note(e, `cites ${v.label}`); }
+  // around a text named in the question: its neighbours in the same document, and the texts that cite it
+  for (const n of qa.named) {
+    for (const d of [-2, -1, 1, 2]) {
+      const e = ENTRIES[n.k + d];
+      if (e && e.era === n.era && (e.topic || '') === (n.topic || '') && !qa.named.includes(e)) { sc[e.k] += top * (Math.abs(d) === 1 ? .55 : .4); note(e, `next to ${nlab(n.id)}`); }
+    }
+    for (const id of n.citedBy) { const e = byId.get(id); if (e && !qa.named.includes(e)) { sc[e.k] += top * .4; note(e, `cites ${nlab(n.id)}`); } }
+  }
+  const ranked = [];
+  for (const e of ENTRIES) if (sc[e.k] > top * .04) ranked.push(e);
+  ranked.sort((a, b) => sc[b.k] - sc[a.k]);
+  for (const e of qa.named) note(e, 'named in your question');
+  // the texts named first, then the best, but not more than three from one heading or six from one pope or council
+  const picked = [...qa.named], perHead = new Map(), perEra = new Map(), skipped = [];
+  for (const e of ranked) {
+    if (picked.length >= k + qa.named.length) { skipped.push(e); continue; }
+    if (picked.includes(e)) continue;
+    const h = e.era.i + '|' + (e.topic || e.ses || ''), nh = perHead.get(h) || 0, ne = perEra.get(e.era.i) || 0;
+    if (nh >= 3 || ne >= 6) { skipped.push(e); continue; }
+    perHead.set(h, nh + 1); perEra.set(e.era.i, ne + 1);
+    picked.push(e);
+  }
+  const more = skipped.filter(e => !picked.includes(e)).slice(0, 16);
+  return { picked, more, why, ctx: { ds: ctx.ds.map(x => x[1]), ss: ctx.ss.map(x => x[1]), ts: ctx.ts.map(x => x[1]) }, score: e => sc[e.k] / top };
+}
+
+/* the words of the question each text matches, and the sentence that best shows why it was chosen */
+function matchInfo(e, qa) {
+  askIndex();
+  const hits = [];
+  for (const [s, t] of qa.terms) if (t.direct && (e.stems.includes(' ' + s + ' ') || e.mstems.includes(' ' + s + ' '))) hits.push(t.word);
+  const sents = [];
+  for (const x of e.paras.join(' ').replace(/([.;:?!])\s+/g, '$1\u0001').split('\u0001')) {
+    // keep a numbering such as "5." or "Can. 3." with the sentence it begins
+    if (sents.length && sents[sents.length - 1].length < 25) sents[sents.length - 1] += ' ' + x; else sents.push(x);
+  }
+  let best = sents[0] || '', bs = -1;
+  for (const s of sents) {
+    const st = ' ' + stemSeq(s) + ' ';
+    let n = 0;
+    for (const [x, t] of qa.terms) if (st.includes(' ' + x + ' ')) n += t.direct ? 1 : .5;
+    for (const p of qa.phrases) if (st.includes(p.st)) n += 1;
+    if (n > bs) { bs = n; best = s; }
+  }
+  return { hits, snip: best.length > 260 ? best.slice(0, 250).replace(/\s+\S*$/, '') + ' …' : best };
+}
+
+/* ----- what the asker has chosen ----- */
+const Pick = { q: '', mode: '', qa: null, picked: [], more: [], why: new Map(), ctx: { ds: [], ss: [], ts: [] }, on: new Set(), off: new Set(), extra: [], guideOff: new Set(), latin: store.get('denz:askLatin') === '1', sug: [] };
+function pickRefresh(force) {
+  const box = $('askQ');
+  const q = box ? box.value.trim() : Pick.q;
+  if (!force && q === Pick.q && askMode === Pick.mode) return;
+  Pick.q = q; Pick.mode = askMode;
+  const qa = readQuestion(q);
+  const enough = qa.named.length || qa.verses.length || [...qa.terms.values()].some(t => t.direct);
+  if (!enough) { Pick.qa = null; Pick.picked = []; Pick.more = []; Pick.why = new Map(); Pick.ctx = { ds: [], ss: [], ts: [] }; }
+  else {
+    const r = askRank(qa, askMode === 'check' ? 24 : 22);
+    Object.assign(Pick, { qa, picked: r.picked, more: r.more, why: r.why, ctx: r.ctx });
+  }
+  renderPick();
+}
+function pickChosen() {
+  const out = [];
+  for (const id of Pick.extra) { const e = byId.get(id); if (e && !Pick.off.has(id) && !out.includes(e)) out.push(e); }
+  for (const e of Pick.picked) if (!Pick.off.has(e.id) && !out.includes(e)) out.push(e);
+  for (const e of Pick.more) if (Pick.on.has(e.id) && !out.includes(e)) out.push(e);
+  return out;
+}
+function pickCtx() {
+  const keep = (g, kind) => !Pick.guideOff.has(kind + g.id);
+  return { ds: Pick.ctx.ds.filter(g => keep(g, 'q-')), ss: Pick.ctx.ss.filter(g => keep(g, 'since-')), ts: Pick.ctx.ts.filter(g => keep(g, 'thread-')) };
+}
+function pickRow(e, checked, extraWhy) {
+  const qa = Pick.qa || readQuestion('');
+  const { hits, snip } = matchInfo(e, qa);
+  const raw = [...(extraWhy ? [extraWhy] : []), ...(Pick.why.get(e.id) || [])];
+  const guides = raw.filter(w => w.startsWith('discussed in ')).map(w => w.slice(13));
+  const why = raw.filter(w => !w.startsWith('discussed in '));
+  if (guides.length) why.push('discussed in ' + guides.slice(0, 2).join(', ') + (guides.length > 2 ? ` and ${guides.length - 2} more guide${guides.length > 3 ? 's' : ''}` : ''));
+  if (hits.length) why.push('matches ' + hits.slice(0, 4).map(w => `“${w}”`).join(', '));
+  const x = W(e.weight), g = e.cur !== null && CURATED[e.cur] ? GRADES[CURATED[e.cur].g] : null;
+  const pill = g ? `<span class="pill lv-${g[1]}">${esc(g[0])}</span>` : `<span class="pill lv-${x[1]}">${esc(x[0])}</span>`;
+  return `<li class="pick-row${checked ? '' : ' off'}"><input type="checkbox" id="pk-${esc(encId(e.id))}" data-pick="${esc(e.id)}"${checked ? ' checked' : ''} aria-label="Give ${esc(nlab(e.id))} to the AI">
+    <div class="pick-main"><div class="pick-top"><a class="xref" href="#n${esc(e.id)}">${esc(nlab(e.id))}</a>${pill}<span class="pick-src">${esc(e.era.name)}${e.year ? ', ' + e.year : ''}${e.topic ? ' · ' + esc(e.topic) : ''}</span></div>
+    <label class="pick-snip" for="pk-${esc(encId(e.id))}">${esc(snip)}</label>${why.length ? `<div class="pick-why">${esc(why.join(' · '))}</div>` : ''}</div></li>`;
+}
+function pickWords(ents) { return ents.reduce((a, e) => a + e.paras.join(' ').split(/\s+/).length, 0); }
+function renderPick() {
+  const el = $('askPick');
+  if (!el) return;
+  if (!Pick.qa && !Pick.extra.length) {
+    el.innerHTML = `<p class="pick-empty">Write a question or a statement, and the texts chosen for the AI appear here, so you can check them before you ask.</p>`;
+    return;
+  }
+  const chosen = pickChosen();
+  const extraRows = Pick.extra.filter(id => byId.has(id) && !Pick.picked.some(e => e.id === id)).map(id => pickRow(byId.get(id), !Pick.off.has(id), 'added by you'));
+  const rows = Pick.picked.map(e => pickRow(e, !Pick.off.has(e.id)));
+  const more = Pick.more.filter(e => !Pick.extra.includes(e.id));
+  const guides = [...Pick.ctx.ds.map(g => ['q-' + g.id, 'Disputed question', g.title]), ...Pick.ctx.ss.map(g => ['since-' + g.id, 'Since 1950', g.title]), ...Pick.ctx.ts.map(g => ['thread-' + g.id, 'Thread', g.title])];
+  const saved = Marks.list().filter(x => x.b && !chosen.includes(x.e));
+  el.innerHTML = `<div class="pick-head"><h2 class="sect-h">Texts the AI will read</h2><span class="count">${fmt(chosen.length)} texts · about ${fmt(pickWords(chosen))} words</span>${Pick.on.size || Pick.off.size || Pick.extra.length || Pick.guideOff.size ? '<button class="tool" data-pick-reset>Undo my changes</button>' : ''}</div>
+    <p class="pick-help">Chosen from the words of your question, the doctrines it names and the guides that discuss them, with defined and binding texts first. Untick any that do not bear on it, and add any that are missing.</p>
+    <ol class="pick-list">${extraRows.join('')}${rows.join('') || (extraRows.length ? '' : '<li class="pick-empty">No text matched. Try other words, or add a text by number.</li>')}</ol>
+    ${more.length ? `<details class="pick-more"><summary>${fmt(more.length)} more that matched</summary><ol class="pick-list">${more.map(e => pickRow(e, Pick.on.has(e.id))).join('')}</ol></details>` : ''}
+    ${guides.length ? `<div class="pick-guides"><span>Guide summaries given too:</span>${guides.map(([k, kind, title]) => `<label class="chip"><input type="checkbox" data-pick-guide="${esc(k)}"${Pick.guideOff.has(k) ? '' : ' checked'}> ${esc(kind)}: ${esc(title)}</label>`).join('')}</div>` : ''}
+    <div class="pick-add"><input id="pickAdd" type="text" placeholder="Add a text: 1839, DS 3074, LG 25, or a few words" aria-label="Add a text by number or words"><button class="btn small" data-pick-add-go>Add</button>${saved.length ? `<button class="btn small" data-pick-saved>Add my ${fmt(saved.length)} saved</button>` : ''}</div>
+    <div id="pickSug" class="numgrid">${Pick.sug.map(e => `<button class="chip" data-pick-add="${esc(e.id)}" title="${esc(e.topic || '')}">+ ${esc(nlab(e.id))}</button>`).join('')}</div>`;
+}
+function pickAdd(ids) {
+  for (const id of ids) { if (!Pick.extra.includes(id)) Pick.extra.unshift(id); Pick.off.delete(id); Pick.on.add(id); }
+  Pick.sug = Pick.sug.filter(e => !ids.includes(e.id));
+  renderPick();
+}
+function pickAddFrom(text) {
+  const v = text.trim();
+  if (!v) return;
+  const { named } = namedRefs(v);
+  const one = numberQuery(v);
+  if (one && !named.includes(one)) named.push(one);
+  if (named.length) { Pick.sug = []; pickAdd(named.map(e => e.id)); return; }
+  const qa = readQuestion(v);
+  const have = new Set(pickChosen().map(e => e.id));
+  Pick.sug = askRank(qa, 12).picked.filter(e => !have.has(e.id)).slice(0, 8);
+  renderPick();
+  const inp = $('pickAdd'); if (inp) { inp.value = v; inp.focus(); }
+  if (!Pick.sug.length) toast('No text matched those words');
+}
+function pickEvents(el) {
+  el.addEventListener('change', ev => {
+    const t = ev.target;
+    if (t.dataset.pick) {
+      const id = t.dataset.pick;
+      if (t.checked) { Pick.off.delete(id); Pick.on.add(id); } else { Pick.on.delete(id); Pick.off.add(id); }
+      t.closest('.pick-row').classList.toggle('off', !t.checked);
+      const chosen = pickChosen(), c = el.querySelector('.pick-head .count');
+      if (c) c.textContent = `${fmt(chosen.length)} texts · about ${fmt(pickWords(chosen))} words`;
+      if (!el.querySelector('[data-pick-reset]')) el.querySelector('.pick-head').insertAdjacentHTML('beforeend', '<button class="tool" data-pick-reset>Undo my changes</button>');
+    } else if (t.dataset.pickGuide) {
+      if (t.checked) Pick.guideOff.delete(t.dataset.pickGuide); else Pick.guideOff.add(t.dataset.pickGuide);
+    }
+  });
+  el.addEventListener('click', ev => {
+    const t = ev.target.closest('button');
+    if (!t) return;
+    if (t.hasAttribute('data-pick-reset')) { Pick.on.clear(); Pick.off.clear(); Pick.extra = []; Pick.guideOff.clear(); Pick.sug = []; renderPick(); }
+    else if (t.hasAttribute('data-pick-add-go')) pickAddFrom(($('pickAdd') || {}).value || '');
+    else if (t.dataset.pickAdd) pickAdd([t.dataset.pickAdd]);
+    else if (t.hasAttribute('data-pick-saved')) pickAdd(Marks.list().filter(x => x.b).map(x => x.e.id));
+  });
+  el.addEventListener('keydown', ev => { if (ev.target.id === 'pickAdd' && ev.key === 'Enter') { ev.preventDefault(); pickAddFrom(ev.target.value); } });
+}
+
+/* ----- the prompt ----- */
 const READING_RULES = `How to read condemned propositions and controversial bulls:
 - A condemnation targets a proposition in a determinate doctrinal sense, not every meaning its words could bear. Establish that sense from the source the proposition was taken from, the wording of the condemnation (named senses such as "if thus understood"; censures), and authoritative explanations. Never supply an intention the evidence does not show, whether to accuse or to excuse.
 - "Condemned" is not "declared heretical": with censures given respectively or in globo, each proposition deserves at least one of the listed censures, not necessarily the gravest.
@@ -1430,45 +1709,91 @@ const READING_RULES = `How to read condemned propositions and controversial bull
 - The same words can express different doctrines; agreement in vocabulary (for example Augustinian language on grace) can hide disagreement, and the reverse.
 - A definition is what is proposed to be held, not the reasoning around it.
 - If a text seems to contradict earlier teaching, treat it as a question to examine with these distinctions, not as a refutation; where a tension remains, say so plainly.`;
-function buildPrompt(question, ents, ctx, mode) {
+/* what each hand-checked grade means, for the key at the head of a prompt; the note on each text gives the reason for its grade */
+const GRADE_NOTE = {
+  dogma: 'proposed as revealed and defined, to be believed with divine and Catholic faith.',
+  definitive: 'proposed to be held definitively, though not as formally revealed.',
+  authentic: 'authoritative teaching, owed religious submission of mind and will (Lumen Gentium 25), not infallible in itself.',
+  discipline: 'law, liturgy or practice; binds in obedience and can be changed by competent authority.',
+  condemned: 'condemned with graded censures: each proposition deserves at least one of the censures listed, not necessarily the gravest, and is rejected in the sense condemned.',
+  'condemned-heresy': 'condemned as heretical: in the sense condemned, the proposition contradicts doctrine of faith.',
+  profession: 'a creed or profession of faith; what it professes as revealed is to be believed.',
+  disputed: 'theologians disagree about how binding this text is; the note gives the question.',
+  act: 'a juridical act (a sentence, deposition or decree of government), not a teaching.',
+  void: 'an act without authority, for example of an assembly the Church did not recognise; given for history.',
+  prudential: 'a prudential decision for its time; owed respect, but reasoned disagreement is possible.',
+  witness: 'a witness to what was believed at the time, not itself an act of the Magisterium.',
+  editorial: 'a note by the editors, not a text of the Magisterium.',
+};
+function askHeader(e, full) {
+  const lines = [`### ${nlab(e.id)}${e.ds.length ? ' (' + dsText(e) + ')' : ''}`];
+  lines.push([`${e.era.name}${e.era.dates ? ' (' + e.era.dates + ')' : ''}`, e.ses, e.year ? (e.yearExact ? String(e.year) : 'about ' + e.year) : '', e.topic].filter(Boolean).join(' · '));
+  const lab = [`Kind: ${W(e.weight)[0]}`];
+  if (e.cur !== null && CURATED[e.cur]) lab.push(`checked by hand: ${GRADES[CURATED[e.cur].g][0]} (${CURATED[e.cur].n})`);
+  if (e.cens !== null && CENS[e.cens]) lab.push(`censured as ${CENS[e.cens].w.join(', ')}${CENS[e.cens].r ? ', respectively' : ''}${CENS[e.cens].at && CENS[e.cens].at !== e.id ? ` (verdict at ${nlab(CENS[e.cens].at)})` : ''}`);
+  lines.push(lab.join(' · '));
+  if (e.src) lines.push(`Source: ${e.src}`);
+  if (full) lines.push(`Link: ${pageUrl(e)}`);
+  return lines.join('\n');
+}
+function askText(e, cap) {
+  const t = e.paras.join('\n\n');
+  return t.length > cap ? t.slice(0, cap).replace(/\s+\S*$/, '') + ` … [shortened here; the full text is at ${pageUrl(e)}]` : t;
+}
+function buildPrompt(question, ents, ctx, mode, o = {}) {
+  const full = !!o.full;
+  const budget = full ? 200000 : 46000;
+  const cap = Math.max(full ? 1500 : 650, Math.min(full ? 9000 : 2600, Math.floor(budget / Math.max(1, ents.length))));
   const texts = ents.map(e => {
-    const t = e.paras.join(' ');
-    return `${entryHeader(e)}\n${t.length > 1400 ? t.slice(0, 1400) + ' …' : t}`;
-  }).join('\n\n');
+    let s = askHeader(e, full) + '\n\n' + askText(e, cap);
+    if (o.latin && e.ds.length) {
+      const lat = e.ds.map(n => latinText(n)).filter(Boolean).join(' ');
+      if (lat) s += `\n\nLatin (DS ${dsRange(e.ds)}): ${lat.length > cap ? lat.slice(0, cap).replace(/\s+\S*$/, '') + ' …' : lat}`;
+    }
+    return s;
+  }).join('\n\n---\n\n');
+  const kinds = [...new Set(ents.map(e => wKey(e.weight)))].filter(k => WEIGHTS[k]).map(k => `- ${WEIGHTS[k][0]}: ${WEIGHTS[k][2]}`);
+  const grades = [...new Set(ents.filter(e => e.cur !== null && CURATED[e.cur]).map(e => CURATED[e.cur].g))].filter(g => GRADES[g]).map(g => `- Checked by hand, ${GRADES[g][0]}: ${GRADE_NOTE[g] || LEVELS[GRADES[g][1]][1]}`);
   const guides = [
-    ...ctx.ss.map(s => `[${s.title}, ${s.date.slice(0, 4)}] ${LEVELS[s.level][0]}. ${s.summary} Continuity: ${s.continuity}`),
+    ...ctx.ss.map(s => `[Since 1950: ${s.title}, ${s.date.slice(0, 4)}] ${LEVELS[s.level][0]}. ${s.summary} Continuity: ${s.continuity}`),
     ...ctx.ds.map(d => `[Disputed question: ${d.title}] Settled: ${d.settled} Open: ${d.open} Continuity reading: ${d.reading}`),
+    ...(ctx.ts || []).map(t => `[Thread: ${t.title}] ${t.summary}`),
   ].join('\n\n');
-  const intro = `The texts below come from an online edition of Denzinger's Sources of Catholic Dogma (older numbering, cited "n. 1234") and of the documents after 1958 (cited by document and article, such as "LG 25" or "EV 62"). Each text is labelled with the kind of document, and some with a grade checked by hand and the censure it received.`;
-  const common = `- Use ONLY the texts below. If they do not settle the matter, say so plainly and say what is missing.
-- Cite every claim by the number given in brackets, such as (n. 1839) or (LG 25).
-- Distinguish defined dogma, definitive teaching, authoritative teaching, discipline, prudential judgment, and texts that are not magisterial (addresses, commission studies, interviews), using the labels given.
-- Read later teaching in continuity with earlier binding texts. Where others see a break, say so briefly and fairly.
-
-${READING_RULES}`;
   const task = mode === 'check'
-    ? `Task: the reader is studying how a statement stands with the Church's teaching, for formation. Assess the statement, never a person: do not judge anyone's faith, standing or intention, and say that your assessment is not an act of the Church's authority.
+    ? `## Your task: check a statement
+The reader is studying how a statement stands with the Church's teaching, for formation. Assess the statement, never a person: do not judge anyone's faith, standing or intention, and say that your assessment is not an act of the Church's authority.
 1. Restate what the statement claims. Note any ambiguity and the different senses it could bear.
-2. For each sense, say which texts bear on it, and whether that sense agrees with them, goes beyond them, or contradicts them. Give the weight of the teaching involved: contradicting a defined dogma is not the same as disagreeing with a prudential judgment.
+2. For each sense, say which texts bear on it, and whether that sense agrees with them, goes beyond them, or contradicts them. Quote the decisive words briefly. Give the weight of the teaching involved: contradicting a defined dogma is not the same as disagreeing with a prudential judgment.
 3. If a relevant text is a condemned proposition, apply the reading rules: show the sense that was condemned before comparing.
 4. End with one line: consonant with the texts; consonant in one sense and not in another; contrary to the teaching cited (name its weight); or not settled by these texts.
-Write plain prose, at most about 450 words.
+Write plain prose, at most about ${full ? 600 : 450} words.
 
 Statement: ${question}`
-    : `Task: answer the question in plain prose in short paragraphs, at most about 350 words, without headings.
+    : `## Your task: answer a question
+Answer in plain prose in short paragraphs, at most about ${full ? 500 : 350} words, without headings. Quote the decisive words briefly where they settle the point, and say how binding each text you rely on is.
 
 Question: ${question}`;
-  return `${intro}
+  return `You are helping a reader study the teaching of the Catholic Church from its documents. The texts below come from an online edition of Denzinger's Sources of Catholic Dogma (older numbering, cited "n. 1234", with the Denzinger–Schönmetzer number as "DS") and of the documents after 1958 (cited by document and article, such as "LG 25" or "EV 62"). Each text is labelled with the kind of document it comes from, and some with a grade checked by hand and the censure it received.
 
-Rules:
-${common}
+## Rules
+- Use ONLY the texts below. If they do not settle the matter, say so plainly and say what is missing.
+- The texts were chosen by a search and by the reader, so some may not bear on the question: ignore those. If a text you would expect seems missing, say so and name it if you can, but do not use it as a source.
+- Cite every claim by the number given at the head of each text, such as (n. 1839) or (LG 25).
+- Distinguish defined dogma, definitive teaching, authoritative teaching, discipline, prudential judgment, and texts that are not magisterial (addresses, commission studies, interviews), using the labels given.
+- Read later teaching in continuity with earlier binding texts. Where others see a break, say so briefly and fairly.
+- Answer in the language of the question.
 
-${task}
+${READING_RULES}
 
-Texts:
+## What the labels mean
+${[...kinds, ...grades].join('\n') || '- (no texts given)'}
+These labels are a reading aid made for this edition, not an official classification.
+
+## The texts (${ents.length})
+
 ${texts || '(none found)'}
-
-${guides ? 'Guide summaries (written for this site, not magisterial texts):\n' + guides : ''}`;
+${guides ? `\n## Guide summaries\nWritten for this edition, not magisterial texts.\n\n${guides}\n` : ''}
+${task}`;
 }
 function mdLite(text) {
   const blocks = esc(text).split(/\n{2,}/);
@@ -1482,44 +1807,65 @@ function mdLite(text) {
 }
 const EXAMPLES = ['What did the Church teach about baptism of desire before 1950?', 'How is the primacy of the Pope taught from the early centuries to Vatican I?', 'What does the Church teach about purgatory?', 'Did Unigenitus condemn Augustine on grace?'];
 const CHECKS = ['Anyone who dies outside the visible Church is damned.', 'Grace is irresistible: when God moves the will, it cannot refuse.', 'Every pope who changed a discipline contradicted his predecessors.', 'Women could be ordained priests if the Church chose.'];
-let askMode = 'ask';
+let askMode = 'ask', pickTimer = null;
 function askSources(q) {
-  const ctx = guideContext(q);
-  const fromGuides = [];
-  for (const d of ctx.ds) for (const r of d.refs) fromGuides.push(r);
-  for (const t of ctx.ts) for (const st of t.steps) if (st.ref) fromGuides.push(st.ref);
-  const seen = new Set(), ents = [];
-  for (const e of [...fromGuides.map(r => byId.get(r)).filter(Boolean), ...retrieve(q)]) { if (!seen.has(e.id) && ents.length < 30) { seen.add(e.id); ents.push(e); } }
-  return { ctx, ents };
+  if (q !== Pick.q || askMode !== Pick.mode) { const box = $('askQ'); if (box && box.value.trim() !== q) box.value = q; Pick.q = null; pickRefresh(true); }
+  return { ctx: pickCtx(), ents: pickChosen() };
 }
 function sourcesHtml(ents, ctx, who) {
-  return `<h2 class="sect-h">Texts given to ${who}</h2><div class="numgrid">${ents.map(e => `<a href="#n${esc(e.id)}">${esc(nlab(e.id))}</a>`).join('')}${ctx.ss.map(s => `<a href="#since-${s.id}">${esc(s.title)}</a>`).join('')}${ctx.ds.map(d => `<a href="#q-${d.id}">${esc(d.title)}</a>`).join('')}</div>`;
+  return `<h2 class="sect-h">Texts given to ${who}</h2><div class="numgrid">${ents.map(e => `<a href="#n${esc(e.id)}">${esc(nlab(e.id))}</a>`).join('')}${ctx.ss.map(s => `<a href="#since-${s.id}">${esc(s.title)}</a>`).join('')}${ctx.ds.map(d => `<a href="#q-${d.id}">${esc(d.title)}</a>`).join('')}${(ctx.ts || []).map(t => `<a href="#thread-${t.id}">${esc(t.title)}</a>`).join('')}</div>`;
 }
 function renderAsk() {
   view.className = 'col';
   const check = askMode === 'check';
+  const box = $('askQ');
+  const prev = box ? box.value : Pick.q || (askLast && askLast.mode === askMode ? askLast.q : '');
   view.innerHTML = `<div class="eyebrow">Tool</div><h1 class="page-h">${check ? 'Check a statement' : 'Ask the collection'}</h1>
     <div class="chips" role="group" aria-label="Mode"><button class="chip" data-askmode="ask" aria-pressed="${!check}">Ask a question</button><button class="chip" data-askmode="check" aria-pressed="${check}">Check a statement</button></div>
     <p class="lede">${check
       ? 'For formation: write a statement, and an AI tests it against the most relevant texts in this collection. It distinguishes the senses the statement could bear, weighs the teaching each sense meets, and reads condemned propositions in the sense they were condemned (<a href="#reading">how</a>). It assesses statements, never persons, and is not a judgment of the Church.'
       : 'Ask a question, and an AI answers from the most relevant entries in this collection, citing each by number, and reading later teaching in continuity with earlier binding texts.'} Answers are written by AI; check every claim against the entries it cites.</p>
-    <div class="askbox"><textarea id="askQ" aria-label="${check ? 'Statement to check' : 'Your question'}" placeholder="${check ? 'Write a statement to test, for example a claim about grace, the Church or a condemned proposition…' : 'Ask about a doctrine, a council, a condemned proposition…'}">${esc(askLast && askLast.mode === askMode ? askLast.q : '')}</textarea>
-      <div class="row">${Sample ? `<button class="btn primary" id="askGo">${check ? 'Check' : 'Ask'}</button><button class="btn" id="askStop" hidden>Stop</button>` : ''}<button class="btn${Sample ? '' : ' primary'}" id="askCopy">Copy prompt for any AI</button><span class="count" id="askNote"></span></div></div>
+    <div class="askbox"><textarea id="askQ" aria-label="${check ? 'Statement to check' : 'Your question'}" placeholder="${check ? 'Write a statement to test, for example a claim about grace, the Church or a condemned proposition…' : 'Ask about a doctrine, a council, a condemned proposition… You can name texts too: n. 1839, DS 3074, LG 25, Matt 16:18'}">${esc(prev || '')}</textarea>
+      <div class="row">${Sample ? `<button class="btn primary" id="askGo">${check ? 'Check' : 'Ask'}</button><button class="btn" id="askStop" hidden>Stop</button>` : ''}<button class="btn${Sample ? '' : ' primary'}" id="askCopy">Copy prompt for any AI</button><button class="btn" id="askDl">Download prompt</button><label class="askopt"><input type="checkbox" id="askLatin"${Pick.latin ? ' checked' : ''}> Include the Latin</label><span class="count" id="askNote" aria-live="polite"></span></div></div>
     <div class="examples" style="margin-top:.8rem">${(check ? CHECKS : EXAMPLES).map(x => `<button class="chip" data-example="${esc(x)}">${esc(x)}</button>`).join('')}</div>
-    ${Sample ? '' : `<p style="font-size:.9rem;color:var(--muted)">Opened in Claude, this page answers here. Anywhere else, "Copy prompt for any AI" copies the instructions, the reading rules and the selected texts, so you can paste them into the AI client you use. The data is also published for programs: <a class="xref" href="${esc((SITE.url || '') + 'llms.txt')}">llms.txt</a>.</p>`}
-    <div id="askOut">${askLast && askLast.mode === askMode && askLast.html ? askLast.html : ''}</div>`;
+    ${Sample ? '' : `<p style="font-size:.9rem;color:var(--muted)">Opened in Claude, this page answers here. Anywhere else, "Copy prompt for any AI" copies the instructions, the reading rules and the texts listed below in full, with a link to each, so you can paste them into Claude, ChatGPT, Gemini or another AI client. The data is also published for programs: <a class="xref" href="${esc((SITE.url || '') + 'llms.txt')}">llms.txt</a>.</p>`}
+    <div id="askOut">${askLast && askLast.mode === askMode && askLast.html ? askLast.html : ''}</div>
+    <details class="askprev" id="askPrev"><summary>See the prompt</summary><textarea class="packet" readonly aria-label="The prompt"></textarea></details>
+    <section class="pick" id="askPick" aria-label="Texts the AI will read"></section>`;
   view.querySelectorAll('[data-askmode]').forEach(b => b.onclick = () => { askMode = b.dataset.askmode; renderAsk(); });
   if (Sample) { $('askGo').onclick = runAsk; $('askStop').onclick = () => { if (askCtl) askCtl.abort(); }; }
   $('askCopy').onclick = copyAskPrompt;
+  $('askDl').onclick = () => { const p = askPromptNow(); if (p) offerFile('denzinger-prompt.md', p); };
+  $('askLatin').onchange = ev => { Pick.latin = ev.target.checked; store.set('denz:askLatin', Pick.latin ? '1' : '0'); fillPreview(); };
+  $('askPrev').addEventListener('toggle', fillPreview);
+  $('askQ').addEventListener('input', () => { clearTimeout(pickTimer); pickTimer = setTimeout(() => pickRefresh(), 450); });
+  pickEvents($('askPick'));
+  if (Pick.mode !== askMode || Pick.q !== ($('askQ').value.trim())) { Pick.q = null; pickRefresh(true); } else renderPick();
   window.scrollTo(0, 0);
 }
-async function copyAskPrompt() {
+function askPromptNow() {
   const q = $('askQ').value.trim();
-  if (!q) { $('askQ').focus(); return; }
+  if (!q) { $('askQ').focus(); return null; }
   const { ctx, ents } = askSources(q);
-  $('askOut').innerHTML = sourcesHtml(ents, ctx, 'the prompt');
-  try { await navigator.clipboard.writeText(buildPrompt(q, ents, ctx, askMode)); $('askNote').textContent = `Copied, with ${ents.length} texts. Paste it into your AI client.`; }
-  catch (err) { $('askNote').textContent = 'Copying was blocked by the browser.'; }
+  return buildPrompt(q, ents, ctx, askMode, { full: true, latin: Pick.latin });
+}
+function fillPreview() {
+  const d = $('askPrev');
+  if (!d || !d.open) return;
+  const q = $('askQ').value.trim();
+  d.querySelector('textarea').value = q ? askPromptNow() : 'Write a question first.';
+}
+async function copyAskPrompt() {
+  const p = askPromptNow();
+  if (!p) return;
+  const n = pickChosen().length, words = p.split(/\s+/).length;
+  try { await navigator.clipboard.writeText(p); $('askNote').textContent = `Copied: ${fmt(n)} texts, about ${fmt(words)} words. Paste it into your AI client.`; }
+  catch (err) {
+    const d = $('askPrev'); d.open = true; fillPreview();
+    const ta = d.querySelector('textarea'); ta.focus(); ta.select();
+    $('askNote').textContent = 'Copying was blocked by the browser. The prompt is selected below: copy it from there.';
+  }
+  fillPreview();
 }
 async function runAsk() {
   const q = $('askQ').value.trim();
@@ -1534,13 +1880,13 @@ async function runAsk() {
   askCtl = new AbortController();
   const setText = t => { const el = $('askText'); if (el) el.innerHTML = mdLite(t); };
   try {
-    const { text, truncated } = await Sample(buildPrompt(q, ents, ctx, mode), { signal: askCtl.signal, onText: ({ text }) => setText(text) });
+    const { text, truncated } = await Sample(buildPrompt(q, ents, ctx, mode, { latin: Pick.latin }), { signal: askCtl.signal, onText: ({ text }) => setText(text) });
     setText(text);
     if (truncated) $('askNote').textContent = 'The answer was cut short. Try a narrower question.';
   } catch (err) {
     const code = err && err.code;
     if (err && err.text) setText(err.text); else if (code !== 'cancelled') { const el = $('askText'); if (el) el.innerHTML = ''; }
-    const msg = { not_granted: 'Asking was not allowed for this page.', sampling_disabled: 'Claude isn\'t available for this account.', rate_limited: 'Too many questions at once. Try again in a little while.', session_expired: 'Sign in to Claude again, then retry.', refused: 'Claude declined this question. Try rephrasing it.', prompt_too_large: 'The question pulled in too much text. Try a narrower question.' }[code];
+    const msg = { not_granted: 'Asking was not allowed for this page.', sampling_disabled: 'Claude isn\'t available for this account.', rate_limited: 'Too many questions at once. Try again in a little while.', session_expired: 'Sign in to Claude again, then retry.', refused: 'Claude declined this question. Try rephrasing it.', prompt_too_large: 'Too much text for one question. Untick some texts below, or turn off the Latin.' }[code];
     if (code !== 'cancelled') $('askNote').textContent = msg || 'Something went wrong. Try again.';
   } finally {
     $('askGo').disabled = false; $('askStop').hidden = true;
@@ -1827,7 +2173,7 @@ view.addEventListener('click', async ev => {
     return;
   }
   if ((el = t.closest('[data-sys]'))) { runSysCheck(el.dataset.sys); return; }
-  if ((el = t.closest('[data-example]'))) { $('askQ').value = el.dataset.example; runAsk(); return; }
+  if ((el = t.closest('[data-example]'))) { $('askQ').value = el.dataset.example; pickRefresh(); if (Sample) runAsk(); else $('askQ').focus(); return; }
   if ((el = t.closest('[data-dl-thread]'))) { const th = THREADS.find(x => x.id === el.dataset.dlThread); offerFile(`${th.title.replace(/[^A-Za-z0-9]+/g, '-').replace(/-+$/, '')}-thread.md`, threadPacket(th)); return; }
   if ((el = t.closest('[data-dl-saved]'))) { offerFile('denzinger-study-packet.md', savedPacket()); return; }
   if ((el = t.closest('[data-latin]'))) {

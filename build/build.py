@@ -117,7 +117,7 @@ def load_all():
         'eras': load('eras.json'), 'entries': load('entries.json'), 'weights': load('weights.json'),
         'censures': load('censures.json'), 'books': load('books.json'), 'quality': load('quality.json'),
         'since': load('since1950.json'), 'disputed': load('disputed.json'), 'threads': load('threads.json'),
-        'latin': load('latin.json'), 'catechism': load('catechism.json'),
+        'latin': load('latin.json'), 'catechism': load('catechism.json'), 'concepts': load('concepts.json'),
     }
     return d
 
@@ -198,6 +198,17 @@ def check(d):
         for st in t['steps']:
             if st.get('ref') and st['ref'] not in order:
                 P.add(f'threads.json, {t["id"]}', f'no entry {st["ref"]}')
+    seen = set()
+    for i, c in enumerate(d['concepts']):
+        where = f'concepts.json, line {i + 2} ({c.get("id", "?")})'
+        if not c.get('id') or c['id'] in seen:
+            P.add(where, 'each concept needs an "id" of its own')
+        seen.add(c.get('id'))
+        if not c.get('label') or not c.get('terms') or not all(isinstance(t, str) and t.strip() for t in c['terms'] + c.get('also', [])):
+            P.add(where, 'a concept needs a "label" and a list of "terms"')
+        for r in c.get('refs', []):
+            if r not in order:
+                P.add(where, f'no entry {r}')
     ids = set()
     for p in d['catechism']['parts']:
         for ch in p['chapters']:
@@ -340,6 +351,7 @@ def reader_body(raw, d, site):
             f'<script type="application/json" id="since-data">{dump(d["since"])}</script>\n'
             f'<script type="application/json" id="disputed-data">{dump(d["disputed"])}</script>\n'
             f'<script type="application/json" id="threads-data">{dump(d["threads"])}</script>\n'
+            f'<script type="application/json" id="concepts-data">{dump(d["concepts"])}</script>\n'
             f'<script type="application/json" id="latin-data">{dump(d["latin"])}</script>\n'
             '<script>\n' + app + '</script>\n')
 

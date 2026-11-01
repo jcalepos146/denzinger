@@ -50,6 +50,18 @@ An entry takes the first range that contains it. Grades: `dogma`, `definitive`, 
 
 `since1950.json`, `disputed.json` and `threads.json` hold the guides. Every entry number they cite must exist in `entries.json`; the check catches any that do not.
 
+### What Ask recognises
+
+`src/data/concepts.json` lists the doctrines the Ask page recognises in a question, one per line:
+
+```json
+{"id": "immaculate-conception", "label": "the Immaculate Conception", "terms": ["immaculate conception", "conceived without sin", "sinless"], "also": ["first instant of her conception"], "refs": ["1641", "LG56"]}
+```
+
+- `terms` are ways a reader might name the doctrine. When one appears in a question, the concept applies.
+- `also` lists wording the texts themselves use, searched for as well.
+- `refs` are the defining texts, most important first; they are given to the AI whenever the concept applies. Each must exist in `entries.json`.
+
 ## Checking a change on your own computer
 
 ```sh
