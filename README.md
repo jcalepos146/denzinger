@@ -17,7 +17,14 @@ A searchable, organized reader for Denzinger's *Enchiridion Symbolorum* in Engli
   - *Since 1950*, read by the hermeneutic of continuity;
   - disputed questions.
 - **Reading a condemnation:** a guide to reading condemned propositions in the sense they were condemned, with the case of Unigenitus; every condemned proposition links to it.
-- **Ask or check a statement:** ask a question, or test a statement against the texts for formation; an AI answers from the entries and cites them. Opened in Claude it answers in the page; anywhere else it copies a prompt with the texts and the reading rules for any AI client. `llms.txt` describes the data for AI clients and agents.
+- **Ask or check a statement:** ask a question, or test a statement against the texts for formation; an AI answers from the entries and cites them. No API key is needed — the AI you already use does the answering:
+  - opened in Claude, it answers in the page with your Claude account;
+  - run as a ChatGPT app, it sends the question and texts into your ChatGPT conversation;
+  - in a browser with a built-in model (Chrome's Prompt API), it answers on your device;
+  - anywhere else, **Open in** opens ChatGPT, Claude, Gemini, Copilot, Perplexity, Grok or Le Chat with the prompt filled in (a link holds only so many texts, so the full prompt is copied too), and **Copy prompt** works with any other client;
+  - an AI assistant that browses (ChatGPT agent, Claude in Chrome and the like) can be pointed at `#ask=<question>` or `#check=<statement>`, which shows the full prompt and texts on the page.
+
+  `llms.txt` describes the data for AI clients and agents.
 - **Cross-references:** "cited by" links between entries that refer to each other by number.
 - **Search:** words, phrases, numbers (`1839`, `DS 3074`), Scripture (`Matt 16:18`) and filters:
 

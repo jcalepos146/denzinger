@@ -1430,31 +1430,44 @@ const READING_RULES = `How to read condemned propositions and controversial bull
 - The same words can express different doctrines; agreement in vocabulary (for example Augustinian language on grace) can hide disagreement, and the reverse.
 - A definition is what is proposed to be held, not the reasoning around it.
 - If a text seems to contradict earlier teaching, treat it as a question to examine with these distinctions, not as a refutation; where a tension remains, say so plainly.`;
-function buildPrompt(question, ents, ctx, mode) {
-  const texts = ents.map(e => {
+const READING_SHORT = `Reading condemned propositions: a condemnation targets a proposition in a determinate sense, not every meaning its words could bear; "condemned" is not "declared heretical" (censures given respectively or in globo); rejecting a proposition does not affirm its unrestricted opposite; a definition is what is proposed to be held, not the reasoning around it; an apparent contradiction is a question to examine, not a refutation.`;
+const entryUrl = e => PAGES && SITE.url ? pageUrl(e) : '';
+/* opts.compact: shorter rules and texts, for prompts passed in a link or to a small model.
+   opts.n: how many texts to include in full; opts.cap: the most characters per text. */
+function buildPrompt(question, ents, ctx, mode, opts = {}) {
+  const compact = !!opts.compact;
+  const cap = opts.cap || (compact ? 600 : 1400);
+  const n = opts.n === undefined ? ents.length : opts.n;
+  const shown = ents.slice(0, n), rest = ents.slice(n);
+  const texts = shown.map(e => {
     const t = e.paras.join(' ');
-    return `${entryHeader(e)}\n${t.length > 1400 ? t.slice(0, 1400) + ' …' : t}`;
+    return `${entryHeader(e)}\n${t.length > cap ? t.slice(0, cap) + ' …' : t}`;
   }).join('\n\n');
-  const guides = [
+  const more = rest.length ? `\n\nAlso relevant, not given here in full${entryUrl(rest[0]) ? ` (each can be read at ${SITE.url}n/<number>/, for example ${entryUrl(rest[0])})` : ''}; if you cannot read them, say so: ${rest.map(e => nlab(e.id)).join('; ')}` : '';
+  const guides = compact ? '' : [
     ...ctx.ss.map(s => `[${s.title}, ${s.date.slice(0, 4)}] ${LEVELS[s.level][0]}. ${s.summary} Continuity: ${s.continuity}`),
     ...ctx.ds.map(d => `[Disputed question: ${d.title}] Settled: ${d.settled} Open: ${d.open} Continuity reading: ${d.reading}`),
   ].join('\n\n');
-  const intro = `The texts below come from an online edition of Denzinger's Sources of Catholic Dogma (older numbering, cited "n. 1234") and of the documents after 1958 (cited by document and article, such as "LG 25" or "EV 62"). Each text is labelled with the kind of document, and some with a grade checked by hand and the censure it received.`;
+  const intro = `The texts below come from an online edition of Denzinger's Sources of Catholic Dogma (older numbering, cited "n. 1234") and of the documents after 1958 (cited by document and article, such as "LG 25" or "EV 62"). Each text is labelled with the kind of document, and some with a grade checked by hand and the censure it received.${compact && SITE.url ? ' Source: ' + SITE.url : ''}`;
   const common = `- Use ONLY the texts below. If they do not settle the matter, say so plainly and say what is missing.
 - Cite every claim by the number given in brackets, such as (n. 1839) or (LG 25).
 - Distinguish defined dogma, definitive teaching, authoritative teaching, discipline, prudential judgment, and texts that are not magisterial (addresses, commission studies, interviews), using the labels given.
 - Read later teaching in continuity with earlier binding texts. Where others see a break, say so briefly and fairly.
 
-${READING_RULES}`;
+${compact ? READING_SHORT : READING_RULES}`;
   const task = mode === 'check'
-    ? `Task: the reader is studying how a statement stands with the Church's teaching, for formation. Assess the statement, never a person: do not judge anyone's faith, standing or intention, and say that your assessment is not an act of the Church's authority.
+    ? (compact
+      ? `Task: for formation, assess how this statement stands with the texts; assess the statement, never a person, and say your assessment is not an act of the Church's authority. Distinguish the senses it could bear; for each, say which texts bear on it, whether it agrees, goes beyond or contradicts them, and the weight involved. End with one line: consonant; consonant in one sense and not another; contrary (name the weight); or not settled by these texts. At most about 450 words.
+
+Statement: ${question}`
+      : `Task: the reader is studying how a statement stands with the Church's teaching, for formation. Assess the statement, never a person: do not judge anyone's faith, standing or intention, and say that your assessment is not an act of the Church's authority.
 1. Restate what the statement claims. Note any ambiguity and the different senses it could bear.
 2. For each sense, say which texts bear on it, and whether that sense agrees with them, goes beyond them, or contradicts them. Give the weight of the teaching involved: contradicting a defined dogma is not the same as disagreeing with a prudential judgment.
 3. If a relevant text is a condemned proposition, apply the reading rules: show the sense that was condemned before comparing.
 4. End with one line: consonant with the texts; consonant in one sense and not in another; contrary to the teaching cited (name its weight); or not settled by these texts.
 Write plain prose, at most about 450 words.
 
-Statement: ${question}`
+Statement: ${question}`)
     : `Task: answer the question in plain prose in short paragraphs, at most about 350 words, without headings.
 
 Question: ${question}`;
@@ -1466,9 +1479,25 @@ ${common}
 ${task}
 
 Texts:
-${texts || '(none found)'}
+${texts || '(none found)'}${more}
 
-${guides ? 'Guide summaries (written for this site, not magisterial texts):\n' + guides : ''}`;
+${guides ? 'Guide summaries (written for this site, not magisterial texts):\n' + guides : ''}`.trim();
+}
+/* A compact prompt whose encoded form fits in maxEncoded characters: as many texts as fit,
+   shortening each text before dropping texts, so that a link carries several sources. */
+function fitPrompt(q, ents, ctx, mode, maxEncoded) {
+  const want = Math.min(8, ents.length);
+  let best = null;
+  for (const cap of [600, 420, 280, 180]) {
+    for (let n = ents.length; n >= 0; n--) {
+      const p = buildPrompt(q, ents, ctx, mode, { compact: true, n, cap });
+      if (encodeURIComponent(p).length > maxEncoded) continue;
+      if (!best || n > best.n) best = { prompt: p, n };
+      break;
+    }
+    if (best && best.n >= want) return best;
+  }
+  return best || { prompt: buildPrompt(q, ents, ctx, mode, { compact: true, n: 0 }), n: 0 };
 }
 function mdLite(text) {
   const blocks = esc(text).split(/\n{2,}/);
@@ -1483,6 +1512,7 @@ function mdLite(text) {
 const EXAMPLES = ['What did the Church teach about baptism of desire before 1950?', 'How is the primacy of the Pope taught from the early centuries to Vatican I?', 'What does the Church teach about purgatory?', 'Did Unigenitus condemn Augustine on grace?'];
 const CHECKS = ['Anyone who dies outside the visible Church is damned.', 'Grace is irresistible: when God moves the will, it cannot refuse.', 'Every pope who changed a discipline contradicted his predecessors.', 'Women could be ordained priests if the Church chose.'];
 let askMode = 'ask';
+let askDeep = false;   // opened from a #ask=… or #check=… link
 function askSources(q) {
   const ctx = guideContext(q);
   const fromGuides = [];
@@ -1495,55 +1525,189 @@ function askSources(q) {
 function sourcesHtml(ents, ctx, who) {
   return `<h2 class="sect-h">Texts given to ${who}</h2><div class="numgrid">${ents.map(e => `<a href="#n${esc(e.id)}">${esc(nlab(e.id))}</a>`).join('')}${ctx.ss.map(s => `<a href="#since-${s.id}">${esc(s.title)}</a>`).join('')}${ctx.ds.map(d => `<a href="#q-${d.id}">${esc(d.title)}</a>`).join('')}</div>`;
 }
-function renderAsk() {
+
+/* ---------- AI engines ----------
+   No API key is used anywhere. A question is answered by whichever AI the reader already has:
+   - Claude, when the page is opened as a Claude artifact (window.claude);
+   - ChatGPT, when the page runs as a ChatGPT app (window.openai): the prompt is sent into the chat;
+   - the browser's built-in model (Chrome's Prompt API), which runs on the device;
+   - any AI website, by opening it with the prompt filled in, or by copying the prompt;
+   - an AI assistant that browses the page itself: a #ask=<question> link shows the full prompt in the page. */
+const OpenAIHost = () => (window.openai && typeof window.openai.sendFollowUpMessage === 'function') ? window.openai : null;
+const LMApi = () => (typeof self.LanguageModel !== 'undefined' && self.LanguageModel) || (self.ai && self.ai.languageModel) || null;
+const LM_OPTS = { expectedInputs: [{ type: 'text', languages: ['en'] }], expectedOutputs: [{ type: 'text', languages: ['en'] }] };
+let LocalAI = 'none';   // none | unavailable | downloadable | downloading | available
+async function checkLocalAI() {
+  const lm = LMApi();
+  if (!lm) return 'none';
+  try {
+    let a = lm.availability ? await lm.availability(LM_OPTS) : (await lm.capabilities()).available;
+    a = { readily: 'available', 'after-download': 'downloadable', no: 'unavailable' }[a] || a;
+    return ['unavailable', 'downloadable', 'downloading', 'available'].includes(a) ? a : 'unavailable';
+  } catch (_) { return 'unavailable'; }
+}
+function inPageEngine() {
+  if (Sample) return { id: 'claude', name: 'Claude', note: 'Answers use your Claude usage.' };
+  if (OpenAIHost()) return { id: 'chatgpt', name: 'ChatGPT', note: 'The question and texts are sent into your ChatGPT conversation, which answers there.' };
+  if (LocalAI === 'available' || LocalAI === 'downloadable' || LocalAI === 'downloading') return { id: 'local', name: 'the model built into your browser', note: LocalAI === 'available' ? 'Runs on this device; nothing is sent anywhere. It is a small model: check its answers with care.' : 'Runs on this device; your browser downloads the model the first time (about 2 GB). It is a small model: check its answers with care.' };
+  return null;
+}
+/* Sites that accept a prompt in the address. The budget keeps links well under the length servers accept. */
+const AI_SITES = [
+  { id: 'chatgpt', name: 'ChatGPT', url: p => 'https://chatgpt.com/?q=' + p },
+  { id: 'claude', name: 'Claude', url: p => 'https://claude.ai/new?q=' + p },
+  { id: 'gemini', name: 'Gemini', home: 'https://gemini.google.com/app' },
+  { id: 'copilot', name: 'Copilot', url: p => 'https://copilot.microsoft.com/?q=' + p },
+  { id: 'perplexity', name: 'Perplexity', url: p => 'https://www.perplexity.ai/search?q=' + p },
+  { id: 'grok', name: 'Grok', url: p => 'https://grok.com/?q=' + p },
+  { id: 'lechat', name: 'Le Chat', url: p => 'https://chat.mistral.ai/chat?q=' + p },
+];
+const LINK_BUDGET = 7200;   // encoded characters; servers commonly refuse addresses over 8 KB
+
+function renderAsk(prefill) {
   view.className = 'col';
   const check = askMode === 'check';
+  const eng = inPageEngine();
+  const qText = prefill !== undefined ? prefill : (askLast && askLast.mode === askMode ? askLast.q : '');
   view.innerHTML = `<div class="eyebrow">Tool</div><h1 class="page-h">${check ? 'Check a statement' : 'Ask the collection'}</h1>
     <div class="chips" role="group" aria-label="Mode"><button class="chip" data-askmode="ask" aria-pressed="${!check}">Ask a question</button><button class="chip" data-askmode="check" aria-pressed="${check}">Check a statement</button></div>
     <p class="lede">${check
       ? 'For formation: write a statement, and an AI tests it against the most relevant texts in this collection. It distinguishes the senses the statement could bear, weighs the teaching each sense meets, and reads condemned propositions in the sense they were condemned (<a href="#reading">how</a>). It assesses statements, never persons, and is not a judgment of the Church.'
       : 'Ask a question, and an AI answers from the most relevant entries in this collection, citing each by number, and reading later teaching in continuity with earlier binding texts.'} Answers are written by AI; check every claim against the entries it cites.</p>
-    <div class="askbox"><textarea id="askQ" aria-label="${check ? 'Statement to check' : 'Your question'}" placeholder="${check ? 'Write a statement to test, for example a claim about grace, the Church or a condemned proposition…' : 'Ask about a doctrine, a council, a condemned proposition…'}">${esc(askLast && askLast.mode === askMode ? askLast.q : '')}</textarea>
-      <div class="row">${Sample ? `<button class="btn primary" id="askGo">${check ? 'Check' : 'Ask'}</button><button class="btn" id="askStop" hidden>Stop</button>` : ''}<button class="btn${Sample ? '' : ' primary'}" id="askCopy">Copy prompt for any AI</button><span class="count" id="askNote"></span></div></div>
+    <div class="askbox"><textarea id="askQ" aria-label="${check ? 'Statement to check' : 'Your question'}" placeholder="${check ? 'Write a statement to test, for example a claim about grace, the Church or a condemned proposition…' : 'Ask about a doctrine, a council, a condemned proposition…'}">${esc(qText)}</textarea>
+      <div class="row">${eng ? `<button class="btn primary" id="askGo">${check ? 'Check' : 'Ask'}${eng.id === 'claude' ? '' : ' ' + (eng.id === 'chatgpt' ? 'in ChatGPT' : 'on this device')}</button><button class="btn" id="askStop" hidden>Stop</button>` : ''}<button class="btn${eng ? '' : ' primary'}" id="askCopy">Copy prompt</button><button class="btn" id="askShow">Show prompt</button><span class="count" id="askNote" aria-live="polite"></span></div>
+      ${eng ? `<p class="asknote">Answered by ${esc(eng.name)}. ${esc(eng.note)}</p>` : ''}
+      <div class="aisites" role="group" aria-label="Open in an AI"><span class="lbl">${eng ? 'Or open in' : 'Open in'}</span>${AI_SITES.map(s => `<button class="chip" data-aisite="${s.id}">${s.name}</button>`).join('')}</div>
+    </div>
     <div class="examples" style="margin-top:.8rem">${(check ? CHECKS : EXAMPLES).map(x => `<button class="chip" data-example="${esc(x)}">${esc(x)}</button>`).join('')}</div>
-    ${Sample ? '' : `<p style="font-size:.9rem;color:var(--muted)">Opened in Claude, this page answers here. Anywhere else, "Copy prompt for any AI" copies the instructions, the reading rules and the selected texts, so you can paste them into the AI client you use. The data is also published for programs: <a class="xref" href="${esc((SITE.url || '') + 'llms.txt')}">llms.txt</a>.</p>`}
-    <div id="askOut">${askLast && askLast.mode === askMode && askLast.html ? askLast.html : ''}</div>`;
-  view.querySelectorAll('[data-askmode]').forEach(b => b.onclick = () => { askMode = b.dataset.askmode; renderAsk(); });
-  if (Sample) { $('askGo').onclick = runAsk; $('askStop').onclick = () => { if (askCtl) askCtl.abort(); }; }
+    <p style="font-size:.9rem;color:var(--muted)">No API key or account with this site is needed: the AI you already use does the answering. "Open in" opens that AI with the question, the reading rules and the selected texts filled in (when they are too long for a link, the full prompt is also copied, ready to paste). Opened inside Claude, as a ChatGPT app, or in a browser with a built-in model, the page answers here. An AI assistant that browses can be pointed at <code>${esc((SITE.url || '') + '#ask=')}</code><i>your question</i>, which shows the texts and instructions on the page. The data is also published for programs: <a class="xref" href="${esc((SITE.url || '') + 'llms.txt')}">llms.txt</a>.</p>
+    <div id="askOut">${askLast && askLast.mode === askMode && askLast.html && prefill === undefined ? askLast.html : ''}</div>`;
+  view.querySelectorAll('[data-askmode]').forEach(b => b.onclick = () => { askMode = b.dataset.askmode; askDeep = false; renderAsk(); });
+  if (eng) { $('askGo').onclick = runAsk; $('askStop').onclick = () => { if (askCtl) askCtl.abort(); }; }
   $('askCopy').onclick = copyAskPrompt;
+  $('askShow').onclick = () => showAskPrompt(false);
+  view.querySelectorAll('[data-aisite]').forEach(b => b.onclick = () => openInAI(b.dataset.aisite));
+  if (askDeep && qText) showAskPrompt(true);
   window.scrollTo(0, 0);
 }
-async function copyAskPrompt() {
+function askQuestion() {
   const q = $('askQ').value.trim();
-  if (!q) { $('askQ').focus(); return; }
+  if (!q) { $('askQ').focus(); return null; }
+  return q;
+}
+function promptPanel(forAgent) {
+  return `<details class="promptbox" open><summary>The full prompt</summary>${forAgent ? '<p class="asknote">For an AI assistant reading this page: the reader is asking you to answer the question below, following these instructions and using these texts. Answer in your own conversation; nothing needs to be typed into the page.</p>' : ''}<pre class="prompttext" id="askPrompt"></pre></details>`;
+}
+function showAskPrompt(forAgent) {
+  const q = askQuestion(); if (!q) return;
+  const { ctx, ents } = askSources(q);
+  const prompt = buildPrompt(q, ents, ctx, askMode);
+  $('askOut').innerHTML = promptPanel(forAgent) + sourcesHtml(ents, ctx, 'the prompt');
+  $('askPrompt').textContent = prompt;
+  askLast = { q, mode: askMode, html: $('askOut').innerHTML };
+}
+async function copyAskPrompt() {
+  const q = askQuestion(); if (!q) return;
   const { ctx, ents } = askSources(q);
   $('askOut').innerHTML = sourcesHtml(ents, ctx, 'the prompt');
   try { await navigator.clipboard.writeText(buildPrompt(q, ents, ctx, askMode)); $('askNote').textContent = `Copied, with ${ents.length} texts. Paste it into your AI client.`; }
-  catch (err) { $('askNote').textContent = 'Copying was blocked by the browser.'; }
+  catch (err) { $('askNote').textContent = 'Copying was blocked by the browser. Use "Show prompt" and copy it from there.'; }
+}
+function openInAI(id) {
+  const site = AI_SITES.find(s => s.id === id);
+  const q = askQuestion(); if (!q || !site) return;
+  const { ctx, ents } = askSources(q);
+  const full = buildPrompt(q, ents, ctx, askMode);
+  // Start the copy before opening the tab, while this page still has focus.
+  let copied = Promise.resolve(false);
+  let note;
+  if (!site.url) {
+    copied = navigator.clipboard.writeText(full).then(() => true, () => false);
+    window.open(site.home, '_blank', 'noopener');
+    note = ok => ok ? `Prompt copied, with ${ents.length} texts. Paste it into ${site.name}.` : `Copying was blocked. Use "Show prompt", copy it, and paste it into ${site.name}.`;
+  } else {
+    const { prompt, n } = fitPrompt(q, ents, ctx, askMode, LINK_BUDGET);
+    const shortened = n < ents.length || prompt.length < full.length;
+    if (shortened) copied = navigator.clipboard.writeText(full).then(() => true, () => false);
+    window.open(site.url(encodeURIComponent(prompt)), '_blank', 'noopener');
+    note = ok => !shortened ? `Opened ${site.name} with the question and ${ents.length} texts.`
+      : `Opened ${site.name} with ${n} of ${ents.length} texts (a link holds only so much)${ok ? '; the full prompt is copied if you would rather paste it' : ''}.`;
+  }
+  $('askOut').innerHTML = sourcesHtml(ents, ctx, site.name);
+  copied.then(ok => { const el = $('askNote'); if (el) el.textContent = note(ok); });
+}
+async function runLocal(prompt0, build, { signal, onText, onStatus }) {
+  const lm = LMApi();
+  const session = await lm.create({ ...LM_OPTS, signal, monitor(m) { m.addEventListener('downloadprogress', e => onStatus(`Downloading the model to this device… ${Math.round((e.loaded > 1 ? e.loaded / (e.total || 1) : e.loaded) * 100)}%`)); } });
+  try {
+    // Fit the prompt to the model's context window, dropping texts from the end.
+    const quota = session.contextWindow || session.inputQuota || 0;
+    const measure = session.measureContextUsage || session.measureInputUsage;
+    let prompt = prompt0;
+    if (quota && measure) {
+      for (let n = build.count; n >= 0; n--) {
+        prompt = build(n);
+        let used; try { used = await measure.call(session, prompt, { signal }); } catch (_) { break; }
+        if (used <= quota * 0.75) break;
+      }
+    }
+    onStatus('Thinking…');
+    const stream = session.promptStreaming(prompt, { signal });
+    let text = '';
+    const reader = stream.getReader();
+    for (;;) {
+      const { value, done } = await reader.read();
+      if (done) break;
+      // Older versions sent the whole text so far; newer ones send only the new part.
+      text = value.startsWith(text) && text ? value : text + value;
+      onText({ text });
+    }
+    return { text };
+  } finally { try { session.destroy(); } catch (_) {} }
 }
 async function runAsk() {
-  const q = $('askQ').value.trim();
-  if (!q) { $('askQ').focus(); return; }
-  if (!Sample) { $('askNote').textContent = 'Answering here needs this page opened in Claude; copy the prompt instead.'; return; }
+  const q = askQuestion(); if (!q) return;
+  const eng = inPageEngine();
+  if (!eng) { $('askNote').textContent = 'No AI is available in this view. Use "Open in" or copy the prompt.'; return; }
   const { ctx, ents } = askSources(q);
   const mode = askMode;
-  const srcHtml = sourcesHtml(ents, ctx, 'Claude');
+  const srcHtml = sourcesHtml(ents, ctx, eng.id === 'local' ? 'the model' : eng.name);
   const out = $('askOut');
-  out.innerHTML = `<div class="answer"><div class="aiflag">Answer written by Claude from the texts listed below</div><div id="askText"><p class="status">Thinking…</p></div></div>${srcHtml}`;
+  const prompt = buildPrompt(q, ents, ctx, mode);
+  if (eng.id === 'chatgpt') {
+    try {
+      await OpenAIHost().sendFollowUpMessage({ prompt });
+      out.innerHTML = srcHtml;
+      $('askNote').textContent = 'Sent to ChatGPT. The answer appears in your conversation.';
+    } catch (_) { $('askNote').textContent = 'ChatGPT did not accept the message. Copy the prompt instead.'; }
+    askLast = { q, mode, html: out.innerHTML };
+    return;
+  }
+  const who = eng.id === 'local' ? 'the model built into your browser' : 'Claude';
+  out.innerHTML = `<div class="answer"><div class="aiflag">Answer written by ${who} from the texts listed below</div><div id="askText"><p class="status" id="askStatus">Thinking…</p></div></div>${srcHtml}`;
   $('askGo').disabled = true; $('askStop').hidden = false; $('askNote').textContent = '';
   askCtl = new AbortController();
   const setText = t => { const el = $('askText'); if (el) el.innerHTML = mdLite(t); };
   try {
-    const { text, truncated } = await Sample(buildPrompt(q, ents, ctx, mode), { signal: askCtl.signal, onText: ({ text }) => setText(text) });
-    setText(text);
-    if (truncated) $('askNote').textContent = 'The answer was cut short. Try a narrower question.';
+    let res;
+    if (eng.id === 'local') {
+      const build = n => buildPrompt(q, ents, ctx, mode, { compact: true, n, cap: 700 });
+      build.count = ents.length;
+      res = await runLocal(build(ents.length), build, { signal: askCtl.signal, onText: ({ text }) => setText(text), onStatus: s => { const el = $('askStatus'); if (el) el.textContent = s; } });
+      LocalAI = 'available';
+    } else {
+      res = await Sample(prompt, { signal: askCtl.signal, onText: ({ text }) => setText(text) });
+    }
+    setText(res.text);
+    if (res.truncated) $('askNote').textContent = 'The answer was cut short. Try a narrower question.';
   } catch (err) {
-    const code = err && err.code;
+    const code = err && (err.code || (err.name === 'AbortError' ? 'cancelled' : err.name === 'QuotaExceededError' ? 'prompt_too_large' : ''));
     if (err && err.text) setText(err.text); else if (code !== 'cancelled') { const el = $('askText'); if (el) el.innerHTML = ''; }
-    const msg = { not_granted: 'Asking was not allowed for this page.', sampling_disabled: 'Claude isn\'t available for this account.', rate_limited: 'Too many questions at once. Try again in a little while.', session_expired: 'Sign in to Claude again, then retry.', refused: 'Claude declined this question. Try rephrasing it.', prompt_too_large: 'The question pulled in too much text. Try a narrower question.' }[code];
-    if (code !== 'cancelled') $('askNote').textContent = msg || 'Something went wrong. Try again.';
+    const msg = { not_granted: 'Asking was not allowed for this page.', sampling_disabled: 'Claude isn\'t available for this account.', rate_limited: 'Too many questions at once. Try again in a little while.', session_expired: 'Sign in to Claude again, then retry.', refused: `${eng.id === 'local' ? 'The model' : 'Claude'} declined this question. Try rephrasing it.`, prompt_too_large: 'The question pulled in too much text. Try a narrower question.', NotAllowedError: 'The browser did not allow its built-in model to run. Use "Open in" instead.', NotSupportedError: 'The built-in model can\'t answer this here. Use "Open in" instead.' }[code || (err && err.name)];
+    if (code !== 'cancelled') $('askNote').textContent = msg || 'Something went wrong. Try again, or use "Open in".';
   } finally {
-    $('askGo').disabled = false; $('askStop').hidden = true;
+    const g = $('askGo'), s = $('askStop');
+    if (g) g.disabled = false; if (s) s.hidden = true;
     askLast = { q, mode, html: $('askOut') ? $('askOut').innerHTML : '' };
   }
 }
@@ -1555,7 +1719,7 @@ function sysRows() {
   const row = (name, ok, text, btn) => `<div><b>${name}</b><span><span class="${ok ? 'ok' : 'no'}">${ok ? 'Working' : 'Not available'}</span> · ${text}${sysResult[name] ? ` <br><small>${esc(sysResult[name])}</small>` : ''}</span>${btn || '<span></span>'}</div>`;
   return [
     row('Notes and saved', Marks.mode === 'cloud', Marks.mode === 'cloud' ? 'kept with your account and synced across devices' : (has ? 'kept in this browser only' : 'kept in this browser only; open the page in Claude to sync'), Marks.mode === 'cloud' ? '<button class="btn small" data-sys="notes">Test sync</button>' : ''),
-    row('Ask', !!Sample, Sample ? 'answers use your Claude usage and ask permission the first time' : 'needs this page opened in Claude', ''),
+    row('Ask', !!inPageEngine(), Sample ? 'answers use your Claude usage and ask permission the first time' : OpenAIHost() ? 'questions are sent into your ChatGPT conversation' : inPageEngine() ? 'answered by the model built into your browser, on this device' : 'open the question in any AI site, or copy the prompt; no API key needed', ''),
     row('Downloads', !!Downloads, Downloads ? 'study packets download as files after you confirm' : 'packets are shown as text to copy instead', Downloads ? '<button class="btn small" data-sys="dl">Test download</button>' : ''),
     row('Reviews', Reviews.ready && Reviews.canWrite !== false, Reviews.ready ? (Reviews.canWrite === false ? 'you can read reviews but not add them' : 'you can mark items reviewed and comment') : (Reviews.failed || !has ? 'need this page opened in Claude' : 'loading'), ''),
   ].join('');
@@ -1718,7 +1882,8 @@ function setView(v) {
   $('savedBtn').setAttribute('aria-pressed', v === 'saved');
 }
 function route() {
-  const h = decodeURIComponent(location.hash.slice(1));
+  let h = location.hash.slice(1);
+  try { h = decodeURIComponent(h); } catch (_) {}
   let m;
   Marks.editing = null; Cite.open = null;
   if ((m = h.match(/^n(.+)$/)) && byId.has(m[1])) {
@@ -1741,7 +1906,9 @@ function route() {
   } else if (h === 'reading') {
     setView('reading'); highlightTerms = []; renderReading();
   } else if (h === 'ask') {
-    setView('ask'); highlightTerms = []; renderAsk();
+    askDeep = false; setView('ask'); highlightTerms = []; renderAsk();
+  } else if ((m = h.match(/^(ask|check)=([\s\S]+)$/))) {
+    askMode = m[1]; askDeep = true; setView('ask'); highlightTerms = []; renderAsk(m[2].replace(/\+/g, ' ').trim());
   } else if (h === 'compare' || h.startsWith('cmp-')) {
     setView('compare'); highlightTerms = [];
     const parts = h.startsWith('cmp-') ? h.slice(4).split('~').map(decId) : [state.cmpA, null];
@@ -1827,7 +1994,7 @@ view.addEventListener('click', async ev => {
     return;
   }
   if ((el = t.closest('[data-sys]'))) { runSysCheck(el.dataset.sys); return; }
-  if ((el = t.closest('[data-example]'))) { $('askQ').value = el.dataset.example; runAsk(); return; }
+  if ((el = t.closest('[data-example]'))) { $('askQ').value = el.dataset.example; if (inPageEngine()) runAsk(); else { $('askNote').textContent = ''; $('askQ').focus(); } return; }
   if ((el = t.closest('[data-dl-thread]'))) { const th = THREADS.find(x => x.id === el.dataset.dlThread); offerFile(`${th.title.replace(/[^A-Za-z0-9]+/g, '-').replace(/-+$/, '')}-thread.md`, threadPacket(th)); return; }
   if ((el = t.closest('[data-dl-saved]'))) { offerFile('denzinger-study-packet.md', savedPacket()); return; }
   if ((el = t.closest('[data-latin]'))) {
@@ -1910,6 +2077,10 @@ route();
 if (PAGES && 'serviceWorker' in navigator && location.protocol === 'https:') {
   window.addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(() => {}));
 }
+checkLocalAI().then(a => {
+  LocalAI = a;
+  if (a !== 'none' && a !== 'unavailable' && state.view === 'ask' && !Sample && !askCtl) renderAsk($('askQ') ? $('askQ').value : undefined);
+});
 (async () => {
   try {
     if (!window.claude || typeof window.claude.use !== 'function') return;
@@ -1917,7 +2088,7 @@ if (PAGES && 'serviceWorker' in navigator && location.protocol === 'https:') {
     Sample = smp; Downloads = dl;
     if (db) { Marks.init(db, user); Reviews.init(db, user); } else { Reviews.failed = true; refreshReviews(); }
     if (state.view === 'edition') renderEdition();
-    if (state.view === 'ask' && $('askNote')) $('askNote').textContent = Sample ? '' : 'Asking isn\'t available in this view.';
+    if (state.view === 'ask' && Sample && !askCtl) renderAsk($('askQ') ? $('askQ').value : undefined);
   } catch (_) {}
 })();
 })();
