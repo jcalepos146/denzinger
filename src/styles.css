@@ -341,7 +341,7 @@ main { min-width: 0; padding-inline: 16px; padding-block: 2rem 6rem; }
 .cwr.hd .o, .cwr.hd .d { color: var(--muted); }
 .cwh { font: 600 .82rem var(--sans); margin: 1rem 0 .2rem; color: var(--ink); }
 .cwh span { color: var(--faint); font-weight: 400; margin-left: .35rem; }
-button.chip[aria-pressed="true"] { border-color: var(--rubric); color: var(--rubric); }
+button.chip[aria-pressed="true"] { background: var(--rubric-soft); border-color: var(--rubric); color: var(--rubric); }
 @media (max-width: 560px) { .cwr { grid-template-columns: 3.8rem 5.6rem 1fr; gap: .4rem; } }
 .checked { font-family: var(--sans); font-size: .78rem; color: var(--faint); margin-top: .35rem; }
 
@@ -480,3 +480,12 @@ button.chip[aria-pressed="true"] { border-color: var(--rubric); color: var(--rub
   .discussed { display: none; }
   .mynote { background: none; }
 }
+
+/* Ask: open in an AI, and the prompt shown in the page */
+.aisites { display: flex; flex-wrap: wrap; gap: .4rem; align-items: center; font-family: var(--sans); }
+.aisites .lbl { font-size: .78rem; text-transform: uppercase; letter-spacing: .1em; color: var(--faint); margin-right: .2rem; }
+.asknote { margin: 0; font-family: var(--sans); font-size: .85rem; color: var(--muted); }
+.promptbox { margin-top: 1.2rem; border: 1px solid var(--rule); border-radius: 12px; background: var(--surface); padding: .7rem 1rem; }
+.promptbox summary { cursor: pointer; font-family: var(--sans); font-size: .9rem; font-weight: 500; }
+.promptbox .asknote { margin-top: .6rem; }
+.prompttext { margin: .6rem 0 0; max-height: 28rem; overflow: auto; white-space: pre-wrap; word-break: break-word; font-family: var(--mono, ui-monospace, SFMono-Regular, Menlo, monospace); font-size: .8rem; line-height: 1.5; color: var(--ink); }

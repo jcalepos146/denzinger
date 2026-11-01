@@ -40,6 +40,10 @@ LLMS = """# Sources of Catholic Dogma
 - [guides.json]({url}data/guides.json): the disputed questions, the guide to documents since 1950, and the doctrinal threads.
 - A page for each entry: {url}n/<id>/
 
+## Answering a question from these texts
+
+The reader picks the entries that bear on a question and writes a prompt with them and the rules below. An assistant that browses can open {url}#ask=<question> (or {url}#check=<statement> to test a statement); the page shows the full prompt and the selected texts, to be answered in the assistant's own conversation. No API key is involved. An assistant that only fetches pages without running scripts should use entries.json or the entry pages instead.
+
 ## Citing
 
 Before 1958, cite by the older Denzinger number: n. 1839. After 1958, by document and article: LG 25, EV 62, CCC 2267; addresses by date: AD 19641203. Each entry gives its source.
