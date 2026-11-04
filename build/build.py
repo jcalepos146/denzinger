@@ -378,7 +378,7 @@ def head(title, desc, url, prefix, extra=''):
 
 # --------------------------------------------------------------------------- static entry pages
 CITE_RE = re.compile(r'\[([^\[\]]{2,80}?\d+\s?:\s?\d+[^\[\]]{0,40}?)\]')
-SUP_RE = re.compile(r'\(((?:[CB]\d{1,2}(?:–[CB]\d{1,2})?)(?:,\s*[CB]\d{1,2}(?:–[CB]\d{1,2})?)*)\)')
+SUP_RE = re.compile(r'\(((?:[CBFT]\d{1,2}(?:–[CBFT]\d{1,2})?)(?:,\s*[CBFT]\d{1,2}(?:–[CBFT]\d{1,2})?)*)\)')
 MIGNE_RE = re.compile(r'\b(MG|ML)(\s+)(\d{1,3})(\s*,\s*\d{1,4}(?:\s?[A-D]\b)?)')
 
 
@@ -394,7 +394,7 @@ def static_text(text, by_id, by_base):
             return f'<a class="xref" href="../{esc(enc_id(t))}/">{n.group(0)}</a>' if t else n.group(0)
         return m.group(1) + m.group(3) + NUM_RE.sub(one, m.group(4))
     h = REF_RE.sub(nums, h)
-    h = SUP_RE.sub(lambda m: '(' + re.sub(r'[CB]\d{1,2}', lambda x: f'<a class="xref" href="../{x.group(0)}/">{x.group(0)}</a>'
+    h = SUP_RE.sub(lambda m: '(' + re.sub(r'[CBFT]\d{1,2}', lambda x: f'<a class="xref" href="../{x.group(0)}/">{x.group(0)}</a>'
                                          if x.group(0) in by_id else x.group(0), m.group(1)) + ')', h)
     h = MIGNE_RE.sub(lambda m: f'<a class="xref" href="http://{"graeca" if m.group(1) == "MG" else "latina"}.patristica.net/#t{int(m.group(3)):03d}" '
                                f'rel="noopener">{m.group(1)}{m.group(2)}{m.group(3)}{m.group(4)}</a>', h)

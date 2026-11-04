@@ -131,5 +131,7 @@
 {"name": "Alexander VII", "dates": "1655–1667", "note": "", "year": 1655, "appendix": true},
 {"name": "Innocent XII", "dates": "1691–1700", "note": "", "year": 1691, "appendix": true},
 {"name": "Council of Constance: decrees not in Denzinger", "dates": "1414–1418", "note": "Supplement to the collection", "year": 1414, "supplement": true},
-{"name": "Council of Basel and its aftermath", "dates": "1431–1463", "note": "Supplement to the collection", "year": 1431, "supplement": true}
+{"name": "Council of Basel and its aftermath", "dates": "1431–1463", "note": "Supplement to the collection", "year": 1431, "supplement": true},
+{"name": "Council of Florence: decrees not in Denzinger", "dates": "1439–1445", "note": "Supplement to the collection", "year": 1439, "supplement": true},
+{"name": "Pius IV: the confirmation of Trent", "dates": "1564", "note": "Supplement to the collection", "year": 1564, "supplement": true}
 ]
