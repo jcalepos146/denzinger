@@ -9,7 +9,7 @@ A searchable, organized reader for Denzinger's *Enchiridion Symbolorum* in Engli
 - **A page for every entry** at `/n/<number>/`, so that search engines find them and shared links show the text. Each page links back to its place in the reader.
 - **Old and new numbers:** each entry shows its Denzinger–Schönmetzer (DS) number, which Denzinger–Hünermann keeps. The Latin text can be shown below each entry or side by side with the English.
 - **Weights:** every entry carries a grade (defined dogma, definitive, authoritative teaching, discipline, condemned, prudential and others), checked by hand in 328 ranges, each with a note on why. Condemned propositions also show their censures.
-- **Supplement:** the decrees of Constance and Basel that Denzinger leaves out, each with its standing.
+- **Supplement:** the decrees of Constance and Basel that Denzinger leaves out, Moyses vir Dei and the last bulls of union of Florence (with the Syrians, and with the Chaldeans and Maronites of Cyprus), and Pius IV's bull confirming Trent, each with its standing.
 - **Guides:**
   - the Roman Catechism (Catechism of the Council of Trent), chapter by chapter, with the texts each chapter explains;
   - a timeline of every entry by date and weight, with the definitions and creeds in order;

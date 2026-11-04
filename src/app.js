@@ -104,7 +104,7 @@ const WEIGHTS = {
   'synod': ['Synod of Bishops', 'study', 'A document or message of the Synod of Bishops. Consultative unless the pope makes it his own.'],
   'bishops': ['Bishops\' conference', 'study', 'A statement of a national or regional conference of bishops. Teaches with the authority of those bishops for their own territory.'],
   'ecumenical': ['Ecumenical agreement', 'dialogue', 'A joint declaration or agreed statement with other Christians. Binds the Church only so far as it restates Catholic doctrine.'],
-  'supplement': ['Not in Denzinger', 'study', 'Added to this site: decrees of Constance and Basel that Denzinger leaves out, mostly because no pope approved them or they came from a schismatic assembly. Mostly summaries; one translation.'],
+  'supplement': ['Not in Denzinger', 'study', 'Added to this site: decrees of Constance and Basel that Denzinger leaves out, mostly because no pope approved them or they came from a schismatic assembly, and papal acts of Florence and Trent that its older numbering omits. Some are summaries; others are given in full, with the source of each translation stated.'],
 };
 const GRADES = {
   dogma: ['Defined dogma', 'dogma'], definitive: ['Definitive', 'definitive'], authentic: ['Authoritative teaching', 'authentic'],
@@ -317,8 +317,8 @@ function renderText(text, re) {
   h = h.replace(/(^|[^A-Za-z])((?:Kch|Kirch|R|H|L|M|EP|RS)\.?\s)?(nn?\.\s?)(\d{1,4}[a-z]?(?:\s?(?:,|and|-|–|f\.|ff\.)\s?\d{1,4}[a-z]?)*)/g,
     (m, pre, other, lab, list) => other ? m : pre + lab + linkNums(list));
   // supplement entries cited in parentheses, e.g. (C9) or (B13–B15)
-  h = h.replace(/\(((?:[CB]\d{1,2}(?:–[CB]\d{1,2})?)(?:,\s*[CB]\d{1,2}(?:–[CB]\d{1,2})?)*)\)/g, (m, list) =>
-    '(' + list.replace(/[CB]\d{1,2}/g, id => byId.has(id) && byId.get(id).sup ? `<a class="xref" href="#n${id}">${id}</a>` : id) + ')');
+  h = h.replace(/\(((?:[CBFT]\d{1,2}(?:–[CBFT]\d{1,2})?)(?:,\s*[CBFT]\d{1,2}(?:–[CBFT]\d{1,2})?)*)\)/g, (m, list) =>
+    '(' + list.replace(/[CBFT]\d{1,2}/g, id => byId.has(id) && byId.get(id).sup ? `<a class="xref" href="#n${id}">${id}</a>` : id) + ')');
   h = h.replace(/\b(MG|ML)(\s+)(\d{1,3})(\s*,\s*\d{1,4}(?:\s?[A-D]\b)?)/g, (m, ser, sp, vol, rest) => {
     const host = ser === 'MG' ? 'graeca' : 'latina';
     return `<a class="xref" href="http://${host}.patristica.net/#t${String(vol).padStart(3, '0')}" target="_blank" rel="noopener" title="${ser === 'MG' ? 'Patrologia Graeca' : 'Patrologia Latina'} volume ${vol} at patristica.net">${ser}${sp}${vol}${rest}</a>`;
@@ -543,8 +543,10 @@ function seeAlso(er) {
   const sups = ERAS.filter(x => x.sup);
   const link = (x, t) => x ? `<p class="checked" style="margin:.2rem 0 .4rem">${t} <a class="xref" href="#e${x.i}">${esc(x.name)}</a></p>` : '';
   if (/Constance/.test(er.name) && !er.sup) return link(sups.find(x => /Constance/.test(x.name)), 'See also the decrees this collection leaves out:');
-  if (/Florence/.test(er.name) && !er.sup) return link(sups.find(x => /Basel/.test(x.name)), 'For the Council of Basel, which this collection leaves out, see');
-  if (er.sup) return `<p class="checked" style="margin:.2rem 0 .4rem">Added to this site. Denzinger leaves these texts out, mostly because no pope approved them or they came from a schismatic assembly. Except for Haec Sancta, which is translated, the entries summarize the decrees and link to the full texts.</p>`;
+  if (/Florence/.test(er.name) && !er.sup) return link(sups.find(x => /Basel/.test(x.name)), 'For the Council of Basel, which this collection leaves out, see') + link(sups.find(x => /Florence/.test(x.name)), 'For the later bulls of union, see');
+  if (/Trent|Pius IV/.test(er.name) && !er.sup) return link(sups.find(x => /Trent/.test(x.name)), 'For the bull confirming the council, see');
+  if (er.sup && /Florence|Trent/.test(er.name)) return `<p class="checked" style="margin:.2rem 0 .4rem">Added to this site. Papal acts that the older numbering of Denzinger leaves out, given in full; each source line says where the text comes from.</p>`;
+  if (er.sup) return `<p class="checked" style="margin:.2rem 0 .4rem">Added to this site. Denzinger leaves these texts out, mostly because no pope approved them or they came from a schismatic assembly. Some are translated in full; the others summarize the decrees and link to the full texts.</p>`;
   return '';
 }
 function latinSeg() {
@@ -996,7 +998,7 @@ const TL_BIN = 25, TL_FROM = 75, TL_TO = 2000;
 function tlData() {
   const nb = Math.ceil((TL_TO - TL_FROM) / TL_BIN);
   const rows = TL_ROWS.map(([k, label]) => ({ k, label, bins: new Array(nb).fill(0), total: 0 }));
-  const sup = { k: 'sup', label: 'Added to this site: Constance and Basel', bins: new Array(nb).fill(0), total: 0 };
+  const sup = { k: 'sup', label: 'Added to this site: the supplement', bins: new Array(nb).fill(0), total: 0 };
   for (const e of ENTRIES) {
     if (e.note) continue;
     const b = Math.min(nb - 1, Math.max(0, Math.floor((e.year - TL_FROM) / TL_BIN)));
@@ -1956,7 +1958,7 @@ function renderEdition() {
     <h2 class="sect-h">The text</h2>
     <p>The English translation of Denzinger's Enchiridion with the older numbering (before the 32nd edition of 1963), as published on patristica.net and archived from catecheticsonline.com. It covers ${fmt(ENTRIES.length)} entries from the creeds to Pius XII, with an appendix numbered from 5000.</p>
     <h2 class="sect-h">Supplement</h2>
-    <p>${ENTRIES.filter(e => e.sup).length} entries were added for decrees of Constance and Basel that the collection leaves out. Haec Sancta is translated for this site from the Latin; the others are summaries written for this site, with links to full texts. Each carries a hand-checked grade explaining its standing.</p>
+    <p>${ENTRIES.filter(e => e.sup).length} entries were added for decrees of Constance and Basel that the collection leaves out, and for papal acts of Florence and Trent that its older numbering omits. Haec Sancta, Moyses vir Dei and the bulls of union with the Syrians and with the Chaldeans and Maronites are translated for this site from the Latin; Pius IV's bull confirming Trent is Waterworth's translation (1848); several letters are translations contributed to the site; the rest are summaries written for this site, with links to full texts. Each carries a hand-checked grade explaining its standing.</p>
     <h2 class="sect-h">Numbers not found</h2>
     <p>${(q.missing || []).length} numbers in the main sequence have no entry of their own. Some are gaps in the printed edition, where one entry covers several numbers; others may have been merged with a neighbor when the text was scanned. Each link opens the nearest entry before it.</p>
     <div class="numgrid">${(q.missing || []).map(nb).join('')}</div>
