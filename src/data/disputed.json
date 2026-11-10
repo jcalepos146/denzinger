@@ -111,15 +111,18 @@
   "title": "Could a pope teach heresy as a private person?",
   "question": "What happens if a pope, not speaking ex cathedra, teaches something heretical?",
   "settled": "The Pope is infallible when he defines a doctrine of faith or morals ex cathedra under the conditions Vatican I set out.",
-  "open": "Whether a pope can fall into personal heresy, and what would follow, was argued by Bellarmine, Cajetan, Suárez and John of St. Thomas, who reached different answers. The case of Honorius is the usual historical test.",
+  "open": "Whether a pope can fall into personal heresy, and what would follow, was argued by Bellarmine, Cajetan, Suárez and John of St. Thomas, who reached different answers. The case of Honorius is the usual historical test. The old canonists' exception (Gratian, D. 40 c. 6: the pope is judged by no one \"unless he is found to have strayed from the faith\") and the deposition of Gregory VI at Sutri in 1046 are the usual historical starting points; see the question on Sutri.",
   "reading": "Vatican I's definition is limited by its conditions, so the question it leaves untouched remains a matter for theologians and canonists.",
   "refs": [
    "1839",
    "251",
    "252",
-   "253"
+   "253",
+   "B17"
   ],
-  "related": []
+  "related": [
+   "sutri"
+  ]
  },
  {
   "id": "inerrancy",
@@ -181,12 +184,14 @@
   "title": "Pope Liberius and the Arian crisis",
   "question": "Did Liberius sign a semi-Arian formula while in exile?",
   "settled": "Anastasius I counted Liberius among those who suffered exile for the Nicene faith.",
-  "open": "Some ancient sources say he signed an ambiguous creed at Sirmium under duress to return to Rome; the authenticity of the letters involved is disputed.",
+  "open": "Some ancient sources say he signed an ambiguous creed at Sirmium under duress to return to Rome; the authenticity of the letters involved is disputed. During his exile the emperor Constantius had Felix II installed at Rome; the Annuario Pontificio lists Felix as an antipope, though a later cult honoured him as a martyr pope.",
   "reading": "Even on the hostile account, a signature under coercion is not a definition binding the Church.",
   "refs": [
    "93"
   ],
-  "related": []
+  "related": [
+   "sutri"
+  ]
  },
  {
   "id": "jansen-fact",
@@ -509,7 +514,8 @@
    "1839"
   ],
   "related": [
-   "lg"
+   "lg",
+   "sutri"
   ]
  },
  {
@@ -529,7 +535,42 @@
    "C13",
    "C15"
   ],
-  "related": []
+  "related": [
+   "sutri"
+  ]
+ },
+ {
+  "id": "sutri",
+  "cat": "continuity",
+  "status": "Disputed",
+  "title": "Sutri, Constance and Vatican I: can a synod judge a pope?",
+  "question": "If no one may judge the Roman Pontiff, how could the Synod of Sutri (1046) remove Gregory VI, and Constance depose papal claimants?",
+  "settled": "The judgment of the Apostolic See is to be disclaimed by no one, no one may pass judgment on its judgment, and there is no appeal from the pope to a council (Vatican I, n. 1830; Pius II, n. 717). The Roman Pontiff alone convokes, transfers and dissolves councils (Lateran V, n. 740). The 1983 Code holds that the First See is judged by no one (canon 1404).",
+  "open": "At Sutri, on 20 December 1046, Henry III held a synod on the way to his coronation. Sylvester III was condemned as an intruder; Benedict IX, who had abdicated, was deposed at Rome a few days later; Gregory VI, who had paid Benedict to step aside, was removed for simony, and Suidger of Bamberg was elected as Clement II (S1, S4). The sources disagree about how Gregory went. Some say the synod or the king deposed him (S1, S3, S7); the Gregorian writers Bonizo and Desiderius say he judged his own case and deposed himself (S2). Two contemporaries objected from opposite sides: Wazo of Liège held the deposition unlawful, because the pope is judged by God alone, and the see reserved to Gregory while he lived (S8); the author of De ordinando pontifice held that simony made Gregory no pope at all, and that judging him belonged to the bishops, not the emperor (S9). The Annuario Pontificio counts Gregory VI as a legitimate pope, and Hildebrand, who went into exile with him, later called him \"the lord Pope Gregory\" (S10). Since the canonists the question has been how such acts square with the axiom. Gratian's Si papa (D. 40 c. 6) says the pope is judged by no one \"unless he is found to have strayed from the faith\"; Cajetan and Bellarmine held that a council could declare, not judge, a heretical pope; Aeneas Silvius read Haec Sancta as reaching a certain pope only in heresy, schism or scandal to the whole Church (B17). The emperor's part at Sutri was disputed at the time (S8, S9) and rejected by the Gregorian reform, whose Dictatus papae says the pope is judged by no one. Liberius is sometimes cited as a further precedent, but Felix II was installed by the Arian emperor Constantius while Liberius was in exile, and the Annuario lists Felix as an antipope.",
+  "reading": "The principle concerns the pope in his office: no one judges his judgments, and no appeal lies from them to a council. It does not forbid the Church to establish the facts on which holding the office depends. When a claimant is doubtful (Constance, C2), when a man entered by simony or intrusion (Sutri, S9), or when he has fallen from the faith (Si papa; B17), the bishops may assemble, and the outcome is a resignation, a self-judgment, or a declaration that the man is not, or is no longer, pope. In none of these does a synod sit as a court above a certain pope; the self-deposition reported at Sutri (S2) was itself a way of honouring the axiom that the first see is judged by no one. On this reading Sutri, Constance and Vatican I agree: the pope cannot be judged in his office, though a man may be examined as a son of the Church on whether he holds it. Pius II, as pope, recognized Constance's authority while saying no approved council met without papal authority when there was an unquestioned pope (B18). The emperor's part at Sutri belongs to its age and was contested by contemporaries.",
+  "refs": [
+   "S1",
+   "S2",
+   "S3",
+   "S4",
+   "S7",
+   "S8",
+   "S9",
+   "S10",
+   "1830",
+   "717",
+   "740",
+   "C2",
+   "C8",
+   "B17",
+   "B18"
+  ],
+  "related": [
+   "conciliarism",
+   "pisan",
+   "papal-heresy",
+   "liberius"
+  ]
  },
  {
   "id": "religious-liberty",
