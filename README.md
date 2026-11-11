@@ -1,21 +1,30 @@
 # Sources of Catholic Dogma
 
-A searchable, organized reader for Denzinger's *Enchiridion Symbolorum* in English, with the older numbering (before the 32nd edition of 1963). It is a static site with no accounts, server or tracking, and it works offline once opened.
+**Read it here: <https://jcalepos146.github.io/denzinger/>**
+
+A searchable, organized reader for Denzinger's *Enchiridion Symbolorum* in English, with the older numbering (before the 32nd edition of 1963), continued with the documents of the Church to October 2026. It is a static site with no accounts, server or tracking, and it works offline once opened.
+
+| | |
+|---|---|
+| Reader | <https://jcalepos146.github.io/denzinger/> |
+| One entry (e.g. Vatican I on papal infallibility) | <https://jcalepos146.github.io/denzinger/n/1839/> |
+| Open data | <https://jcalepos146.github.io/denzinger/data/entries.json> |
+| For AI clients | <https://jcalepos146.github.io/denzinger/llms.txt> |
 
 ## What it has
 
-- **The full text:** 2,464 entries, from the creeds to Pius XII, with an appendix numbered from 5000. Scanning errors are corrected conservatively.
-- **After 1958:** John XXIII, the Second Vatican Council, Paul VI, John Paul II, Benedict XVI, Francis and Leo XIV to October 2026, one entry per article of each document, numbered by the document and article (`LG 25`, `GS 22`, `EV 62`); addresses are numbered by their date (`AD 19641203`). Each is labelled by kind of document: encyclical, address or homily, document of the Doctrine of the Faith, and so on. Interviews and press conferences are marked as private opinion.
+- **The full text:** 2,431 entries, from the creeds to Pius XII, including an appendix numbered from 5000. Scanning errors are corrected conservatively.
+- **After 1958:** 968 entries from John XXIII, the Second Vatican Council, Paul VI, John Paul II, Benedict XVI, Francis and Leo XIV to October 2026, one entry per article of each document, numbered by the document and article (`LG 25`, `GS 22`, `EV 62`); addresses are numbered by their date (`AD 19641203`). Each is labelled by kind of document: encyclical, address or homily, document of the Doctrine of the Faith, and so on. Interviews and press conferences are marked as private opinion.
 - **A page for every entry** at `/n/<number>/`, so that search engines find them and shared links show the text. Each page links back to its place in the reader.
 - **Old and new numbers:** each entry shows its Denzinger–Schönmetzer (DS) number, which Denzinger–Hünermann keeps. The Latin text can be shown below each entry or side by side with the English.
-- **Weights:** every entry carries a grade (defined dogma, definitive, authoritative teaching, discipline, condemned, prudential and others), checked by hand in 328 ranges, each with a note on why. Condemned propositions also show their censures.
-- **Supplement:** the decrees of Constance and Basel that Denzinger leaves out, Moyses vir Dei and the last bulls of union of Florence (with the Syrians, and with the Chaldeans and Maronites of Cyprus), Pius IV's bull confirming Trent, and the witnesses to the Synod of Sutri (1046), each with its standing.
+- **Weights:** every entry carries a grade (defined dogma, definitive, authoritative teaching, discipline, condemned, prudential and others), checked by hand in 512 ranges, each with a note on why. Condemned propositions also show their censures.
+- **Supplement:** 49 texts: the decrees of Constance and Basel that Denzinger leaves out, Moyses vir Dei and the last bulls of union of Florence (with the Syrians, and with the Chaldeans and Maronites of Cyprus), Pius IV's bull confirming Trent, and the witnesses to the Synod of Sutri (1046), each with its standing.
 - **Guides:**
   - the Roman Catechism (Catechism of the Council of Trent), chapter by chapter, with the texts each chapter explains;
   - a timeline of every entry by date and weight, with the definitions and creeds in order;
-  - doctrinal threads that follow a teaching through the collection;
-  - *Since 1950*, read by the hermeneutic of continuity;
-  - disputed questions.
+  - 18 doctrinal threads that follow a teaching through the collection;
+  - *Since 1950*, 47 points read by the hermeneutic of continuity;
+  - 45 disputed questions.
 - **Reading a condemnation:** a guide to reading condemned propositions in the sense they were condemned, with the case of Unigenitus; every condemned proposition links to it.
 - **Ask or check a statement:** ask a question, or test a statement against the texts for formation; an AI answers from the entries and cites them. The texts are chosen from the words of the question, the doctrines it names (with their defining texts), the guides that discuss them and any numbers it gives (`n. 1839`, `DS 3074`, `LG 25`, `Matt 16:18`), with binding texts first. The page lists them before you ask, with the reason for each, so you can untick some or add others by number or words. Opened in Claude it answers in the page; anywhere else it copies or downloads a prompt with the texts in full, a link to each, what their labels mean and the reading rules, optionally with the Latin, for any AI client. `llms.txt` describes the data for AI clients and agents.
 - **Cross-references:** "cited by" links between entries that refer to each other by number.
@@ -69,7 +78,7 @@ python3 build/build.py        # writes the site to dist/
 python3 -m http.server -d dist
 ```
 
-A GitHub Action runs the same script on every push to `main` and publishes `dist/` to GitHub Pages. It also checks pull requests, so a change that breaks the data never reaches the site.
+A GitHub Action runs the same script on every push to `main` and publishes `dist/` to GitHub Pages at <https://jcalepos146.github.io/denzinger/>, with a `sitemap.xml` of every entry page. It also checks pull requests, so a change that breaks the data never reaches the site.
 
 | Path | What it holds |
 |---|---|
@@ -85,3 +94,4 @@ A GitHub Action runs the same script on every push to `main` and publishes `dist
 | `src/entry.css` | The single-entry pages |
 | `src/sw.js` | Offline support |
 | `build/build.py` | Checks the data and builds everything |
+| `tools/post1958/` | The scripts that imported and aligned the texts after 1958 (see its README) |
