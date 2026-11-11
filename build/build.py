@@ -243,6 +243,53 @@ def check(d):
     return order, P
 
 
+# notes already looked at: numbers that cite another work (Augustine's tractates, a decree's own sections),
+# and DS numbers that the Latin page really does give to two entries
+KNOWN_NOTES = {'8 n. 3', '656 n. 11', '1525 n. 10', '1525 n. 7', 'ID12 n. 3', 'DS 354'}
+
+
+def warnings(d, order):
+    """Things that do not stop the build but deserve a look; printed after each build."""
+    W = []
+    E = d['entries']
+    by_id = {e['id']: e for e in E}
+    _, _, by_base = cross_refs(E)
+    for e in E:
+        if e.get('supplement'):
+            continue
+        for m in REF_RE.finditer(' '.join(e['text'])):
+            if m.group(2):
+                continue
+            for n in NUM_RE.findall(m.group(4)):
+                if not resolve(n, by_id, by_base) and f'{e["id"]} n. {n}' not in KNOWN_NOTES:
+                    W.append(f'entry {e["id"]}: "n. {n}" points to no entry')
+        for l in e.get('links', []):
+            if not re.match(r'https?://[^\s/]+\.[^\s]+$', l.get('url', '')):
+                W.append(f'entry {e["id"]}: link "{l.get("url")}" is not a web address')
+    claimed = {}
+    for e in E:
+        if e.get('dsHow') == 'series' or doc_of(e['id']):
+            continue  # after 1958 one DS number can span several articles
+        for n in e.get('ds', []):
+            claimed.setdefault(str(n), set()).add(re.sub(r'-\d+$', '', e['id']))
+    for n, ids in sorted(claimed.items(), key=lambda x: int(x[0])):
+        if len(ids) > 1 and f'DS {n}' not in KNOWN_NOTES:
+            W.append(f'DS {n} is given to more than one entry: {", ".join(sorted(ids))}')
+    all_ds = {str(n) for e in E for n in e.get('ds', [])}
+    orphans = [n for n in d['latin'] if n not in all_ds]
+    if orphans:
+        W.append(f'{len(orphans)} Latin texts belong to no entry (DS {", ".join(orphans[:10])}{"…" if len(orphans) > 10 else ""})')
+    h = curated_index(E, d['weights'], order)
+    used = set(x for x in h if x is not None)
+    for i, w in enumerate(d['weights']):
+        if i not in used:
+            W.append(f'weights.json, line {i + 2} ({w["from"]}–{w["to"]}): every entry is already covered by an earlier range, so this one never applies; move it above the wider range')
+    for s in d['since']:
+        if not re.match(r'https://', s.get('url', '')):
+            W.append(f'since1950.json, {s["id"]}: the official link should be https')
+    return W
+
+
 # --------------------------------------------------------------------------- derived data
 def curated_index(E, weights, order):
     """Each entry takes the first hand-checked range that contains it."""
@@ -772,6 +819,11 @@ def pages_build(args):
     if P:
         print('The data has problems; nothing was built:\n  ' + '\n  '.join(P), file=sys.stderr)
         sys.exit(1)
+    W = warnings(d, order)
+    if W:
+        print(f'{len(W)} notes on the data (the build continues):\n  ' + '\n  '.join(W))
+        if args.strict:
+            sys.exit(1)
     built = datetime.date.today().isoformat()
     url = (args.url or '').strip()
     if url in ('/', '//'):
@@ -835,6 +887,7 @@ if __name__ == '__main__':
     ap.add_argument('--repo', default=None)
     ap.add_argument('--url', default=None)
     ap.add_argument('--out', default=os.path.join(ROOT, 'dist'))
+    ap.add_argument('--strict', action='store_true', help='stop on any note as well as on problems')
     ap.add_argument('--claude', default=None, metavar='FILE', help='write the single-page version for Claude instead')
     a = ap.parse_args()
     cfg_path = os.path.join(ROOT, 'site.json')
