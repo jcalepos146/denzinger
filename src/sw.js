@@ -1,10 +1,11 @@
 /* Offline support for the Sources of Catholic Dogma reader.
-   The reader page holds the whole collection, so caching it makes every entry readable offline.
+   The reader's data files hold the whole collection, so caching them makes every entry readable offline.
    Entry pages are cached as they are visited; an uncached one opens the reader at that entry. */
 const VERSION = '__VERSION__';
 const CACHE = 'denz-' + VERSION;
 const FONTS = 'denz-fonts';
-const CORE = ['./', 'assets/entry.css', 'manifest.webmanifest', 'icons/icon-192.png', 'icons/icon-512.png', 'icons/icon-180.png'];
+// the reader's app, styles, data and Latin carry a hash in their names, filled in by the build
+const CORE = ['./', 'assets/entry.css', 'manifest.webmanifest', 'icons/icon-192.png', 'icons/icon-512.png', 'icons/icon-180.png', '__ASSETS__'];
 
 self.addEventListener('install', ev => {
   ev.waitUntil(caches.open(CACHE).then(c => c.addAll(CORE)).then(() => self.skipWaiting()));

@@ -1,13 +1,17 @@
 (() => {
 'use strict';
+/* data comes inline (the single page for Claude) or from window.DZ_DATA, which the Pages loader fetches */
+const DATA = id => { const d = window.DZ_DATA; if (d && id in d) return d[id]; const el = document.getElementById(id); if (!el) throw new Error('no ' + id); return JSON.parse(el.textContent); };
 let SITE = {};
-try { SITE = JSON.parse(document.getElementById('site-data').textContent) || {}; } catch (_) {}
+try { SITE = DATA('site-data') || {}; } catch (_) {}
 const PAGES = SITE.mode === 'pages';
 const ARTIFACT_URL = PAGES ? (SITE.url || location.href.split('#')[0]) : 'https://claude.ai/artifact/7zZixgAnh8J2dPf5MX9Hdq';
-const RAW = JSON.parse(document.getElementById('data').textContent);
-const SINCE = JSON.parse(document.getElementById('since-data').textContent).sort((a, b) => a.date.localeCompare(b.date));
-const DISPUTED = JSON.parse(document.getElementById('disputed-data').textContent);
-const THREADS = JSON.parse(document.getElementById('threads-data').textContent);
+const RAW = DATA('data');
+const SINCE = DATA('since-data').sort((a, b) => a.date.localeCompare(b.date));
+const DISPUTED = DATA('disputed-data');
+const THREADS = DATA('threads-data');
+const CHANGES = (() => { try { return DATA('changes-data'); } catch (_) { return []; } })();
+const HERM = (() => { try { return DATA('hermeneutics-data'); } catch (_) { return { principles: [], method: [] }; } })();
 const CENS = RAW.censures || [];
 const QUALITY = RAW.quality || {};
 const CURATED = RAW.curated || [];
@@ -45,6 +49,7 @@ const addDisc = (id, item) => { if (!DISCUSSED.has(id)) DISCUSSED.set(id, []); D
 for (const d of DISPUTED) for (const r of d.refs) addDisc(r, { href: '#q-' + d.id, label: d.title, kind: 'Disputed question' });
 for (const s of SINCE) for (const r of s.refs) addDisc(r, { href: '#since-' + s.id, label: s.title, kind: 'Since 1950' });
 for (const t of THREADS) for (const st of t.steps) if (st.ref) addDisc(st.ref, { href: '#thread-' + t.id, label: t.title + ' (thread)', kind: 'Thread' });
+for (const p of HERM.principles) for (const r of p.refs) addDisc(r, { href: '#herm-' + p.id, label: p.title + ' (hermeneutics)', kind: 'Hermeneutics' });
 const DISP_BY_ID = new Map(DISPUTED.map(d => [d.id, d]));
 /* the Roman Catechism, chapter by chapter */
 const RC = RAW.rc || { parts: [] };
@@ -341,6 +346,8 @@ const GUIDES = [
   ['#ask', 'Ask or check a statement', ''],
   ['#compare', 'Compare two texts', ''],
   ['#weights', 'Weight and censures', ''],
+  ['#checked', 'Hand-checked weights', CURATED.length + ' ranges'],
+  ['#hermeneutics', 'Hermeneutics', HERM.principles.length + ' principles'],
   ['#reading', 'Reading a condemnation', ''],
   ['#scripture', 'Scripture index', ''],
   ['#concordance', 'Old and new numbers', ''],
@@ -373,7 +380,7 @@ function markRail() {
   let b = null;
   if (state.view === 'read' && state.era) b = rail.querySelector(`[data-era="${state.era.i}"]`);
   else {
-    const map = { home: '#home', catechism: '#catechism', timeline: '#timeline', since: '#since', disputed: '#disputed', scripture: '#scripture', book: '#scripture', topics: '#topics', saved: '#saved', threads: '#threads', thread: '#threads', ask: '#ask', compare: '#compare', weights: '#weights', reading: '#reading', edition: '#edition', concordance: '#concordance' };
+    const map = { home: '#home', catechism: '#catechism', timeline: '#timeline', since: '#since', disputed: '#disputed', scripture: '#scripture', book: '#scripture', topics: '#topics', saved: '#saved', threads: '#threads', thread: '#threads', ask: '#ask', compare: '#compare', weights: '#weights', checked: '#checked', reading: '#reading', hermeneutics: '#hermeneutics', edition: '#edition', concordance: '#concordance' };
     if (map[state.view]) b = rail.querySelector(`[data-go="${map[state.view]}"]`);
   }
   if (b) {
@@ -433,6 +440,9 @@ function renderHome() {
       </div>
     </section>
     ${todayHtml()}
+    ${CHANGES.length ? `<h2 class="sect-h">Recently added</h2>
+    <div class="tips news">${CHANGES.slice(0, 3).map(c => `<div><span class="count">${esc(new Date(c.date + 'T12:00:00').toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }))}</span> <a href="${esc(c.href)}"><b>${esc(c.title)}</b></a><br>${esc(c.summary)}</div>`).join('')}
+    ${PAGES && SITE.url ? `<div><a href="${esc(SITE.url)}feed.xml">Follow additions by feed (Atom)</a></div>` : ''}</div>` : ''}
     <h2 class="sect-h">Guides and indexes</h2>
     <div class="guides">
       <a class="guide" href="#catechism"><b>Roman Catechism</b><span>The Catechism of the Council of Trent, chapter by chapter, with the texts in this collection that each chapter explains.</span></a>
@@ -445,6 +455,7 @@ function renderHome() {
       <a class="guide" href="#scripture"><b>Scripture index</b><span>Every bracketed Scripture reference, by book, chapter and verse.</span></a>
       <a class="guide" href="#topics"><b>Topics</b><span>The section headings of the whole collection, A to Z.</span></a>
       <a class="guide" href="#weights"><b>Weight and censures</b><span>What each kind of text binds, the theological notes, and the grades of censure.</span></a>
+      <a class="guide" href="#hermeneutics"><b>Hermeneutics</b><span>How to read magisterial texts: development in the same sense, weight, occasion, formula and truth, principle and application, each grounded in the texts.</span></a>
       <a class="guide" href="#reading"><b>Reading a condemnation</b><span>Why a condemned proposition is read in the sense condemned, how that sense is established, and the case of Unigenitus.</span></a>
       <a class="guide" href="#e${ERAS.find(x => x.sup).i}"><b>Constance and Basel</b><span>The conciliar decrees Denzinger leaves out, from Haec Sancta to Basel's "three truths," with their standing.</span></a>
       <a class="guide" href="#compare"><b>Compare two texts</b><span>Read two entries side by side, with the guides that discuss them together.</span></a>
@@ -571,7 +582,7 @@ function renderEra(er, focusId) {
     if (e.ses && e.ses !== ses) { html += `<div class="session">${esc(e.ses)}</div>`; ses = e.ses; topic = undefined; }
     if (e.topic !== topic || (e.src && e.src !== src)) {
       if (e.topic && e.topic !== topic) html += `<h2 class="topic">${renderText(e.topic, re)}</h2>`;
-      if (e.src && e.src !== src) html += `<p class="src">${renderText(e.src, re)}</p>`;
+      if (e.src && e.src !== src) { const dc = docOf(e.id); html += `<p class="src">${renderText(e.src, re)}${dc && DOCS.get(dc).length > 1 && DOCS.get(dc)[0] === e ? ` <a class="xref" href="#doc-${dc}">Read this document alone</a>` : ''}</p>`; }
       topic = e.topic; src = e.src;
     }
     html += entryHtml(e, re);
@@ -594,6 +605,36 @@ function renderEra(er, focusId) {
     window.scrollTo(0, 0);
     store.set('denz:last', er.entries[0].id);
   }
+}
+/* ---------- one document after 1958, cited by article (LG 25) ---------- */
+const DOC_RE = /^([A-Z]{2,})(\d+)(?:-\d+)?$/, DATED_DOCS = new Set(['AD', 'IV']);
+const docOf = id => { const m = id.match(DOC_RE); return m && !DATED_DOCS.has(m[1]) ? m[1] : null; };
+const DOCS = new Map();
+for (const e of ENTRIES) { const d = docOf(e.id); if (d) { if (!DOCS.has(d)) DOCS.set(d, []); DOCS.get(d).push(e); } }
+function docTitle(ents) {
+  const src = ents[0].src || '';
+  let m = src.match(/["“]([^"”]+?),?["”]/);
+  if (m) return m[1].trim();
+  m = src.match(/\[From (?:the )?(.+?)(?:,\s*(?:[A-Z][a-z]{2,8}\.? \d{1,2},|\d{4}|[A-Z][a-z]+, [A-Z])|\])/);
+  return m ? m[1].trim() : ents[0].id.replace(/\d.*/, '');
+}
+function renderDoc(code) {
+  const ents = DOCS.get(code), re = termRegex(highlightTerms), er = ents[0].era;
+  view.className = Latin.mode === 'side' ? 'col side' : 'col';
+  let html = `<header class="era-head">
+    <div class="eyebrow">Document · <a href="#e${er.i}" style="text-decoration:none">${esc(er.name)}</a></div>
+    <h1>${esc(docTitle(ents))}</h1>
+    <div class="meta">${ents[0].year ? `<span>${ents[0].year}</span>` : ''}<span>${esc(dispId(ents[0].id))}${ents.length > 1 ? '–' + esc(dispId(ents[ents.length - 1].id).replace(/^\S+\s/, '')) : ''}</span><span>${ents.length} ${ents.length === 1 ? 'article' : 'articles'} in this collection</span></div>
+    ${ents[0].src ? `<p class="src">${renderText(ents[0].src, re)}</p>` : ''}
+    <div class="era-tools">${latinSeg()}<button class="btn small" data-go="#n${esc(ents[0].id)}">Read in its place</button></div>
+  </header>`;
+  let topic;
+  for (const e of ents) {
+    if (e.topic && e.topic !== topic) { html += `<h2 class="topic">${renderText(e.topic, re)}</h2>`; topic = e.topic; }
+    html += entryHtml(e, re);
+  }
+  view.innerHTML = html;
+  window.scrollTo(0, 0);
 }
 const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 function citeFormats(e) {
@@ -637,7 +678,24 @@ function citation(e) {
 
 /* ---------- old and new numbers ---------- */
 let LATIN = null;
-const latinText = n => { if (!LATIN) { try { LATIN = JSON.parse(document.getElementById('latin-data').textContent); } catch (_) { LATIN = {}; } } return LATIN[n]; };
+/* the Latin is inline on the Claude page; the Pages build fetches it the first time it is needed */
+let latinLoading = null;
+function loadLatin() {
+  if (LATIN) return Promise.resolve(LATIN);
+  if (document.getElementById('latin-data') || !SITE.latin) { try { LATIN = DATA('latin-data'); } catch (_) { LATIN = {}; } return Promise.resolve(LATIN); }
+  if (!latinLoading) {
+    latinLoading = fetch(SITE.latin).then(r => r.ok ? r.json() : Promise.reject(new Error(r.status)))
+      .then(j => { LATIN = j; LAT_HAY = null; latinArrived(); return j; })
+      .catch(() => { latinLoading = null; toast('The Latin text could not be loaded. Check the connection and try again.'); return null; });
+  }
+  return latinLoading;
+}
+const latinText = n => { if (!LATIN) { loadLatin(); if (!LATIN) return undefined; } return LATIN[n]; };
+function latinArrived() {
+  if (state.view === 'read') { document.querySelectorAll('.entry').forEach(x => refreshEntry(x.id.slice(1))); return; }
+  if (state.view === 'ask') { if (typeof fillPreview === 'function') fillPreview(); return; }
+  if (state.view === 'search' || state.view === 'compare') { const y = window.scrollY; route(); window.scrollTo(0, y); }
+}
 const DS_HOW = {
   series: ['inferred', 'Inferred from the numbering of the neighboring entries; the Latin page does not print the old number here.'],
   checked: ['matched by hand', 'The Latin page prints this pair confusingly; matched by reading both texts.'],
@@ -669,8 +727,10 @@ function latinHtml(e) {
     const nb = dsNeighbors(e);
     return `<div class="latin none">This entry has no number on the Latin page${e.weight === 'note' ? ' (it is an editorial note)' : ''}.${nb.length ? ` Nearest numbered entries: ${nb.map(nbLink).join('; ')}.` : ''}</div>`;
   }
-  const h = DS_HOW[e.dsHow];
-  return `<div class="latin" lang="la"><div class="lh">Latin · ${esc(dsText(e))}${h ? ` · ${h[0]}` : ''}</div>${e.ds.map(n => { const t = latinText(n); return `<p><span class="dsn">${esc(n)}</span>${t ? esc(t) : '<i>The Latin page gives no text under this number.</i>'}</p>`; }).join('')}</div>`;
+  const h = DS_HOW[e.dsHow], lc = RAW.latinChecked || {}, ok = e.ds.every(n => lc[n]);
+  const status = ok ? `Proofread against ${esc(lc[e.ds[0]].against)} (${esc(lc[e.ds[0]].date)}).` : 'Not yet proofread: as the source page gives it.';
+  const report = PAGES && SITE.repo ? ` <a href="${esc(issueUrl('Latin: ' + nlab(e.id) + ' (' + dsText(e) + ')', nlab(e.id) + ', ' + dsText(e), pageUrl(e)))}" target="_blank" rel="noopener">Report an error in the Latin ↗</a>` : '';
+  return `<div class="latin"><div class="lh">Latin · ${esc(dsText(e))}${h ? ` · ${h[0]}` : ''}</div><div lang="la">${e.ds.map(n => { const t = latinText(n); return `<p><span class="dsn">${esc(n)}</span>${t ? esc(t) : LATIN ? '<i>The Latin page gives no text under this number.</i>' : '<i>Loading the Latin…</i>'}</p>`; }).join('')}</div><div class="lstat">${status}${report}</div></div>`;
 }
 const Latin = { mode: 'off', flip: new Set(), get all() { return this.mode !== 'off'; } };
 try { const v = localStorage.getItem('dz-latin'); Latin.mode = v === '2' ? 'side' : v === '1' ? 'under' : 'off'; } catch (_) {}
@@ -1195,6 +1255,7 @@ function renderWeights() {
     <div class="tablewrap"><table class="wtable"><thead><tr><th>Label</th><th>What it means</th><th>Entries</th></tr></thead><tbody>
     ${Object.entries(WEIGHTS).map(([k, x]) => `<tr><td><span class="pill lv-${x[1]}">${x[0]}</span></td><td>${esc(x[2])}</td><td><a class="xref" href="#weight-${k}">${fmt(counts[k] || 0)}</a></td></tr>`).join('')}
     </tbody></table></div>
+    <p>Many entries also carry a grade checked by hand, with the reason for it. <a href="#checked">See every hand-checked range</a>.</p>
     <h2 class="sect-h">Four cautions</h2>
     <div class="tips" style="font-size:.95rem">
       <div>In a definition, only what is proposed to be held is defined; arguments, historical remarks and reasons are not.</div>
@@ -1208,6 +1269,41 @@ function renderWeights() {
     <h2 class="sect-h">Censures</h2>
     <p class="lede" style="font-size:.95rem">The grades the Church used when condemning propositions, roughly from gravest to lightest.</p>
     <div class="tablewrap"><table class="wtable"><tbody>${CENSURE_GRADES.map(([a, b]) => `<tr><td><b>${a}</b></td><td>${b}</td></tr>`).join('')}</tbody></table></div>`;
+  window.scrollTo(0, 0);
+}
+
+/* ---------- every hand-checked range, for audit ---------- */
+const CHK = { g: '', q: '' };
+const CUR_COUNT = (() => { const c = new Array(CURATED.length).fill(0); for (const e of ENTRIES) if (e.cur !== null) c[e.cur]++; return c; })();
+function checkedRows() {
+  const nq = norm(CHK.q).trim();
+  return CURATED.map((c, i) => ({ c, i, e: byId.get(c.from) })).filter(x => x.e && (!CHK.g || x.c.g === CHK.g) &&
+    (!nq || (' ' + norm(x.c.n + ' ' + x.e.era.name + ' ' + nlab(x.c.from) + ' ' + (x.e.topic || '')) + ' ').includes(' ' + nq)));
+}
+function checkedList() {
+  const rows = checkedRows();
+  let html = `<p class="count" aria-live="polite">${fmt(rows.length)} of ${fmt(CURATED.length)} ranges</p>`, er = null;
+  for (const { c, i, e } of rows) {
+    if (e.era !== er) { er = e.era; html += `<h2 class="topic">${esc(er.name)}${er.dates ? ` <span style="color:var(--faint);font-weight:400">· ${esc(er.dates)}</span>` : ''}</h2>`; }
+    const g = GRADES[c.g];
+    html += `<div class="chk" id="chk-${i}"><div class="chk-h"><a class="xref" href="#n${esc(c.from)}">${esc(nlab(c.from))}${c.to !== c.from ? '–' + esc(dispId(c.to)) : ''}</a>
+      <span class="pill lv-${g[1]}">${g[0]}</span><span class="count">${CUR_COUNT[i]} ${CUR_COUNT[i] === 1 ? 'entry' : 'entries'}${CUR_COUNT[i] === 0 ? ' (covered by an earlier range)' : ''}</span></div>
+      <div class="chk-n">${renderText(c.n, null)}</div>${reviewRow('w:' + c.from)}</div>`;
+  }
+  return html || '<div class="empty">No range matches.</div>';
+}
+function renderChecked() {
+  view.className = 'col';
+  const counts = {}; for (const c of CURATED) counts[c.g] = (counts[c.g] || 0) + 1;
+  const covered = CUR_COUNT.reduce((a, b) => a + b, 0);
+  view.innerHTML = `<div class="eyebrow">Guide</div><h1 class="page-h">Hand-checked weights</h1>
+    <p class="lede">Every grade checked by hand on this site, with the reason given for it, so that each judgment can be examined and corrected. ${fmt(CURATED.length)} ranges cover ${fmt(covered)} of ${fmt(ENTRIES.length)} entries; where two ranges overlap, the first one listed applies. The other entries carry only the label that follows from the kind of document (<a href="#weights">how labels work</a>).</p>
+    <div class="chips" role="group" aria-label="Filter by grade"><button class="chip" data-chk="" aria-pressed="${!CHK.g}">All<span>${CURATED.length}</span></button>${Object.keys(GRADES).filter(k => counts[k]).map(k => `<button class="chip" data-chk="${k}" aria-pressed="${CHK.g === k}">${GRADES[k][0]}<span>${counts[k]}</span></button>`).join('')}</div>
+    <div class="cmpbar"><input id="chkQ" type="search" placeholder="Filter by words in the reason, a pope or a number" aria-label="Filter the ranges" value="${esc(CHK.q)}"></div>
+    ${PAGES && SITE.url ? `<p style="font-size:.9rem;color:var(--muted)">Also as a spreadsheet: <a href="${esc(SITE.url)}data/weights.csv">weights.csv</a>. To dispute a grade, use <b>Review</b> or open an issue from the entry.</p>` : ''}
+    <div id="chkList">${checkedList()}</div>`;
+  let t = null;
+  $('chkQ').oninput = ev => { clearTimeout(t); t = setTimeout(() => { CHK.q = ev.target.value; $('chkList').innerHTML = checkedList(); }, 150); };
   window.scrollTo(0, 0);
 }
 
@@ -1271,6 +1367,38 @@ function renderReading() {
   window.scrollTo(0, 0);
 }
 
+/* ---------- hermeneutics ---------- */
+function renderHermeneutics(focus) {
+  view.className = 'col';
+  const sinceL = ids => (ids || []).map(id => SINCE_BY_ID.get(id)).filter(Boolean).map(s => `<a href="#since-${esc(s.id)}">${esc(s.title)}</a>`).join(' · ');
+  const dispL = ids => (ids || []).map(id => DISP_BY_ID.get(id)).filter(Boolean).map(d => `<a href="#q-${esc(d.id)}">${esc(d.title)}</a>`).join(' · ');
+  const tests = DISPUTED.filter(d => d.cat === 'continuity');
+  view.innerHTML = `<div class="eyebrow">Guide</div><h1 class="page-h">Hermeneutics</h1>
+    <p class="lede">${esc(HERM.intro)}</p>
+    <nav class="toc" aria-label="Principles"><ol>${HERM.principles.map(p => `<li><a href="#herm-${p.id}">${esc(p.title)}</a></li>`).join('')}<li><a href="#herm-two">${esc(HERM.two.title)}</a></li><li><a href="#herm-method">A method</a></li></ol></nav>
+    ${HERM.principles.map((p, i) => `<article class="doc herm" id="herm-${p.id}">
+      <div class="meta"><span>Principle ${i + 1}</span></div>
+      <h2>${esc(p.title)}</h2>
+      <p class="rule">${esc(p.rule)}</p>
+      <p>${esc(p.body)}</p>
+      <div class="blk"><b>Guards against</b><div>${esc(p.misuse)}</div></div>
+      <div class="links">
+        <div>Texts: ${refLinks(p.refs)}</div>
+        ${p.since && p.since.length ? `<div>Since 1950: ${sinceL(p.since)}</div>` : ''}
+        ${p.disputed && p.disputed.length ? `<div>Test cases: ${dispL(p.disputed)}</div>` : ''}
+        ${p.see ? `<div>See also: <a href="${esc(p.see)}">${esc((GUIDES.find(g => g[0] === p.see) || [, 'guide'])[1])}</a></div>` : ''}
+      </div>
+      ${reviewRow('herm:' + p.id)}
+    </article>`).join('')}
+    <h2 class="sect-h" id="herm-two">${esc(HERM.two.title)}</h2>
+    <p>${esc(HERM.two.body)}</p>
+    <p style="font-size:.95rem">Questions where the two readings meet: ${tests.map(d => `<a class="xref" href="#q-${esc(d.id)}">${esc(d.title)}</a> <span style="color:var(--muted)">(${esc(d.status)})</span>`).join(' · ')}</p>
+    <h2 class="sect-h" id="herm-method">A method</h2>
+    <ol style="font-size:.95rem">${HERM.method.map(m => `<li>${esc(m)}</li>`).join('')}</ol>
+    <p style="font-size:.9rem;color:var(--muted)">These principles were drawn together for this site from the texts they cite. They are a reading aid, not an official statement; read the texts themselves.</p>`;
+  scrollToTarget(focus ? 'herm-' + focus : null);
+}
+
 /* ---------- threads ---------- */
 function stepWhen(st) {
   if (st.since) { const s = SINCE_BY_ID.get(st.since); return s ? s.date.slice(0, 4) : ''; }
@@ -1284,29 +1412,82 @@ function renderThreads() {
     <div class="threads">${THREADS.map(t => `<a class="guide" href="#thread-${t.id}"><b>${esc(t.title)}</b><span>${esc(t.summary)}</span><span>${t.steps.length} steps</span></a>`).join('')}</div>`;
   window.scrollTo(0, 0);
 }
+/* the steps of a thread on one chart: year across, weight down; each row is labelled, so colour only repeats it */
+const TL_LV = [['dogma', 'Dogma', '--lv-dogma'], ['definitive', 'Definitive', '--lv-def'], ['authentic', 'Authentic teaching', '--lv-auth'], ['discipline', 'Discipline', '--lv-disc'], ['prudential', 'Prudential', '--lv-prud'], ['dialogue', 'Ecumenical', '--lv-other'], ['study', 'Study or witness', '--lv-other'], ['private', 'Private opinion', '--lv-other']];
+function threadPoints(t) {
+  return t.steps.map((st, i) => {
+    if (st.since) { const s = SINCE_BY_ID.get(st.since); return s && { i, year: +s.date.slice(0, 4), lv: s.level, label: s.title, note: st.note }; }
+    const e = byId.get(st.ref); if (!e) return null;
+    const w = +stepWhen(st);
+    return { i, year: e.yearExact ? e.year : (w || e.year), approx: !e.yearExact, lv: levelOf(e), label: nlab(e.id) + (e.topic ? ': ' + e.topic : ''), note: st.note };
+  }).filter(p => p && p.year);
+}
+function threadChart(t) {
+  const pts = threadPoints(t);
+  if (pts.length < 2) return '';
+  const rows = TL_LV.filter(([k]) => pts.some(p => p.lv === k));
+  const W = Math.max(300, Math.min(view.clientWidth || 700, 760)), narrow = W < 520;
+  const L = narrow ? 92 : 136, R = 14, RH = 36, T = 8, H = T + rows.length * RH + 26;
+  const y0 = Math.floor(Math.min(...pts.map(p => p.year)) / 100) * 100, y1 = Math.max(2030, Math.ceil(Math.max(...pts.map(p => p.year)) / 10) * 10);
+  const x = y => L + (y - y0) / (y1 - y0) * (W - L - R);
+  const span = y1 - y0, stepY = span > 1200 ? 400 : span > 600 ? 200 : span > 250 ? 100 : 50;
+  let g = '';
+  for (let y = Math.ceil(y0 / stepY) * stepY; y <= y1; y += stepY) g += `<line x1="${x(y)}" x2="${x(y)}" y1="${T}" y2="${H - 22}" class="tc-grid"/><text x="${x(y)}" y="${H - 6}" class="tc-tick" text-anchor="middle">${y}</text>`;
+  rows.forEach(([k, lab], r) => { const cy = T + r * RH + RH / 2; g += `<line x1="${L}" x2="${W - R}" y1="${cy}" y2="${cy}" class="tc-row"/><text x="${L - 8}" y="${cy + 4}" class="tc-lab" text-anchor="end">${narrow ? lab.split(' ')[0] : lab}</text>`; });
+  const placed = [];
+  for (const p of pts) {
+    const r = rows.findIndex(([k]) => k === p.lv), cx = x(p.year);
+    let cy = T + r * RH + RH / 2;
+    const near = placed.filter(q => q.r === r && Math.abs(q.cx - cx) < 12).length;
+    cy += near % 3 === 1 ? -11 : near % 3 === 2 ? 11 : 0;
+    const cxs = cx + Math.floor(near / 3) * 12;
+    placed.push({ r, cx });
+    g += `<g class="tc-pt" tabindex="0" role="button" data-step="${p.i}" aria-label="${esc(p.year + ', ' + rows[r][1] + ': ' + p.label)}" data-tip="${esc((p.approx ? 'about ' : '') + p.year + ' · ' + rows[r][1] + '\n' + p.label + '\n' + p.note)}">
+      <circle cx="${cxs}" cy="${cy}" r="12" class="tc-hit"/><circle cx="${cxs}" cy="${cy}" r="5.5" style="${p.approx ? `fill:var(--bg);stroke:var(${rows[r][2]})` : `fill:var(${rows[r][2]})`}" class="tc-dot${p.approx ? ' approx' : ''}"/></g>`;
+  }
+  return `<figure class="tchart"><svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" role="group" aria-label="Steps of the thread by year and weight">${g}</svg>
+    <figcaption>Each step by its date and its weight; a hollow point has only an approximate date. Hover or focus a point for the step; choose it to go to the step below, where the same steps are listed in full.</figcaption><div class="tc-tip" hidden></div></figure>`;
+}
+function threadChartEvents() {
+  const fig = view.querySelector('.tchart'); if (!fig) return;
+  const tip = fig.querySelector('.tc-tip');
+  const show = el => { const r = el.getBoundingClientRect(), f = fig.getBoundingClientRect(); const [a, b, c] = el.dataset.tip.split('\n');
+    tip.innerHTML = `<b>${esc(a)}</b><span>${esc(b)}</span><span class="n">${esc(c.length > 160 ? c.slice(0, 160).replace(/\s\S*$/, '') + '…' : c)}</span>`; tip.hidden = false;
+    const left = Math.min(Math.max(0, r.left - f.left + r.width / 2 - 140), f.width - 280); tip.style.left = Math.max(0, left) + 'px';
+    const below = r.bottom - f.top + 6, above = r.top - f.top - tip.offsetHeight - 6;
+    tip.style.top = (r.top - f.top > f.height / 2 && above > -f.top + 60 ? above : below) + 'px'; };
+  const go = el => { const s = document.getElementById('step-' + el.dataset.step); if (s) { s.scrollIntoView({ block: 'center' }); s.classList.add('flash'); } };
+  fig.querySelectorAll('.tc-pt').forEach(el => {
+    el.addEventListener('mouseenter', () => show(el)); el.addEventListener('focus', () => show(el));
+    el.addEventListener('mouseleave', () => { tip.hidden = true; }); el.addEventListener('blur', () => { tip.hidden = true; });
+    el.addEventListener('click', () => go(el)); el.addEventListener('keydown', ev => { if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); go(el); } });
+  });
+}
 function renderThread(t) {
   view.className = 'col';
   let html = `<div class="eyebrow"><a href="#threads" style="text-decoration:none">Doctrinal threads</a></div><h1 class="page-h">${esc(t.title)}</h1>
     <p class="lede">${esc(t.summary)}</p>
     <div class="actions"><button class="btn small" data-dl-thread="${t.id}">Download this thread</button></div>
     ${reviewRow('thread:' + t.id)}
+    ${threadChart(t)}
     <div class="timeline">`;
-  for (const st of t.steps) {
+  for (const [si, st] of t.steps.entries()) {
     if (st.since) {
       const s = SINCE_BY_ID.get(st.since); if (!s) continue;
-      html += `<div class="step since"><span class="when">${stepWhen(st)}</span><span class="dot"></span><div class="what">
+      html += `<div class="step since" id="step-${si}"><span class="when">${stepWhen(st)}</span><span class="dot"></span><div class="what">
         <div class="hd"><a href="#since-${s.id}">${esc(s.title)}</a>${levelPill(s.level)}<span>${esc(s.pope)}</span></div>
         <p>${esc(st.note)}</p></div></div>`;
     } else {
       const e = byId.get(st.ref); if (!e) continue;
       const text = e.paras.join(' ');
-      html += `<div class="step"><span class="when">${stepWhen(st)}</span><span class="dot"></span><div class="what">
+      html += `<div class="step" id="step-${si}"><span class="when">${stepWhen(st)}</span><span class="dot"></span><div class="what">
         <div class="hd"><a href="#n${esc(e.id)}">${esc(nlab(e.id))}</a>${e.cur !== null && CURATED[e.cur] ? curPill(e) : weightPill(e.weight)}<span>${esc(e.era.name)}</span></div>
         <p>${esc(st.note)}</p>
         <details><summary>Show the text</summary><p>${renderText(text.length > 900 ? text.slice(0, 900).replace(/\s\S*$/, '') + '…' : text, null)}</p></details></div></div>`;
     }
   }
   view.innerHTML = html + '</div>';
+  threadChartEvents();
   window.scrollTo(0, 0);
 }
 
@@ -1394,7 +1575,7 @@ function renderCompare(a, b) {
 
 /* ---------- ask ---------- */
 let Sample = null, askCtl = null, askLast = null;
-const CONCEPTS = (() => { try { return JSON.parse(document.getElementById('concepts-data').textContent); } catch (_) { return []; } })();
+const CONCEPTS = (() => { try { return DATA('concepts-data'); } catch (_) { return []; } })();
 const STOP = new Set('a an the of and or to in on for by with is are was were be been what which who whom whose how why when where did does do can could should would may might about from as at that this these those it its into than then there their they them we our you your i me my not no yes all any each more most some such only also over under after before between church catholic teach teaching taught say said says has have had if but so just must shall being because really actually very mean means meaning relate relates related tell explain doctrine'.split(' '));
 
 /* A light stemmer, the same for the texts and the question, so that "baptized", "baptism" and "baptismal" meet. */
@@ -1706,6 +1887,7 @@ function pickEvents(el) {
 }
 
 /* ----- the prompt ----- */
+const HERM_RULES = HERM.principles.length ? 'How to read magisterial texts (hermeneutics):\n' + HERM.principles.map(p => '- ' + p.rule).join('\n') + '\n\n' : '';
 const READING_RULES = `How to read condemned propositions and controversial bulls:
 - A condemnation targets a proposition in a determinate doctrinal sense, not every meaning its words could bear. Establish that sense from the source the proposition was taken from, the wording of the condemnation (named senses such as "if thus understood"; censures), and authoritative explanations. Never supply an intention the evidence does not show, whether to accuse or to excuse.
 - "Condemned" is not "declared heretical": with censures given respectively or in globo, each proposition deserves at least one of the listed censures, not necessarily the gravest.
@@ -1787,7 +1969,7 @@ Question: ${question}`;
 - Read later teaching in continuity with earlier binding texts. Where others see a break, say so briefly and fairly.
 - Answer in the language of the question.
 
-${READING_RULES}
+${HERM_RULES}${READING_RULES}
 
 ## What the labels mean
 ${[...kinds, ...grades].join('\n') || '- (no texts given)'}
@@ -1840,7 +2022,8 @@ function renderAsk() {
   if (Sample) { $('askGo').onclick = runAsk; $('askStop').onclick = () => { if (askCtl) askCtl.abort(); }; }
   $('askCopy').onclick = copyAskPrompt;
   $('askDl').onclick = () => { const p = askPromptNow(); if (p) offerFile('denzinger-prompt.md', p); };
-  $('askLatin').onchange = ev => { Pick.latin = ev.target.checked; store.set('denz:askLatin', Pick.latin ? '1' : '0'); fillPreview(); };
+  $('askLatin').onchange = ev => { Pick.latin = ev.target.checked; store.set('denz:askLatin', Pick.latin ? '1' : '0'); if (Pick.latin) loadLatin(); fillPreview(); };
+  if (Pick.latin) loadLatin();
   $('askPrev').addEventListener('toggle', fillPreview);
   $('askQ').addEventListener('input', () => { clearTimeout(pickTimer); pickTimer = setTimeout(() => pickRefresh(), 450); });
   pickEvents($('askPick'));
@@ -2088,6 +2271,12 @@ function route() {
   } else if ((m = h.match(/^weight-([a-z-]+)$/)) && WEIGHTS[m[1]]) {
     state.weight = m[1]; state.kind = ''; state.query = ''; state.topic = null; state.limit = 60; qInput.value = '';
     setView('search'); renderResults(); window.scrollTo(0, 0);
+  } else if ((m = h.match(/^doc-([A-Z]+)$/)) && DOCS.has(m[1])) {
+    state.era = DOCS.get(m[1])[0].era; setView('read'); renderDoc(m[1]);
+  } else if (h === 'hermeneutics' || h.startsWith('herm-')) {
+    setView('hermeneutics'); highlightTerms = []; renderHermeneutics(h.startsWith('herm-') ? h.slice(5) : null);
+  } else if (h === 'checked') {
+    setView('checked'); highlightTerms = []; renderChecked();
   } else if (h === 'reading') {
     setView('reading'); highlightTerms = []; renderReading();
   } else if (h === 'ask') {
@@ -2122,6 +2311,19 @@ function route() {
     setView('home'); state.era = null; highlightTerms = []; renderHome(); window.scrollTo(0, 0);
   }
   markRail();
+  announceView(h);
+}
+/* after each change of view: name the page in the title, and move focus to it so a screen reader follows */
+let routedOnce = false;
+function announceView(h) {
+  const h1 = view.querySelector('h1');
+  const name = h1 ? h1.textContent.trim().replace(/\s+/g, ' ') : '';
+  const ent = h.startsWith('n') ? document.getElementById(h) : null;
+  document.title = (ent ? nlab(h.slice(1)) + ' · ' : '') + (name && state.view !== 'home' ? name + ' · ' : '') + 'Sources of Catholic Dogma';
+  const first = !routedOnce; routedOnce = true;
+  if (first || document.activeElement === qInput || (document.activeElement && view.contains(document.activeElement) && state.view === 'search')) return;
+  const target = ent || h1;
+  if (target) { target.setAttribute('tabindex', '-1'); target.focus({ preventScroll: true }); }
 }
 
 let tmr = null;
@@ -2213,6 +2415,7 @@ view.addEventListener('click', async ev => {
     if (!state.cmpA || state.cmpA === id) { state.cmpA = state.cmpA === id ? null : id; refreshEntry(id); toast(state.cmpA ? `Picked ${nlab(id)}. Choose Compare on a second entry.` : 'Compare cleared'); return; }
     const a = state.cmpA; state.cmpA = null; go(`#cmp-${encId(a)}~${encId(id)}`); return;
   }
+  if ((el = t.closest('[data-chk]'))) { CHK.g = el.dataset.chk; const y = window.scrollY; renderChecked(); window.scrollTo(0, y); return; }
   if ((el = t.closest('[data-level]'))) { state.sinceLevel = el.dataset.level; renderSince(null); return; }
   if ((el = t.closest('[data-cat]'))) { state.dispCat = el.dataset.cat; renderDisputed(null); return; }
   if ((el = t.closest('[data-topic]'))) { state.topic = el.dataset.topic; state.query = ''; state.kind = ''; qInput.value = ''; highlightTerms = []; go('#results'); return; }

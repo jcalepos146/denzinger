@@ -1,0 +1,21 @@
+name: Check external links
+
+# Once a month, and by hand: do the "Full text" and official links still answer?
+# Kept apart from the build, which must not depend on other sites.
+on:
+  schedule:
+    - cron: '17 6 3 * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  links:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+      - run: python3 tools/check_links.py

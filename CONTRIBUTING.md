@@ -40,7 +40,7 @@ Every file in `src/data/` can be edited on github.com: open the file, choose the
 {"from": "1839", "to": "1840", "g": "dogma", "n": "The definition of papal infallibility and its canon."}
 ```
 
-An entry takes the first range that contains it. Grades: `dogma`, `definitive`, `authentic`, `discipline`, `condemned`, `condemned-heresy`, `profession`, `disputed`, `act`, `void`, `prudential`, `witness`, `editorial`. The note should say why, in a sentence or two.
+An entry takes the first range that contains it, so a narrow range inside a wider one must come before it; the build warns about a range that can never apply. Every range and its note can be read on the site under **Hand-checked weights**. Grades: `dogma`, `definitive`, `authentic`, `discipline`, `condemned`, `condemned-heresy`, `profession`, `disputed`, `act`, `void`, `prudential`, `witness`, `editorial`. The note should say why, in a sentence or two.
 
 ### The Roman Catechism map
 
@@ -48,7 +48,23 @@ An entry takes the first range that contains it. Grades: `dogma`, `definitive`, 
 
 ### A guide
 
-`since1950.json`, `disputed.json` and `threads.json` hold the guides. Every entry number they cite must exist in `entries.json`; the check catches any that do not.
+`since1950.json`, `disputed.json`, `threads.json` and `hermeneutics.json` hold the guides. Every entry number they cite must exist in `entries.json`; the check catches any that do not.
+
+A principle in `hermeneutics.json` has an `id`, a `title`, the `rule` in one sentence (it also goes into the Ask prompt and `llms.txt`), a `body` that explains it from the texts, `misuse` (the misreading it guards against), `refs` (entries), and optionally `since` (Since 1950 items), `disputed` (disputed questions used as test cases) and `see` (a guide in the reader, such as `#reading`). State only what the cited texts say.
+
+### The Latin
+
+The Latin is as the source page gives it. To record that a passage has been compared with an edition, add a line to `src/data/latin-checked.json`:
+
+```json
+{"ds": ["3073", "3074"], "against": "Denzinger-Hünermann, 43rd ed. (2012)", "date": "2026-11-11"}
+```
+
+Each Latin block then says it was proofread, and against what. Corrections to the Latin itself go in `latin.json` under the DS number.
+
+### What was added
+
+When a change adds texts or a guide, add a line to the top of `src/data/changes.json` (`date`, `title`, `summary`, and `href`, where it opens in the reader, such as `#e135` or `#hermeneutics`). The home page shows the latest three and the site publishes them as a feed.
 
 ### What Ask recognises
 
@@ -69,7 +85,7 @@ python3 build/build.py
 python3 -m http.server -d dist
 ```
 
-Then open <http://localhost:8000>.
+Then open <http://localhost:8000>. Add `--strict` to the build to treat its notes as problems, and run `python3 tools/check_links.py` to check the external links.
 
 ## What gets accepted
 
