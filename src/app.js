@@ -345,6 +345,7 @@ const GUIDES = [
   ['#ask', 'Ask or check a statement', ''],
   ['#compare', 'Compare two texts', ''],
   ['#weights', 'Weight and censures', ''],
+  ['#checked', 'Hand-checked weights', CURATED.length + ' ranges'],
   ['#hermeneutics', 'Hermeneutics', HERM.principles.length + ' principles'],
   ['#reading', 'Reading a condemnation', ''],
   ['#scripture', 'Scripture index', ''],
@@ -378,7 +379,7 @@ function markRail() {
   let b = null;
   if (state.view === 'read' && state.era) b = rail.querySelector(`[data-era="${state.era.i}"]`);
   else {
-    const map = { home: '#home', catechism: '#catechism', timeline: '#timeline', since: '#since', disputed: '#disputed', scripture: '#scripture', book: '#scripture', topics: '#topics', saved: '#saved', threads: '#threads', thread: '#threads', ask: '#ask', compare: '#compare', weights: '#weights', reading: '#reading', hermeneutics: '#hermeneutics', edition: '#edition', concordance: '#concordance' };
+    const map = { home: '#home', catechism: '#catechism', timeline: '#timeline', since: '#since', disputed: '#disputed', scripture: '#scripture', book: '#scripture', topics: '#topics', saved: '#saved', threads: '#threads', thread: '#threads', ask: '#ask', compare: '#compare', weights: '#weights', checked: '#checked', reading: '#reading', hermeneutics: '#hermeneutics', edition: '#edition', concordance: '#concordance' };
     if (map[state.view]) b = rail.querySelector(`[data-go="${map[state.view]}"]`);
   }
   if (b) {
@@ -1248,6 +1249,7 @@ function renderWeights() {
     <div class="tablewrap"><table class="wtable"><thead><tr><th>Label</th><th>What it means</th><th>Entries</th></tr></thead><tbody>
     ${Object.entries(WEIGHTS).map(([k, x]) => `<tr><td><span class="pill lv-${x[1]}">${x[0]}</span></td><td>${esc(x[2])}</td><td><a class="xref" href="#weight-${k}">${fmt(counts[k] || 0)}</a></td></tr>`).join('')}
     </tbody></table></div>
+    <p>Many entries also carry a grade checked by hand, with the reason for it. <a href="#checked">See every hand-checked range</a>.</p>
     <h2 class="sect-h">Four cautions</h2>
     <div class="tips" style="font-size:.95rem">
       <div>In a definition, only what is proposed to be held is defined; arguments, historical remarks and reasons are not.</div>
@@ -1261,6 +1263,41 @@ function renderWeights() {
     <h2 class="sect-h">Censures</h2>
     <p class="lede" style="font-size:.95rem">The grades the Church used when condemning propositions, roughly from gravest to lightest.</p>
     <div class="tablewrap"><table class="wtable"><tbody>${CENSURE_GRADES.map(([a, b]) => `<tr><td><b>${a}</b></td><td>${b}</td></tr>`).join('')}</tbody></table></div>`;
+  window.scrollTo(0, 0);
+}
+
+/* ---------- every hand-checked range, for audit ---------- */
+const CHK = { g: '', q: '' };
+const CUR_COUNT = (() => { const c = new Array(CURATED.length).fill(0); for (const e of ENTRIES) if (e.cur !== null) c[e.cur]++; return c; })();
+function checkedRows() {
+  const nq = norm(CHK.q).trim();
+  return CURATED.map((c, i) => ({ c, i, e: byId.get(c.from) })).filter(x => x.e && (!CHK.g || x.c.g === CHK.g) &&
+    (!nq || (' ' + norm(x.c.n + ' ' + x.e.era.name + ' ' + nlab(x.c.from) + ' ' + (x.e.topic || '')) + ' ').includes(' ' + nq)));
+}
+function checkedList() {
+  const rows = checkedRows();
+  let html = `<p class="count" aria-live="polite">${fmt(rows.length)} of ${fmt(CURATED.length)} ranges</p>`, er = null;
+  for (const { c, i, e } of rows) {
+    if (e.era !== er) { er = e.era; html += `<h2 class="topic">${esc(er.name)}${er.dates ? ` <span style="color:var(--faint);font-weight:400">· ${esc(er.dates)}</span>` : ''}</h2>`; }
+    const g = GRADES[c.g];
+    html += `<div class="chk" id="chk-${i}"><div class="chk-h"><a class="xref" href="#n${esc(c.from)}">${esc(nlab(c.from))}${c.to !== c.from ? '–' + esc(dispId(c.to)) : ''}</a>
+      <span class="pill lv-${g[1]}">${g[0]}</span><span class="count">${CUR_COUNT[i]} ${CUR_COUNT[i] === 1 ? 'entry' : 'entries'}${CUR_COUNT[i] === 0 ? ' (covered by an earlier range)' : ''}</span></div>
+      <div class="chk-n">${renderText(c.n, null)}</div>${reviewRow('w:' + c.from)}</div>`;
+  }
+  return html || '<div class="empty">No range matches.</div>';
+}
+function renderChecked() {
+  view.className = 'col';
+  const counts = {}; for (const c of CURATED) counts[c.g] = (counts[c.g] || 0) + 1;
+  const covered = CUR_COUNT.reduce((a, b) => a + b, 0);
+  view.innerHTML = `<div class="eyebrow">Guide</div><h1 class="page-h">Hand-checked weights</h1>
+    <p class="lede">Every grade checked by hand on this site, with the reason given for it, so that each judgment can be examined and corrected. ${fmt(CURATED.length)} ranges cover ${fmt(covered)} of ${fmt(ENTRIES.length)} entries; where two ranges overlap, the first one listed applies. The other entries carry only the label that follows from the kind of document (<a href="#weights">how labels work</a>).</p>
+    <div class="chips" role="group" aria-label="Filter by grade"><button class="chip" data-chk="" aria-pressed="${!CHK.g}">All<span>${CURATED.length}</span></button>${Object.keys(GRADES).filter(k => counts[k]).map(k => `<button class="chip" data-chk="${k}" aria-pressed="${CHK.g === k}">${GRADES[k][0]}<span>${counts[k]}</span></button>`).join('')}</div>
+    <div class="cmpbar"><input id="chkQ" type="search" placeholder="Filter by words in the reason, a pope or a number" aria-label="Filter the ranges" value="${esc(CHK.q)}"></div>
+    ${PAGES && SITE.url ? `<p style="font-size:.9rem;color:var(--muted)">Also as a spreadsheet: <a href="${esc(SITE.url)}data/weights.csv">weights.csv</a>. To dispute a grade, use <b>Review</b> or open an issue from the entry.</p>` : ''}
+    <div id="chkList">${checkedList()}</div>`;
+  let t = null;
+  $('chkQ').oninput = ev => { clearTimeout(t); t = setTimeout(() => { CHK.q = ev.target.value; $('chkList').innerHTML = checkedList(); }, 150); };
   window.scrollTo(0, 0);
 }
 
@@ -2179,6 +2216,8 @@ function route() {
     state.era = DOCS.get(m[1])[0].era; setView('read'); renderDoc(m[1]);
   } else if (h === 'hermeneutics' || h.startsWith('herm-')) {
     setView('hermeneutics'); highlightTerms = []; renderHermeneutics(h.startsWith('herm-') ? h.slice(5) : null);
+  } else if (h === 'checked') {
+    setView('checked'); highlightTerms = []; renderChecked();
   } else if (h === 'reading') {
     setView('reading'); highlightTerms = []; renderReading();
   } else if (h === 'ask') {
@@ -2304,6 +2343,7 @@ view.addEventListener('click', async ev => {
     if (!state.cmpA || state.cmpA === id) { state.cmpA = state.cmpA === id ? null : id; refreshEntry(id); toast(state.cmpA ? `Picked ${nlab(id)}. Choose Compare on a second entry.` : 'Compare cleared'); return; }
     const a = state.cmpA; state.cmpA = null; go(`#cmp-${encId(a)}~${encId(id)}`); return;
   }
+  if ((el = t.closest('[data-chk]'))) { CHK.g = el.dataset.chk; const y = window.scrollY; renderChecked(); window.scrollTo(0, y); return; }
   if ((el = t.closest('[data-level]'))) { state.sinceLevel = el.dataset.level; renderSince(null); return; }
   if ((el = t.closest('[data-cat]'))) { state.dispCat = el.dataset.cat; renderDisputed(null); return; }
   if ((el = t.closest('[data-topic]'))) { state.topic = el.dataset.topic; state.query = ''; state.kind = ''; qInput.value = ''; highlightTerms = []; go('#results'); return; }

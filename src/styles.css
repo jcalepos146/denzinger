@@ -513,3 +513,7 @@ button.chip[aria-pressed="true"] { border-color: var(--rubric); color: var(--rub
 .doc.herm .rule { font-weight: 500; border-left: 3px solid var(--rubric); padding-left: .8rem; }
 .sect-h[id] { scroll-margin-top: calc(var(--head) + 1rem); }
 .loading { font-family: var(--sans); color: var(--muted); padding: 3rem 0; }
+/* hand-checked ranges */
+.chk { padding: .7rem 0 .8rem; border-bottom: 1px solid var(--rule); }
+.chk-h { display: flex; flex-wrap: wrap; gap: .3rem .7rem; align-items: center; font-family: var(--sans); font-size: .92rem; }
+.chk-n { margin-top: .35rem; font-size: .95rem; }
