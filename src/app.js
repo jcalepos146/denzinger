@@ -1412,29 +1412,82 @@ function renderThreads() {
     <div class="threads">${THREADS.map(t => `<a class="guide" href="#thread-${t.id}"><b>${esc(t.title)}</b><span>${esc(t.summary)}</span><span>${t.steps.length} steps</span></a>`).join('')}</div>`;
   window.scrollTo(0, 0);
 }
+/* the steps of a thread on one chart: year across, weight down; each row is labelled, so colour only repeats it */
+const TL_LV = [['dogma', 'Dogma', '--lv-dogma'], ['definitive', 'Definitive', '--lv-def'], ['authentic', 'Authentic teaching', '--lv-auth'], ['discipline', 'Discipline', '--lv-disc'], ['prudential', 'Prudential', '--lv-prud'], ['dialogue', 'Ecumenical', '--lv-other'], ['study', 'Study or witness', '--lv-other'], ['private', 'Private opinion', '--lv-other']];
+function threadPoints(t) {
+  return t.steps.map((st, i) => {
+    if (st.since) { const s = SINCE_BY_ID.get(st.since); return s && { i, year: +s.date.slice(0, 4), lv: s.level, label: s.title, note: st.note }; }
+    const e = byId.get(st.ref); if (!e) return null;
+    const w = +stepWhen(st);
+    return { i, year: e.yearExact ? e.year : (w || e.year), approx: !e.yearExact, lv: levelOf(e), label: nlab(e.id) + (e.topic ? ': ' + e.topic : ''), note: st.note };
+  }).filter(p => p && p.year);
+}
+function threadChart(t) {
+  const pts = threadPoints(t);
+  if (pts.length < 2) return '';
+  const rows = TL_LV.filter(([k]) => pts.some(p => p.lv === k));
+  const W = Math.max(300, Math.min(view.clientWidth || 700, 760)), narrow = W < 520;
+  const L = narrow ? 92 : 136, R = 14, RH = 36, T = 8, H = T + rows.length * RH + 26;
+  const y0 = Math.floor(Math.min(...pts.map(p => p.year)) / 100) * 100, y1 = Math.max(2030, Math.ceil(Math.max(...pts.map(p => p.year)) / 10) * 10);
+  const x = y => L + (y - y0) / (y1 - y0) * (W - L - R);
+  const span = y1 - y0, stepY = span > 1200 ? 400 : span > 600 ? 200 : span > 250 ? 100 : 50;
+  let g = '';
+  for (let y = Math.ceil(y0 / stepY) * stepY; y <= y1; y += stepY) g += `<line x1="${x(y)}" x2="${x(y)}" y1="${T}" y2="${H - 22}" class="tc-grid"/><text x="${x(y)}" y="${H - 6}" class="tc-tick" text-anchor="middle">${y}</text>`;
+  rows.forEach(([k, lab], r) => { const cy = T + r * RH + RH / 2; g += `<line x1="${L}" x2="${W - R}" y1="${cy}" y2="${cy}" class="tc-row"/><text x="${L - 8}" y="${cy + 4}" class="tc-lab" text-anchor="end">${narrow ? lab.split(' ')[0] : lab}</text>`; });
+  const placed = [];
+  for (const p of pts) {
+    const r = rows.findIndex(([k]) => k === p.lv), cx = x(p.year);
+    let cy = T + r * RH + RH / 2;
+    const near = placed.filter(q => q.r === r && Math.abs(q.cx - cx) < 12).length;
+    cy += near % 3 === 1 ? -11 : near % 3 === 2 ? 11 : 0;
+    const cxs = cx + Math.floor(near / 3) * 12;
+    placed.push({ r, cx });
+    g += `<g class="tc-pt" tabindex="0" role="button" data-step="${p.i}" aria-label="${esc(p.year + ', ' + rows[r][1] + ': ' + p.label)}" data-tip="${esc((p.approx ? 'about ' : '') + p.year + ' · ' + rows[r][1] + '\n' + p.label + '\n' + p.note)}">
+      <circle cx="${cxs}" cy="${cy}" r="12" class="tc-hit"/><circle cx="${cxs}" cy="${cy}" r="5.5" style="${p.approx ? `fill:var(--bg);stroke:var(${rows[r][2]})` : `fill:var(${rows[r][2]})`}" class="tc-dot${p.approx ? ' approx' : ''}"/></g>`;
+  }
+  return `<figure class="tchart"><svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" role="group" aria-label="Steps of the thread by year and weight">${g}</svg>
+    <figcaption>Each step by its date and its weight; a hollow point has only an approximate date. Hover or focus a point for the step; choose it to go to the step below, where the same steps are listed in full.</figcaption><div class="tc-tip" hidden></div></figure>`;
+}
+function threadChartEvents() {
+  const fig = view.querySelector('.tchart'); if (!fig) return;
+  const tip = fig.querySelector('.tc-tip');
+  const show = el => { const r = el.getBoundingClientRect(), f = fig.getBoundingClientRect(); const [a, b, c] = el.dataset.tip.split('\n');
+    tip.innerHTML = `<b>${esc(a)}</b><span>${esc(b)}</span><span class="n">${esc(c.length > 160 ? c.slice(0, 160).replace(/\s\S*$/, '') + '…' : c)}</span>`; tip.hidden = false;
+    const left = Math.min(Math.max(0, r.left - f.left + r.width / 2 - 140), f.width - 280); tip.style.left = Math.max(0, left) + 'px';
+    const below = r.bottom - f.top + 6, above = r.top - f.top - tip.offsetHeight - 6;
+    tip.style.top = (r.top - f.top > f.height / 2 && above > -f.top + 60 ? above : below) + 'px'; };
+  const go = el => { const s = document.getElementById('step-' + el.dataset.step); if (s) { s.scrollIntoView({ block: 'center' }); s.classList.add('flash'); } };
+  fig.querySelectorAll('.tc-pt').forEach(el => {
+    el.addEventListener('mouseenter', () => show(el)); el.addEventListener('focus', () => show(el));
+    el.addEventListener('mouseleave', () => { tip.hidden = true; }); el.addEventListener('blur', () => { tip.hidden = true; });
+    el.addEventListener('click', () => go(el)); el.addEventListener('keydown', ev => { if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); go(el); } });
+  });
+}
 function renderThread(t) {
   view.className = 'col';
   let html = `<div class="eyebrow"><a href="#threads" style="text-decoration:none">Doctrinal threads</a></div><h1 class="page-h">${esc(t.title)}</h1>
     <p class="lede">${esc(t.summary)}</p>
     <div class="actions"><button class="btn small" data-dl-thread="${t.id}">Download this thread</button></div>
     ${reviewRow('thread:' + t.id)}
+    ${threadChart(t)}
     <div class="timeline">`;
-  for (const st of t.steps) {
+  for (const [si, st] of t.steps.entries()) {
     if (st.since) {
       const s = SINCE_BY_ID.get(st.since); if (!s) continue;
-      html += `<div class="step since"><span class="when">${stepWhen(st)}</span><span class="dot"></span><div class="what">
+      html += `<div class="step since" id="step-${si}"><span class="when">${stepWhen(st)}</span><span class="dot"></span><div class="what">
         <div class="hd"><a href="#since-${s.id}">${esc(s.title)}</a>${levelPill(s.level)}<span>${esc(s.pope)}</span></div>
         <p>${esc(st.note)}</p></div></div>`;
     } else {
       const e = byId.get(st.ref); if (!e) continue;
       const text = e.paras.join(' ');
-      html += `<div class="step"><span class="when">${stepWhen(st)}</span><span class="dot"></span><div class="what">
+      html += `<div class="step" id="step-${si}"><span class="when">${stepWhen(st)}</span><span class="dot"></span><div class="what">
         <div class="hd"><a href="#n${esc(e.id)}">${esc(nlab(e.id))}</a>${e.cur !== null && CURATED[e.cur] ? curPill(e) : weightPill(e.weight)}<span>${esc(e.era.name)}</span></div>
         <p>${esc(st.note)}</p>
         <details><summary>Show the text</summary><p>${renderText(text.length > 900 ? text.slice(0, 900).replace(/\s\S*$/, '') + '…' : text, null)}</p></details></div></div>`;
     }
   }
   view.innerHTML = html + '</div>';
+  threadChartEvents();
   window.scrollTo(0, 0);
 }
 

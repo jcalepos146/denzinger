@@ -518,3 +518,22 @@ button.chip[aria-pressed="true"] { border-color: var(--rubric); color: var(--rub
 .chk-h { display: flex; flex-wrap: wrap; gap: .3rem .7rem; align-items: center; font-family: var(--sans); font-size: .92rem; }
 .chk-n { margin-top: .35rem; font-size: .95rem; }
 .lstat { font-family: var(--sans); font-size: .8rem; color: var(--faint); margin-top: .4rem; }
+/* thread chart */
+.tchart { position: relative; margin: 1rem 0 1.4rem; }
+.tchart svg { display: block; max-width: 100%; overflow: visible; }
+.tchart figcaption { font-family: var(--sans); font-size: .8rem; color: var(--faint); margin-top: .3rem; }
+.tc-grid { stroke: var(--rule); stroke-width: 1; }
+.tc-row { stroke: var(--rule); stroke-width: 1; stroke-dasharray: 2 4; }
+.tc-tick, .tc-lab { font-family: var(--sans); font-size: 11px; fill: var(--muted); }
+.tc-lab { font-size: 12px; fill: var(--ink); }
+.tc-hit { fill: transparent; }
+.tc-dot { stroke: var(--bg); stroke-width: 2; }
+.tc-pt { cursor: pointer; outline: none; }
+.tc-pt:hover .tc-dot, .tc-pt:focus-visible .tc-dot { r: 7.5; }
+.tc-pt:focus-visible .tc-hit { stroke: var(--ink); stroke-width: 1.5; }
+.tc-tip { position: absolute; z-index: 5; width: 280px; background: var(--surface); border: 1px solid var(--rule); border-radius: 8px; padding: .5rem .65rem; box-shadow: 0 6px 20px rgba(0,0,0,.12); font-family: var(--sans); font-size: .8rem; display: flex; flex-direction: column; gap: .15rem; pointer-events: none; }
+.tc-tip[hidden] { display: none; }
+.tc-tip .n { color: var(--muted); }
+.step { scroll-margin-top: calc(var(--head) + 1rem); }
+.step.flash { animation: flash 2.2s ease-out; }
+.tc-dot.approx { stroke-width: 2.5; }
