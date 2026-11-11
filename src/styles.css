@@ -512,3 +512,4 @@ button.chip[aria-pressed="true"] { border-color: var(--rubric); color: var(--rub
 .toc li { break-inside: avoid; margin: .15rem 0; }
 .doc.herm .rule { font-weight: 500; border-left: 3px solid var(--rubric); padding-left: .8rem; }
 .sect-h[id] { scroll-margin-top: calc(var(--head) + 1rem); }
+.loading { font-family: var(--sans); color: var(--muted); padding: 3rem 0; }

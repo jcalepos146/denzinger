@@ -1,14 +1,16 @@
 (() => {
 'use strict';
+/* data comes inline (the single page for Claude) or from window.DZ_DATA, which the Pages loader fetches */
+const DATA = id => { const d = window.DZ_DATA; if (d && id in d) return d[id]; const el = document.getElementById(id); if (!el) throw new Error('no ' + id); return JSON.parse(el.textContent); };
 let SITE = {};
-try { SITE = JSON.parse(document.getElementById('site-data').textContent) || {}; } catch (_) {}
+try { SITE = DATA('site-data') || {}; } catch (_) {}
 const PAGES = SITE.mode === 'pages';
 const ARTIFACT_URL = PAGES ? (SITE.url || location.href.split('#')[0]) : 'https://claude.ai/artifact/7zZixgAnh8J2dPf5MX9Hdq';
-const RAW = JSON.parse(document.getElementById('data').textContent);
-const SINCE = JSON.parse(document.getElementById('since-data').textContent).sort((a, b) => a.date.localeCompare(b.date));
-const DISPUTED = JSON.parse(document.getElementById('disputed-data').textContent);
-const THREADS = JSON.parse(document.getElementById('threads-data').textContent);
-const HERM = (() => { try { return JSON.parse(document.getElementById('hermeneutics-data').textContent); } catch (_) { return { principles: [], method: [] }; } })();
+const RAW = DATA('data');
+const SINCE = DATA('since-data').sort((a, b) => a.date.localeCompare(b.date));
+const DISPUTED = DATA('disputed-data');
+const THREADS = DATA('threads-data');
+const HERM = (() => { try { return DATA('hermeneutics-data'); } catch (_) { return { principles: [], method: [] }; } })();
 const CENS = RAW.censures || [];
 const QUALITY = RAW.quality || {};
 const CURATED = RAW.curated || [];
@@ -641,7 +643,24 @@ function citation(e) {
 
 /* ---------- old and new numbers ---------- */
 let LATIN = null;
-const latinText = n => { if (!LATIN) { try { LATIN = JSON.parse(document.getElementById('latin-data').textContent); } catch (_) { LATIN = {}; } } return LATIN[n]; };
+/* the Latin is inline on the Claude page; the Pages build fetches it the first time it is needed */
+let latinLoading = null;
+function loadLatin() {
+  if (LATIN) return Promise.resolve(LATIN);
+  if (document.getElementById('latin-data') || !SITE.latin) { try { LATIN = DATA('latin-data'); } catch (_) { LATIN = {}; } return Promise.resolve(LATIN); }
+  if (!latinLoading) {
+    latinLoading = fetch(SITE.latin).then(r => r.ok ? r.json() : Promise.reject(new Error(r.status)))
+      .then(j => { LATIN = j; LAT_HAY = null; latinArrived(); return j; })
+      .catch(() => { latinLoading = null; toast('The Latin text could not be loaded. Check the connection and try again.'); return null; });
+  }
+  return latinLoading;
+}
+const latinText = n => { if (!LATIN) { loadLatin(); if (!LATIN) return undefined; } return LATIN[n]; };
+function latinArrived() {
+  if (state.view === 'read') { document.querySelectorAll('.entry').forEach(x => refreshEntry(x.id.slice(1))); return; }
+  if (state.view === 'ask') { if (typeof fillPreview === 'function') fillPreview(); return; }
+  if (state.view === 'search' || state.view === 'compare') { const y = window.scrollY; route(); window.scrollTo(0, y); }
+}
 const DS_HOW = {
   series: ['inferred', 'Inferred from the numbering of the neighboring entries; the Latin page does not print the old number here.'],
   checked: ['matched by hand', 'The Latin page prints this pair confusingly; matched by reading both texts.'],
@@ -674,7 +693,7 @@ function latinHtml(e) {
     return `<div class="latin none">This entry has no number on the Latin page${e.weight === 'note' ? ' (it is an editorial note)' : ''}.${nb.length ? ` Nearest numbered entries: ${nb.map(nbLink).join('; ')}.` : ''}</div>`;
   }
   const h = DS_HOW[e.dsHow];
-  return `<div class="latin" lang="la"><div class="lh">Latin · ${esc(dsText(e))}${h ? ` · ${h[0]}` : ''}</div>${e.ds.map(n => { const t = latinText(n); return `<p><span class="dsn">${esc(n)}</span>${t ? esc(t) : '<i>The Latin page gives no text under this number.</i>'}</p>`; }).join('')}</div>`;
+  return `<div class="latin" lang="la"><div class="lh">Latin · ${esc(dsText(e))}${h ? ` · ${h[0]}` : ''}</div>${e.ds.map(n => { const t = latinText(n); return `<p><span class="dsn">${esc(n)}</span>${t ? esc(t) : LATIN ? '<i>The Latin page gives no text under this number.</i>' : '<i>Loading the Latin…</i>'}</p>`; }).join('')}</div>`;
 }
 const Latin = { mode: 'off', flip: new Set(), get all() { return this.mode !== 'off'; } };
 try { const v = localStorage.getItem('dz-latin'); Latin.mode = v === '2' ? 'side' : v === '1' ? 'under' : 'off'; } catch (_) {}
@@ -1430,7 +1449,7 @@ function renderCompare(a, b) {
 
 /* ---------- ask ---------- */
 let Sample = null, askCtl = null, askLast = null;
-const CONCEPTS = (() => { try { return JSON.parse(document.getElementById('concepts-data').textContent); } catch (_) { return []; } })();
+const CONCEPTS = (() => { try { return DATA('concepts-data'); } catch (_) { return []; } })();
 const STOP = new Set('a an the of and or to in on for by with is are was were be been what which who whom whose how why when where did does do can could should would may might about from as at that this these those it its into than then there their they them we our you your i me my not no yes all any each more most some such only also over under after before between church catholic teach teaching taught say said says has have had if but so just must shall being because really actually very mean means meaning relate relates related tell explain doctrine'.split(' '));
 
 /* A light stemmer, the same for the texts and the question, so that "baptized", "baptism" and "baptismal" meet. */
@@ -1877,7 +1896,8 @@ function renderAsk() {
   if (Sample) { $('askGo').onclick = runAsk; $('askStop').onclick = () => { if (askCtl) askCtl.abort(); }; }
   $('askCopy').onclick = copyAskPrompt;
   $('askDl').onclick = () => { const p = askPromptNow(); if (p) offerFile('denzinger-prompt.md', p); };
-  $('askLatin').onchange = ev => { Pick.latin = ev.target.checked; store.set('denz:askLatin', Pick.latin ? '1' : '0'); fillPreview(); };
+  $('askLatin').onchange = ev => { Pick.latin = ev.target.checked; store.set('denz:askLatin', Pick.latin ? '1' : '0'); if (Pick.latin) loadLatin(); fillPreview(); };
+  if (Pick.latin) loadLatin();
   $('askPrev').addEventListener('toggle', fillPreview);
   $('askQ').addEventListener('input', () => { clearTimeout(pickTimer); pickTimer = setTimeout(() => pickRefresh(), 450); });
   pickEvents($('askPick'));

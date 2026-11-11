@@ -381,6 +381,41 @@ def reader_body(raw, d, site):
             '<script>\n' + app + '</script>\n')
 
 
+def hashed(out, name, ext, text):
+    """Write assets/<name>.<hash>.<ext>, so a browser can keep it until its content changes."""
+    data = text.encode('utf-8')
+    rel = f'assets/{name}.{zlib.crc32(data) & 0xffffffff:08x}.{ext}'
+    os.makedirs(os.path.join(out, 'assets'), exist_ok=True)
+    with open(os.path.join(out, rel), 'wb') as f:
+        f.write(data)
+    return rel
+
+
+def reader_split(raw, d, site, out):
+    """The Pages reader: a small page that shows the frame at once and fetches the app and the data.
+    The Latin is fetched only when it is first needed."""
+    site = dict(site)
+    site['latin'] = hashed(out, 'latin', 'json', dump(d['latin']))
+    blocks = {'site-data': site, 'data': raw, 'since-data': d['since'], 'disputed-data': d['disputed'],
+              'threads-data': d['threads'], 'concepts-data': d['concepts'], 'hermeneutics-data': d['herm']}
+    data_rel = hashed(out, 'reader', 'json', dump(blocks))
+    css_rel = hashed(out, 'styles', 'css', read_src('styles.css'))
+    app_rel = hashed(out, 'app', 'js', read_src('app.js'))
+    shell = read_src('shell.html').replace(
+        '<div class="col" id="view"></div>',
+        '<div class="col" id="view"><p class="loading" id="boot">Loading the collection…</p></div>')
+    loader = ('(function(){var b=document.getElementById("boot");'
+              'function fail(){b.innerHTML=\'The collection could not be loaded. <a href="">Try again</a>.\';}'
+              f'fetch("{data_rel}").then(function(r){{if(!r.ok)throw r;return r.json();}}).then(function(j){{'
+              'window.DZ_DATA=j;var s=document.createElement("script");'
+              f's.src="{app_rel}";s.onerror=fail;document.body.appendChild(s);}}).catch(fail);}})();')
+    head_extra = (f'<link rel="stylesheet" href="{css_rel}">\n'
+                  f'<link rel="preload" href="{data_rel}" as="fetch" crossorigin>\n'
+                  f'<link rel="preload" href="{app_rel}" as="script">\n')
+    body = shell + '\n<noscript><p style="padding:1rem">The reader needs JavaScript. Every entry also has its own page, listed in the <a href="sitemap.xml">sitemap</a>.</p></noscript>\n' + f'<script>{loader}</script>\n'
+    return head_extra, body, [css_rel, data_rel, app_rel, site['latin']]
+
+
 ICON_SVG = ("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23a11f1d'/%3E"
             "%3Ctext x='32' y='45' font-family='Georgia,serif' font-size='38' font-weight='700' text-anchor='middle' fill='%23fff'%3ED%3C/text%3E%3C/svg%3E")
 
@@ -661,7 +696,8 @@ def pages_build(args):
     if os.path.isdir(out):
         shutil.rmtree(out)
     os.makedirs(out)
-    index = head(TITLE, DESC, url, '') + reader_body(raw, d, site) + '</body>\n</html>\n'
+    head_extra, body, assets = reader_split(raw, d, site, out)
+    index = head(TITLE, DESC, url, '', head_extra) + body + '</body>\n</html>\n'
     write(os.path.join(out, 'index.html'), index)
     write(os.path.join(out, 'assets', 'entry.css'), read_src('entry.css'))
     urls = entry_pages(d, raw, derived, out, url)
@@ -675,8 +711,8 @@ def pages_build(args):
         'icons': [{'src': 'icons/icon-192.png', 'sizes': '192x192', 'type': 'image/png'},
                   {'src': 'icons/icon-512.png', 'sizes': '512x512', 'type': 'image/png'},
                   {'src': 'icons/icon-512.png', 'sizes': '512x512', 'type': 'image/png', 'purpose': 'maskable'}]}, indent=1))
-    version = f'{built}-{zlib.crc32(index.encode()) & 0xffffffff:08x}'
-    write(os.path.join(out, 'sw.js'), read_src('sw.js').replace('__VERSION__', version))
+    version = f'{built}-{zlib.crc32((index + "".join(assets)).encode()) & 0xffffffff:08x}'
+    write(os.path.join(out, 'sw.js'), read_src('sw.js').replace('__VERSION__', version).replace("'__ASSETS__'", ', '.join(json.dumps(a) for a in assets)))
     write(os.path.join(out, '.nojekyll'), '')
     write(os.path.join(out, 'llms.txt'), LLMS.replace('{herm}', '\n'.join('- ' + p['rule'] for p in d['herm']['principles'])).replace('{url}', url or './'))
     write(os.path.join(out, 'robots.txt'), 'User-agent: *\nAllow: /\n' + (f'Sitemap: {url}sitemap.xml\n' if url else ''))
