@@ -10,21 +10,25 @@ A searchable, organized reader for Denzinger's *Enchiridion Symbolorum* in Engli
 | One entry (e.g. Vatican I on papal infallibility) | <https://jcalepos146.github.io/denzinger/n/1839/> |
 | Open data | <https://jcalepos146.github.io/denzinger/data/entries.json> |
 | For AI clients | <https://jcalepos146.github.io/denzinger/llms.txt> |
+| Short links | `ds/3074/` (by DS number), `lg/25/` (by document and article), `lg/` (a whole document) |
+| Feed of additions | <https://jcalepos146.github.io/denzinger/feed.xml> |
 
 ## What it has
 
 - **The full text:** 2,431 entries, from the creeds to Pius XII, including an appendix numbered from 5000. Scanning errors are corrected conservatively.
 - **After 1958:** 968 entries from John XXIII, the Second Vatican Council, Paul VI, John Paul II, Benedict XVI, Francis and Leo XIV to October 2026, one entry per article of each document, numbered by the document and article (`LG 25`, `GS 22`, `EV 62`); addresses are numbered by their date (`AD 19641203`). Each is labelled by kind of document: encyclical, address or homily, document of the Doctrine of the Faith, and so on. Interviews and press conferences are marked as private opinion.
-- **A page for every entry** at `/n/<number>/`, so that search engines find them and shared links show the text. Each page links back to its place in the reader.
-- **Old and new numbers:** each entry shows its Denzinger–Schönmetzer (DS) number, which Denzinger–Hünermann keeps. The Latin text can be shown below each entry or side by side with the English.
-- **Weights:** every entry carries a grade (defined dogma, definitive, authoritative teaching, discipline, condemned, prudential and others), checked by hand in 512 ranges, each with a note on why. Condemned propositions also show their censures.
+- **A page for every entry** at `/n/<number>/`, so that search engines find them and shared links show the text, with structured data (JSON-LD) and a share image. Each page links back to its place in the reader and, after 1958, to its whole document. Short links lead to them by the numbers people cite: `ds/3074/`, `lg/25/`.
+- **Whole documents:** each document after 1958 can be read on its own (`lg/` opens Lumen Gentium).
+- **Old and new numbers:** each entry shows its Denzinger–Schönmetzer (DS) number, which Denzinger–Hünermann keeps. The Latin text can be shown below each entry or side by side with the English; it is loaded only when first needed, and each Latin block says whether it has been proofread and links to a correction form.
+- **Weights:** every entry carries a grade (defined dogma, definitive, authoritative teaching, discipline, condemned, prudential and others), checked by hand in 512 ranges, each with a note on why; a page lists every range with its reason so the grades can be audited. Condemned propositions also show their censures.
 - **Supplement:** 49 texts: the decrees of Constance and Basel that Denzinger leaves out, Moyses vir Dei and the last bulls of union of Florence (with the Syrians, and with the Chaldeans and Maronites of Cyprus), Pius IV's bull confirming Trent, and the witnesses to the Synod of Sutri (1046), each with its standing.
 - **Guides:**
   - the Roman Catechism (Catechism of the Council of Trent), chapter by chapter, with the texts each chapter explains;
   - a timeline of every entry by date and weight, with the definitions and creeds in order;
-  - 18 doctrinal threads that follow a teaching through the collection;
+  - 18 doctrinal threads that follow a teaching through the collection, each with a chart of its steps by date and weight;
   - *Since 1950*, 47 points read by the hermeneutic of continuity;
   - 45 disputed questions.
+- **Hermeneutics:** ten principles for reading magisterial texts (development in the same sense, weighing a text before reading it, what is proposed as against its reasoning, the occasion a text answers, formula and truth, the analogy of faith, Scripture read in the Church, principle and application, condemnations, private words), each stated as a rule, grounded in texts of the collection, with the misreading it guards against and test cases among the disputed questions; then the two hermeneutics and a method. The rules also go into every prompt Ask writes and into `llms.txt`.
 - **Reading a condemnation:** a guide to reading condemned propositions in the sense they were condemned, with the case of Unigenitus; every condemned proposition links to it.
 - **Ask or check a statement:** ask a question, or test a statement against the texts for formation; an AI answers from the entries and cites them. The texts are chosen from the words of the question, the doctrines it names (with their defining texts), the guides that discuss them and any numbers it gives (`n. 1839`, `DS 3074`, `LG 25`, `Matt 16:18`), with binding texts first. The page lists them before you ask, with the reason for each, so you can untick some or add others by number or words. Opened in Claude it answers in the page; anywhere else it copies or downloads a prompt with the texts in full, a link to each, what their labels mean and the reading rules, optionally with the Latin, for any AI client. `llms.txt` describes the data for AI clients and agents.
 - **Cross-references:** "cited by" links between entries that refer to each other by number.
@@ -40,7 +44,7 @@ A searchable, organized reader for Denzinger's *Enchiridion Symbolorum* in Engli
   | DS numbers | `ds:3000-3075` |
   | Leave a word out | `-marriage` |
 
-- **Tools:** side-by-side comparison; saved entries and notes, kept in your browser; Markdown study packets; citations in Chicago and Turabian style with both numbers; a print layout; a text for each day.
+- **Tools:** side-by-side comparison; saved entries and notes, kept in your browser; Markdown study packets; citations in Chicago and Turabian style with both numbers; a print layout; a text for each day; the latest additions on the home page and as an Atom feed.
 
 ## Open data
 
@@ -53,7 +57,7 @@ Each build publishes the data at `/data/`:
 | `weights.csv` | The hand-checked weight ranges and their notes |
 | `latin.json` | The Latin text by DS number, as the source page gives it |
 | `roman-catechism.json` | The Roman Catechism's chapters and the entries matched to each |
-| `guides.json` | Since 1950, the disputed questions and the threads |
+| `guides.json` | Since 1950, the disputed questions, the threads and the principles of hermeneutics |
 
 ## Corrections
 
@@ -80,18 +84,24 @@ python3 -m http.server -d dist
 
 A GitHub Action runs the same script on every push to `main` and publishes `dist/` to GitHub Pages at <https://jcalepos146.github.io/denzinger/>, with a `sitemap.xml` of every entry page. It also checks pull requests, so a change that breaks the data never reaches the site.
 
+The build stops on problems (a reference to an entry that does not exist, an unknown grade) and prints notes on things worth a look (an "n." reference that points nowhere, a DS number given to two entries, a weight range that can never apply); `--strict` makes the notes stop it too. The reader's page is small: the app, styles and data are separate files named by their content, so browsers keep them until they change. Once a month another Action runs `tools/check_links.py`, which checks the external links.
+
 | Path | What it holds |
 |---|---|
 | `src/data/entries.json` | The entries, one per line |
 | `src/data/eras.json` | Popes, councils and creeds, in order |
 | `src/data/weights.json` | Hand-checked weight ranges |
 | `src/data/catechism.json` | The Roman Catechism map |
-| `src/data/since1950.json`, `disputed.json`, `threads.json` | The guides |
+| `src/data/since1950.json`, `disputed.json`, `threads.json`, `hermeneutics.json` | The guides |
+| `src/data/changes.json` | What was added and when, for the home page and the feed |
+| `src/data/latin-checked.json` | Which Latin texts have been proofread, against what |
 | `src/data/concepts.json` | The doctrines Ask recognises in a question, and their defining texts |
 | `src/data/latin.json` | Latin text by DS number |
 | `src/data/censures.json`, `books.json`, `quality.json` | Censures, Scripture book names, notes on the text |
 | `src/app.js`, `src/styles.css`, `src/shell.html` | The reader |
 | `src/entry.css` | The single-entry pages |
+| `src/og.png` | The share image |
 | `src/sw.js` | Offline support |
 | `build/build.py` | Checks the data and builds everything |
+| `tools/check_links.py` | Checks the external links (not part of the build) |
 | `tools/post1958/` | The scripts that imported and aligned the texts after 1958 (see its README) |
