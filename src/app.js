@@ -8,6 +8,7 @@ const RAW = JSON.parse(document.getElementById('data').textContent);
 const SINCE = JSON.parse(document.getElementById('since-data').textContent).sort((a, b) => a.date.localeCompare(b.date));
 const DISPUTED = JSON.parse(document.getElementById('disputed-data').textContent);
 const THREADS = JSON.parse(document.getElementById('threads-data').textContent);
+const HERM = (() => { try { return JSON.parse(document.getElementById('hermeneutics-data').textContent); } catch (_) { return { principles: [], method: [] }; } })();
 const CENS = RAW.censures || [];
 const QUALITY = RAW.quality || {};
 const CURATED = RAW.curated || [];
@@ -45,6 +46,7 @@ const addDisc = (id, item) => { if (!DISCUSSED.has(id)) DISCUSSED.set(id, []); D
 for (const d of DISPUTED) for (const r of d.refs) addDisc(r, { href: '#q-' + d.id, label: d.title, kind: 'Disputed question' });
 for (const s of SINCE) for (const r of s.refs) addDisc(r, { href: '#since-' + s.id, label: s.title, kind: 'Since 1950' });
 for (const t of THREADS) for (const st of t.steps) if (st.ref) addDisc(st.ref, { href: '#thread-' + t.id, label: t.title + ' (thread)', kind: 'Thread' });
+for (const p of HERM.principles) for (const r of p.refs) addDisc(r, { href: '#herm-' + p.id, label: p.title + ' (hermeneutics)', kind: 'Hermeneutics' });
 const DISP_BY_ID = new Map(DISPUTED.map(d => [d.id, d]));
 /* the Roman Catechism, chapter by chapter */
 const RC = RAW.rc || { parts: [] };
@@ -341,6 +343,7 @@ const GUIDES = [
   ['#ask', 'Ask or check a statement', ''],
   ['#compare', 'Compare two texts', ''],
   ['#weights', 'Weight and censures', ''],
+  ['#hermeneutics', 'Hermeneutics', HERM.principles.length + ' principles'],
   ['#reading', 'Reading a condemnation', ''],
   ['#scripture', 'Scripture index', ''],
   ['#concordance', 'Old and new numbers', ''],
@@ -373,7 +376,7 @@ function markRail() {
   let b = null;
   if (state.view === 'read' && state.era) b = rail.querySelector(`[data-era="${state.era.i}"]`);
   else {
-    const map = { home: '#home', catechism: '#catechism', timeline: '#timeline', since: '#since', disputed: '#disputed', scripture: '#scripture', book: '#scripture', topics: '#topics', saved: '#saved', threads: '#threads', thread: '#threads', ask: '#ask', compare: '#compare', weights: '#weights', reading: '#reading', edition: '#edition', concordance: '#concordance' };
+    const map = { home: '#home', catechism: '#catechism', timeline: '#timeline', since: '#since', disputed: '#disputed', scripture: '#scripture', book: '#scripture', topics: '#topics', saved: '#saved', threads: '#threads', thread: '#threads', ask: '#ask', compare: '#compare', weights: '#weights', reading: '#reading', hermeneutics: '#hermeneutics', edition: '#edition', concordance: '#concordance' };
     if (map[state.view]) b = rail.querySelector(`[data-go="${map[state.view]}"]`);
   }
   if (b) {
@@ -445,6 +448,7 @@ function renderHome() {
       <a class="guide" href="#scripture"><b>Scripture index</b><span>Every bracketed Scripture reference, by book, chapter and verse.</span></a>
       <a class="guide" href="#topics"><b>Topics</b><span>The section headings of the whole collection, A to Z.</span></a>
       <a class="guide" href="#weights"><b>Weight and censures</b><span>What each kind of text binds, the theological notes, and the grades of censure.</span></a>
+      <a class="guide" href="#hermeneutics"><b>Hermeneutics</b><span>How to read magisterial texts: development in the same sense, weight, occasion, formula and truth, principle and application, each grounded in the texts.</span></a>
       <a class="guide" href="#reading"><b>Reading a condemnation</b><span>Why a condemned proposition is read in the sense condemned, how that sense is established, and the case of Unigenitus.</span></a>
       <a class="guide" href="#e${ERAS.find(x => x.sup).i}"><b>Constance and Basel</b><span>The conciliar decrees Denzinger leaves out, from Haec Sancta to Basel's "three truths," with their standing.</span></a>
       <a class="guide" href="#compare"><b>Compare two texts</b><span>Read two entries side by side, with the guides that discuss them together.</span></a>
@@ -1271,6 +1275,38 @@ function renderReading() {
   window.scrollTo(0, 0);
 }
 
+/* ---------- hermeneutics ---------- */
+function renderHermeneutics(focus) {
+  view.className = 'col';
+  const sinceL = ids => (ids || []).map(id => SINCE_BY_ID.get(id)).filter(Boolean).map(s => `<a href="#since-${esc(s.id)}">${esc(s.title)}</a>`).join(' · ');
+  const dispL = ids => (ids || []).map(id => DISP_BY_ID.get(id)).filter(Boolean).map(d => `<a href="#q-${esc(d.id)}">${esc(d.title)}</a>`).join(' · ');
+  const tests = DISPUTED.filter(d => d.cat === 'continuity');
+  view.innerHTML = `<div class="eyebrow">Guide</div><h1 class="page-h">Hermeneutics</h1>
+    <p class="lede">${esc(HERM.intro)}</p>
+    <nav class="toc" aria-label="Principles"><ol>${HERM.principles.map(p => `<li><a href="#herm-${p.id}">${esc(p.title)}</a></li>`).join('')}<li><a href="#herm-two">${esc(HERM.two.title)}</a></li><li><a href="#herm-method">A method</a></li></ol></nav>
+    ${HERM.principles.map((p, i) => `<article class="doc herm" id="herm-${p.id}">
+      <div class="meta"><span>Principle ${i + 1}</span></div>
+      <h2>${esc(p.title)}</h2>
+      <p class="rule">${esc(p.rule)}</p>
+      <p>${esc(p.body)}</p>
+      <div class="blk"><b>Guards against</b><div>${esc(p.misuse)}</div></div>
+      <div class="links">
+        <div>Texts: ${refLinks(p.refs)}</div>
+        ${p.since && p.since.length ? `<div>Since 1950: ${sinceL(p.since)}</div>` : ''}
+        ${p.disputed && p.disputed.length ? `<div>Test cases: ${dispL(p.disputed)}</div>` : ''}
+        ${p.see ? `<div>See also: <a href="${esc(p.see)}">${esc((GUIDES.find(g => g[0] === p.see) || [, 'guide'])[1])}</a></div>` : ''}
+      </div>
+      ${reviewRow('herm:' + p.id)}
+    </article>`).join('')}
+    <h2 class="sect-h" id="herm-two">${esc(HERM.two.title)}</h2>
+    <p>${esc(HERM.two.body)}</p>
+    <p style="font-size:.95rem">Questions where the two readings meet: ${tests.map(d => `<a class="xref" href="#q-${esc(d.id)}">${esc(d.title)}</a> <span style="color:var(--muted)">(${esc(d.status)})</span>`).join(' · ')}</p>
+    <h2 class="sect-h" id="herm-method">A method</h2>
+    <ol style="font-size:.95rem">${HERM.method.map(m => `<li>${esc(m)}</li>`).join('')}</ol>
+    <p style="font-size:.9rem;color:var(--muted)">These principles were drawn together for this site from the texts they cite. They are a reading aid, not an official statement; read the texts themselves.</p>`;
+  scrollToTarget(focus ? 'herm-' + focus : null);
+}
+
 /* ---------- threads ---------- */
 function stepWhen(st) {
   if (st.since) { const s = SINCE_BY_ID.get(st.since); return s ? s.date.slice(0, 4) : ''; }
@@ -1706,6 +1742,7 @@ function pickEvents(el) {
 }
 
 /* ----- the prompt ----- */
+const HERM_RULES = HERM.principles.length ? 'How to read magisterial texts (hermeneutics):\n' + HERM.principles.map(p => '- ' + p.rule).join('\n') + '\n\n' : '';
 const READING_RULES = `How to read condemned propositions and controversial bulls:
 - A condemnation targets a proposition in a determinate doctrinal sense, not every meaning its words could bear. Establish that sense from the source the proposition was taken from, the wording of the condemnation (named senses such as "if thus understood"; censures), and authoritative explanations. Never supply an intention the evidence does not show, whether to accuse or to excuse.
 - "Condemned" is not "declared heretical": with censures given respectively or in globo, each proposition deserves at least one of the listed censures, not necessarily the gravest.
@@ -1787,7 +1824,7 @@ Question: ${question}`;
 - Read later teaching in continuity with earlier binding texts. Where others see a break, say so briefly and fairly.
 - Answer in the language of the question.
 
-${READING_RULES}
+${HERM_RULES}${READING_RULES}
 
 ## What the labels mean
 ${[...kinds, ...grades].join('\n') || '- (no texts given)'}
@@ -2088,6 +2125,8 @@ function route() {
   } else if ((m = h.match(/^weight-([a-z-]+)$/)) && WEIGHTS[m[1]]) {
     state.weight = m[1]; state.kind = ''; state.query = ''; state.topic = null; state.limit = 60; qInput.value = '';
     setView('search'); renderResults(); window.scrollTo(0, 0);
+  } else if (h === 'hermeneutics' || h.startsWith('herm-')) {
+    setView('hermeneutics'); highlightTerms = []; renderHermeneutics(h.startsWith('herm-') ? h.slice(5) : null);
   } else if (h === 'reading') {
     setView('reading'); highlightTerms = []; renderReading();
   } else if (h === 'ask') {

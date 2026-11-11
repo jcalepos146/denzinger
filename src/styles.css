@@ -507,3 +507,8 @@ button.chip[aria-pressed="true"] { border-color: var(--rubric); color: var(--rub
   .discussed { display: none; }
   .mynote { background: none; }
 }
+/* hermeneutics */
+.toc ol { font-family: var(--sans); font-size: .92rem; columns: 2 16rem; column-gap: 2rem; padding-left: 1.4rem; margin: .5rem 0 1rem; }
+.toc li { break-inside: avoid; margin: .15rem 0; }
+.doc.herm .rule { font-weight: 500; border-left: 3px solid var(--rubric); padding-left: .8rem; }
+.sect-h[id] { scroll-margin-top: calc(var(--head) + 1rem); }

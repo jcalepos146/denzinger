@@ -1,0 +1,113 @@
+{
+ "intro": "Hermeneutics is the art of reading a text in the sense it actually has. For magisterial texts the Church has stated her own rules: dogma keeps the same meaning while understanding of it grows; texts carry different weights; a text answers a question of its time and is read in the light of what it answers; and every text is read within the whole of the faith. These rules cut both ways. They forbid reading a change of wording as a change of doctrine, and they forbid emptying a definition by calling it a product of its time. Each principle below is grounded in texts of this collection.",
+ "principles": [
+  {
+   "id": "same-sense",
+   "title": "Development in the same sense",
+   "rule": "Understanding of revealed truth grows, but always in the same dogma, the same sense and the same meaning; a dogma once declared is never given a different meaning.",
+   "body": "Vatican I takes Vincent of Lérins as its rule: understanding is to grow and progress through the centuries, but only in its own kind, with the same sense and the same understanding, and the Church never recedes from a meaning once declared under the name of a deeper understanding. Its canon anathematizes giving dogmas a meaning different from the Church's according to the progress of science. The Anti-Modernist Oath rejects an evolution of dogmas that passes from one meaning to another. Dei Verbum states the positive side: the apostolic Tradition develops in the Church through contemplation, study, experience and preaching, as a growth in the understanding of what was handed down.",
+   "misuse": "Treating every new formulation as a rupture; or treating development as permission for a later meaning to replace an earlier one.",
+   "refs": ["1800", "1818", "2145", "2079", "2080", "DV8"],
+   "since": ["me", "b16"]
+  },
+  {
+   "id": "weigh-first",
+   "title": "Weigh the text before reading it",
+   "rule": "First ask what kind of act a text is and what assent it asks: faith for what is proposed as revealed, firm acceptance for what is proposed definitively, religious submission of mind and will for authentic teaching, obedience for discipline.",
+   "body": "Vatican I says that what the Church proposes as revealed, by solemn judgment or by the ordinary and universal magisterium, is believed with divine and Catholic faith. Lumen Gentium 25 asks religious submission of mind and will to the authentic magisterium of the Pope even when he does not speak ex cathedra, according to his manifest mind and will, known from the character of the documents, the frequent repetition of the same doctrine, or the manner of speaking. Donum Veritatis 23 and the Profession of Faith set out the same levels. Pius IX denied that the obligation of Catholic teachers is limited to infallible definitions, and the Syllabus condemns that view.",
+   "misuse": "Quoting an address, an interview or a reasoning clause as if it were a definition; or treating everything short of a definition as optional.",
+   "refs": ["1792", "LG25", "DVER23", "PF", "1683", "1722"],
+   "since": ["donum", "atf"],
+   "see": "#weights"
+  },
+  {
+   "id": "what-is-proposed",
+   "title": "Find what is proposed, not only what is said",
+   "rule": "A definition binds in what it proposes to be held; the arguments, illustrations and history around it do not share its weight.",
+   "body": "Vatican I defines the infallibility of the Pope when he speaks ex cathedra, and states the conditions: as pastor and teacher of all Christians, by his supreme apostolic authority, defining a doctrine of faith or morals to be held by the universal Church. A text that does not meet those conditions is not defined by being papal. In Unam Sanctam only the closing declaration is defined; the reasoning about the two swords is not. Lumen Gentium 25 applies the same discernment to the authentic magisterium: the Pope's mind is known from the character of the document, the repetition of the doctrine and the manner of speaking.",
+   "misuse": "Treating the premise of an argument, a historical remark or an illustration as defined doctrine.",
+   "refs": ["1839", "468", "469", "LG25"],
+   "disputed": ["unam-sanctam", "humanae-vitae", "women-ordination"]
+  },
+  {
+   "id": "occasion",
+   "title": "Read a text against what it answers",
+   "rule": "A magisterial text usually confirms what is contained in Scripture and Tradition while answering a particular question or error; the question it answers is part of its meaning.",
+   "body": "Mysterium Ecclesiae says that when the Church makes new pronouncements she intends to confirm or clarify what is contained in Scripture or earlier Tradition, and at the same time usually intends to solve certain questions or remove certain errors, and that all this must be taken into account to interpret the pronouncements properly. Pius XII gives the same rule for Scripture: the highest norm of interpretation is to grasp what the writer intended to say, from his age, his sources and his forms of expression. The setting has to be shown from evidence: the documents of preparation, the adversary's own words, the wording of the act.",
+   "misuse": "Reading a text as an answer to a modern question it was not asking; or inventing a setting to make an inconvenient text say less.",
+   "refs": ["MEC5", "2294"],
+   "since": ["me"],
+   "see": "#reading"
+  },
+  {
+   "id": "formula",
+   "title": "Formula and truth",
+   "rule": "The truths a dogmatic formula teaches are distinct from the changeable conceptions of an epoch, and the formulas remain true and suitable for those who read them rightly; historical conditioning never makes a definition false.",
+   "body": "Mysterium Ecclesiae grants that the meaning of pronouncements depends partly on the expressive power of the language of their time, that a truth can first be expressed incompletely but not falsely and later more fully, and that a formula can bear traces of the conceptions of its age; and it insists that the formulas remain forever suitable for communicating revealed truth to those who interpret them correctly. Fides et Ratio asks for a hermeneutic open to metaphysics that moves from the historical circumstances of a text to the truth it expresses. Lamentabili condemned the view that dogmas are only interpretations of religious facts or practical norms, and Humani Generis rejects dogmatic relativism that would recast dogma in any passing philosophy. Unitatis Redintegratio distinguishes the way doctrine has been formulated from the deposit of faith itself.",
+   "misuse": "Using \"historically conditioned\" to set aside what a definition teaches; or refusing any distinction between a truth and the words that first expressed it.",
+   "refs": ["MEC5", "FR95", "UR6", "2022", "2026", "2310", "2311", "2312"],
+   "since": ["me"]
+  },
+  {
+   "id": "whole",
+   "title": "Read within the whole: the analogy of faith",
+   "rule": "Read each truth in its coherence with the others and with the whole plan of revelation; truths are ordered by their relation to the foundation of the faith, which ranks them but excludes none.",
+   "body": "Vatican I teaches that reason enlightened by faith gains understanding of the mysteries from their connection with one another and with man's last end. The Catechism names this the analogy of faith, the coherence of the truths of faith among themselves and within the whole plan of revelation. Unitatis Redintegratio speaks of a hierarchy of truths, since they vary in their relation to the foundation of the Christian faith; the Catechism repeats it. The hierarchy concerns the order and connection of truths, not a licence to believe some and not others.",
+   "misuse": "Isolating one text against the rest of the collection; or reading the hierarchy of truths as a list of optional doctrines.",
+   "refs": ["1796", "CCC114", "CCC90", "UR11"],
+   "see": "#threads"
+  },
+  {
+   "id": "scripture-church",
+   "title": "Scripture is read in the Church",
+   "rule": "In faith and morals the true sense of Scripture is the one the Church has held and holds, never against the unanimous consent of the Fathers; the Magisterium is not above the word of God but serves it.",
+   "body": "Trent forbids interpreting Scripture in matters of faith and morals against the sense held by the Church or the unanimous consent of the Fathers, and Vatican I renews the decree and states its intention. Dei Verbum adds that Scripture must be read in the Spirit in which it was written, with attention to the content and unity of the whole of Scripture, and that the teaching office is not above the word of God but serves it, teaching only what has been handed on. The Catechism: read Scripture within the living Tradition of the whole Church.",
+   "misuse": "Setting a private reading of a verse against the Church's teaching; or treating the Magisterium as a source of new revelation.",
+   "refs": ["786", "1788", "DV10", "DV12", "CCC113", "2314"],
+   "since": ["dv"],
+   "disputed": ["inerrancy", "pbc"]
+  },
+  {
+   "id": "principle-application",
+   "title": "Principle and application",
+   "rule": "Distinguish the principle a text teaches from its application to the circumstances of the time; prudential and disciplinary judgments can be revised while the principle stands.",
+   "body": "Donum Veritatis 24 says the Magisterium can intervene in questions that involve contingent and conjectural elements, that it often becomes possible only with time to distinguish the necessary from the contingent, and that some prudential interventions may not be free from all deficiencies, while loyal submission remains the rule. Benedict XVI's address of 2005 took religious liberty as the worked example of a reform in continuity: contingent historical applications changed while the principles remained. Whether a given change is of application or of principle is exactly what the disputed questions argue.",
+   "misuse": "Calling every change of discipline a contradiction; or calling any unwelcome doctrine merely prudential.",
+   "refs": ["DVER24", "1690", "1777"],
+   "since": ["b16", "donum"],
+   "disputed": ["usury", "religious-liberty", "death-penalty", "pbc"]
+  },
+  {
+   "id": "condemnations",
+   "title": "A condemnation targets a sense",
+   "rule": "A condemned proposition is rejected in a determinate sense, established from its source and the wording of the condemnation; rejecting it does not define its unrestricted opposite.",
+   "body": "Pius V condemned the propositions of Baius in the strict sense their authors intended, granting that some could be held in some sense. Pius VI names the sense outright when he condemns a proposition \"if thus understood\". Censures given respectively or in globo do not say which note fits which proposition. The guide to reading a condemnation works this out case by case.",
+   "misuse": "Quoting the bare words of a condemned proposition against Scripture or a Father; or excusing it by an intention no evidence shows.",
+   "refs": ["1080", "1515", "781"],
+   "see": "#reading"
+  },
+  {
+   "id": "private",
+   "title": "Not every word of a Pope is the Magisterium",
+   "rule": "Interviews, press conferences and private writings are not acts of the Magisterium; addresses and homilies teach with the weight of their form and context.",
+   "body": "The Magisterium teaches through acts: definitions, constitutions, encyclicals, declarations and the like, each with its own weight. A Pope answering journalists speaks as a private person; such words can show his mind but bind no one. This collection labels interviews as private opinion and addresses by their kind so that a reader can weigh them before quoting.",
+   "misuse": "Building a doctrine on an interview; or dismissing a solemn act because of an unguarded remark.",
+   "refs": ["IV20130728"],
+   "see": "#weights"
+  }
+ ],
+ "two": {
+  "title": "Two hermeneutics",
+  "body": "In his address to the Roman Curia of 22 December 2005 Benedict XVI contrasted a hermeneutic of discontinuity and rupture, which reads Vatican II as a break and looks for its spirit beyond its texts, with a hermeneutic of reform, of renewal in the continuity of the one subject Church. The address is not itself a magisterial act, but it names the reading this site follows. The rupture reading has two forms that mirror each other: one celebrates a break with the past, the other denounces it; both assume that the texts contradict. The continuity reading does not assume the contrary; it reads each text by the principles above and lets the disputed questions stay disputed where the evidence does not settle them."
+ },
+ "method": [
+  "Identify the act: who speaks, in what kind of document, to whom, and with what intention (define, teach, legislate, exhort, answer a question).",
+  "Weigh it, and find exactly what it proposes to be held or done, apart from the reasons and illustrations around it.",
+  "Find the occasion: the question or error it answers, from the act itself and the documents around it.",
+  "Read its terms as they were used then; check the Latin where the English is doubtful.",
+  "Place it beside earlier and later texts on the same point, and ask whether the later keeps the sense of the earlier.",
+  "Distinguish the principle from its application to the circumstances of the time.",
+  "Test the reading against the whole: the analogy of faith and the hierarchy of truths.",
+  "Where a tension remains after all this, state it as an open question; do not settle it by assuming an intention the evidence does not show."
+ ]
+}

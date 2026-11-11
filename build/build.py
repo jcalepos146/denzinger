@@ -37,7 +37,7 @@ LLMS = """# Sources of Catholic Dogma
 - [entries.json]({url}data/entries.json): every entry: id, text, DS numbers, era, year, weight (kind of document), hand-checked grade with its reason, censure, cross-references.
 - [weights.csv]({url}data/weights.csv): the hand-checked grades and the reason for each.
 - [latin.json]({url}data/latin.json): the Latin text by DS number.
-- [guides.json]({url}data/guides.json): the disputed questions, the guide to documents since 1950, and the doctrinal threads.
+- [guides.json]({url}data/guides.json): the disputed questions, the guide to documents since 1950, the doctrinal threads, and the principles of hermeneutics.
 - A page for each entry: {url}n/<id>/
 
 ## Citing
@@ -47,6 +47,10 @@ Before 1958, cite by the older Denzinger number: n. 1839. After 1958, by documen
 ## Weight
 
 The weight label says what kind of document a text comes from: a conciliar definition, papal teaching, a document of the Doctrine of the Faith, an address or homily, an interview (private opinion, not magisterial), a commission study, and so on. A hand-checked grade, where present, says what the text itself proposes: defined dogma, definitive, authoritative teaching, discipline, prudential judgment, or weight disputed.
+
+## Reading magisterial texts (hermeneutics)
+
+{herm}
 
 ## Reading condemned propositions
 
@@ -118,6 +122,7 @@ def load_all():
         'censures': load('censures.json'), 'books': load('books.json'), 'quality': load('quality.json'),
         'since': load('since1950.json'), 'disputed': load('disputed.json'), 'threads': load('threads.json'),
         'latin': load('latin.json'), 'catechism': load('catechism.json'), 'concepts': load('concepts.json'),
+        'herm': load('hermeneutics.json'),
     }
     return d
 
@@ -198,6 +203,25 @@ def check(d):
         for st in t['steps']:
             if st.get('ref') and st['ref'] not in order:
                 P.add(f'threads.json, {t["id"]}', f'no entry {st["ref"]}')
+    since_ids, disp_ids = {s['id'] for s in d['since']}, {q['id'] for q in d['disputed']}
+    hseen = set()
+    for p in d['herm']['principles']:
+        where = f'hermeneutics.json, {p.get("id", "?")}'
+        if not p.get('id') or p['id'] in hseen:
+            P.add(where, 'each principle needs an "id" of its own')
+        hseen.add(p.get('id'))
+        for key in ('title', 'rule', 'body', 'misuse'):
+            if not p.get(key):
+                P.add(where, f'missing "{key}"')
+        for r in p.get('refs', []):
+            if r not in order:
+                P.add(where, f'no entry {r}')
+        for r in p.get('since', []):
+            if r not in since_ids:
+                P.add(where, f'no Since 1950 item {r}')
+        for r in p.get('disputed', []):
+            if r not in disp_ids:
+                P.add(where, f'no disputed question {r}')
     seen = set()
     for i, c in enumerate(d['concepts']):
         where = f'concepts.json, line {i + 2} ({c.get("id", "?")})'
@@ -351,6 +375,7 @@ def reader_body(raw, d, site):
             f'<script type="application/json" id="since-data">{dump(d["since"])}</script>\n'
             f'<script type="application/json" id="disputed-data">{dump(d["disputed"])}</script>\n'
             f'<script type="application/json" id="threads-data">{dump(d["threads"])}</script>\n'
+            f'<script type="application/json" id="hermeneutics-data">{dump(d["herm"])}</script>\n'
             f'<script type="application/json" id="concepts-data">{dump(d["concepts"])}</script>\n'
             f'<script type="application/json" id="latin-data">{dump(d["latin"])}</script>\n'
             '<script>\n' + app + '</script>\n')
@@ -432,6 +457,9 @@ def entry_pages(d, raw, derived, out, url):
         for st in t['steps']:
             if st.get('ref'):
                 disc.setdefault(st['ref'], []).append((f'#thread-{t["id"]}', t['title'] + ' (thread)'))
+    for p in d['herm']['principles']:
+        for r in p['refs']:
+            disc.setdefault(r, []).append((f'#herm-{p["id"]}', p['title'] + ' (hermeneutics)'))
     urls = []
     for k, e in enumerate(E):
         er = eras[e['era']]
@@ -585,7 +613,7 @@ def open_data(d, raw, derived, out, url, built):
     cat = json.loads(json.dumps(d['catechism']))
     with open(os.path.join(dd, 'roman-catechism.json'), 'w', encoding='utf-8') as f:
         json.dump(cat, f, ensure_ascii=False, indent=1)
-    guides = {'since1950': d['since'], 'disputed': d['disputed'], 'threads': d['threads']}
+    guides = {'since1950': d['since'], 'disputed': d['disputed'], 'threads': d['threads'], 'hermeneutics': d['herm']}
     with open(os.path.join(dd, 'guides.json'), 'w', encoding='utf-8') as f:
         json.dump(guides, f, ensure_ascii=False, indent=1)
     files = [
@@ -594,7 +622,7 @@ def open_data(d, raw, derived, out, url, built):
         ('weights.csv', 'The hand-checked weight ranges with the note on each.'),
         ('latin.json', 'The Latin text by DS number, as the source page gives it (not proofread).'),
         ('roman-catechism.json', 'The chapters of the Roman Catechism with the entries matched to each.'),
-        ('guides.json', 'Since 1950, the disputed questions and the doctrinal threads.'),
+        ('guides.json', 'Since 1950, the disputed questions, the doctrinal threads and the principles of hermeneutics.'),
     ]
     with open(os.path.join(dd, 'index.json'), 'w', encoding='utf-8') as f:
         json.dump({'built': built, 'files': [{'file': a, 'url': f'{url}data/{a}' if url else f'data/{a}', 'about': b} for a, b in files]},
@@ -650,7 +678,7 @@ def pages_build(args):
     version = f'{built}-{zlib.crc32(index.encode()) & 0xffffffff:08x}'
     write(os.path.join(out, 'sw.js'), read_src('sw.js').replace('__VERSION__', version))
     write(os.path.join(out, '.nojekyll'), '')
-    write(os.path.join(out, 'llms.txt'), LLMS.replace('{url}', url or './'))
+    write(os.path.join(out, 'llms.txt'), LLMS.replace('{herm}', '\n'.join('- ' + p['rule'] for p in d['herm']['principles'])).replace('{url}', url or './'))
     write(os.path.join(out, 'robots.txt'), 'User-agent: *\nAllow: /\n' + (f'Sitemap: {url}sitemap.xml\n' if url else ''))
     if url:
         sm = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
