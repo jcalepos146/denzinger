@@ -727,8 +727,10 @@ function latinHtml(e) {
     const nb = dsNeighbors(e);
     return `<div class="latin none">This entry has no number on the Latin page${e.weight === 'note' ? ' (it is an editorial note)' : ''}.${nb.length ? ` Nearest numbered entries: ${nb.map(nbLink).join('; ')}.` : ''}</div>`;
   }
-  const h = DS_HOW[e.dsHow];
-  return `<div class="latin" lang="la"><div class="lh">Latin · ${esc(dsText(e))}${h ? ` · ${h[0]}` : ''}</div>${e.ds.map(n => { const t = latinText(n); return `<p><span class="dsn">${esc(n)}</span>${t ? esc(t) : LATIN ? '<i>The Latin page gives no text under this number.</i>' : '<i>Loading the Latin…</i>'}</p>`; }).join('')}</div>`;
+  const h = DS_HOW[e.dsHow], lc = RAW.latinChecked || {}, ok = e.ds.every(n => lc[n]);
+  const status = ok ? `Proofread against ${esc(lc[e.ds[0]].against)} (${esc(lc[e.ds[0]].date)}).` : 'Not yet proofread: as the source page gives it.';
+  const report = PAGES && SITE.repo ? ` <a href="${esc(issueUrl('Latin: ' + nlab(e.id) + ' (' + dsText(e) + ')', nlab(e.id) + ', ' + dsText(e), pageUrl(e)))}" target="_blank" rel="noopener">Report an error in the Latin ↗</a>` : '';
+  return `<div class="latin"><div class="lh">Latin · ${esc(dsText(e))}${h ? ` · ${h[0]}` : ''}</div><div lang="la">${e.ds.map(n => { const t = latinText(n); return `<p><span class="dsn">${esc(n)}</span>${t ? esc(t) : LATIN ? '<i>The Latin page gives no text under this number.</i>' : '<i>Loading the Latin…</i>'}</p>`; }).join('')}</div><div class="lstat">${status}${report}</div></div>`;
 }
 const Latin = { mode: 'off', flip: new Set(), get all() { return this.mode !== 'off'; } };
 try { const v = localStorage.getItem('dz-latin'); Latin.mode = v === '2' ? 'side' : v === '1' ? 'under' : 'off'; } catch (_) {}

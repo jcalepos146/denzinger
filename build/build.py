@@ -123,6 +123,7 @@ def load_all():
         'since': load('since1950.json'), 'disputed': load('disputed.json'), 'threads': load('threads.json'),
         'latin': load('latin.json'), 'catechism': load('catechism.json'), 'concepts': load('concepts.json'),
         'herm': load('hermeneutics.json'), 'changes': load('changes.json'),
+        'latin_checked': load('latin-checked.json'),
     }
     return d
 
@@ -222,6 +223,14 @@ def check(d):
         for r in p.get('disputed', []):
             if r not in disp_ids:
                 P.add(where, f'no disputed question {r}')
+    for i, c in enumerate(d['latin_checked']):
+        where = f'latin-checked.json, line {i + 2}'
+        if not isinstance(c.get('ds'), list) or not c['ds'] or not c.get('against') or not re.fullmatch(r'\d{4}-\d{2}-\d{2}', c.get('date', '')):
+            P.add(where, 'each check needs "ds" (a list of DS numbers), "against" (the edition compared) and "date" (YYYY-MM-DD)')
+            continue
+        for n in c['ds']:
+            if str(n) not in d['latin']:
+                P.add(where, f'DS {n} has no Latin text to check')
     for i, c in enumerate(d['changes']):
         where = f'changes.json, line {i + 2}'
         if not re.fullmatch(r'\d{4}-\d{2}-\d{2}', c.get('date', '')) or not c.get('title') or not c.get('summary'):
@@ -404,8 +413,9 @@ def compact(d, order):
         if er.get('supplement'): o['sup'] = 1
         era_rows.append(o)
     cat = {k: v for k, v in d['catechism'].items()}
+    lc = {str(n): {'against': c['against'], 'date': c['date']} for c in d['latin_checked'] for n in c['ds']}
     raw = {'eras': era_rows, 'entries': rows, 'books': d['books'], 'censures': d['censures'],
-           'curated': d['weights'], 'quality': d['quality'], 'rc': cat}
+           'curated': d['weights'], 'quality': d['quality'], 'rc': cat, 'latinChecked': lc}
     return raw, {'h': h, 'cites': cites, 'cited': cited, 'rc': rc}
 
 
@@ -685,7 +695,10 @@ def entry_pages(d, raw, derived, out, url):
         parts.append('</div>\n')
         if ds:
             lat = ''.join(f'<p><span class="dsn">{esc(n)}</span>{esc(d["latin"][str(n)]) if str(n) in d["latin"] else "<i>The Latin page gives no text under this number.</i>"}</p>' for n in ds)
-            parts.append(f'<details class="latin" lang="la"><summary>Latin text · DS {esc(ds_range(ds))}</summary>{lat}</details>\n')
+            lc = [c for c in d['latin_checked'] if set(map(str, ds)) <= set(map(str, c['ds']))]
+            status = (f'Proofread against {esc(lc[0]["against"])} ({esc(lc[0]["date"])}).' if lc else
+                      'Not yet proofread: as the source page gives it.')
+            parts.append(f'<details class="latin"><summary>Latin text · DS {esc(ds_range(ds))}</summary><div lang="la">{lat}</div><p class="lstat">{status}</p></details>\n')
         if hk is not None:
             w = weights[hk]
             rng = f' ({esc(n_label(w["from"]))}–{esc(disp_id(w["to"]))})' if w['to'] != w['from'] else ''

@@ -89,3 +89,4 @@ h1 .num { font: 700 .5em var(--sans); color: var(--rubric); display: block; lett
   a { text-decoration: none; }
   .xref { border: 0; }
 }
+.lstat { font-family: var(--sans); font-size: .8rem; color: var(--faint); margin-top: .4rem; }
