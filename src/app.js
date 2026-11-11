@@ -577,7 +577,7 @@ function renderEra(er, focusId) {
     if (e.ses && e.ses !== ses) { html += `<div class="session">${esc(e.ses)}</div>`; ses = e.ses; topic = undefined; }
     if (e.topic !== topic || (e.src && e.src !== src)) {
       if (e.topic && e.topic !== topic) html += `<h2 class="topic">${renderText(e.topic, re)}</h2>`;
-      if (e.src && e.src !== src) html += `<p class="src">${renderText(e.src, re)}</p>`;
+      if (e.src && e.src !== src) { const dc = docOf(e.id); html += `<p class="src">${renderText(e.src, re)}${dc && DOCS.get(dc).length > 1 && DOCS.get(dc)[0] === e ? ` <a class="xref" href="#doc-${dc}">Read this document alone</a>` : ''}</p>`; }
       topic = e.topic; src = e.src;
     }
     html += entryHtml(e, re);
@@ -600,6 +600,36 @@ function renderEra(er, focusId) {
     window.scrollTo(0, 0);
     store.set('denz:last', er.entries[0].id);
   }
+}
+/* ---------- one document after 1958, cited by article (LG 25) ---------- */
+const DOC_RE = /^([A-Z]{2,})(\d+)(?:-\d+)?$/, DATED_DOCS = new Set(['AD', 'IV']);
+const docOf = id => { const m = id.match(DOC_RE); return m && !DATED_DOCS.has(m[1]) ? m[1] : null; };
+const DOCS = new Map();
+for (const e of ENTRIES) { const d = docOf(e.id); if (d) { if (!DOCS.has(d)) DOCS.set(d, []); DOCS.get(d).push(e); } }
+function docTitle(ents) {
+  const src = ents[0].src || '';
+  let m = src.match(/["“]([^"”]+?),?["”]/);
+  if (m) return m[1].trim();
+  m = src.match(/\[From (?:the )?(.+?)(?:,\s*(?:[A-Z][a-z]{2,8}\.? \d{1,2},|\d{4}|[A-Z][a-z]+, [A-Z])|\])/);
+  return m ? m[1].trim() : ents[0].id.replace(/\d.*/, '');
+}
+function renderDoc(code) {
+  const ents = DOCS.get(code), re = termRegex(highlightTerms), er = ents[0].era;
+  view.className = Latin.mode === 'side' ? 'col side' : 'col';
+  let html = `<header class="era-head">
+    <div class="eyebrow">Document · <a href="#e${er.i}" style="text-decoration:none">${esc(er.name)}</a></div>
+    <h1>${esc(docTitle(ents))}</h1>
+    <div class="meta">${ents[0].year ? `<span>${ents[0].year}</span>` : ''}<span>${esc(dispId(ents[0].id))}${ents.length > 1 ? '–' + esc(dispId(ents[ents.length - 1].id).replace(/^\S+\s/, '')) : ''}</span><span>${ents.length} ${ents.length === 1 ? 'article' : 'articles'} in this collection</span></div>
+    ${ents[0].src ? `<p class="src">${renderText(ents[0].src, re)}</p>` : ''}
+    <div class="era-tools">${latinSeg()}<button class="btn small" data-go="#n${esc(ents[0].id)}">Read in its place</button></div>
+  </header>`;
+  let topic;
+  for (const e of ents) {
+    if (e.topic && e.topic !== topic) { html += `<h2 class="topic">${renderText(e.topic, re)}</h2>`; topic = e.topic; }
+    html += entryHtml(e, re);
+  }
+  view.innerHTML = html;
+  window.scrollTo(0, 0);
 }
 const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 function citeFormats(e) {
@@ -2145,6 +2175,8 @@ function route() {
   } else if ((m = h.match(/^weight-([a-z-]+)$/)) && WEIGHTS[m[1]]) {
     state.weight = m[1]; state.kind = ''; state.query = ''; state.topic = null; state.limit = 60; qInput.value = '';
     setView('search'); renderResults(); window.scrollTo(0, 0);
+  } else if ((m = h.match(/^doc-([A-Z]+)$/)) && DOCS.has(m[1])) {
+    state.era = DOCS.get(m[1])[0].era; setView('read'); renderDoc(m[1]);
   } else if (h === 'hermeneutics' || h.startsWith('herm-')) {
     setView('hermeneutics'); highlightTerms = []; renderHermeneutics(h.startsWith('herm-') ? h.slice(5) : null);
   } else if (h === 'reading') {

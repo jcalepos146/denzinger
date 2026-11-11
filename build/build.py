@@ -420,7 +420,10 @@ ICON_SVG = ("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBo
             "%3Ctext x='32' y='45' font-family='Georgia,serif' font-size='38' font-weight='700' text-anchor='middle' fill='%23fff'%3ED%3C/text%3E%3C/svg%3E")
 
 
-def head(title, desc, url, prefix, extra=''):
+OG_IMAGE = 'assets/og.png'
+
+
+def head(title, desc, url, prefix, extra='', site_url=''):
     return ('<!doctype html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n'
             '<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n'
             f'<title>{esc(title)}</title>\n'
@@ -428,7 +431,10 @@ def head(title, desc, url, prefix, extra=''):
             + (f'<link rel="canonical" href="{esc(url)}">\n<meta property="og:url" content="{esc(url)}">\n' if url else '')
             + f'<meta property="og:type" content="website">\n<meta property="og:site_name" content="{TITLE}">\n'
             f'<meta property="og:title" content="{esc(title)}">\n<meta property="og:description" content="{esc(desc)}">\n'
-            '<meta name="twitter:card" content="summary">\n'
+            + (f'<meta property="og:image" content="{esc(site_url + OG_IMAGE)}">\n<meta property="og:image:width" content="1200">\n'
+               f'<meta property="og:image:height" content="630">\n<meta property="og:image:alt" content="{TITLE}">\n'
+               '<meta name="twitter:card" content="summary_large_image">\n' if site_url else '<meta name="twitter:card" content="summary">\n')
+            + 
             '<meta name="theme-color" content="#a11f1d">\n'
             f'<link rel="icon" href="{ICON_SVG}">\n'
             f'<link rel="apple-touch-icon" href="{prefix}icons/icon-180.png">\n'
@@ -472,6 +478,74 @@ def ds_range(lst):
     return ', '.join(out)
 
 
+DATED = {'AD', 'IV'}  # addresses and interviews, numbered by their date, not documents with articles
+DOC_RE = re.compile(r'([A-Z]{2,})(\d+)(?:-\d+)?')
+
+
+def doc_of(i):
+    """LG25 -> LG: the document an entry after 1958 belongs to, cited by article."""
+    m = DOC_RE.fullmatch(i)
+    return m.group(1) if m else None
+
+
+def documents(E):
+    docs = {}
+    for e in E:
+        dm = doc_of(e['id'])
+        if dm and dm not in DATED:
+            docs.setdefault(dm, []).append(e)
+    return docs
+
+
+def doc_title(ents):
+    src = ents[0].get('source') or ''
+    m = re.search(r'["“]([^"”]+?),?["”]', src)
+    if m:
+        return m.group(1).strip()
+    m = re.match(r'\[From (?:the )?(.+?)(?:,\s*(?:[A-Z][a-z]{2,8}\.? \d{1,2},|\d{4}|[A-Z][a-z]+, [A-Z])|\])', src)
+    return m.group(1).strip() if m else disp_id(ents[0]['id']).split(' ')[0]
+
+
+def redirect_page(target, label):
+    t = esc(target)
+    return ('<!doctype html>\n<html lang="en"><head><meta charset="utf-8">'
+            f'<title>{esc(label)} · {TITLE}</title><link rel="canonical" href="{t}">'
+            f'<meta name="robots" content="noindex"><meta http-equiv="refresh" content="0; url={t}">'
+            f'</head><body><p><a href="{t}">{esc(label)}</a></p></body></html>\n')
+
+
+def short_links(d, out, url):
+    """Addresses people already cite by: ds/3074/, lg/25/, and lg/ for a whole document."""
+    E = d['entries']
+    base = url or '../../'
+    made = 0
+    seen_ds = set()
+    for e in E:
+        for n in e.get('ds', []):
+            if n in seen_ds or e.get('dsHow') == 'series':
+                continue
+            seen_ds.add(n)
+            tgt = f'{url}n/{enc_id(e["id"])}/' if url else f'../../n/{enc_id(e["id"])}/'
+            write(os.path.join(out, 'ds', str(n), 'index.html'), redirect_page(tgt, f'DS {n}'))
+            made += 1
+    for dm, ents in documents(E).items():
+        low = dm.lower()
+        if low in ('n', 'ds', 'data', 'assets', 'icons'):
+            continue
+        for e in ents:
+            art = DOC_RE.fullmatch(e['id']).group(2)
+            path = os.path.join(out, low, art, 'index.html')
+            if os.path.exists(path):
+                continue
+            tgt = f'{url}n/{enc_id(e["id"])}/' if url else f'../../n/{enc_id(e["id"])}/'
+            write(path, redirect_page(tgt, f'{dm} {art}'))
+            made += 1
+        tgt = f'{url}#doc-{dm}' if url else f'../#doc-{dm}'
+        write(os.path.join(out, low, 'index.html'), redirect_page(tgt, doc_title(ents)))
+        made += 1
+    return made
+
+
 def entry_pages(d, raw, derived, out, url):
     E, eras = d['entries'], d['eras']
     by_id = {e['id']: e for e in E}
@@ -495,6 +569,8 @@ def entry_pages(d, raw, derived, out, url):
     for p in d['herm']['principles']:
         for r in p['refs']:
             disc.setdefault(r, []).append((f'#herm-{p["id"]}', p['title'] + ' (hermeneutics)'))
+    derived_years = [abs(r[6]['y']) for r in raw['entries']]
+    docs = documents(E)
     urls = []
     for k, e in enumerate(E):
         er = eras[e['era']]
@@ -516,7 +592,22 @@ def entry_pages(d, raw, derived, out, url):
             g = WEIGHT_LABEL.get('papal-teaching' if e['weight'] == 'papal' else e['weight'])
             pill = f'<span class="pill lv-{g[1]}">{esc(g[0])}</span>'
         meta_bits = [esc(er['name'])] + ([esc(er['dates'])] if er['dates'] else []) + ([esc(e['session'])] if e.get('session') else [])
-        parts = [head(title, desc, page_url, '../../', '<link rel="stylesheet" href="../../assets/entry.css">\n')]
+        ld_extra = ''
+        if url:
+            crumbs = [(TITLE, url), (er['name'], f'{url}#e{e["era"]}'), (label, page_url)]
+            year = derived_years[k]
+            ld = {'@context': 'https://schema.org', '@graph': [
+                {'@type': 'Quotation', '@id': page_url + '#text', 'url': page_url, 'name': title.rsplit(' · ', 1)[0], 'inLanguage': 'en',
+                 'text': re.sub(r'\s+', ' ', body_text).strip()[:500], 'about': topic or None,
+                 'creator': {'@type': 'Organization' if re.search(r'Council|Synod|Congregation|Commission|Creed', er['name']) else 'Person', 'name': er['name']},
+                 'dateCreated': str(year) if year else None,
+                 'identifier': [x for x in [n_label(eid), ('DS ' + ds_range(ds)) if ds else None] if x],
+                 'isPartOf': {'@type': 'WebSite', 'name': TITLE, 'url': url},
+                 'citation': 'Heinrich Denzinger, Enchiridion Symbolorum' if not e.get('supplement') and not re.match(r'[A-Z]{2}', eid) else None},
+                {'@type': 'BreadcrumbList', 'itemListElement': [{'@type': 'ListItem', 'position': i + 1, 'name': n, 'item': u} for i, (n, u) in enumerate(crumbs)]}]}
+            ld['@graph'][0] = {a: b for a, b in ld['@graph'][0].items() if b is not None}
+            ld_extra = f'<script type="application/ld+json">{dump(ld)}</script>\n'
+        parts = [head(title, desc, page_url, '../../', '<link rel="stylesheet" href="../../assets/entry.css">\n' + ld_extra, url)]
         parts.append(f'''<header class="top"><a class="brand" href="../../"><b>Denzinger</b><span>{TITLE}</span></a>
 <form class="search" action="../../" method="get" role="search"><input name="q" type="search" placeholder="Search the collection" aria-label="Search the collection"></form>
 <a class="btn" href="../../#n{esc(eid)}">Read in context</a></header>
@@ -542,6 +633,9 @@ def entry_pages(d, raw, derived, out, url):
             w = weights[hk]
             rng = f' ({esc(n_label(w["from"]))}–{esc(disp_id(w["to"]))})' if w['to'] != w['from'] else ''
             parts.append(f'<p class="curnote"><b>Checked by hand · {esc(GRADE_LABEL[w["g"]][0])}{rng}.</b> {static_text(w["n"], by_id, by_base)}</p>\n')
+        dm = doc_of(eid)
+        if dm in docs and len(docs[dm]) > 1:
+            parts.append(f'<p class="rel">Whole document: <a href="../../#doc-{esc(dm)}">{esc(doc_title(docs[dm]))}, {len(docs[dm])} articles in this collection</a></p>\n')
         if e.get('links'):
             parts.append('<p class="rel">Full text: ' + ' · '.join(f'<a href="{esc(l["url"])}" rel="noopener">{esc(l["label"])} ↗</a>' for l in e['links']) + '</p>\n')
         rel = []
@@ -697,10 +791,16 @@ def pages_build(args):
         shutil.rmtree(out)
     os.makedirs(out)
     head_extra, body, assets = reader_split(raw, d, site, out)
-    index = head(TITLE, DESC, url, '', head_extra) + body + '</body>\n</html>\n'
+    ld = {'@context': 'https://schema.org', '@type': 'WebSite', 'name': TITLE, 'description': DESC, 'url': url, 'inLanguage': 'en',
+          'potentialAction': {'@type': 'SearchAction', 'target': url + '?q={search_term_string}', 'query-input': 'required name=search_term_string'}}
+    if url:
+        head_extra += f'<script type="application/ld+json">{dump(ld)}</script>\n'
+    index = head(TITLE, DESC, url, '', head_extra, url) + body + '</body>\n</html>\n'
     write(os.path.join(out, 'index.html'), index)
     write(os.path.join(out, 'assets', 'entry.css'), read_src('entry.css'))
+    shutil.copy(os.path.join(SRC, 'og.png'), os.path.join(out, OG_IMAGE))
     urls = entry_pages(d, raw, derived, out, url)
+    nshort = short_links(d, out, url)
     files = open_data(d, raw, derived, out, url, built)
     os.makedirs(os.path.join(out, 'icons'), exist_ok=True)
     for s in (180, 192, 512):
@@ -727,7 +827,7 @@ def pages_build(args):
           'location.replace(base+(m?"#n"+decodeURIComponent(m[1]).replace(/_s/g,"*"):""));})();</script>'
           '<p style="font-family:sans-serif;padding:2rem">Page not found. <a href="./">Open the reader</a>.</p></body></html>\n')
     size = sum(os.path.getsize(os.path.join(a, f)) for a, _, fs in os.walk(out) for f in fs)
-    print(f'Built {len(urls)} entry pages, {len(files)} data files; {size / 1e6:.1f} MB in {out}')
+    print(f'Built {len(urls)} entry pages, {nshort} short links, {len(files)} data files; {size / 1e6:.1f} MB in {out}')
 
 
 if __name__ == '__main__':
