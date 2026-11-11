@@ -2311,6 +2311,19 @@ function route() {
     setView('home'); state.era = null; highlightTerms = []; renderHome(); window.scrollTo(0, 0);
   }
   markRail();
+  announceView(h);
+}
+/* after each change of view: name the page in the title, and move focus to it so a screen reader follows */
+let routedOnce = false;
+function announceView(h) {
+  const h1 = view.querySelector('h1');
+  const name = h1 ? h1.textContent.trim().replace(/\s+/g, ' ') : '';
+  const ent = h.startsWith('n') ? document.getElementById(h) : null;
+  document.title = (ent ? nlab(h.slice(1)) + ' · ' : '') + (name && state.view !== 'home' ? name + ' · ' : '') + 'Sources of Catholic Dogma';
+  const first = !routedOnce; routedOnce = true;
+  if (first || document.activeElement === qInput || (document.activeElement && view.contains(document.activeElement) && state.view === 'search')) return;
+  const target = ent || h1;
+  if (target) { target.setAttribute('tabindex', '-1'); target.focus({ preventScroll: true }); }
 }
 
 let tmr = null;

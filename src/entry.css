@@ -1,6 +1,6 @@
 /* Single-entry pages: the same palette and type as the reader, for one text at a time. */
 :root {
-  --bg: #f4f5f6; --surface: #ffffff; --ink: #1c1f26; --muted: #5c6270; --faint: #8a909c; --rule: #dde0e5;
+  --bg: #f4f5f6; --surface: #ffffff; --ink: #1c1f26; --muted: #5c6270; --faint: #636975; --rule: #dde0e5;
   --rubric: #a11f1d; --rubric-soft: #f7e6e4;
   --lv-dogma: #7a1d6e; --lv-dogma-bg: #f5e6f2; --lv-def: #a11f1d; --lv-def-bg: #f7e6e4;
   --lv-auth: #1f4f8a; --lv-auth-bg: #e5edf8; --lv-disc: #3f6b2a; --lv-disc-bg: #e8f1e1;
@@ -12,7 +12,7 @@
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #121419; --surface: #1a1d24; --ink: #e5e6ea; --muted: #a0a6b2; --faint: #747b88; --rule: #2b303a;
+    --bg: #121419; --surface: #1a1d24; --ink: #e5e6ea; --muted: #a0a6b2; --faint: #9097a4; --rule: #2b303a;
     --rubric: #ef8178; --rubric-soft: #3a2222;
     --lv-dogma: #e59ad8; --lv-dogma-bg: #3a2236; --lv-def: #ef8178; --lv-def-bg: #3a2222;
     --lv-auth: #8db6ec; --lv-auth-bg: #1d2a3d; --lv-disc: #9fcf86; --lv-disc-bg: #1f2e1a;
@@ -21,7 +21,7 @@
   }
 }
 :root[data-theme="dark"] {
-  --bg: #121419; --surface: #1a1d24; --ink: #e5e6ea; --muted: #a0a6b2; --faint: #747b88; --rule: #2b303a;
+  --bg: #121419; --surface: #1a1d24; --ink: #e5e6ea; --muted: #a0a6b2; --faint: #9097a4; --rule: #2b303a;
   --rubric: #ef8178; --rubric-soft: #3a2222;
   --lv-dogma: #e59ad8; --lv-dogma-bg: #3a2236; --lv-def: #ef8178; --lv-def-bg: #3a2222;
   --lv-auth: #8db6ec; --lv-auth-bg: #1d2a3d; --lv-disc: #9fcf86; --lv-disc-bg: #1f2e1a;
@@ -42,7 +42,7 @@ a { color: inherit; }
 .btn:hover { background: var(--rubric-soft); }
 .col { max-width: 46rem; margin: 0 auto; padding: 2rem 16px 5rem; }
 .crumbs { font: .9rem var(--sans); color: var(--muted); margin: 0 0 .4rem; }
-.crumbs a { color: var(--rubric); text-decoration: none; }
+.crumbs a { color: var(--rubric); text-decoration: underline; text-underline-offset: 2px; }
 h1 { font-weight: 500; font-size: clamp(1.7rem, 4.5vw, 2.4rem); line-height: 1.15; margin: 0 0 .6rem; text-wrap: balance; }
 h1 .num { font: 700 .5em var(--sans); color: var(--rubric); display: block; letter-spacing: .04em; margin-bottom: .2rem; }
 .src { font-style: italic; color: var(--muted); margin: 0 0 .8rem; }
