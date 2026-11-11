@@ -104,7 +104,7 @@ const WEIGHTS = {
   'synod': ['Synod of Bishops', 'study', 'A document or message of the Synod of Bishops. Consultative unless the pope makes it his own.'],
   'bishops': ['Bishops\' conference', 'study', 'A statement of a national or regional conference of bishops. Teaches with the authority of those bishops for their own territory.'],
   'ecumenical': ['Ecumenical agreement', 'dialogue', 'A joint declaration or agreed statement with other Christians. Binds the Church only so far as it restates Catholic doctrine.'],
-  'supplement': ['Not in Denzinger', 'study', 'Added to this site: decrees of Constance and Basel that Denzinger leaves out, mostly because no pope approved them or they came from a schismatic assembly, and papal acts of Florence and Trent that its older numbering omits. Some are summaries; others are given in full, with the source of each translation stated.'],
+  'supplement': ['Not in Denzinger', 'study', 'Added to this site: decrees of Constance and Basel that Denzinger leaves out, mostly because no pope approved them or they came from a schismatic assembly, papal acts of Florence and Trent that its older numbering omits, and witnesses to the Synod of Sutri (1046). Some are summaries; others are given in full, with the source of each translation stated.'],
 };
 const GRADES = {
   dogma: ['Defined dogma', 'dogma'], definitive: ['Definitive', 'definitive'], authentic: ['Authoritative teaching', 'authentic'],
@@ -129,7 +129,7 @@ const $ = id => document.getElementById(id);
 const view = $('view'), rail = $('rail'), qInput = $('q');
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 const fmt = n => n.toLocaleString('en-US');
-// Ids: 1839 (Denzinger), C1 and B1 (supplement), LG11 (a document after 1958 and its article, shown "LG 11").
+// Ids: 1839 (Denzinger), C1, B1 and S1 (supplement), LG11 (a document after 1958 and its article, shown "LG 11").
 const dispId = id => id.replace(/-\d+$/, '').replace(/^([A-Z]{2,})(\d)/, '$1 $2');
 const nlab = id => /^[A-Z]{2}/.test(id) ? dispId(id) : /^[A-Z]/.test(id) ? 'Suppl. ' + id : 'n. ' + dispId(id);
 const store = {
@@ -317,8 +317,8 @@ function renderText(text, re) {
   h = h.replace(/(^|[^A-Za-z])((?:Kch|Kirch|R|H|L|M|EP|RS)\.?\s)?(nn?\.\s?)(\d{1,4}[a-z]?(?:\s?(?:,|and|-|–|f\.|ff\.)\s?\d{1,4}[a-z]?)*)/g,
     (m, pre, other, lab, list) => other ? m : pre + lab + linkNums(list));
   // supplement entries cited in parentheses, e.g. (C9) or (B13–B15)
-  h = h.replace(/\(((?:[CBFT]\d{1,2}(?:–[CBFT]\d{1,2})?)(?:,\s*[CBFT]\d{1,2}(?:–[CBFT]\d{1,2})?)*)\)/g, (m, list) =>
-    '(' + list.replace(/[CBFT]\d{1,2}/g, id => byId.has(id) && byId.get(id).sup ? `<a class="xref" href="#n${id}">${id}</a>` : id) + ')');
+  h = h.replace(/\(((?:[CBFTS]\d{1,2}(?:–[CBFTS]\d{1,2})?)(?:,\s*[CBFTS]\d{1,2}(?:–[CBFTS]\d{1,2})?)*)\)/g, (m, list) =>
+    '(' + list.replace(/[CBFTS]\d{1,2}/g, id => byId.has(id) && byId.get(id).sup ? `<a class="xref" href="#n${id}">${id}</a>` : id) + ')');
   h = h.replace(/\b(MG|ML)(\s+)(\d{1,3})(\s*,\s*\d{1,4}(?:\s?[A-D]\b)?)/g, (m, ser, sp, vol, rest) => {
     const host = ser === 'MG' ? 'graeca' : 'latina';
     return `<a class="xref" href="http://${host}.patristica.net/#t${String(vol).padStart(3, '0')}" target="_blank" rel="noopener" title="${ser === 'MG' ? 'Patrologia Graeca' : 'Patrologia Latina'} volume ${vol} at patristica.net">${ser}${sp}${vol}${rest}</a>`;
@@ -352,7 +352,7 @@ function buildRail() {
   let html = '<h2>Guides and indexes</h2>';
   for (const [href, name, ct] of GUIDES) html += `<button class="era-btn guide-btn" data-go="${href}"><span class="nm">${name}</span><span class="ct">${ct}</span></button>`;
   let group = null;
-  for (const er of ERAS) {
+  for (const er of [...ERAS.filter(x => !x.sup), ...ERAS.filter(x => x.sup).sort((a, b) => a.year - b.year)]) {
     const g = er.sup ? 'Supplement · not in Denzinger' : er.app ? 'Appendix · 5000 and following' : er.i === 0 ? 'The Creeds' : ordinal(Math.floor(er.year / 100) + 1) + ' century';
     if (g !== group) { html += `<h2>${g}</h2>`; group = g; }
     const first = dispId(er.entries[0].id), last = dispId(er.entries[er.entries.length - 1].id);
@@ -545,6 +545,8 @@ function seeAlso(er) {
   if (/Constance/.test(er.name) && !er.sup) return link(sups.find(x => /Constance/.test(x.name)), 'See also the decrees this collection leaves out:');
   if (/Florence/.test(er.name) && !er.sup) return link(sups.find(x => /Basel/.test(x.name)), 'For the Council of Basel, which this collection leaves out, see') + link(sups.find(x => /Florence/.test(x.name)), 'For the later bulls of union, see');
   if (/Trent|Pius IV/.test(er.name) && !er.sup) return link(sups.find(x => /Trent/.test(x.name)), 'For the bull confirming the council, see');
+  if (/Leo IX/.test(er.name) && !er.sup) return link(sups.find(x => /Sutri/.test(x.name)), 'For the Synod of Sutri (1046) and the deposition of Gregory VI, which preceded this pontificate, see');
+  if (er.sup && /Sutri/.test(er.name)) return `<p class="checked" style="margin:.2rem 0 .4rem">Added to this site. Contemporary and near-contemporary witnesses to the Synod of Sutri (1046), where three claimants to the papacy were removed and Clement II elected; Denzinger has no texts for these years. The translations were contributed to the site and are not yet checked against the editions. See the disputed question on Sutri, Constance and Vatican I.</p>`;
   if (er.sup && /Florence|Trent/.test(er.name)) return `<p class="checked" style="margin:.2rem 0 .4rem">Added to this site. Papal acts that the older numbering of Denzinger leaves out, given in full; each source line says where the text comes from.</p>`;
   if (er.sup) return `<p class="checked" style="margin:.2rem 0 .4rem">Added to this site. Denzinger leaves these texts out, mostly because no pope approved them or they came from a schismatic assembly. Some are translated in full; the others summarize the decrees and link to the full texts.</p>`;
   return '';
@@ -1958,7 +1960,7 @@ function renderEdition() {
     <h2 class="sect-h">The text</h2>
     <p>The English translation of Denzinger's Enchiridion with the older numbering (before the 32nd edition of 1963), as published on patristica.net and archived from catecheticsonline.com. It covers ${fmt(ENTRIES.length)} entries from the creeds to Pius XII, with an appendix numbered from 5000.</p>
     <h2 class="sect-h">Supplement</h2>
-    <p>${ENTRIES.filter(e => e.sup).length} entries were added for decrees of Constance and Basel that the collection leaves out, and for papal acts of Florence and Trent that its older numbering omits. Haec Sancta, Moyses vir Dei and the bulls of union with the Syrians and with the Chaldeans and Maronites are translated for this site from the Latin; Pius IV's bull confirming Trent is Waterworth's translation (1848); several letters are translations contributed to the site; the rest are summaries written for this site, with links to full texts. Each carries a hand-checked grade explaining its standing.</p>
+    <p>${ENTRIES.filter(e => e.sup).length} entries were added for decrees of Constance and Basel that the collection leaves out, for papal acts of Florence and Trent that its older numbering omits, and for the contemporary witnesses to the Synod of Sutri (1046). Haec Sancta, Moyses vir Dei and the bulls of union with the Syrians and with the Chaldeans and Maronites are translated for this site from the Latin; Pius IV's bull confirming Trent is Waterworth's translation (1848); several letters are translations contributed to the site; the rest are summaries written for this site, with links to full texts. Each carries a hand-checked grade explaining its standing.</p>
     <h2 class="sect-h">Numbers not found</h2>
     <p>${(q.missing || []).length} numbers in the main sequence have no entry of their own. Some are gaps in the printed edition, where one entry covers several numbers; others may have been merged with a neighbor when the text was scanned. Each link opens the nearest entry before it.</p>
     <div class="numgrid">${(q.missing || []).map(nb).join('')}</div>
