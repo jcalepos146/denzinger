@@ -10,6 +10,7 @@ const RAW = DATA('data');
 const SINCE = DATA('since-data').sort((a, b) => a.date.localeCompare(b.date));
 const DISPUTED = DATA('disputed-data');
 const THREADS = DATA('threads-data');
+const CHANGES = (() => { try { return DATA('changes-data'); } catch (_) { return []; } })();
 const HERM = (() => { try { return DATA('hermeneutics-data'); } catch (_) { return { principles: [], method: [] }; } })();
 const CENS = RAW.censures || [];
 const QUALITY = RAW.quality || {};
@@ -439,6 +440,9 @@ function renderHome() {
       </div>
     </section>
     ${todayHtml()}
+    ${CHANGES.length ? `<h2 class="sect-h">Recently added</h2>
+    <div class="tips news">${CHANGES.slice(0, 3).map(c => `<div><span class="count">${esc(new Date(c.date + 'T12:00:00').toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }))}</span> <a href="${esc(c.href)}"><b>${esc(c.title)}</b></a><br>${esc(c.summary)}</div>`).join('')}
+    ${PAGES && SITE.url ? `<div><a href="${esc(SITE.url)}feed.xml">Follow additions by feed (Atom)</a></div>` : ''}</div>` : ''}
     <h2 class="sect-h">Guides and indexes</h2>
     <div class="guides">
       <a class="guide" href="#catechism"><b>Roman Catechism</b><span>The Catechism of the Council of Trent, chapter by chapter, with the texts in this collection that each chapter explains.</span></a>

@@ -122,7 +122,7 @@ def load_all():
         'censures': load('censures.json'), 'books': load('books.json'), 'quality': load('quality.json'),
         'since': load('since1950.json'), 'disputed': load('disputed.json'), 'threads': load('threads.json'),
         'latin': load('latin.json'), 'catechism': load('catechism.json'), 'concepts': load('concepts.json'),
-        'herm': load('hermeneutics.json'),
+        'herm': load('hermeneutics.json'), 'changes': load('changes.json'),
     }
     return d
 
@@ -222,6 +222,14 @@ def check(d):
         for r in p.get('disputed', []):
             if r not in disp_ids:
                 P.add(where, f'no disputed question {r}')
+    for i, c in enumerate(d['changes']):
+        where = f'changes.json, line {i + 2}'
+        if not re.fullmatch(r'\d{4}-\d{2}-\d{2}', c.get('date', '')) or not c.get('title') or not c.get('summary'):
+            P.add(where, 'each change needs a "date" (YYYY-MM-DD), a "title" and a "summary"')
+        h = c.get('href', '')
+        m = re.fullmatch(r'#e(\d+)', h)
+        if (m and int(m.group(1)) >= len(eras)) or (h.startswith('#n') and h[2:] not in order) or not h.startswith('#'):
+            P.add(where, f'"href" {h} leads nowhere in the reader')
     seen = set()
     for i, c in enumerate(d['concepts']):
         where = f'concepts.json, line {i + 2} ({c.get("id", "?")})'
@@ -423,6 +431,7 @@ def reader_body(raw, d, site):
             f'<script type="application/json" id="disputed-data">{dump(d["disputed"])}</script>\n'
             f'<script type="application/json" id="threads-data">{dump(d["threads"])}</script>\n'
             f'<script type="application/json" id="hermeneutics-data">{dump(d["herm"])}</script>\n'
+            f'<script type="application/json" id="changes-data">{dump(d["changes"])}</script>\n'
             f'<script type="application/json" id="concepts-data">{dump(d["concepts"])}</script>\n'
             f'<script type="application/json" id="latin-data">{dump(d["latin"])}</script>\n'
             '<script>\n' + app + '</script>\n')
@@ -444,7 +453,8 @@ def reader_split(raw, d, site, out):
     site = dict(site)
     site['latin'] = hashed(out, 'latin', 'json', dump(d['latin']))
     blocks = {'site-data': site, 'data': raw, 'since-data': d['since'], 'disputed-data': d['disputed'],
-              'threads-data': d['threads'], 'concepts-data': d['concepts'], 'hermeneutics-data': d['herm']}
+              'threads-data': d['threads'], 'concepts-data': d['concepts'], 'hermeneutics-data': d['herm'],
+              'changes-data': d['changes']}
     data_rel = hashed(out, 'reader', 'json', dump(blocks))
     css_rel = hashed(out, 'styles', 'css', read_src('styles.css'))
     app_rel = hashed(out, 'app', 'js', read_src('app.js'))
@@ -813,6 +823,23 @@ def write(path, text):
         f.write(text)
 
 
+def atom(changes, url):
+    """An Atom feed of what has been added, from changes.json."""
+    def x(t):
+        return html.escape(str(t), quote=False)
+    items = sorted(changes, key=lambda c: c['date'], reverse=True)
+    out = ['<?xml version="1.0" encoding="utf-8"?>', '<feed xmlns="http://www.w3.org/2005/Atom">',
+           f'<title>{x(TITLE)}: additions</title>', f'<subtitle>{x(DESC)}</subtitle>',
+           f'<link href="{x(url)}"/>', f'<link rel="self" href="{x(url)}feed.xml"/>', f'<id>{x(url)}</id>',
+           f'<updated>{items[0]["date"]}T00:00:00Z</updated>', f'<author><name>{x(TITLE)}</name></author>']
+    for i, c in enumerate(items):
+        link = url + c['href'] if c['href'] != '#home' else url
+        out += ['<entry>', f'<title>{x(c["title"])}</title>', f'<link href="{x(link)}"/>',
+                f'<id>{x(url)}changes/{c["date"]}/{len(items) - i}</id>', f'<updated>{c["date"]}T00:00:00Z</updated>',
+                f'<summary>{x(c["summary"])}</summary>', '</entry>']
+    return '\n'.join(out + ['</feed>', ''])
+
+
 def pages_build(args):
     d = load_all()
     order, P = check(d)
@@ -847,6 +874,7 @@ def pages_build(args):
           'potentialAction': {'@type': 'SearchAction', 'target': url + '?q={search_term_string}', 'query-input': 'required name=search_term_string'}}
     if url:
         head_extra += f'<script type="application/ld+json">{dump(ld)}</script>\n'
+        head_extra += f'<link rel="alternate" type="application/atom+xml" title="{TITLE}: additions" href="{url}feed.xml">\n'
     index = head(TITLE, DESC, url, '', head_extra, url) + body + '</body>\n</html>\n'
     write(os.path.join(out, 'index.html'), index)
     write(os.path.join(out, 'assets', 'entry.css'), read_src('entry.css'))
@@ -867,6 +895,8 @@ def pages_build(args):
     write(os.path.join(out, 'sw.js'), read_src('sw.js').replace('__VERSION__', version).replace("'__ASSETS__'", ', '.join(json.dumps(a) for a in assets)))
     write(os.path.join(out, '.nojekyll'), '')
     write(os.path.join(out, 'llms.txt'), LLMS.replace('{herm}', '\n'.join('- ' + p['rule'] for p in d['herm']['principles'])).replace('{url}', url or './'))
+    if url:
+        write(os.path.join(out, 'feed.xml'), atom(d['changes'], url))
     write(os.path.join(out, 'robots.txt'), 'User-agent: *\nAllow: /\n' + (f'Sitemap: {url}sitemap.xml\n' if url else ''))
     if url:
         sm = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
