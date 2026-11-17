@@ -476,6 +476,7 @@ function renderHome() {
       <div>Or a new number, after DS or DH: <code>DS 3074</code></div>
       <div>Type a Scripture reference: <code>Matt 16:18</code> or <code>John 6</code></div>
       <div>Narrow by pope, council or date: <code>pope:"Pius IX"</code> <code>council:trent</code> <code>year:1850-1900</code> <code>before:800</code></div>
+      <div>By document: <code>document:"Mediator Dei"</code>, issuing body: <code>issuer:"Doctrine of the Faith"</code>, or coverage: <code>coverage:excerpts</code></div>
       <div>By weight or kind: <code>weight:dogma</code> <code>weight:condemned</code> <code>kind:anathema</code>, or leave a word out with <code>-word</code></div>
       <div>In the Latin text, accents ignored: <code>latin:"ex cathedra"</code></div>
       <div>Press <code>/</code> anywhere to start a search, and <code>Esc</code> to clear it.</div>
@@ -625,7 +626,7 @@ function sourceContext(e) {
   return `<div class="discussed source-context"><a href="${sourceHref(r)}">${esc(r.title)} · source and context</a><br><span>${COVERAGE_LABEL[r.coverage]}</span>${r.sourceLinks.length ? ' · ' + sourceLinks(r) : ''}</div>`;
 }
 function libraryMatches(r, q) {
-  const hay = norm([r.title, r.issuer || '', r.genre || '', r.collection, ...r.collectionHeadings, ...r.entryIds, ...r.sourceLines].join(' '));
+  const hay = norm([r.title, r.issuer || '', r.genre || '', r.collection, ...r.collectionHeadings, ...r.entryIds, ...(r.topics || []), r.summary || '', ...r.sourceLines].join(' '));
   return norm(q).trim().split(/\s+/).filter(Boolean).every(t => hay.includes(t));
 }
 function libraryCard(r) {
@@ -672,6 +673,7 @@ function renderSource(id) {
     <dt>Catalogue review</dt><dd>${esc(r.review.status)}${r.review.date ? ' · ' + esc(r.review.date) : ''}. ${esc(r.review.note)}</dd>
     <dt>Collection headings</dt><dd>${esc(r.collectionHeadings.join('; ') || 'No local entries')}</dd></dl>
     ${r.sourceLines.map(t => `<p class="src">${esc(t)}</p>`).join('')}</details>
+    ${r.summary ? `<p>${esc(r.summary)} <span class="count">Editorial overview.</span></p>` : ''}
     <p class="curnote">${esc(r.authorityNote)} <a href="#weights">Read the criteria</a>.</p>
     ${entries.length ? `<details><summary>Passages in this collection (${entries.length})</summary><p>${entries.map(e => `<a href="#n${esc(e.id)}">${esc(nlab(e.id))}</a>`).join(' · ')}</p></details>` : '<p>The complete document is available through the external source above. Its text has not been added to local passage search.</p>'}
     </header>${entries.map(e => `${e.topic ? `<h2 class="topic">${esc(e.topic)}</h2>` : ''}${entryHtml(e, null, true)}`).join('')}`;
@@ -838,7 +840,7 @@ function scriptureQuery(q) {
 /* ---------- search ---------- */
 /* Trent's later sessions are printed under Julius III and Pius IV; count them as Trent */
 const assembly = e => kind(e.era) === 'Council' ? e.era.name : (e.ses && /^Session [IVXLC]+/i.test(e.ses) && e.year >= 1545 && e.year <= 1563 ? 'Council of Trent' : null);
-const FILTER_KEYS = new Set(['pope', 'council', 'era', 'weight', 'grade', 'level', 'kind', 'year', 'before', 'after', 'latin', 'topic', 'ds']);
+const FILTER_KEYS = new Set(['pope', 'council', 'era', 'weight', 'grade', 'level', 'kind', 'year', 'before', 'after', 'latin', 'topic', 'ds', 'document', 'doc', 'issuer', 'coverage']);
 function splitQuery(q) {
   const terms = [], neg = [], filters = [];
   q.replace(/(-?)(?:([A-Za-z]+):)?(?:"([^"]*)"?|(\S+))/g, (m, minus, key, ph, w) => {
@@ -870,6 +872,13 @@ function latinHay(e) {
 function filterTest(f) {
   const v = f.val, nv = norm(v).trim();
   switch (f.key) {
+    case 'document': case 'doc': return e => { const r = sourceOf(e); return !!r && libraryMatches(r, v); };
+    case 'issuer': return e => { const r = sourceOf(e); return !!r && r.issuer && startsWord(r.issuer, v); };
+    case 'coverage': {
+      const keys = Object.keys(COVERAGE_LABEL).filter(k => k === v || startsWord(COVERAGE_LABEL[k], v));
+      if (!keys.length) return { error: 'Unknown coverage. Try excerpts, none, summary, unreviewed or full-text.' };
+      return e => keys.includes(sourceOf(e)?.coverage);
+    }
     case 'pope': return e => kind(e.era) === 'Pontificate' && startsWord(e.era.name, v);
     case 'council': return e => { const a = assembly(e); return !!a && startsWord(a, v); };
     case 'era': return e => startsWord(e.era.name, v) || (assembly(e) && startsWord(assembly(e), v));
@@ -883,8 +892,10 @@ function filterTest(f) {
     }
     case 'kind': {
       const ks = KINDS.filter(([k, label]) => k && (k.startsWith(nv) || startsWord(label, v))).map(([k]) => k);
-      if (!ks.length) return { error: `No kind of text called “${v}”. Try creed, definition, anathema, condemned, pbc or curia.` };
-      return e => ks.some(k => e.kinds.includes(k));
+      const weights = Object.entries(WEIGHTS).filter(([k,x]) => norm(k).startsWith(nv) || startsWord(x[0], v)).map(([k]) => k);
+      const genres = LIBRARY.records.filter(r => r.genre && startsWord(r.genre, v)).map(r => r.id);
+      if (!ks.length && !weights.length && !genres.length) return { error: `No kind of text called “${v}”. Try encyclical, papal-address, cdf, creed or anathema.` };
+      return e => ks.some(k => e.kinds.includes(k)) || weights.includes(wKey(e.weight)) || genres.includes(e.documentId);
     }
     case 'year': { const r = yearRange(v); if (!r) return { error: `Give a year or a span, like year:1854 or year:1850-1900.` }; return e => e.year >= r[0] && e.year <= r[1]; }
     case 'before': { const r = yearRange(v); if (!r) return { error: 'Give a year, like before:800.' }; return e => e.year < r[0]; }
@@ -898,7 +909,7 @@ function filterTest(f) {
   }
   return null;
 }
-const FILTER_LABEL = { pope: 'Pope', council: 'Council', era: 'Pope or council', weight: 'Weight', grade: 'Weight', level: 'Weight', kind: 'Kind', year: 'Year', before: 'Before', after: 'After', latin: 'Latin', topic: 'Heading', ds: 'DS' };
+const FILTER_LABEL = { pope: 'Pope', council: 'Council', era: 'Pope or council', weight: 'Weight', grade: 'Weight', level: 'Weight', kind: 'Kind', year: 'Year', before: 'Before', after: 'After', latin: 'Latin', topic: 'Heading', ds: 'DS', document: 'Document', doc: 'Document', issuer: 'Issuing body', coverage: 'Local coverage' };
 function numberQuery(q) {
   const d = dsQuery(q);
   if (d !== null) return (byDS.get(d) || [])[0] || null;
@@ -958,6 +969,16 @@ function hitHtml(e, re) {
     ${e.topic ? `<div class="ht">${re ? esc(e.topic).replace(re, '<mark>$1</mark>') : esc(e.topic)}</div>` : ''}
     <div class="snip">${snippet(e, re)}</div>${m && m.note ? `<div class="nt">${esc(m.note)}</div>` : ''}</span></a>`;
 }
+function sourceSearchMatches(terms, filters) {
+  if (!terms.length && !filters.some(f => ['document', 'doc', 'issuer'].includes(f.key))) return [];
+  return LIBRARY.records.filter(r => terms.every(t => libraryMatches(r, t)) && filters.every(f => {
+    if (['document', 'doc'].includes(f.key)) return libraryMatches(r, f.val);
+    if (f.key === 'issuer') return r.issuer && startsWord(r.issuer, f.val);
+    if (f.key === 'coverage') return r.coverage === f.val || startsWord(COVERAGE_LABEL[r.coverage], f.val);
+    const test = filterTest(f);
+    return typeof test === 'function' && r.entryIds.some(id => test(byId.get(id)));
+  }));
+}
 function renderResults() {
   let { hits, terms, filters, errors } = runSearch();
   if (state.weight && terms.length) hits = hits.filter(h => wKey(h.e.weight) === state.weight);
@@ -979,6 +1000,8 @@ function renderResults() {
   let html = `<div class="res-head"><h1>${title}</h1>${state.topic || (!terms.length && !filters.length) ? `<span class="count">${fmt(shown.length)} ${shown.length === 1 ? 'entry' : 'entries'}</span>` : ''}</div>`;
   if (filters.length) html += `<div class="chips fl"><span class="lbl">Filters</span>${filters.map(f => `<span class="chip on">${FILTER_LABEL[f.key]}: ${esc(f.val)}</span>`).join('')}</div>`;
   if (errors.length) html += `<div class="jump">${errors.map(esc).join('<br>')}</div>`;
+  const matchingSources = !state.topic && !state.kind && !state.weight && !state.period && !splitQuery(state.query).neg.length ? sourceSearchMatches(terms, filters) : [];
+  if (matchingSources.length) html += `<details class="search-sources" open><summary>Matching sources (${matchingSources.length})</summary>${matchingSources.slice(0, 6).map(libraryCard).join('')}${matchingSources.length > 6 ? '<p><a href="#library">Browse all sources and coverage</a></p>' : ''}</details>`;
   const plain = !filters.length;
   const num = !state.topic && plain ? numberQuery(state.query) : null;
   const dq = !state.topic && plain ? dsQuery(state.query) : null;
@@ -1002,7 +1025,7 @@ function renderResults() {
   }
   if (!shown.length) {
     if (!terms.length && filters.length) html += `<div class="empty">No entries match these filters. Check the spelling of a name (this collection writes <b>Pius IX</b>, <b>Trent</b>, <b>Vatican Council</b>), or widen the years.</div>`;
-    if (terms.length) html += `<div class="empty">No entries contain ${terms.length > 1 ? 'all of these words' : 'this word'}${state.period || state.kind ? ' with these filters' : ''}. Try fewer words, a shorter stem such as <b>justif</b>, or another spelling (this translation uses older forms like <b>Machabees</b> and <b>Isaias</b>).</div>`;
+    if (terms.length) html += `<div class="empty">No local passages match ${terms.length > 1 ? 'all of these words' : 'this word'}${state.period || state.kind ? ' with these filters' : ''}. A document may be available only through an external source above. Try fewer words, a shorter stem such as <b>justif</b>, or another spelling (this translation uses older forms like <b>Machabees</b> and <b>Isaias</b>). No result is not evidence of no Church teaching.</div>`;
   } else {
     html += shown.slice(0, state.topic ? shown.length : state.limit).map(({ e }) => hitHtml(e, re)).join('');
     if (!state.topic && shown.length > state.limit) html += `<button class="btn more" id="more">Show more (${fmt(shown.length - state.limit)} left)</button>`;

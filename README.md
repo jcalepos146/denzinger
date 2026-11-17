@@ -36,6 +36,9 @@ A searchable, organized reader for Denzinger's *Enchiridion Symbolorum* in Engli
 
   | Filter | Example |
   |---|---|
+  | Document | `document:"Mediator Dei"`, `doc:LG` |
+  | Issuing body | `issuer:"Doctrine of the Faith"` |
+  | Local coverage | `coverage:excerpts`, `coverage:none` |
   | Pope, council | `pope:"Pius IX"`, `council:trent`, `era:constance` |
   | Date | `year:1850-1900`, `year:16th` (century), `before:800`, `after:1800` |
   | Weight | `weight:dogma`, `weight:condemned`, `weight:discipline` |
@@ -113,3 +116,5 @@ The build stops on problems (a reference to an entry that does not exist, an unk
 `src/data/documents.json` holds explicit source records. Unassigned entries are conservatively grouped by their inherited source headings; these groups are marked unreviewed, not counted as verified documents. An abbreviation is scoped to its era to prevent collisions such as DCE. Passage grades are editorial assessments, distinct from genre labels. No new document-level grades are inferred from titles.
 
 Run `python3 tools/audit_library.py` for a reproducible coverage report, and `python3 -m unittest discover -s tests` for source-integrity regression checks.
+
+Document title searches also show matching source records, including external-only texts. Those texts are not part of local passage search. `kind:encyclical`, `kind:cdf` and `kind:papal-address` complement the existing structural filters. See [the editorial workflow](docs/EDITORIAL-WORKFLOW.md) and [collection roadmap](docs/COLLECTION-ROADMAP.md).

@@ -468,7 +468,13 @@
       "date": "2026-11-17",
       "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
     },
-    "totalSections": 44
+    "totalSections": 44,
+    "summary": "The pastoral office of bishops, their cooperation, and the organization of diocesan ministry.",
+    "topics": [
+      "bishops",
+      "episcopacy",
+      "diocese"
+    ]
   },
   {
     "id": "pc",
@@ -495,7 +501,13 @@
       "date": "2026-11-17",
       "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
     },
-    "totalSections": 25
+    "totalSections": 25,
+    "summary": "The renewal of religious life in fidelity to the Gospel and the character of each institute.",
+    "topics": [
+      "religious life",
+      "consecrated life",
+      "vows"
+    ]
   },
   {
     "id": "ot",
@@ -522,7 +534,13 @@
       "date": "2026-11-17",
       "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
     },
-    "totalSections": 22
+    "totalSections": 22,
+    "summary": "The formation of candidates for the priesthood, including spiritual, intellectual and pastoral preparation.",
+    "topics": [
+      "seminary",
+      "priestly formation",
+      "education"
+    ]
   },
   {
     "id": "ge",
@@ -549,7 +567,13 @@
       "date": "2026-11-17",
       "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
     },
-    "totalSections": 12
+    "totalSections": 12,
+    "summary": "Christian education and the responsibilities of parents, schools and the Church.",
+    "topics": [
+      "education",
+      "parents",
+      "schools"
+    ]
   },
   {
     "id": "im",
@@ -576,7 +600,12 @@
       "date": "2026-11-17",
       "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
     },
-    "totalSections": 24
+    "totalSections": 24,
+    "summary": "The responsibilities of the Church and society in the use of social communications.",
+    "topics": [
+      "media",
+      "communications"
+    ]
   },
   {
     "id": "import-es",
@@ -3882,7 +3911,12 @@
       "status": "source-record-checked",
       "date": "2026-11-17",
       "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
-    }
+    },
+    "summary": "Christian faith as a light received from God and lived within the communion of the Church.",
+    "topics": [
+      "faith",
+      "revelation"
+    ]
   },
   {
     "id": "sacramentum-caritatis",
@@ -3908,7 +3942,13 @@
       "status": "source-record-checked",
       "date": "2026-11-17",
       "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
-    }
+    },
+    "summary": "The Eucharist as a mystery to be believed, celebrated and lived.",
+    "topics": [
+      "Eucharist",
+      "liturgy",
+      "sacraments"
+    ]
   },
   {
     "id": "salvifici-doloris",
@@ -3934,7 +3974,12 @@
       "status": "source-record-checked",
       "date": "2026-11-17",
       "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
-    }
+    },
+    "summary": "The Christian meaning of human suffering in relation to Christ and the work of redemption.",
+    "topics": [
+      "suffering",
+      "redemption"
+    ]
   },
   {
     "id": "vita-consecrata",
@@ -3960,7 +4005,12 @@
       "status": "source-record-checked",
       "date": "2026-11-17",
       "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
-    }
+    },
+    "summary": "The identity, communion and mission of consecrated life in the Church.",
+    "topics": [
+      "consecrated life",
+      "religious life"
+    ]
   },
   {
     "id": "rosarium-virginis-mariae",
@@ -3986,7 +4036,13 @@
       "status": "source-record-checked",
       "date": "2026-11-17",
       "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
-    }
+    },
+    "summary": "The Rosary as contemplation of Christ with Mary, including the mysteries of light.",
+    "topics": [
+      "Rosary",
+      "Mary",
+      "prayer"
+    ]
   },
   {
     "id": "laudate-deum",
@@ -4012,7 +4068,12 @@
       "status": "source-record-checked",
       "date": "2026-11-17",
       "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
-    }
+    },
+    "summary": "An appeal addressing the climate crisis and the responsibilities of individuals and international institutions.",
+    "topics": [
+      "climate",
+      "ecology"
+    ]
   },
   {
     "id": "dilexit-nos",
@@ -4038,7 +4099,13 @@
       "status": "source-record-checked",
       "date": "2026-11-17",
       "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
-    }
+    },
+    "summary": "The human and divine love of the heart of Jesus Christ and its place in Christian life.",
+    "topics": [
+      "Sacred Heart",
+      "Jesus",
+      "love"
+    ]
   },
   {
     "id": "gaudete-et-exsultate",
