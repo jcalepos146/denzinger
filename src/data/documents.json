@@ -1,0 +1,4141 @@
+[
+  {
+    "id": "lg",
+    "title": "Lumen Gentium",
+    "entryIds": [
+      "LG1",
+      "LG4",
+      "LG8",
+      "LG10",
+      "LG11",
+      "LG12",
+      "LG14",
+      "LG15",
+      "LG16",
+      "LG17",
+      "LG18",
+      "LG19",
+      "LG20",
+      "LG21",
+      "LG22",
+      "LG23",
+      "LG24",
+      "LG25",
+      "LG28",
+      "LG29",
+      "LG31",
+      "LG32",
+      "LG39",
+      "LG40",
+      "LG42",
+      "LG44",
+      "LG48",
+      "LG49",
+      "LG51",
+      "LG53",
+      "LG56",
+      "LG60",
+      "LG61",
+      "LG62",
+      "LG63",
+      "LGNP"
+    ],
+    "issuer": "Second Vatican Council",
+    "genre": "Dogmatic constitution",
+    "date": "1964-11-21",
+    "collection": "Vatican II",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19641121_lumen-gentium_en.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade; the Preliminary Note is included with Lumen Gentium"
+    },
+    "totalSections": 69
+  },
+  {
+    "id": "dv",
+    "title": "Dei Verbum",
+    "entryIds": [
+      "DV2",
+      "DV3",
+      "DV4",
+      "DV5",
+      "DV7",
+      "DV8",
+      "DV9",
+      "DV10",
+      "DV11",
+      "DV12",
+      "DV13",
+      "DV16",
+      "DV18",
+      "DV19",
+      "DV21",
+      "DV24",
+      "DV26"
+    ],
+    "issuer": "Second Vatican Council",
+    "genre": "Dogmatic constitution",
+    "date": "1965-11-18",
+    "collection": "Vatican II",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19651118_dei-verbum_en.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    },
+    "totalSections": 26
+  },
+  {
+    "id": "sc",
+    "title": "Sacrosanctum Concilium",
+    "entryIds": [
+      "SC2",
+      "SC7",
+      "SC10",
+      "SC37",
+      "SC38",
+      "SC47",
+      "SC59",
+      "SC72",
+      "SC73",
+      "SC74",
+      "SC75",
+      "SC83",
+      "SC90",
+      "SC99",
+      "SC102",
+      "SC104"
+    ],
+    "issuer": "Second Vatican Council",
+    "genre": "Constitution",
+    "date": "1963-12-04",
+    "collection": "Vatican II",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    },
+    "totalSections": 130
+  },
+  {
+    "id": "gs",
+    "title": "Gaudium et Spes",
+    "entryIds": [
+      "GS12",
+      "GS14",
+      "GS16",
+      "GS17",
+      "GS18",
+      "GS19",
+      "GS21",
+      "GS22",
+      "GS24",
+      "GS25",
+      "GS26",
+      "GS27",
+      "GS28",
+      "GS29",
+      "GS30",
+      "GS34",
+      "GS35",
+      "GS36",
+      "GS38",
+      "GS39",
+      "GS43",
+      "GS44",
+      "GS48",
+      "GS49",
+      "GS50",
+      "GS51",
+      "GS69",
+      "GS79",
+      "GS80",
+      "GS81",
+      "GS87",
+      "GS92"
+    ],
+    "issuer": "Second Vatican Council",
+    "genre": "Pastoral constitution",
+    "date": "1965-12-07",
+    "collection": "Vatican II",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19651207_gaudium-et-spes_en.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    },
+    "totalSections": 93
+  },
+  {
+    "id": "dh",
+    "title": "Dignitatis Humanae",
+    "entryIds": [
+      "DH1",
+      "DH2",
+      "DH3",
+      "DH4"
+    ],
+    "issuer": "Second Vatican Council",
+    "genre": "Declaration",
+    "date": "1965-12-07",
+    "collection": "Vatican II",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_decl_19651207_dignitatis-humanae_en.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    },
+    "totalSections": 15
+  },
+  {
+    "id": "ur",
+    "title": "Unitatis Redintegratio",
+    "entryIds": [
+      "UR3",
+      "UR6",
+      "UR7",
+      "UR8",
+      "UR11",
+      "UR14",
+      "UR22"
+    ],
+    "issuer": "Second Vatican Council",
+    "genre": "Decree",
+    "date": "1964-11-21",
+    "collection": "Vatican II",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_decree_19641121_unitatis-redintegratio_en.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    },
+    "totalSections": 24
+  },
+  {
+    "id": "na",
+    "title": "Nostra Aetate",
+    "entryIds": [
+      "NA1",
+      "NA2",
+      "NA3",
+      "NA4"
+    ],
+    "issuer": "Second Vatican Council",
+    "genre": "Declaration",
+    "date": "1965-10-28",
+    "collection": "Vatican II",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_decl_19651028_nostra-aetate_en.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    },
+    "totalSections": 5
+  },
+  {
+    "id": "oe",
+    "title": "Orientalium Ecclesiarum",
+    "entryIds": [
+      "OE2",
+      "OE3"
+    ],
+    "issuer": "Second Vatican Council",
+    "genre": "Decree",
+    "date": "1964-11-21",
+    "collection": "Vatican II",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_decree_19641121_orientalium-ecclesiarum_en.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    },
+    "totalSections": 30
+  },
+  {
+    "id": "aa",
+    "title": "Apostolicam Actuositatem",
+    "entryIds": [
+      "AA3",
+      "AA8"
+    ],
+    "issuer": "Second Vatican Council",
+    "genre": "Decree",
+    "date": "1965-11-18",
+    "collection": "Vatican II",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_decree_19651118_apostolicam-actuositatem_en.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    },
+    "totalSections": 33
+  },
+  {
+    "id": "ag",
+    "title": "Ad Gentes",
+    "entryIds": [
+      "AG3",
+      "AG5",
+      "AG6",
+      "AG7",
+      "AG8",
+      "AG9",
+      "AG11",
+      "AG14",
+      "AG16",
+      "AG18",
+      "AG19",
+      "AG20",
+      "AG22"
+    ],
+    "issuer": "Second Vatican Council",
+    "genre": "Decree",
+    "date": "1965-12-07",
+    "collection": "Vatican II",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_decree_19651207_ad-gentes_en.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    },
+    "totalSections": 42
+  },
+  {
+    "id": "po",
+    "title": "Presbyterorum Ordinis",
+    "entryIds": [
+      "PO2",
+      "PO5",
+      "PO6"
+    ],
+    "issuer": "Second Vatican Council",
+    "genre": "Decree",
+    "date": "1965-12-07",
+    "collection": "Vatican II",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_decree_19651207_presbyterorum-ordinis_en.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    },
+    "totalSections": 22
+  },
+  {
+    "id": "cd",
+    "title": "Christus Dominus",
+    "entryIds": [],
+    "issuer": "Second Vatican Council",
+    "genre": "Decree",
+    "date": "1965-10-28",
+    "collection": "Vatican II",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_decree_19651028_christus-dominus_en.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "none",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    },
+    "totalSections": 44
+  },
+  {
+    "id": "pc",
+    "title": "Perfectae Caritatis",
+    "entryIds": [],
+    "issuer": "Second Vatican Council",
+    "genre": "Decree",
+    "date": "1965-10-28",
+    "collection": "Vatican II",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_decree_19651028_perfectae-caritatis_en.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "none",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    },
+    "totalSections": 25
+  },
+  {
+    "id": "ot",
+    "title": "Optatam Totius",
+    "entryIds": [],
+    "issuer": "Second Vatican Council",
+    "genre": "Decree",
+    "date": "1965-10-28",
+    "collection": "Vatican II",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_decree_19651028_optatam-totius_en.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "none",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    },
+    "totalSections": 22
+  },
+  {
+    "id": "ge",
+    "title": "Gravissimum Educationis",
+    "entryIds": [],
+    "issuer": "Second Vatican Council",
+    "genre": "Declaration",
+    "date": "1965-10-28",
+    "collection": "Vatican II",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_decl_19651028_gravissimum-educationis_en.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "none",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    },
+    "totalSections": 12
+  },
+  {
+    "id": "im",
+    "title": "Inter Mirifica",
+    "entryIds": [],
+    "issuer": "Second Vatican Council",
+    "genre": "Decree",
+    "date": "1963-12-04",
+    "collection": "Vatican II",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_decree_19631204_inter-mirifica_en.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "none",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    },
+    "totalSections": 24
+  },
+  {
+    "id": "import-es",
+    "title": "Ecclesiam Suam",
+    "entryIds": [
+      "ES99",
+      "ES100",
+      "ES104",
+      "ES107",
+      "ES108"
+    ],
+    "issuer": "Paul VI",
+    "genre": "Encyclical Letter",
+    "date": null,
+    "collection": "Selected documents",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/content/paul-vi/en/encyclicals/documents/hf_p-vi_enc_06081964_ecclesiam.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "import-bom",
+    "title": "Address to representatives of non-Christian religions, Bombay",
+    "entryIds": [
+      "AD19641203",
+      "AD19701129"
+    ],
+    "issuer": "Paul VI",
+    "genre": "Address to representatives of non-Christian religions, Bombay",
+    "date": null,
+    "collection": "Selected documents",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/content/paul-vi/en/speeches/1964/documents/hf_p-vi_spe_19641203_other-religions.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "import-mf",
+    "title": "Mysterium Fidei",
+    "entryIds": [
+      "MF11",
+      "MF38",
+      "MF39",
+      "MF44",
+      "MF46",
+      "MF68",
+      "MF69"
+    ],
+    "issuer": "Paul VI",
+    "genre": "Encyclical Letter",
+    "date": null,
+    "collection": "Selected documents",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/content/paul-vi/en/encyclicals/documents/hf_p-vi_enc_03091965_mysterium.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "import-id",
+    "title": "Indulgentiarum Doctrina",
+    "entryIds": [
+      "ID5",
+      "ID12"
+    ],
+    "issuer": "Paul VI",
+    "genre": "Apostolic Constitution",
+    "date": null,
+    "collection": "Selected documents",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/content/paul-vi/en/apost_constitutions/documents/hf_p-vi_apc_01011967_indulgentiarum-doctrina.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "import-popp",
+    "title": "Populorum Progressio",
+    "entryIds": [
+      "PP9",
+      "PP14",
+      "PP15",
+      "PP17",
+      "PP18",
+      "PP19",
+      "PP20",
+      "PP22",
+      "PP23",
+      "PP24",
+      "PP26",
+      "PP30",
+      "PP31",
+      "PP32",
+      "PP33",
+      "PP42",
+      "PP44",
+      "PP48",
+      "PP49",
+      "PP50",
+      "PP59"
+    ],
+    "issuer": "Paul VI",
+    "genre": "Encyclical Letter",
+    "date": null,
+    "collection": "Selected documents",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/content/paul-vi/en/encyclicals/documents/hf_p-vi_enc_26031967_populorum.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "import-sac",
+    "title": "Sacerdotalis Caelibatus",
+    "entryIds": [
+      "SACC14"
+    ],
+    "issuer": "Paul VI",
+    "genre": "Encyclical Letter",
+    "date": null,
+    "collection": "Selected documents",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/content/paul-vi/en/encyclicals/documents/hf_p-vi_enc_24061967_sacerdotalis.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "import-cpg",
+    "title": "Credo of the People of God",
+    "entryIds": [
+      "CPG8",
+      "CPG9",
+      "CPG10",
+      "CPG11",
+      "CPG12",
+      "CPG13",
+      "CPG14",
+      "CPG15",
+      "CPG16",
+      "CPG17",
+      "CPG18",
+      "CPG19",
+      "CPG20",
+      "CPG21",
+      "CPG22",
+      "CPG23",
+      "CPG24",
+      "CPG25",
+      "CPG26",
+      "CPG27",
+      "CPG28",
+      "CPG29",
+      "CPG30"
+    ],
+    "issuer": "Paul VI",
+    "genre": "Solemn Profession of Faith (Motu Proprio \"Solemni Hac Liturgia\")",
+    "date": null,
+    "collection": "Selected documents",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/content/paul-vi/en/motu_proprio/documents/hf_p-vi_motu-proprio_19680630_credo.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "import-hv",
+    "title": "Humanae Vitae",
+    "entryIds": [
+      "HV12",
+      "HV13",
+      "HV14",
+      "HV15",
+      "HV16"
+    ],
+    "issuer": "Paul VI",
+    "genre": "Encyclical Letter",
+    "date": null,
+    "collection": "Selected documents",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/content/paul-vi/en/encyclicals/documents/hf_p-vi_enc_25071968_humanae-vitae.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "import-oa",
+    "title": "Octogesima Adveniens",
+    "entryIds": [
+      "OA4",
+      "OA13",
+      "OA16",
+      "OA17",
+      "OA20",
+      "OA23",
+      "OA31",
+      "OA32",
+      "OA34",
+      "OA38",
+      "OA39",
+      "OA40",
+      "OA41",
+      "OA43",
+      "OA47",
+      "OA48",
+      "OA49"
+    ],
+    "issuer": "Paul VI",
+    "genre": "Apostolic Letter",
+    "date": null,
+    "collection": "Selected documents",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/content/paul-vi/en/apost_letters/documents/hf_p-vi_apl_19710514_octogesima-adveniens.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "import-mfd",
+    "title": "Mysterium Filii Dei",
+    "entryIds": [
+      "MFD3",
+      "MFD5",
+      "MFD6"
+    ],
+    "issuer": "Congregation for the Doctrine of the Faith",
+    "genre": "Declaration of the Congregation for the Doctrine of the Faith",
+    "date": null,
+    "collection": "Selected documents",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/roman_curia/congregations/cfaith/documents/rc_con_cfaith_doc_19720221_mysterium-filii-dei_en.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "import-sui",
+    "title": "Sacram Unctionem Infirmorum",
+    "entryIds": [
+      "SUI"
+    ],
+    "issuer": "Paul VI",
+    "genre": "Apostolic Constitution",
+    "date": null,
+    "collection": "Selected documents",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/content/paul-vi/en/apost_constitutions/documents/hf_p-vi_apc_19721130_sacram-unctionem.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "import-mec",
+    "title": "Mysterium Ecclesiae",
+    "entryIds": [
+      "MEC4",
+      "MEC5",
+      "MEC6"
+    ],
+    "issuer": "Congregation for the Doctrine of the Faith",
+    "genre": "Declaration of the Congregation for the Doctrine of the Faith",
+    "date": null,
+    "collection": "Selected documents",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/roman_curia/congregations/cfaith/documents/rc_con_cfaith_doc_19730705_mysterium-ecclesiae_en.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "import-shen",
+    "title": "Common Declaration of Pope Paul VI and Pope Shenouda III",
+    "entryIds": [
+      "JD19730510"
+    ],
+    "issuer": "Paul VI",
+    "genre": "Common Declaration of Pope Paul VI and Pope Shenouda III",
+    "date": null,
+    "collection": "Selected documents",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/content/paul-vi/en/speeches/1973/may/documents/hf_p-vi_spe_19730510_dichiarazione-comune.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "import-mc",
+    "title": "Marialis Cultus",
+    "entryIds": [
+      "MC34",
+      "MC35",
+      "MC36",
+      "MC57"
+    ],
+    "issuer": "Paul VI",
+    "genre": "Apostolic Exhortation",
+    "date": null,
+    "collection": "Selected documents",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/content/paul-vi/en/apost_exhortations/documents/hf_p-vi_exh_19740202_marialis-cultus.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "import-qda",
+    "title": "Quaestio de Abortu",
+    "entryIds": [
+      "QDA12",
+      "QDA13",
+      "QDA26"
+    ],
+    "issuer": "Congregation for the Doctrine of the Faith",
+    "genre": "Declaration of the Congregation for the Doctrine of the Faith",
+    "date": null,
+    "collection": "Selected documents",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/roman_curia/congregations/cfaith/documents/rc_con_cfaith_doc_19741118_declaration-abortion_en.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "import-en",
+    "title": "Evangelii Nuntiandi",
+    "entryIds": [
+      "EN9",
+      "EN14",
+      "EN16",
+      "EN27",
+      "EN29",
+      "EN30",
+      "EN31",
+      "EN32",
+      "EN36",
+      "EN47",
+      "EN48",
+      "EN53",
+      "EN62",
+      "EN63",
+      "EN64",
+      "EN65",
+      "EN73"
+    ],
+    "issuer": "Paul VI",
+    "genre": "Apostolic Exhortation",
+    "date": null,
+    "collection": "Selected documents",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/content/paul-vi/en/apost_exhortations/documents/hf_p-vi_exh_19751208_evangelii-nuntiandi.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "import-ph",
+    "title": "Persona Humana",
+    "entryIds": [
+      "PH5",
+      "PH7",
+      "PH8",
+      "PH9",
+      "PH10",
+      "PH13"
+    ],
+    "issuer": "Congregation for the Doctrine of the Faith",
+    "genre": "Declaration of the Congregation for the Doctrine of the Faith",
+    "date": null,
+    "collection": "Selected documents",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/roman_curia/congregations/cfaith/documents/rc_con_cfaith_doc_19751229_persona-humana_en.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "import-ii",
+    "title": "Inter Insigniores",
+    "entryIds": [
+      "II4"
+    ],
+    "issuer": "Congregation for the Doctrine of the Faith",
+    "genre": "Declaration of the Congregation for the Doctrine of the Faith",
+    "date": null,
+    "collection": "Selected documents",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/roman_curia/congregations/cfaith/documents/rc_con_cfaith_doc_19761015_inter-insigniores_en.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "import-imp",
+    "title": "Circa Impotentiam",
+    "entryIds": [
+      "CI"
+    ],
+    "issuer": "Congregation for the Doctrine of the Faith",
+    "genre": "Decree of the Congregation for the Doctrine of the Faith",
+    "date": null,
+    "collection": "Selected documents",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/roman_curia/congregations/cfaith/documents/rc_con_cfaith_doc_19770513_impotentia_en.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "import-pue",
+    "title": "Address to the Third General Conference of the Latin American Episcopate, Puebla",
+    "entryIds": [
+      "AD19790128",
+      "AD19810221",
+      "AD19831029",
+      "AD19860205",
+      "AD19880408",
+      "AD19880601",
+      "AD19891208",
+      "AD19910531",
+      "AD19921031",
+      "AD19961022",
+      "AD19970113",
+      "AD19981027"
+    ],
+    "issuer": "John Paul II",
+    "genre": "Address to the Third General Conference of the Latin American Episcopate, Puebla",
+    "date": null,
+    "collection": "Selected documents",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/content/john-paul-ii/en/speeches/1979/january/documents/hf_jp-ii_spe_19790128_messico-puebla-episc-latam.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "import-rh",
+    "title": "Redemptor Hominis",
+    "entryIds": [
+      "RH6",
+      "RH9",
+      "RH10",
+      "RH11",
+      "RH12",
+      "RH13",
+      "RH14",
+      "RH15",
+      "RH16",
+      "RH17",
+      "RH18",
+      "RH20",
+      "RH21"
+    ],
+    "issuer": "John Paul II",
+    "genre": "Encyclical Letter",
+    "date": null,
+    "collection": "Selected documents",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/content/john-paul-ii/en/encyclicals/documents/hf_jp-ii_enc_04031979_redemptor-hominis.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "import-lp79",
+    "title": "Letter to Priests for Holy Thursday",
+    "entryIds": [
+      "LP8"
+    ],
+    "issuer": "John Paul II",
+    "genre": "Letter to Priests for Holy Thursday",
+    "date": null,
+    "collection": "Selected documents",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/content/john-paul-ii/en/letters/1979/documents/hf_jp-ii_let_19790409_sacerdoti-giovedi-santo.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "import-sap",
+    "title": "Sapientia Christiana",
+    "entryIds": [
+      "SCH6"
+    ],
+    "issuer": "John Paul II",
+    "genre": "Apostolic Constitution",
+    "date": null,
+    "collection": "Selected documents",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/content/john-paul-ii/en/apost_constitutions/documents/hf_jp-ii_apc_15041979_sapientia-christiana.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "import-esc",
+    "title": "Recentiores Episcoporum Synodi",
+    "entryIds": [
+      "RES"
+    ],
+    "issuer": "Congregation for the Doctrine of the Faith",
+    "genre": "Letter of the Congregation for the Doctrine of the Faith on certain questions concerning eschatology",
+    "date": null,
+    "collection": "Selected documents",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/roman_curia/congregations/cfaith/documents/rc_con_cfaith_doc_19790517_escatologia_en.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "import-ct",
+    "title": "Catechesi Tradendae",
+    "entryIds": [
+      "CT27",
+      "CT53",
+      "CT60"
+    ],
+    "issuer": "John Paul II",
+    "genre": "Apostolic Exhortation",
+    "date": null,
+    "collection": "Selected documents",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/content/john-paul-ii/en/apost_exhortations/documents/hf_jp-ii_exh_16101979_catechesi-tradendae.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "import-dc",
+    "title": "Dominicae Cenae",
+    "entryIds": [
+      "DCE6"
+    ],
+    "issuer": "John Paul II",
+    "genre": "Letter to the Bishops of the Church",
+    "date": null,
+    "collection": "Selected documents",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/content/john-paul-ii/en/letters/1980/documents/hf_jp-ii_let_19800224_dominicae-cenae.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "import-ieb",
+    "title": "Iura et Bona",
+    "entryIds": [
+      "IEB3"
+    ],
+    "issuer": "Congregation for the Doctrine of the Faith",
+    "genre": "Declaration of the Congregation for the Doctrine of the Faith on Euthanasia",
+    "date": null,
+    "collection": "Selected documents",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/roman_curia/congregations/cfaith/documents/rc_con_cfaith_doc_19800505_eutanasia_en.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "import-pa",
+    "title": "Pastoralis Actio",
+    "entryIds": [
+      "PA9",
+      "PA10",
+      "PA12",
+      "PA14",
+      "PA15",
+      "PA28"
+    ],
+    "issuer": "Congregation for the Doctrine of the Faith",
+    "genre": "Instruction of the Congregation for the Doctrine of the Faith on Infant Baptism",
+    "date": null,
+    "collection": "Selected documents",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/roman_curia/congregations/cfaith/documents/rc_con_cfaith_doc_19801020_pastoralis_actio_en.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "import-dm",
+    "title": "Dives in Misericordia",
+    "entryIds": [
+      "DM8",
+      "DM12"
+    ],
+    "issuer": "John Paul II",
+    "genre": "Encyclical Letter",
+    "date": null,
+    "collection": "Selected documents",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/content/john-paul-ii/en/encyclicals/documents/hf_jp-ii_enc_30111980_dives-in-misericordia.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "import-le",
+    "title": "Laborem Exercens",
+    "entryIds": [
+      "LE6",
+      "LE12",
+      "LE14",
+      "LE19",
+      "LE25",
+      "LE26",
+      "LE27"
+    ],
+    "issuer": "John Paul II",
+    "genre": "Encyclical Letter",
+    "date": null,
+    "collection": "Selected documents",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/content/john-paul-ii/en/encyclicals/documents/hf_jp-ii_enc_14091981_laborem-exercens.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "import-fc",
+    "title": "Familiaris Consortio",
+    "entryIds": [
+      "FC13",
+      "FC20",
+      "FC23",
+      "FC32"
+    ],
+    "issuer": "John Paul II",
+    "genre": "Apostolic Exhortation",
+    "date": null,
+    "collection": "Selected documents",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/content/john-paul-ii/en/apost_exhortations/documents/hf_jp-ii_exh_19811122_familiaris-consortio.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "import-sdl",
+    "title": "Sacrae Disciplinae Leges",
+    "entryIds": [
+      "SDL"
+    ],
+    "issuer": "John Paul II",
+    "genre": "Apostolic Constitution",
+    "date": null,
+    "collection": "Selected documents",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/content/john-paul-ii/en/apost_constitutions/documents/hf_jp-ii_apc_25011983_sacrae-disciplinae-leges.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "import-smin",
+    "title": "Sacerdotium Ministeriale",
+    "entryIds": [
+      "SMIN1",
+      "SMIN2",
+      "SMIN3",
+      "SMIN4"
+    ],
+    "issuer": "Congregation for the Doctrine of the Faith",
+    "genre": "Letter of the Congregation for the Doctrine of the Faith on certain questions concerning the minister of the Eucharist",
+    "date": null,
+    "collection": "Selected documents",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/roman_curia/congregations/cfaith/documents/rc_con_cfaith_doc_19830806_sacerdotium-ministeriale_en.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "import-ln",
+    "title": "Libertatis Nuntius",
+    "entryIds": [
+      "LN3",
+      "LN5",
+      "LN7"
+    ],
+    "issuer": "Congregation for the Doctrine of the Faith",
+    "genre": "Instruction of the Congregation for the Doctrine of the Faith on certain aspects of the \"theology of liberation\"",
+    "date": null,
+    "collection": "Selected documents",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/roman_curia/congregations/cfaith/documents/rc_con_cfaith_doc_19840806_theology-liberation_en.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "import-rp",
+    "title": "Reconciliatio et Paenitentia",
+    "entryIds": [
+      "RP9",
+      "RP11",
+      "RP15",
+      "RP16",
+      "RP17",
+      "RP18",
+      "RP25",
+      "RP26",
+      "RP28",
+      "RP29",
+      "RP31",
+      "RP32"
+    ],
+    "issuer": "John Paul II",
+    "genre": "Apostolic Exhortation",
+    "date": null,
+    "collection": "Selected documents",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/content/john-paul-ii/en/apost_exhortations/documents/hf_jp-ii_exh_02121984_reconciliatio-et-paenitentia.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "import-sa",
+    "title": "Slavorum Apostoli",
+    "entryIds": [
+      "SA18"
+    ],
+    "issuer": "John Paul II",
+    "genre": "Encyclical Letter",
+    "date": null,
+    "collection": "Selected documents",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/content/john-paul-ii/en/encyclicals/documents/hf_jp-ii_enc_19850602_slavorum-apostoli.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "import-lc",
+    "title": "Libertatis Conscientia",
+    "entryIds": [
+      "LC61",
+      "LC63",
+      "LC68",
+      "LC73",
+      "LC75",
+      "LC76",
+      "LC79",
+      "LC96"
+    ],
+    "issuer": "Congregation for the Doctrine of the Faith",
+    "genre": "Instruction of the Congregation for the Doctrine of the Faith on Christian freedom and liberation",
+    "date": null,
+    "collection": "Selected documents",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/roman_curia/congregations/cfaith/documents/rc_con_cfaith_doc_19860322_freedom-liberation_en.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "import-dev",
+    "title": "Dominum et Vivificantem",
+    "entryIds": [
+      "DEV10",
+      "DEV46",
+      "DEV52",
+      "DEV53"
+    ],
+    "issuer": "John Paul II",
+    "genre": "Encyclical Letter",
+    "date": null,
+    "collection": "Selected documents",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/content/john-paul-ii/en/encyclicals/documents/hf_jp-ii_enc_18051986_dominum-et-vivificantem.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "import-hp",
+    "title": "Homosexualitatis Problema",
+    "entryIds": [
+      "HP5",
+      "HP10",
+      "HP11",
+      "HP16"
+    ],
+    "issuer": "Congregation for the Doctrine of the Faith",
+    "genre": "Letter of the Congregation for the Doctrine of the Faith on the pastoral care of homosexual persons",
+    "date": null,
+    "collection": "Selected documents",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/roman_curia/congregations/cfaith/documents/rc_con_cfaith_doc_19861001_homosexual-persons_en.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "import-dvi",
+    "title": "Donum Vitae",
+    "entryIds": [
+      "DVI1",
+      "DVI2",
+      "DVI3",
+      "DVI4",
+      "DVI5",
+      "DVI6",
+      "DVI8"
+    ],
+    "issuer": "Congregation for the Doctrine of the Faith",
+    "genre": "Instruction of the Congregation for the Doctrine of the Faith on respect for human life in its origin and on the dignity of procreation",
+    "date": null,
+    "collection": "Selected documents",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/roman_curia/congregations/cfaith/documents/rc_con_cfaith_doc_19870222_respect-for-human-life_en.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "import-rma",
+    "title": "Redemptoris Mater",
+    "entryIds": [
+      "RMA19",
+      "RMA26",
+      "RMA38",
+      "RMA39"
+    ],
+    "issuer": "John Paul II",
+    "genre": "Encyclical Letter",
+    "date": null,
+    "collection": "Selected documents",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/content/john-paul-ii/en/encyclicals/documents/hf_jp-ii_enc_25031987_redemptoris-mater.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "import-ds",
+    "title": "Duodecimum Saeculum",
+    "entryIds": [
+      "DSA9",
+      "DSA11"
+    ],
+    "issuer": "John Paul II",
+    "genre": "Apostolic Letter",
+    "date": null,
+    "collection": "Selected documents",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/content/john-paul-ii/en/apost_letters/1987/documents/hf_jp-ii_apl_19871204_duodecim-saeculum.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "import-srs",
+    "title": "Sollicitudo Rei Socialis",
+    "entryIds": [
+      "SRS21",
+      "SRS26",
+      "SRS28",
+      "SRS33",
+      "SRS34",
+      "SRS38",
+      "SRS41",
+      "SRS47",
+      "SRS48"
+    ],
+    "issuer": "John Paul II",
+    "genre": "Encyclical Letter",
+    "date": null,
+    "collection": "Selected documents",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/content/john-paul-ii/en/encyclicals/documents/hf_jp-ii_enc_30121987_sollicitudo-rei-socialis.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "import-md",
+    "title": "Mulieris Dignitatem",
+    "entryIds": [
+      "MD5",
+      "MD6",
+      "MD17",
+      "MD30"
+    ],
+    "issuer": "John Paul II",
+    "genre": "Apostolic Letter",
+    "date": null,
+    "collection": "Selected documents",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/content/john-paul-ii/en/apost_letters/1988/documents/hf_jp-ii_apl_15081988_mulieris-dignitatem.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "import-vqa",
+    "title": "Vicesimus Quintus Annus",
+    "entryIds": [
+      "VQA10",
+      "VQA16"
+    ],
+    "issuer": "John Paul II",
+    "genre": "Apostolic Letter",
+    "date": null,
+    "collection": "Selected documents",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/content/john-paul-ii/en/apost_letters/1988/documents/hf_jp-ii_apl_19881204_vicesimus-quintus-annus.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "import-cl",
+    "title": "Christifideles Laici",
+    "entryIds": [
+      "CL9",
+      "CL14",
+      "CL20",
+      "CL23",
+      "CL30",
+      "CL51"
+    ],
+    "issuer": "John Paul II",
+    "genre": "Apostolic Exhortation",
+    "date": null,
+    "collection": "Selected documents",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/content/john-paul-ii/en/apost_exhortations/documents/hf_jp-ii_exh_30121988_christifideles-laici.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "import-pf",
+    "title": "Professio Fidei",
+    "entryIds": [
+      "PF"
+    ],
+    "issuer": "Congregation for the Doctrine of the Faith",
+    "genre": "Profession of Faith and Oath of Fidelity, Congregation for the Doctrine of the Faith",
+    "date": null,
+    "collection": "Selected documents",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/roman_curia/congregations/cfaith/documents/rc_con_cfaith_doc_19880701_professio-fidei_en.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "import-dver",
+    "title": "Donum Veritatis",
+    "entryIds": [
+      "DVER6",
+      "DVER7",
+      "DVER8",
+      "DVER10",
+      "DVER14",
+      "DVER15",
+      "DVER16",
+      "DVER17",
+      "DVER23",
+      "DVER24"
+    ],
+    "issuer": "Congregation for the Doctrine of the Faith",
+    "genre": "Instruction of the Congregation for the Doctrine of the Faith on the ecclesial vocation of the theologian",
+    "date": null,
+    "collection": "Selected documents",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/roman_curia/congregations/cfaith/documents/rc_con_cfaith_doc_19900524_theologian-vocation_en.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "import-rm",
+    "title": "Redemptoris Missio",
+    "entryIds": [
+      "RM5",
+      "RM9",
+      "RM10",
+      "RM11",
+      "RM13",
+      "RM14",
+      "RM15",
+      "RM17",
+      "RM18",
+      "RM20",
+      "RM28",
+      "RM44",
+      "RM51",
+      "RM52",
+      "RM53",
+      "RM55",
+      "RM56",
+      "RM57",
+      "RM92"
+    ],
+    "issuer": "John Paul II",
+    "genre": "Encyclical Letter",
+    "date": null,
+    "collection": "Selected documents",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/content/john-paul-ii/en/encyclicals/documents/hf_jp-ii_enc_07121990_redemptoris-missio.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "import-ca",
+    "title": "Centesimus Annus",
+    "entryIds": [
+      "CA5",
+      "CA10",
+      "CA25",
+      "CA28",
+      "CA29",
+      "CA32",
+      "CA33",
+      "CA34",
+      "CA35",
+      "CA36",
+      "CA38",
+      "CA39",
+      "CA42",
+      "CA43",
+      "CA46",
+      "CA47",
+      "CA48",
+      "CA53",
+      "CA55",
+      "CA57",
+      "CA58"
+    ],
+    "issuer": "John Paul II",
+    "genre": "Encyclical Letter",
+    "date": null,
+    "collection": "Selected documents",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/content/john-paul-ii/en/encyclicals/documents/hf_jp-ii_enc_01051991_centesimus-annus.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "import-pdv",
+    "title": "Pastores Dabo Vobis",
+    "entryIds": [
+      "PDV51",
+      "PDV52"
+    ],
+    "issuer": "John Paul II",
+    "genre": "Apostolic Exhortation",
+    "date": null,
+    "collection": "Selected documents",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/content/john-paul-ii/en/apost_exhortations/documents/hf_jp-ii_exh_25031992_pastores-dabo-vobis.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "import-cn",
+    "title": "Communionis Notio",
+    "entryIds": [
+      "CN8",
+      "CN9",
+      "CN13"
+    ],
+    "issuer": "Congregation for the Doctrine of the Faith",
+    "genre": "Letter of the Congregation for the Doctrine of the Faith on some aspects of the Church understood as communion",
+    "date": null,
+    "collection": "Selected documents",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/roman_curia/congregations/cfaith/documents/rc_con_cfaith_doc_28051992_communionis-notio_en.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "import-vs",
+    "title": "Veritatis Splendor",
+    "entryIds": [
+      "VS22",
+      "VS24",
+      "VS26",
+      "VS27",
+      "VS29",
+      "VS32",
+      "VS35",
+      "VS37",
+      "VS40",
+      "VS45",
+      "VS48",
+      "VS49",
+      "VS50",
+      "VS56",
+      "VS59",
+      "VS61",
+      "VS62",
+      "VS66",
+      "VS67",
+      "VS70",
+      "VS75",
+      "VS76",
+      "VS79",
+      "VS80",
+      "VS93",
+      "VS109",
+      "VS112",
+      "VS113",
+      "VS116",
+      "VS118",
+      "VS120"
+    ],
+    "issuer": "John Paul II",
+    "genre": "Encyclical Letter",
+    "date": null,
+    "collection": "Selected documents",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/content/john-paul-ii/en/encyclicals/documents/hf_jp-ii_enc_06081993_veritatis-splendor.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "import-gs94",
+    "title": "Gratissimam Sane",
+    "entryIds": [
+      "GRS7",
+      "GRS8",
+      "GRS10"
+    ],
+    "issuer": "John Paul II",
+    "genre": "Letter to Families",
+    "date": null,
+    "collection": "Selected documents",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/content/john-paul-ii/en/letters/1994/documents/hf_jp-ii_let_02021994_families.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "import-os",
+    "title": "Ordinatio Sacerdotalis",
+    "entryIds": [
+      "OS4"
+    ],
+    "issuer": "John Paul II",
+    "genre": "Apostolic Letter",
+    "date": null,
+    "collection": "Selected documents",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/content/john-paul-ii/en/apost_letters/1994/documents/hf_jp-ii_apl_19940522_ordinatio-sacerdotalis.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "import-rcd",
+    "title": "Annus Internationalis Familiae",
+    "entryIds": [
+      "RCD3",
+      "RCD6"
+    ],
+    "issuer": "Congregation for the Doctrine of the Faith",
+    "genre": "Letter of the Congregation for the Doctrine of the Faith on the reception of Holy Communion by divorced and remarried members of the faithful",
+    "date": null,
+    "collection": "Selected documents",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/roman_curia/congregations/cfaith/documents/rc_con_cfaith_doc_14091994_rec-holy-comm-by-divorced_en.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "import-tma",
+    "title": "Tertio Millennio Adveniente",
+    "entryIds": [
+      "TMA6",
+      "TMA7",
+      "TMA8",
+      "TMA9",
+      "TMA10",
+      "TMA32",
+      "TMA33",
+      "TMA34",
+      "TMA35",
+      "TMA36"
+    ],
+    "issuer": "John Paul II",
+    "genre": "Apostolic Letter",
+    "date": null,
+    "collection": "Selected documents",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/content/john-paul-ii/en/apost_letters/1994/documents/hf_jp-ii_apl_19941110_tertio-millennio-adveniente.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "import-acd",
+    "title": "Common Christological Declaration between the Catholic Church and the Assyrian Church of the East",
+    "entryIds": [
+      "JD19941111"
+    ],
+    "issuer": "John Paul II",
+    "genre": "Common Christological Declaration between the Catholic Church and the Assyrian Church of the East",
+    "date": null,
+    "collection": "Selected documents",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/content/john-paul-ii/en/speeches/1994/november/documents/hf_jp-ii_spe_19941111_dichiarazione-cristologica.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "import-ev",
+    "title": "Evangelium Vitae",
+    "entryIds": [
+      "EV12",
+      "EV28",
+      "EV36",
+      "EV37",
+      "EV38",
+      "EV56",
+      "EV57",
+      "EV62",
+      "EV63",
+      "EV65",
+      "EV70",
+      "EV73",
+      "EV90",
+      "EV91",
+      "EV99"
+    ],
+    "issuer": "John Paul II",
+    "genre": "Encyclical Letter",
+    "date": null,
+    "collection": "Selected documents",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/content/john-paul-ii/en/encyclicals/documents/hf_jp-ii_enc_25031995_evangelium-vitae.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "import-ol",
+    "title": "Orientale Lumen",
+    "entryIds": [
+      "OL17",
+      "OL20"
+    ],
+    "issuer": "John Paul II",
+    "genre": "Apostolic Letter",
+    "date": null,
+    "collection": "Selected documents",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/content/john-paul-ii/en/apost_letters/1995/documents/hf_jp-ii_apl_19950502_orientale-lumen.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "import-uus",
+    "title": "Ut Unum Sint",
+    "entryIds": [
+      "UUS9",
+      "UUS18",
+      "UUS19",
+      "UUS36",
+      "UUS38",
+      "UUS46",
+      "UUS79",
+      "UUS82",
+      "UUS84",
+      "UUS85",
+      "UUS88",
+      "UUS94",
+      "UUS95",
+      "UUS96"
+    ],
+    "issuer": "John Paul II",
+    "genre": "Encyclical Letter",
+    "date": null,
+    "collection": "Selected documents",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/content/john-paul-ii/en/encyclicals/documents/hf_jp-ii_enc_25051995_ut-unum-sint.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "import-lw",
+    "title": "Letter to Women",
+    "entryIds": [
+      "LW8"
+    ],
+    "issuer": "John Paul II",
+    "genre": "Letter to Women",
+    "date": null,
+    "collection": "Selected documents",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/content/john-paul-ii/en/letters/1995/documents/hf_jp-ii_let_29061995_women.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "import-rdos",
+    "title": "Responsum ad Dubium",
+    "entryIds": [
+      "RDOS"
+    ],
+    "issuer": "Congregation for the Doctrine of the Faith",
+    "genre": "Reply of the Congregation for the Doctrine of the Faith to the dubium concerning the teaching contained in \"Ordinatio Sacerdotalis\"",
+    "date": null,
+    "collection": "Selected documents",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/roman_curia/congregations/cfaith/documents/rc_con_cfaith_doc_19951028_dubium-ordinatio-sac_en.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "import-atf",
+    "title": "Ad Tuendam Fidem",
+    "entryIds": [
+      "ATF4"
+    ],
+    "issuer": "John Paul II",
+    "genre": "Apostolic Letter (Motu Proprio)",
+    "date": null,
+    "collection": "Selected documents",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/content/john-paul-ii/en/motu_proprio/documents/hf_jp-ii_motu-proprio_30061998_ad-tuendam-fidem.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "import-as",
+    "title": "Apostolos Suos",
+    "entryIds": [
+      "AS8",
+      "AS9",
+      "AS12",
+      "AS14",
+      "AS19",
+      "AS20",
+      "AS22",
+      "AS24"
+    ],
+    "issuer": "John Paul II",
+    "genre": "Apostolic Letter (Motu Proprio)",
+    "date": null,
+    "collection": "Selected documents",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/content/john-paul-ii/en/motu_proprio/documents/hf_jp-ii_motu-proprio_22071998_apostolos-suos.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "import-dd",
+    "title": "Dies Domini",
+    "entryIds": [
+      "DD9",
+      "DD19",
+      "DD31",
+      "DD32",
+      "DD37",
+      "DD45",
+      "DD47",
+      "DD84"
+    ],
+    "issuer": "John Paul II",
+    "genre": "Apostolic Letter",
+    "date": null,
+    "collection": "Selected documents",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/content/john-paul-ii/en/apost_letters/1998/documents/hf_jp-ii_apl_05071998_dies-domini.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "import-dcpf",
+    "title": "Doctrinal Commentary of the Congregation for the Doctrine of the Faith on the concluding formula of the Professio fidei",
+    "entryIds": [
+      "DCPF11"
+    ],
+    "issuer": "Congregation for the Doctrine of the Faith",
+    "genre": "Doctrinal Commentary of the Congregation for the Doctrine of the Faith on the concluding formula of the Professio fidei",
+    "date": null,
+    "collection": "Selected documents",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/roman_curia/congregations/cfaith/documents/rc_con_cfaith_doc_1998_professio-fidei_en.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "import-fr",
+    "title": "Fides et Ratio",
+    "entryIds": [
+      "FR14",
+      "FR15",
+      "FR19",
+      "FR48",
+      "FR68",
+      "FR71",
+      "FR72",
+      "FR84",
+      "FR85",
+      "FR94",
+      "FR95",
+      "FR96",
+      "FR98"
+    ],
+    "issuer": "John Paul II",
+    "genre": "Encyclical Letter",
+    "date": null,
+    "collection": "Selected documents",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/content/john-paul-ii/en/encyclicals/documents/hf_jp-ii_enc_14091998_fides-et-ratio.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "import-psp",
+    "title": "The Primacy of the Successor of Peter in the Mystery of the Church",
+    "entryIds": [
+      "PSP4",
+      "PSP5",
+      "PSP6",
+      "PSP7",
+      "PSP9",
+      "PSP10",
+      "PSP11",
+      "PSP13",
+      "PSP15"
+    ],
+    "issuer": "Congregation for the Doctrine of the Faith",
+    "genre": "Considerations of the Congregation for the Doctrine of the Faith",
+    "date": null,
+    "collection": "Selected documents",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/roman_curia/congregations/cfaith/documents/rc_con_cfaith_doc_19981031_primato-successore-pietro_en.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "import-eam",
+    "title": "Ecclesia in America",
+    "entryIds": [
+      "EAM20",
+      "EAM22"
+    ],
+    "issuer": "John Paul II",
+    "genre": "Post-Synodal Apostolic Exhortation",
+    "date": null,
+    "collection": "Selected documents",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/content/john-paul-ii/en/apost_exhortations/documents/hf_jp-ii_exh_22011999_ecclesia-in-america.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "import-eas",
+    "title": "Ecclesia in Asia",
+    "entryIds": [
+      "EAS22"
+    ],
+    "issuer": "John Paul II",
+    "genre": "Post-Synodal Apostolic Exhortation",
+    "date": null,
+    "collection": "Selected documents",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/content/john-paul-ii/en/apost_exhortations/documents/hf_jp-ii_exh_06111999_ecclesia-in-asia.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "import-hl",
+    "title": "Educational Guidance in Human Love",
+    "entryIds": [
+      "EGHL22",
+      "EGHL23",
+      "EGHL24",
+      "EGHL26",
+      "EGHL34",
+      "EGHL35",
+      "EGHL36",
+      "EGHL42"
+    ],
+    "issuer": "John Paul II",
+    "genre": "Congregation for Catholic Education",
+    "date": "1983-11-01",
+    "collection": "Selected documents",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/roman_curia/congregations/ccatheduc/documents/rc_con_ccatheduc_doc_19831101_sexual-education_en.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "import-dp",
+    "title": "Dialogue and Proclamation",
+    "entryIds": [
+      "DP29",
+      "DP30",
+      "DP31",
+      "DP32",
+      "DP35",
+      "DP40",
+      "DP41",
+      "DP68",
+      "DP69",
+      "DP77",
+      "DP81",
+      "DP82",
+      "DP83"
+    ],
+    "issuer": "John Paul II",
+    "genre": "Pontifical Council for Interreligious Dialogue and Congregation for the Evangelization of Peoples",
+    "date": "1991-05-19",
+    "collection": "Selected documents",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/roman_curia/pontifical_councils/interelg/documents/rc_pc_interelg_doc_19051991_dialogue-and-proclamatio_en.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "import-hung",
+    "title": "World Hunger: A Challenge for All",
+    "entryIds": [
+      "WH31"
+    ],
+    "issuer": "John Paul II",
+    "genre": "Pontifical Council Cor Unum",
+    "date": "1996-10-04",
+    "collection": "Selected documents",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/roman_curia/pontifical_councils/corunum/documents/rc_pc_corunum_doc_04101996_world-hunger_en.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "import-vad",
+    "title": "Vademecum for Confessors concerning Some Aspects of the Morality of Conjugal Life",
+    "entryIds": [
+      "VC1",
+      "VC9",
+      "VC13"
+    ],
+    "issuer": "John Paul II",
+    "genre": "Pontifical Council for the Family",
+    "date": "1997-02-12",
+    "collection": "Selected documents",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/roman_curia/pontifical_councils/family/documents/rc_pc_family_doc_12021997_vademecum_en.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "import-edm",
+    "title": "Ecclesiae de Mysterio",
+    "entryIds": [
+      "EDM4"
+    ],
+    "issuer": "John Paul II",
+    "genre": "Instruction of eight dicasteries on the collaboration of the non-ordained faithful in the sacred ministry of priests",
+    "date": "1997-08-15",
+    "collection": "Selected documents",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/roman_curia/pontifical_councils/laity/documents/rc_con_interdic_doc_15081997_en.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "import-dea",
+    "title": "Basic Norms for the Formation of Permanent Deacons",
+    "entryIds": [
+      "BNFD3"
+    ],
+    "issuer": "John Paul II",
+    "genre": "Congregation for Catholic Education",
+    "date": "1998-02-22",
+    "collection": "Selected documents",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/roman_curia/congregations/ccatheduc/documents/rc_con_ccatheduc_doc_31031998_directorium-diaconi_en.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "guide-mq",
+    "title": "Ministeria Quaedam",
+    "entryIds": [
+      "MQ"
+    ],
+    "issuer": "Paul VI",
+    "genre": "Apostolic letter (motu proprio)",
+    "date": "1972-08-15",
+    "collection": "Selected documents",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/content/paul-vi/la/motu_proprio/documents/hf_p-vi_motu-proprio_19720815_ministeria-quaedam.html",
+        "label": "Official full text",
+        "language": "la",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Site translation from the official Latin; see the entry source line",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "guide-ccc",
+    "title": "Catechism of the Catholic Church",
+    "entryIds": [
+      "CCC83",
+      "CCC88",
+      "CCC89",
+      "CCC90",
+      "CCC111",
+      "CCC112",
+      "CCC113",
+      "CCC114",
+      "CCC161",
+      "CCC166",
+      "CCC167",
+      "CCC168",
+      "CCC169",
+      "CCC170",
+      "CCC171",
+      "CCC355",
+      "CCC386",
+      "CCC387",
+      "CCC389",
+      "CCC397",
+      "CCC398",
+      "CCC399",
+      "CCC400",
+      "CCC401",
+      "CCC402",
+      "CCC403",
+      "CCC404",
+      "CCC405",
+      "CCC406",
+      "CCC408",
+      "CCC460",
+      "CCC654",
+      "CCC990",
+      "CCC997",
+      "CCC999",
+      "CCC1000",
+      "CCC1003",
+      "CCC1007",
+      "CCC1008",
+      "CCC1009",
+      "CCC1013",
+      "CCC1022",
+      "CCC1024",
+      "CCC1025",
+      "CCC1028",
+      "CCC1030",
+      "CCC1031",
+      "CCC1035",
+      "CCC1036",
+      "CCC1037",
+      "CCC1040",
+      "CCC1041",
+      "CCC1045",
+      "CCC1047",
+      "CCC1135",
+      "CCC1266",
+      "CCC1478",
+      "CCC1498",
+      "CCC1589",
+      "CCC1926",
+      "CCC1989",
+      "CCC1990",
+      "CCC1991",
+      "CCC1993",
+      "CCC2000",
+      "CCC2001",
+      "CCC2002",
+      "CCC2003",
+      "CCC2009",
+      "CCC2010",
+      "CCC2267"
+    ],
+    "issuer": "John Paul II",
+    "genre": "Apostolic constitution Fidei depositum (typical edition 1997)",
+    "date": "1992-10-11",
+    "collection": "Selected documents",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/archive/ENG0015/_INDEX.HTM",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "guide-jddj",
+    "title": "Joint Declaration on the Doctrine of Justification",
+    "entryIds": [
+      "JDDJ15",
+      "JDDJ16",
+      "JDDJ17",
+      "JDDJ18",
+      "JDDJ19",
+      "JDDJ20",
+      "JDDJ21",
+      "JDDJ22",
+      "JDDJ23",
+      "JDDJ24",
+      "JDDJ25",
+      "JDDJ26",
+      "JDDJ27",
+      "JDDJ28",
+      "JDDJ29",
+      "JDDJ30",
+      "JDDJ31",
+      "JDDJ32",
+      "JDDJ33",
+      "JDDJ34",
+      "JDDJ35",
+      "JDDJ36",
+      "JDDJ37",
+      "JDDJ38",
+      "JDDJ39",
+      "JDDJ40",
+      "JDDJ41",
+      "JDDJ42",
+      "JDDJ43"
+    ],
+    "issuer": "John Paul II",
+    "genre": "Ecumenical agreement with the Lutheran World Federation",
+    "date": "1999-10-31",
+    "collection": "Selected documents",
+    "sourceLinks": [
+      {
+        "url": "https://www.ewtn.com/catholicism/library/joint-declaration-on-the-doctrine-of-justification-28863",
+        "label": "Full text (external publisher)",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "guide-di",
+    "title": "Dominus Iesus",
+    "entryIds": [
+      "DI4",
+      "DI5",
+      "DI6",
+      "DI7",
+      "DI9",
+      "DI10",
+      "DI11",
+      "DI14",
+      "DI15",
+      "DI16",
+      "DI17",
+      "DI20",
+      "DI21",
+      "DI22",
+      "DI23"
+    ],
+    "issuer": "Congregation for the Doctrine of the Faith",
+    "genre": "Declaration, Congregation for the Doctrine of the Faith",
+    "date": "2000-08-06",
+    "collection": "Selected documents",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/roman_curia/congregations/cfaith/documents/rc_con_cfaith_doc_20000806_dominus-iesus_en.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "guide-sp",
+    "title": "Summorum Pontificum",
+    "entryIds": [
+      "SUMP"
+    ],
+    "issuer": "Benedict XVI",
+    "genre": "Apostolic letter (motu proprio)",
+    "date": "2007-07-07",
+    "collection": "Selected documents",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/content/benedict-xvi/en/motu_proprio/documents/hf_ben-xvi_motu-proprio_20070707_summorum-pontificum.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "guide-ac",
+    "title": "Anglicanorum Coetibus",
+    "entryIds": [
+      "ANC"
+    ],
+    "issuer": "Benedict XVI",
+    "genre": "Apostolic constitution",
+    "date": "2009-11-04",
+    "collection": "Selected documents",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/content/benedict-xvi/en/apost_constitutions/documents/hf_ben-xvi_apc_20091104_anglicanorum-coetibus.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "guide-ls",
+    "title": "Laudato Si'",
+    "entryIds": [
+      "LS23",
+      "LS67",
+      "LS117",
+      "LS120",
+      "LS155"
+    ],
+    "issuer": "Francis",
+    "genre": "Encyclical",
+    "date": "2015-05-24",
+    "collection": "Selected documents",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/content/francesco/en/encyclicals/documents/papa-francesco_20150524_enciclica-laudato-si.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "guide-al",
+    "title": "Amoris Laetitia",
+    "entryIds": [
+      "AL300",
+      "AL301",
+      "AL302",
+      "AL303",
+      "AL304",
+      "AL305"
+    ],
+    "issuer": "Francis",
+    "genre": "Apostolic exhortation",
+    "date": "2016-03-19",
+    "collection": "Selected documents",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/content/francesco/en/apost_exhortations/documents/papa-francesco_esortazione-ap_20160319_amoris-laetitia.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "guide-ft",
+    "title": "Fratelli Tutti",
+    "entryIds": [
+      "FT120",
+      "FT256",
+      "FT258",
+      "FT263",
+      "FT269"
+    ],
+    "issuer": "Francis",
+    "genre": "Encyclical",
+    "date": "2020-10-03",
+    "collection": "Selected documents",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/content/francesco/en/encyclicals/documents/papa-francesco_20201003_enciclica-fratelli-tutti.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "guide-spd",
+    "title": "Spiritus Domini",
+    "entryIds": [
+      "SDOM"
+    ],
+    "issuer": "Francis",
+    "genre": "Apostolic letter (motu proprio)",
+    "date": "2021-01-10",
+    "collection": "Selected documents",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/content/francesco/en/motu_proprio/documents/papa-francesco-motu-proprio-20210110_spiritus-domini.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "guide-tc",
+    "title": "Traditionis Custodes",
+    "entryIds": [
+      "TC"
+    ],
+    "issuer": "Francis",
+    "genre": "Apostolic letter (motu proprio)",
+    "date": "2021-07-16",
+    "collection": "Selected documents",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/content/francesco/en/motu_proprio/documents/20210716-motu-proprio-traditionis-custodes.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "guide-fs",
+    "title": "Fiducia Supplicans",
+    "entryIds": [
+      "FS4",
+      "FS5",
+      "FS11",
+      "FS31",
+      "FS32",
+      "FS38",
+      "FS39",
+      "FS40",
+      "FS41",
+      "FSPR1"
+    ],
+    "issuer": "Dicastery for the Doctrine of the Faith",
+    "genre": "Declaration, Dicastery for the Doctrine of the Faith",
+    "date": "2023-12-18",
+    "collection": "Selected documents",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/roman_curia/congregations/cfaith/documents/rc_ddf_doc_20231218_fiducia-supplicans_en.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "guide-dinf",
+    "title": "Dignitas Infinita",
+    "entryIds": [
+      "DIN1",
+      "DIN7",
+      "DIN8",
+      "DIN47",
+      "DIN48",
+      "DIN52",
+      "DIN55",
+      "DIN56",
+      "DIN59",
+      "DIN60"
+    ],
+    "issuer": "Dicastery for the Doctrine of the Faith",
+    "genre": "Declaration, Dicastery for the Doctrine of the Faith",
+    "date": "2024-04-02",
+    "collection": "Selected documents",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/roman_curia/congregations/cfaith/documents/rc_ddf_doc_20240402_dignitas-infinita_en.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "guide-dilexi",
+    "title": "Dilexi Te",
+    "entryIds": [
+      "DT16",
+      "DT103",
+      "DT110"
+    ],
+    "issuer": "Leo XIV",
+    "genre": "Apostolic exhortation",
+    "date": "2025-10-04",
+    "collection": "Selected documents",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/content/leo-xiv/en/apost_exhortations/documents/20251004-dilexi-te.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "guide-mpf",
+    "title": "Mater Populi Fidelis",
+    "entryIds": [
+      "MPF17",
+      "MPF18",
+      "MPF22",
+      "MPF23",
+      "MPF24",
+      "MPF28",
+      "MPF29"
+    ],
+    "issuer": "Dicastery for the Doctrine of the Faith",
+    "genre": "Doctrinal note, Dicastery for the Doctrine of the Faith",
+    "date": "2025-11-04",
+    "collection": "Selected documents",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/roman_curia/congregations/cfaith/documents/rc_ddf_doc_20251104_mater-populi-fidelis_en.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "guide-iuf",
+    "title": "In Unitate Fidei",
+    "entryIds": [
+      "UIF2",
+      "UIF4",
+      "UIF8"
+    ],
+    "issuer": "Leo XIV",
+    "genre": "Apostolic letter",
+    "date": "2025-11-23",
+    "collection": "Selected documents",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/content/leo-xiv/en/apost_letters/documents/20251123-in-unitate-fidei.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "rerum-novarum",
+    "title": "Rerum Novarum",
+    "entryIds": [
+      "1938a",
+      "1938b",
+      "1938c",
+      "1938d"
+    ],
+    "issuer": "Leo XIII",
+    "genre": "Encyclical",
+    "date": "1891-05-15",
+    "collection": "Preconciliar papal priorities",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/content/leo-xiii/en/encyclicals/documents/hf_l-xiii_enc_15051891_rerum-novarum.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Older Denzinger translation; attribution to Deferrari is provisional",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "quas-primas",
+    "title": "Quas Primas",
+    "entryIds": [
+      "2194",
+      "2195",
+      "2196",
+      "2197"
+    ],
+    "issuer": "Pius XI",
+    "genre": "Encyclical",
+    "date": "1925-12-11",
+    "collection": "Preconciliar papal priorities",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/content/pius-xi/en/encyclicals/documents/hf_p-xi_enc_11121925_quas-primas.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Older Denzinger translation; attribution to Deferrari is provisional",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "mediator-dei",
+    "title": "Mediator Dei",
+    "entryIds": [
+      "2297",
+      "2298",
+      "2299",
+      "2300"
+    ],
+    "issuer": "Pius XII",
+    "genre": "Encyclical",
+    "date": "1947-11-20",
+    "collection": "Preconciliar papal priorities",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/content/pius-xii/en/encyclicals/documents/hf_p-xii_enc_20111947_mediator-dei.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Older Denzinger translation; attribution to Deferrari is provisional",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "humani-generis",
+    "title": "Humani Generis",
+    "entryIds": [
+      "228a",
+      "2305",
+      "2306",
+      "2307",
+      "2308",
+      "2309",
+      "2310",
+      "2311",
+      "2312",
+      "2313",
+      "2314",
+      "2315",
+      "2316",
+      "2317",
+      "2318",
+      "2319",
+      "2320",
+      "2321",
+      "2322",
+      "2323",
+      "2324",
+      "2325",
+      "2326",
+      "2327",
+      "2328",
+      "2329",
+      "2330"
+    ],
+    "issuer": "Pius XII",
+    "genre": "Encyclical",
+    "date": "1950-08-12",
+    "collection": "Preconciliar papal priorities",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/content/pius-xii/en/encyclicals/documents/hf_p-xii_enc_12081950_humani-generis.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Older Denzinger translation; attribution to Deferrari is provisional",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "lumen-fidei",
+    "title": "Lumen Fidei",
+    "entryIds": [],
+    "issuer": "Francis",
+    "genre": "Encyclical",
+    "date": "2013-06-29",
+    "collection": "Papal additions",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/content/francesco/en/encyclicals/documents/papa-francesco_20130629_enciclica-lumen-fidei.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "none",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "sacramentum-caritatis",
+    "title": "Sacramentum Caritatis",
+    "entryIds": [],
+    "issuer": "Benedict XVI",
+    "genre": "Apostolic exhortation",
+    "date": "2007-02-22",
+    "collection": "Papal additions",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/content/benedict-xvi/en/apost_exhortations/documents/hf_ben-xvi_exh_20070222_sacramentum-caritatis.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "none",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "salvifici-doloris",
+    "title": "Salvifici Doloris",
+    "entryIds": [],
+    "issuer": "John Paul II",
+    "genre": "Apostolic letter",
+    "date": "1984-02-11",
+    "collection": "Papal additions",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/content/john-paul-ii/en/apost_letters/1984/documents/hf_jp-ii_apl_11021984_salvifici-doloris.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "none",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "vita-consecrata",
+    "title": "Vita Consecrata",
+    "entryIds": [],
+    "issuer": "John Paul II",
+    "genre": "Apostolic exhortation",
+    "date": "1996-03-25",
+    "collection": "Papal additions",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/content/john-paul-ii/en/apost_exhortations/documents/hf_jp-ii_exh_25031996_vita-consecrata.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "none",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "rosarium-virginis-mariae",
+    "title": "Rosarium Virginis Mariae",
+    "entryIds": [],
+    "issuer": "John Paul II",
+    "genre": "Apostolic letter",
+    "date": "2002-10-16",
+    "collection": "Papal additions",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/content/john-paul-ii/en/apost_letters/2002/documents/hf_jp-ii_apl_20021016_rosarium-virginis-mariae.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "none",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "laudate-deum",
+    "title": "Laudate Deum",
+    "entryIds": [],
+    "issuer": "Francis",
+    "genre": "Apostolic exhortation",
+    "date": "2023-10-04",
+    "collection": "Papal additions",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/content/francesco/en/apost_exhortations/documents/20231004-laudate-deum.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "none",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "dilexit-nos",
+    "title": "Dilexit Nos",
+    "entryIds": [],
+    "issuer": "Francis",
+    "genre": "Encyclical",
+    "date": "2024-10-24",
+    "collection": "Papal additions",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/content/francesco/en/encyclicals/documents/20241024-enciclica-dilexit-nos.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "none",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "gaudete-et-exsultate",
+    "title": "Gaudete et Exsultate",
+    "entryIds": [
+      "GE36",
+      "GE47",
+      "GE49",
+      "GE101",
+      "GE102"
+    ],
+    "issuer": "Francis",
+    "genre": "Apostolic exhortation",
+    "date": "2018-03-19",
+    "collection": "Selected documents",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/content/francesco/en/apost_exhortations/documents/papa-francesco_esortazione-ap_20180319_gaudete-et-exsultate.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "incarnationis-mysterium",
+    "title": "Incarnationis Mysterium",
+    "entryIds": [
+      "IM2",
+      "IM7",
+      "IM8",
+      "IM9",
+      "IM10",
+      "IM11",
+      "IM12"
+    ],
+    "issuer": "John Paul II",
+    "genre": "Bull",
+    "date": "1998-11-29",
+    "collection": "Selected documents",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/content/john-paul-ii/en/bulls/documents/hf_jp-ii_doc_19981129_incarnationis-mysterium.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  },
+  {
+    "id": "deus-caritas-est",
+    "title": "Deus Caritas Est",
+    "entryIds": [
+      "DCE1",
+      "DCE7",
+      "DCE25",
+      "DCE28",
+      "DCE31"
+    ],
+    "issuer": "Benedict XVI",
+    "genre": "Encyclical",
+    "date": "2005-12-25",
+    "collection": "Selected documents",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/content/benedict-xvi/en/encyclicals/documents/hf_ben-xvi_enc_20051225_deus-caritas-est.html",
+        "label": "Official full text",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Holy See English translation",
+    "textVerification": "Not independently proofread against the complete source",
+    "rights": "Reuse permission not established; full text is linked externally",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-17",
+      "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
+    }
+  }
+]

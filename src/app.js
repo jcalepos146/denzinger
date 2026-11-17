@@ -12,6 +12,8 @@ const DISPUTED = DATA('disputed-data');
 const THREADS = DATA('threads-data');
 const CHANGES = (() => { try { return DATA('changes-data'); } catch (_) { return []; } })();
 const HERM = (() => { try { return DATA('hermeneutics-data'); } catch (_) { return { principles: [], method: [] }; } })();
+const LIBRARY = DATA('library-data');
+const SOURCES = new Map(LIBRARY.records.map(r => [r.id, r]));
 const CENS = RAW.censures || [];
 const QUALITY = RAW.quality || {};
 const CURATED = RAW.curated || [];
@@ -19,7 +21,7 @@ const BOOKS = RAW.books.map(([name, test, aliases], i) => ({ i, name, test, alia
 const ERAS = RAW.eras.map((e, i) => ({ i, name: e.n, dates: e.d, sub: e.s, year: e.y, app: !!e.a, sup: !!e.sup, entries: [] }));
 const ENTRIES = RAW.entries.map((r, k) => {
   const f = r[6] || {};
-  return { k, id: r[0], era: ERAS[r[1]], ses: r[2], topic: r[3], src: r[4], paras: r[5], note: !!f.n, kinds: f.k || [], sc: f.s || [], weight: f.w || 'papal', cens: f.c === undefined ? null : f.c, cur: f.h === undefined ? null : f.h, sup: !!f.sup, links: f.L || [], ds: f.x || [], dsHow: f.xh || '', year: Math.abs(f.y || 0), yearExact: f.y > 0, citedBy: f.cb || [], rc: f.rc || [] };
+  return { documentId: f.doc, k, id: r[0], era: ERAS[r[1]], ses: r[2], topic: r[3], src: r[4], paras: r[5], note: !!f.n, kinds: f.k || [], sc: f.s || [], weight: f.w || 'papal', cens: f.c === undefined ? null : f.c, cur: f.h === undefined ? null : f.h, sup: !!f.sup, links: f.L || [], ds: f.x || [], dsHow: f.xh || '', year: Math.abs(f.y || 0), yearExact: f.y > 0, citedBy: f.cb || [], rc: f.rc || [] };
 });
 const byId = new Map(), byBase = new Map(), byDS = new Map();
 for (const e of ENTRIES) {
@@ -85,7 +87,7 @@ const LEVELS = {
   discipline: ['Discipline', 'Law, liturgy or practice. Binds in obedience and can be changed by competent authority.'],
   prudential: ['Prudential', 'Applications of principle to circumstances. Owed serious respect; reasoned disagreement is possible (Donum Veritatis 24).'],
   dialogue: ['Ecumenical agreement', 'A joint statement with other Christians, not a magisterial definition in itself.'],
-  study: ['Study or address', 'A commission study, address or report. Weighty, but not binding in itself.'],
+  study: ['Study or address', 'A study or other material whose status requires examination. Official papal addresses can exercise authentic magisterium; the label alone does not decide assent.'],
   private: ['Private opinion', 'An interview, press conference or book written as a private person. Not an act of the Magisterium; it carries the weight of its reasons.'],
 };
 const WEIGHTS = {
@@ -95,7 +97,7 @@ const WEIGHTS = {
   'conc-decree': ['Conciliar decree', 'authentic', 'Doctrinal chapters, reform decrees and letters of an ecumenical council. Authoritative teaching; only what is proposed as defined is infallible.'],
   'papal-teaching': ['Papal teaching', 'authentic', 'Encyclicals, bulls and letters of popes. Owed religious assent; infallible only when the conditions of a definition are met or the teaching is otherwise definitive.'],
   'particular': ['Particular council', 'study', 'A regional council or synod. Its authority comes from its reception and from papal approval; some, like Orange II, became widely normative.'],
-  'curia': ['Curial response', 'prudential', 'A reply or decree of the Holy Office or another Roman congregation, approved by the pope. Authoritative and binding in practice, not infallible. After 1958 the doctrinal documents of the Doctrine of the Faith have their own label.'],
+  'curia': ['Curial response', 'prudential', 'A reply or decree of a Roman congregation. Examine its issuing body, content, approval and intended force; a doctrinal judgment and a changeable disciplinary decision need different assessments. After 1958 the Doctrine of the Faith has its own genre label.'],
   'pbc': ['Biblical Commission', 'prudential', 'A response of the Pontifical Biblical Commission (1902 onward). Binding as a disciplinary safeguard in its time; see the disputed question on these decrees.'],
   'condemned': ['Condemned proposition', 'definitive', 'A proposition the Church censured. What is rejected is the proposition in its condemned sense; its contradictory is not thereby defined, and the weight depends on the censure.'],
   'creed': ['Creed', 'dogma', 'A creed, profession of faith or the early formulas collected at the start of the book.'],
@@ -103,11 +105,11 @@ const WEIGHTS = {
   'cdf': ['Doctrine of the Faith', 'authentic', 'A doctrinal document of the Congregation (since 2022 the Dicastery) for the Doctrine of the Faith, approved by the pope and published by his order. Part of the ordinary Magisterium and owed religious assent; it is the pope\'s own act when he approves it in specific form.'],
   'liturgy': ['Liturgical norm', 'discipline', 'A rite, liturgical book or norm of the Roman congregations for worship. Binds as law and can be changed by competent authority; what it presupposes about the faith keeps its own weight.'],
   'catechism': ['Catechism', 'authentic', 'The Catechism of the Catholic Church (1992, Latin edition 1997), promulgated as "a sure norm for teaching the faith". Each statement keeps the weight of the teaching it presents.'],
-  'papal-address': ['Address or homily', 'study', 'A pope\'s address, homily, message, catechesis or letter to a particular group. His ordinary teaching, but its weight depends on the manner of speaking and how often it is repeated (Lumen Gentium 25); less than an encyclical.'],
+  'papal-address': ['Address or homily', 'study', 'A pope\'s address, homily, message, catechesis or letter to a particular group. His ordinary teaching, but its weight depends on the manner of speaking and how often it is repeated (Lumen Gentium 25); document genre alone does not establish a ranking.'],
   'interview': ['Interview', 'private', 'An interview, press conference or book a pope wrote as a private theologian. Not an act of the Magisterium.'],
   'commission': ['Commission or council study', 'study', 'A document of a pontifical council or commission: the Biblical Commission after 1971, the International Theological Commission, Christian Unity, Justice and Peace and the like. Not magisterial in itself.'],
   'synod': ['Synod of Bishops', 'study', 'A document or message of the Synod of Bishops. Consultative unless the pope makes it his own.'],
-  'bishops': ['Bishops\' conference', 'study', 'A statement of a national or regional conference of bishops. Teaches with the authority of those bishops for their own territory.'],
+  'bishops': ['Bishops\' conference', 'study', 'A statement of a conference of bishops. Authentic conference magisterium requires the conditions described in Apostolos Suos 22 and its complementary norms: unanimity, or approval by at least two thirds followed by the Holy See’s recognitio. Not every conference publication has that status.'],
   'ecumenical': ['Ecumenical agreement', 'dialogue', 'A joint declaration or agreed statement with other Christians. Binds the Church only so far as it restates Catholic doctrine.'],
   'supplement': ['Not in Denzinger', 'study', 'Added to this site: decrees of Constance and Basel that Denzinger leaves out, mostly because no pope approved them or they came from a schismatic assembly, papal acts of Florence and Trent that its older numbering omits, and witnesses to the Synod of Sutri (1046). Some are summaries; others are given in full, with the source of each translation stated.'],
 };
@@ -338,6 +340,7 @@ function refLinks(refs) {
 function ordinal(n) { const s = ['th', 'st', 'nd', 'rd'], v = n % 100; return n + (s[(v - 20) % 10] || s[v] || s[0]); }
 const GUIDES = [
   ['#home', 'Introduction', ''],
+  ['#library', 'Sources and coverage', LIBRARY.records.length + ' records'],
   ['#threads', 'Doctrinal threads', THREADS.length + ' threads'],
   ['#since', 'Since 1950', SINCE.length + ' documents'],
   ['#disputed', 'Disputed questions', DISPUTED.length + ' questions'],
@@ -380,7 +383,7 @@ function markRail() {
   let b = null;
   if (state.view === 'read' && state.era) b = rail.querySelector(`[data-era="${state.era.i}"]`);
   else {
-    const map = { home: '#home', catechism: '#catechism', timeline: '#timeline', since: '#since', disputed: '#disputed', scripture: '#scripture', book: '#scripture', topics: '#topics', saved: '#saved', threads: '#threads', thread: '#threads', ask: '#ask', compare: '#compare', weights: '#weights', checked: '#checked', reading: '#reading', hermeneutics: '#hermeneutics', edition: '#edition', concordance: '#concordance' };
+    const map = { library: '#library', source: '#library', home: '#home', catechism: '#catechism', timeline: '#timeline', since: '#since', disputed: '#disputed', scripture: '#scripture', book: '#scripture', topics: '#topics', saved: '#saved', threads: '#threads', thread: '#threads', ask: '#ask', compare: '#compare', weights: '#weights', checked: '#checked', reading: '#reading', hermeneutics: '#hermeneutics', edition: '#edition', concordance: '#concordance' };
     if (map[state.view]) b = rail.querySelector(`[data-go="${map[state.view]}"]`);
   }
   if (b) {
@@ -445,6 +448,7 @@ function renderHome() {
     ${PAGES && SITE.url ? `<div><a href="${esc(SITE.url)}feed.xml">Follow additions by feed (Atom)</a></div>` : ''}</div>` : ''}
     <h2 class="sect-h">Guides and indexes</h2>
     <div class="guides">
+      <a class="guide" href="#library"><b>Sources and coverage</b><span>Find documents, check which passages are included, and open complete primary sources. Provenance and review status for every entry.</span></a>
       <a class="guide" href="#catechism"><b>Roman Catechism</b><span>The Catechism of the Council of Trent, chapter by chapter, with the texts in this collection that each chapter explains.</span></a>
       <a class="guide" href="#timeline"><b>Timeline</b><span>Every entry by date and weight: where definitions, canons and condemnations cluster across twenty centuries.</span></a>
       <a class="guide" href="#threads"><b>Doctrinal threads</b><span>One doctrine at a time, traced in order from the early Church to Leo XIV, with a note on each step.</span></a>
@@ -501,15 +505,15 @@ function censHtml(e) {
 function curPill(e) {
   if (e.cur === null || !CURATED[e.cur]) return '';
   const g = GRADES[CURATED[e.cur].g];
-  return `<span class="pill lv-${g[1]}" title="Checked by hand: ${esc(CURATED[e.cur].n)}">Checked · ${g[0]}</span>`;
+  return `<span class="pill lv-${g[1]}" title="Editorial assessment: ${esc(CURATED[e.cur].n)}">Editorial grade · ${g[0]}</span>`;
 }
 function curNote(e) {
   const c = CURATED[e.cur];
-  return `<div class="curnote"><b>Checked by hand · ${GRADES[c.g][0]}${c.to !== c.from ? ` (${esc(nlab(c.from))}–${esc(dispId(c.to))})` : ''}.</b> ${renderText(c.n, null)}${reviewRow('w:' + c.from)}</div>`;
+  return `<div class="curnote"><b>Editorial assessment · ${GRADES[c.g][0]}${c.to !== c.from ? ` (${esc(nlab(c.from))}–${esc(dispId(c.to))})` : ''}.</b> ${renderText(c.n, null)}${reviewRow('w:' + c.from)}</div>`;
 }
 function entryHtml(e, re, showCur) {
   const m = Marks.get(e.id);
-  const tags = `<div class="wline">${dsTag(e)}${e.sup ? weightPill(e.weight) : ''}${curPill(e) || weightPill(e.weight)}${censHtml(e)}${e.kinds.filter(k => k === 'definition' || k === 'anathema').map(k => `<span class="tag">${KIND_LABEL[k]}</span>`).join('')}</div>`;
+  const tags = `<div class="wline">${dsTag(e)}${weightPill(e.weight)}${curPill(e)}${censHtml(e)}${e.kinds.filter(k => k === 'definition' || k === 'anathema').map(k => `<span class="tag">${KIND_LABEL[k]}</span>`).join('')}</div>`;
   const disc = DISCUSSED.get(e.id);
   const side = Latin.mode === 'side' && !e.sup;
   const body = `<div class="body">${tags}${e.paras.map(p => `<p>${renderText(p, re)}</p>`).join('')}</div>`;
@@ -517,6 +521,7 @@ function entryHtml(e, re, showCur) {
     <a class="num" href="#n${esc(e.id)}" aria-label="Entry ${esc(e.id)}">${esc(dispId(e.id))}${m && m.b ? '<span class="saved-dot" title="Saved">●</span>' : ''}</a>
     ${side ? `<div class="pair">${body}${latinHtml(e)}</div>` : body}
     ${!side && !e.sup && latinShown(e.id) ? latinHtml(e) : ''}
+    ${sourceContext(e)}
     ${e.links.length ? `<div class="discussed">Full text: ${e.links.map(l => `<a href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.label)} ↗</a>`).join(' · ')}</div>` : ''}
     ${e.cur !== null && CURATED[e.cur] && (showCur || CURATED[e.cur].from === e.id) ? curNote(e) : ''}
     ${e.cens !== null && CENS[e.cens] || e.weight === 'condemned' ? `<div class="discussed">Condemned in a determinate sense: <a href="#reading">how to read a condemnation</a></div>` : ''}
@@ -582,7 +587,7 @@ function renderEra(er, focusId) {
     if (e.ses && e.ses !== ses) { html += `<div class="session">${esc(e.ses)}</div>`; ses = e.ses; topic = undefined; }
     if (e.topic !== topic || (e.src && e.src !== src)) {
       if (e.topic && e.topic !== topic) html += `<h2 class="topic">${renderText(e.topic, re)}</h2>`;
-      if (e.src && e.src !== src) { const dc = docOf(e.id); html += `<p class="src">${renderText(e.src, re)}${dc && DOCS.get(dc).length > 1 && DOCS.get(dc)[0] === e ? ` <a class="xref" href="#doc-${dc}">Read this document alone</a>` : ''}</p>`; }
+      if (e.src && e.src !== src) { const dc = docOf(e.id); html += `<p class="src">${renderText(e.src, re)}${dc && DOCS.get(dc).length > 1 && DOCS.get(dc)[0] === e ? ` <a class="xref" href="#doc-${dc}">Read selected passages</a>` : ''}</p>`; }
       topic = e.topic; src = e.src;
     }
     html += entryHtml(e, re);
@@ -606,6 +611,73 @@ function renderEra(er, focusId) {
     store.set('denz:last', er.entries[0].id);
   }
 }
+/* ---------- source catalogue and document context ---------- */
+const COVERAGE_LABEL = { none: 'External full text only', excerpts: 'Selected excerpts', summary: 'Editorial summary', editorial: 'Editorial material', unreviewed: 'Local text · extent unreviewed', 'full-text': 'Complete local text' };
+const LIB_FILTER = { q: '', collection: '', coverage: '', limit: 50 };
+const sourceOf = e => SOURCES.get(e.documentId);
+const sourceHref = r => '#source-' + r.id;
+function sourceLinks(r) {
+  return r.sourceLinks.map(l => `<a href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.label)} ↗</a> <span class="count">(${esc(l.language)}${l.scope !== 'full-document' ? ', source page' : ''})</span>`).join(' · ');
+}
+function sourceContext(e) {
+  const r = sourceOf(e);
+  if (!r) return '';
+  return `<div class="discussed source-context"><a href="${sourceHref(r)}">${esc(r.title)} · source and context</a><br><span>${COVERAGE_LABEL[r.coverage]}</span>${r.sourceLinks.length ? ' · ' + sourceLinks(r) : ''}</div>`;
+}
+function libraryMatches(r, q) {
+  const hay = norm([r.title, r.issuer || '', r.genre || '', r.collection, ...r.collectionHeadings, ...r.entryIds, ...r.sourceLines].join(' '));
+  return norm(q).trim().split(/\s+/).filter(Boolean).every(t => hay.includes(t));
+}
+function libraryCard(r) {
+  return `<article class="source-card"><h2><a href="${sourceHref(r)}">${esc(r.title)}</a></h2>
+    <p class="source-meta">${esc(r.issuer || r.collectionHeadings.join('; '))}${r.year ? ' · ' + r.year + (r.yearExact ? '' : ' (approx.)') : ''}${r.genre ? ' · ' + esc(r.genre) : ''}</p>
+    <p><span class="tag">${COVERAGE_LABEL[r.coverage]}</span> · ${r.entryIds.length} local entries${r.grouping === 'inferred' ? ' · inferred source group' : ''}</p>
+    ${r.sourceLinks.length ? `<p>${sourceLinks(r)}</p>` : ''}</article>`;
+}
+function renderLibrary(fixedRecords) {
+  view.className = 'col wide';
+  const collections = [...new Set(LIBRARY.records.map(r => r.collection))].sort();
+  const catalogued = LIBRARY.records.filter(r => r.grouping === 'catalogued');
+  const linked = LIBRARY.records.filter(r => r.sourceLinks.some(l => l.scope === 'full-document'));
+  view.innerHTML = `<div class="eyebrow">Source inventory</div><h1 class="page-h">Sources and coverage</h1>
+    <p class="lede">${fmt(ENTRIES.length)} entries mapped to ${fmt(catalogued.length)} catalogued records and ${fmt(LIBRARY.records.length - catalogued.length)} inferred source groups. ${linked.length} records link to complete external texts. This is a coverage inventory, not a claim to contain every teaching document.</p>
+    <p>An entry may omit text within a numbered section. “Selected excerpts” never means a complete document. Inherited groups need review before their identity, translation or extent can be certified. <a href="#weights">How authority labels work</a>.</p>
+    <div class="library-controls"><label>Title, author, citation or source heading<input id="libraryQ" type="search" value="${esc(LIB_FILTER.q)}" placeholder="e.g. Mediator Dei, Pius XII, LG25"></label>
+    <label>Collection<select id="libraryCollection"><option value="">All collections</option>${collections.map(c => `<option ${LIB_FILTER.collection === c ? 'selected' : ''}>${esc(c)}</option>`).join('')}</select></label>
+    <label>Local coverage<select id="libraryCoverage"><option value="">All coverage</option>${Object.entries(COVERAGE_LABEL).map(([k,v]) => `<option value="${k}" ${LIB_FILTER.coverage === k ? 'selected' : ''}>${v}</option>`).join('')}</select></label></div>
+    ${PAGES ? '<p class="count">Download the <a href="data/documents.json">complete source inventory (JSON)</a> or <a href="data/coverage.csv">coverage spreadsheet (CSV)</a>.</p>' : ''}
+    <div id="libraryList" aria-live="polite"></div>`;
+  function update() {
+    const rows = (fixedRecords || LIBRARY.records).filter(r => libraryMatches(r, LIB_FILTER.q) && (!LIB_FILTER.collection || r.collection === LIB_FILTER.collection) && (!LIB_FILTER.coverage || r.coverage === LIB_FILTER.coverage));
+    $('libraryList').innerHTML = `<p class="count">${rows.length} matching records</p>` + rows.slice(0, LIB_FILTER.limit).map(libraryCard).join('') + (!rows.length ? '<p class="empty">No source record matches. Absence from this catalogue is not evidence that the Church has not taught on a subject.</p>' : '') + (rows.length > LIB_FILTER.limit ? '<button class="btn" id="libraryMore">Show more sources</button>' : '');
+    if ($('libraryMore')) $('libraryMore').onclick = () => { LIB_FILTER.limit += 50; update(); };
+  }
+  $('libraryQ').oninput = ev => { LIB_FILTER.q = ev.target.value; LIB_FILTER.limit = 50; update(); };
+  $('libraryCollection').onchange = ev => { LIB_FILTER.collection = ev.target.value; LIB_FILTER.limit = 50; update(); };
+  $('libraryCoverage').onchange = ev => { LIB_FILTER.coverage = ev.target.value; LIB_FILTER.limit = 50; update(); };
+  update(); window.scrollTo(0, 0);
+}
+function renderSource(id) {
+  const r = SOURCES.get(id);
+  if (!r) return;
+  const entries = r.entryIds.map(id => byId.get(id));
+  view.className = Latin.mode === 'side' ? 'col side' : 'col';
+  view.innerHTML = `<header class="era-head"><div class="eyebrow"><a href="#library">Sources and coverage</a> · ${esc(r.collection)}</div>
+    <h1>${esc(r.title)}</h1><p>${esc(r.issuer || 'Issuing body not yet established for this source group')}${r.date ? ' · ' + esc(r.date) : r.year ? ' · ' + r.year + (r.yearExact ? '' : ' (approximate)') : ''}${r.genre ? ' · ' + esc(r.genre) : ''}</p>
+    <p><b>${COVERAGE_LABEL[r.coverage]}.</b> ${entries.length} local entries.${r.totalSections ? ` ${new Set(entries.map(e => e.id.replace(/^[A-Z]+/, '').replace(/-\d+$/, '')).filter(n => /^\d+$/.test(n))).size} of ${r.totalSections} numbered sections represented; text within those sections may also be abridged.` : ''}</p>
+    ${r.coverage !== 'full-text' && entries.length ? '<p>This view presents the material included in this collection. Read the complete source for its surrounding argument, notes and omitted passages.</p>' : ''}
+    ${r.sourceLinks.length ? `<p class="source-links">${sourceLinks(r)}</p>` : '<p>No document-level full-text link has been verified for this group yet.</p>'}
+    <details class="source-details"><summary>Provenance and editorial status</summary><dl>
+    <dt>Translation</dt><dd>${esc(r.translation)}</dd><dt>Text verification</dt><dd>${esc(r.textVerification)}</dd><dt>Reuse status</dt><dd>${esc(r.rights)}</dd>
+    <dt>Catalogue review</dt><dd>${esc(r.review.status)}${r.review.date ? ' · ' + esc(r.review.date) : ''}. ${esc(r.review.note)}</dd>
+    <dt>Collection headings</dt><dd>${esc(r.collectionHeadings.join('; ') || 'No local entries')}</dd></dl>
+    ${r.sourceLines.map(t => `<p class="src">${esc(t)}</p>`).join('')}</details>
+    <p class="curnote">${esc(r.authorityNote)} <a href="#weights">Read the criteria</a>.</p>
+    ${entries.length ? `<details><summary>Passages in this collection (${entries.length})</summary><p>${entries.map(e => `<a href="#n${esc(e.id)}">${esc(nlab(e.id))}</a>`).join(' · ')}</p></details>` : '<p>The complete document is available through the external source above. Its text has not been added to local passage search.</p>'}
+    </header>${entries.map(e => `${e.topic ? `<h2 class="topic">${esc(e.topic)}</h2>` : ''}${entryHtml(e, null, true)}`).join('')}`;
+  window.scrollTo(0, 0);
+}
+
 /* ---------- one document after 1958, cited by article (LG 25) ---------- */
 const DOC_RE = /^([A-Z]{2,})(\d+)(?:-\d+)?$/, DATED_DOCS = new Set(['AD', 'IV']);
 const docOf = id => { const m = id.match(DOC_RE); return m && !DATED_DOCS.has(m[1]) ? m[1] : null; };
@@ -619,6 +691,9 @@ function docTitle(ents) {
   return m ? m[1].trim() : ents[0].id.replace(/\d.*/, '');
 }
 function renderDoc(code) {
+  const matches = LIBRARY.records.filter(r => r.entryIds.some(id => docOf(id) === code));
+  if (matches.length === 1) return renderSource(matches[0].id);
+  if (matches.length > 1) { LIB_FILTER.q = code; LIB_FILTER.collection = ''; LIB_FILTER.coverage = ''; return renderLibrary(matches); }
   const ents = DOCS.get(code), re = termRegex(highlightTerms), er = ents[0].era;
   view.className = Latin.mode === 'side' ? 'col side' : 'col';
   let html = `<header class="era-head">
@@ -944,7 +1019,7 @@ function renderSince(focus) {
   const counts = {}; for (const s of SINCE) counts[s.level] = (counts[s.level] || 0) + 1;
   const shown = SINCE.filter(s => !state.sinceLevel || s.level === state.sinceLevel);
   let html = `<div class="eyebrow">Guide</div><h1 class="page-h">Since 1950</h1>
-    <p class="lede">No dogma has been defined since the Assumption in 1950 (n. 2333). This guide lists the main documents from Vatican II to Leo XIV, says how much weight each carries, and links each to the older texts in this collection that it continues. Summaries are written for this site; follow the title to the official text.</p>
+    <p class="lede">No dogma has been defined since the Assumption in 1950 (n. 2333). This guide lists the main documents from Vatican II to Leo XIV, says how much weight each carries, and links each to the older texts in this collection that it continues. Summaries and groupings are editorial: a guide category does not assign one doctrinal weight to every passage in a document. Follow the title to the complete source.</p>
     <div class="legend">${Object.entries(LEVELS).map(([k, [, d]]) => `<div>${levelPill(k)}<span>${d}</span></div>`).join('')}</div>
     <div class="chips" role="group" aria-label="Filter by weight"><button class="chip" data-level="" aria-pressed="${!state.sinceLevel}">All<span>${SINCE.length}</span></button>${Object.keys(LEVELS).filter(k => counts[k]).map(k => `<button class="chip" data-level="${k}" aria-pressed="${state.sinceLevel === k}">${LEVELS[k][0]}<span>${counts[k]}</span></button>`).join('')}</div>`;
   for (const s of shown) {
@@ -1250,7 +1325,10 @@ function renderWeights() {
   view.className = 'col wide';
   const counts = {}; for (const e of ENTRIES) { const k = wKey(e.weight); counts[k] = (counts[k] || 0) + 1; }
   view.innerHTML = `<div class="eyebrow">Guide</div><h1 class="page-h">Weight and censures</h1>
-    <p class="lede">Not every text in Denzinger binds in the same way. Each entry here is labeled by the form of the text, which is what its weight follows from. The labels are assigned by rules (the kind of council, the presence of a defining formula, an anathema or a censure) and a short list of papal definitions chosen by hand; treat them as a guide, and weigh each text by what it actually proposes.</p>
+    <p class="lede">Not every text in Denzinger binds in the same way. Document genre, issuing authority and the doctrinal status of a particular passage are separate questions. Genre labels do not settle the authority of every sentence. These editorial reading aids are assigned by rules (the kind of council, the presence of a defining formula, an anathema or a censure) and a short list of papal definitions chosen by hand; treat them as a guide, and weigh each text by what it actually proposes.</p>
+    <h2 class="sect-h">How to assess authority</h2>
+    <p>Read the issuing body, the audience, the content proposed, the intention to teach, and any approval or subsequent clarification. An encyclical or a dogmatic constitution can contain passages of different kinds. The colour of a genre label is a navigation aid, not a separate doctrinal judgment.</p>
+    <p>For the Church’s criteria, read <a href="#nLG25">Lumen Gentium 25</a>, <a href="#nDVER17">Donum Veritatis 17</a> and the <a href="#nDCPF11">Doctrinal Commentary on the Professio fidei</a>. The commentary passage here is an excerpt, not the complete explanation. A pope’s official teaching and his private writings must be distinguished; an address is not automatically nonbinding or necessarily of lower authority than every encyclical.</p>
     <h2 class="sect-h">Labels used on each entry</h2>
     <div class="tablewrap"><table class="wtable"><thead><tr><th>Label</th><th>What it means</th><th>Entries</th></tr></thead><tbody>
     ${Object.entries(WEIGHTS).map(([k, x]) => `<tr><td><span class="pill lv-${x[1]}">${x[0]}</span></td><td>${esc(x[2])}</td><td><a class="xref" href="#weight-${k}">${fmt(counts[k] || 0)}</a></td></tr>`).join('')}
@@ -2258,6 +2336,10 @@ function route() {
     const e = byId.get(m[1]); state.era = e.era; setView('read'); renderEra(e.era, e.id);
   } else if ((m = h.match(/^e(\d+)$/)) && ERAS[+m[1]]) {
     state.era = ERAS[+m[1]]; setView('read'); renderEra(state.era, null);
+  } else if (h === 'library') {
+    setView('library'); highlightTerms = []; renderLibrary();
+  } else if (h.startsWith('source-') && SOURCES.has(h.slice(7))) {
+    setView('source'); highlightTerms = []; renderSource(h.slice(7));
   } else if (h === 'since' || h.startsWith('since-')) {
     setView('since'); highlightTerms = []; renderSince(h.startsWith('since-') ? h.slice(6) : null);
   } else if (h === 'disputed' || h.startsWith('q-')) {

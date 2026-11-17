@@ -12,6 +12,7 @@ Only the Python standard library is used. The build checks every data file
 first and stops with a list of problems if anything does not line up.
 """
 import argparse, csv, datetime, html, io, json, os, re, shutil, struct, sys, zlib
+from library import inventory, validate_library
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SRC = os.path.join(ROOT, 'src')
@@ -35,7 +36,7 @@ LLMS = """# Sources of Catholic Dogma
 ## Data
 
 - [entries.json]({url}data/entries.json): every entry: id, text, DS numbers, era, year, weight (kind of document), hand-checked grade with its reason, censure, cross-references.
-- [weights.csv]({url}data/weights.csv): the hand-checked grades and the reason for each.
+- [documents.json]({url}data/documents.json): source inventory, local coverage, provenance, review status and full-text links. An excerpt view is not a complete document.\n- [weights.csv]({url}data/weights.csv): the hand-checked grades and the reason for each.
 - [latin.json]({url}data/latin.json): the Latin text by DS number.
 - [guides.json]({url}data/guides.json): the disputed questions, the guide to documents since 1950, the doctrinal threads, and the principles of hermeneutics.
 - A page for each entry: {url}n/<id>/
@@ -124,6 +125,7 @@ def load_all():
         'latin': load('latin.json'), 'catechism': load('catechism.json'), 'concepts': load('concepts.json'),
         'herm': load('hermeneutics.json'), 'changes': load('changes.json'),
         'latin_checked': load('latin-checked.json'),
+        'document_metadata': load('documents.json'),
     }
     return d
 
@@ -257,6 +259,7 @@ def check(d):
                 P.add('catechism.json', f'chapter id {ch["id"]} is used twice')
             ids.add(ch['id'])
             ch['refs'] = expand_refs(ch.get('refs', []), order, f'catechism.json, {ch["id"]}', P)
+    validate_library(d, order, P)
     return order, P
 
 
@@ -381,6 +384,7 @@ def entry_year(e, er):
 # --------------------------------------------------------------------------- compact data for the page
 def compact(d, order):
     E, eras = d['entries'], d['eras']
+    d['library'] = inventory(d, entry_year)
     h = curated_index(E, d['weights'], order)
     cites, cited, _ = cross_refs(E)
     rc = {}
@@ -393,7 +397,7 @@ def compact(d, order):
     rows = []
     for k, e in enumerate(E):
         y, exact = entry_year(e, eras[e['era']])
-        f = {'w': e['weight']}
+        f = {'w': e['weight'], 'doc': d['library']['entryMap'][e['id']]}
         if e.get('note'): f['n'] = 1
         if e.get('kinds'): f['k'] = e['kinds']
         if e.get('scripture'): f['s'] = e['scripture']
@@ -442,6 +446,7 @@ def reader_body(raw, d, site):
             f'<script type="application/json" id="threads-data">{dump(d["threads"])}</script>\n'
             f'<script type="application/json" id="hermeneutics-data">{dump(d["herm"])}</script>\n'
             f'<script type="application/json" id="changes-data">{dump(d["changes"])}</script>\n'
+            f'<script type="application/json" id="library-data">{dump(d["library"])}</script>\n'
             f'<script type="application/json" id="concepts-data">{dump(d["concepts"])}</script>\n'
             f'<script type="application/json" id="latin-data">{dump(d["latin"])}</script>\n'
             '<script>\n' + app + '</script>\n')
@@ -464,7 +469,7 @@ def reader_split(raw, d, site, out):
     site['latin'] = hashed(out, 'latin', 'json', dump(d['latin']))
     blocks = {'site-data': site, 'data': raw, 'since-data': d['since'], 'disputed-data': d['disputed'],
               'threads-data': d['threads'], 'concepts-data': d['concepts'], 'hermeneutics-data': d['herm'],
-              'changes-data': d['changes']}
+              'changes-data': d['changes'], 'library-data': d['library']}
     data_rel = hashed(out, 'reader', 'json', dump(blocks))
     css_rel = hashed(out, 'styles', 'css', read_src('styles.css'))
     app_rel = hashed(out, 'app', 'js', read_src('app.js'))
@@ -582,7 +587,7 @@ def redirect_page(target, label):
 
 
 def short_links(d, out, url):
-    """Addresses people already cite by: ds/3074/, lg/25/, and lg/ for a whole document."""
+    """Addresses people already cite by: ds/3074/, lg/25/, and lg/ for the selected passages from a document."""
     E = d['entries']
     base = url or '../../'
     made = 0
@@ -638,6 +643,7 @@ def entry_pages(d, raw, derived, out, url):
             disc.setdefault(r, []).append((f'#herm-{p["id"]}', p['title'] + ' (hermeneutics)'))
     derived_years = [abs(r[6]['y']) for r in raw['entries']]
     docs = documents(E)
+    source_records = {r['id']: r for r in d['library']['records']}
     urls = []
     for k, e in enumerate(E):
         er = eras[e['era']]
@@ -654,7 +660,7 @@ def entry_pages(d, raw, derived, out, url):
         hk = derived['h'][k]
         if hk is not None:
             g = GRADE_LABEL[weights[hk]['g']]
-            pill = f'<span class="pill lv-{g[1]}">Checked · {esc(g[0])}</span>'
+            pill = f'<span class="pill lv-{g[1]}">Editorial grade · {esc(g[0])}</span>'
         else:
             g = WEIGHT_LABEL.get('papal-teaching' if e['weight'] == 'papal' else e['weight'])
             pill = f'<span class="pill lv-{g[1]}">{esc(g[0])}</span>'
@@ -684,7 +690,8 @@ def entry_pages(d, raw, derived, out, url):
 ''')
         if e.get('source'):
             parts.append(f'<p class="src">{static_text(e["source"], by_id, by_base)}</p>\n')
-        tags = [pill]
+        genre = WEIGHT_LABEL['papal-teaching' if e['weight'] == 'papal' else e['weight']]
+        tags = [f'<span class="pill">{esc(genre[0])}</span>', pill] if hk is not None else [pill]
         if ds:
             tags.insert(0, f'<span class="dsno">{"cf. " if e.get("dsHow") == "series" else ""}DS {esc(ds_range(ds))}</span>')
         if 'censure' in e:
@@ -702,10 +709,11 @@ def entry_pages(d, raw, derived, out, url):
         if hk is not None:
             w = weights[hk]
             rng = f' ({esc(n_label(w["from"]))}–{esc(disp_id(w["to"]))})' if w['to'] != w['from'] else ''
-            parts.append(f'<p class="curnote"><b>Checked by hand · {esc(GRADE_LABEL[w["g"]][0])}{rng}.</b> {static_text(w["n"], by_id, by_base)}</p>\n')
-        dm = doc_of(eid)
-        if dm in docs and len(docs[dm]) > 1:
-            parts.append(f'<p class="rel">Whole document: <a href="../../#doc-{esc(dm)}">{esc(doc_title(docs[dm]))}, {len(docs[dm])} articles in this collection</a></p>\n')
+            parts.append(f'<p class="curnote"><b>Editorial assessment · {esc(GRADE_LABEL[w["g"]][0])}{rng}.</b> {static_text(w["n"], by_id, by_base)}</p>\n')
+        record = source_records[d['library']['entryMap'][eid]]
+        parts.append(f'<p class="rel">Source and coverage: <a href="../../#source-{esc(record["id"])}">{esc(record["title"])}</a> · {esc(record["coverage"])} locally. Passage grades are editorial assessments.</p>\n')
+        for link in record['sourceLinks']:
+            parts.append(f'<p class="rel"><a href="{esc(link["url"])}" rel="noopener">{esc(link["label"])} ↗</a> ({esc(link["language"])})</p>\n')
         if e.get('links'):
             parts.append('<p class="rel">Full text: ' + ' · '.join(f'<a href="{esc(l["url"])}" rel="noopener">{esc(l["label"])} ↗</a>' for l in e['links']) + '</p>\n')
         rel = []
@@ -784,6 +792,9 @@ def open_data(d, raw, derived, out, url, built):
              'era': eras[e['era']]['name'], 'eraDates': eras[e['era']]['dates'], 'year': abs(y), 'yearExact': y > 0,
              'session': e.get('session'), 'topic': e.get('topic'), 'source': e.get('source'), 'text': e['text'],
              'neunerDupuis': e.get('nd', []),
+             'documentId': d['library']['entryMap'][e['id']],
+             'gradeNote': d['weights'][hk]['n'] if hk is not None else None,
+             'gradeStatus': 'editorial assessment' if hk is not None else 'genre label only',
              'weight': 'papal-teaching' if e['weight'] == 'papal' else e['weight'],
              'grade': d['weights'][hk]['g'] if hk is not None else None,
              'kinds': e.get('kinds', []), 'supplement': bool(e.get('supplement')),
@@ -815,7 +826,16 @@ def open_data(d, raw, derived, out, url, built):
     guides = {'since1950': d['since'], 'disputed': d['disputed'], 'threads': d['threads'], 'hermeneutics': d['herm']}
     with open(os.path.join(dd, 'guides.json'), 'w', encoding='utf-8') as f:
         json.dump(guides, f, ensure_ascii=False, indent=1)
+    with open(os.path.join(dd, 'documents.json'), 'w', encoding='utf-8') as f:
+        json.dump(d['library'], f, ensure_ascii=False, indent=1)
+    with open(os.path.join(dd, 'coverage.csv'), 'w', encoding='utf-8', newline='') as f:
+        writer = csv.writer(f)
+        writer.writerow(['id', 'title', 'issuer', 'year', 'year_exact', 'genre', 'collection', 'local_coverage', 'entry_count', 'entries', 'grouping', 'review_status', 'translation', 'text_verification', 'rights', 'source_urls'])
+        for r in d['library']['records']:
+            writer.writerow([r['id'], r['title'], r['issuer'], r['year'], r['yearExact'], r['genre'], r['collection'], r['coverage'], len(r['entryIds']), ' '.join(r['entryIds']), r['grouping'], r['review']['status'], r['translation'], r['textVerification'], r['rights'], ' '.join(l['url'] for l in r['sourceLinks'])])
     files = [
+        ('coverage.csv', 'Source inventory as a spreadsheet, including coverage and provenance.'),
+        ('documents.json', 'Source inventory: local coverage, external full texts, provenance and review status. Inferred groups require review.'),
         ('entries.json', 'Every entry with its text, DS numbers, era, year, weight, hand-checked grade, censure, cross-references and Roman Catechism chapters.'),
         ('crosswalk.csv', 'Old number, DS number and how the pair was matched (printed, series = inferred, checked = by hand, none).'),
         ('weights.csv', 'The hand-checked weight ranges with the note on each.'),
