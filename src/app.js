@@ -107,7 +107,7 @@ const WEIGHTS = {
   'catechism': ['Catechism', 'authentic', 'The Catechism of the Catholic Church (1992, Latin edition 1997), promulgated as "a sure norm for teaching the faith". Each statement keeps the weight of the teaching it presents.'],
   'papal-address': ['Address or homily', 'study', 'A pope\'s address, homily, message, catechesis or letter to a particular group. His ordinary teaching, but its weight depends on the manner of speaking and how often it is repeated (Lumen Gentium 25); document genre alone does not establish a ranking.'],
   'interview': ['Interview', 'private', 'An interview, press conference or book a pope wrote as a private theologian. Not an act of the Magisterium.'],
-  'commission': ['Commission or council study', 'study', 'A document of a pontifical council or commission: the Biblical Commission after 1971, the International Theological Commission, Christian Unity, Justice and Peace and the like. Not magisterial in itself.'],
+  'commission': ['Commission or council study', 'study', 'A publication of a pontifical council or commission. A commission study is not magisterial merely because the Vatican publishes it. Examine the issuing body, approval and teaching intent of each document; curial instructions and theological studies can have different status.'],
   'synod': ['Synod of Bishops', 'study', 'A document or message of the Synod of Bishops. Consultative unless the pope makes it his own.'],
   'bishops': ['Bishops\' conference', 'study', 'A statement of a conference of bishops. Authentic conference magisterium requires the conditions described in Apostolos Suos 22 and its complementary norms: unanimity, or approval by at least two thirds followed by the Holy See’s recognitio. Not every conference publication has that status.'],
   'ecumenical': ['Ecumenical agreement', 'dialogue', 'A joint declaration or agreed statement with other Christians. Binds the Church only so far as it restates Catholic doctrine.'],
@@ -341,6 +341,7 @@ function ordinal(n) { const s = ['th', 'st', 'nd', 'rd'], v = n % 100; return n 
 const GUIDES = [
   ['#home', 'Introduction', ''],
   ['#library', 'Sources and coverage', LIBRARY.records.length + ' records'],
+  ['#coverage', 'Coverage and requests', ''],
   ['#threads', 'Doctrinal threads', THREADS.length + ' threads'],
   ['#since', 'Since 1950', SINCE.length + ' documents'],
   ['#disputed', 'Disputed questions', DISPUTED.length + ' questions'],
@@ -383,7 +384,7 @@ function markRail() {
   let b = null;
   if (state.view === 'read' && state.era) b = rail.querySelector(`[data-era="${state.era.i}"]`);
   else {
-    const map = { library: '#library', source: '#library', home: '#home', catechism: '#catechism', timeline: '#timeline', since: '#since', disputed: '#disputed', scripture: '#scripture', book: '#scripture', topics: '#topics', saved: '#saved', threads: '#threads', thread: '#threads', ask: '#ask', compare: '#compare', weights: '#weights', checked: '#checked', reading: '#reading', hermeneutics: '#hermeneutics', edition: '#edition', concordance: '#concordance' };
+    const map = { coverage: '#coverage', library: '#library', source: '#library', home: '#home', catechism: '#catechism', timeline: '#timeline', since: '#since', disputed: '#disputed', scripture: '#scripture', book: '#scripture', topics: '#topics', saved: '#saved', threads: '#threads', thread: '#threads', ask: '#ask', compare: '#compare', weights: '#weights', checked: '#checked', reading: '#reading', hermeneutics: '#hermeneutics', edition: '#edition', concordance: '#concordance' };
     if (map[state.view]) b = rail.querySelector(`[data-go="${map[state.view]}"]`);
   }
   if (b) {
@@ -448,6 +449,7 @@ function renderHome() {
     ${PAGES && SITE.url ? `<div><a href="${esc(SITE.url)}feed.xml">Follow additions by feed (Atom)</a></div>` : ''}</div>` : ''}
     <h2 class="sect-h">Guides and indexes</h2>
     <div class="guides">
+      <a class="guide" href="#coverage"><b>Coverage and requests</b><span>What is included, what still needs review, and how to propose a source or save a research gap.</span></a>
       <a class="guide" href="#library"><b>Sources and coverage</b><span>Find documents, check which passages are included, and open complete primary sources. Provenance and review status for every entry.</span></a>
       <a class="guide" href="#catechism"><b>Roman Catechism</b><span>The Catechism of the Council of Trent, chapter by chapter, with the texts in this collection that each chapter explains.</span></a>
       <a class="guide" href="#timeline"><b>Timeline</b><span>Every entry by date and weight: where definitions, canons and condemnations cluster across twenty centuries.</span></a>
@@ -523,6 +525,7 @@ function entryHtml(e, re, showCur) {
     ${side ? `<div class="pair">${body}${latinHtml(e)}</div>` : body}
     ${!side && !e.sup && latinShown(e.id) ? latinHtml(e) : ''}
     ${sourceContext(e)}
+    ${relationsHtml(e)}
     ${e.links.length ? `<div class="discussed">Full text: ${e.links.map(l => `<a href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.label)} ↗</a>`).join(' · ')}</div>` : ''}
     ${e.cur !== null && CURATED[e.cur] && (showCur || CURATED[e.cur].from === e.id) ? curNote(e) : ''}
     ${e.cens !== null && CENS[e.cens] || e.weight === 'condemned' ? `<div class="discussed">Condemned in a determinate sense: <a href="#reading">how to read a condemnation</a></div>` : ''}
@@ -553,7 +556,7 @@ function refreshEntry(id) {
   if (Marks.editing === id) { const t = $('noteText'); if (t) { t.focus(); t.setSelectionRange(t.value.length, t.value.length); } }
 }
 function refreshMarks() {
-  if (state.view === 'read') document.querySelectorAll('.entry').forEach(el => { if (Marks.editing !== el.id.slice(1)) refreshEntry(el.id.slice(1)); });
+  if (state.view === 'read' || state.view === 'source') document.querySelectorAll('.entry').forEach(el => { if (Marks.editing !== el.id.slice(1)) refreshEntry(el.id.slice(1)); });
   if (state.view === 'saved') renderSaved();
 }
 function seeAlso(er) {
@@ -647,6 +650,7 @@ function renderLibrary(fixedRecords) {
     <label>Collection<select id="libraryCollection"><option value="">All collections</option>${collections.map(c => `<option ${LIB_FILTER.collection === c ? 'selected' : ''}>${esc(c)}</option>`).join('')}</select></label>
     <label>Local coverage<select id="libraryCoverage"><option value="">All coverage</option>${Object.entries(COVERAGE_LABEL).map(([k,v]) => `<option value="${k}" ${LIB_FILTER.coverage === k ? 'selected' : ''}>${v}</option>`).join('')}</select></label></div>
     ${PAGES ? '<p class="count">Download the <a href="data/documents.json">complete source inventory (JSON)</a> or <a href="data/coverage.csv">coverage spreadsheet (CSV)</a>.</p>' : ''}
+    <p><a href="#coverage">See coverage priorities or propose a missing source</a>.</p>
     <div id="libraryList" aria-live="polite"></div>`;
   function update() {
     const rows = (fixedRecords || LIBRARY.records).filter(r => libraryMatches(r, LIB_FILTER.q) && (!LIB_FILTER.collection || r.collection === LIB_FILTER.collection) && (!LIB_FILTER.coverage || r.coverage === LIB_FILTER.coverage));
@@ -668,6 +672,7 @@ function renderSource(id) {
     <p><b>${COVERAGE_LABEL[r.coverage]}.</b> ${entries.length} local entries.${r.totalSections ? ` ${new Set(entries.map(e => e.id.replace(/^[A-Z]+/, '').replace(/-\d+$/, '')).filter(n => /^\d+$/.test(n))).size} of ${r.totalSections} numbered sections represented; text within those sections may also be abridged.` : ''}</p>
     ${r.coverage !== 'full-text' && entries.length ? '<p>This view presents the material included in this collection. Read the complete source for its surrounding argument, notes and omitted passages.</p>' : ''}
     ${r.sourceLinks.length ? `<p class="source-links">${sourceLinks(r)}</p>` : '<p>No document-level full-text link has been verified for this group yet.</p>'}
+    ${entries.length ? `<div class="era-tools">${latinSeg()}</div>` : ''}
     <details class="source-details"><summary>Provenance and editorial status</summary><dl>
     <dt>Translation</dt><dd>${esc(r.translation)}</dd><dt>Text verification</dt><dd>${esc(r.textVerification)}</dd><dt>Reuse status</dt><dd>${esc(r.rights)}</dd>
     <dt>Catalogue review</dt><dd>${esc(r.review.status)}${r.review.date ? ' · ' + esc(r.review.date) : ''}. ${esc(r.review.note)}</dd>
@@ -677,6 +682,53 @@ function renderSource(id) {
     <p class="curnote">${esc(r.authorityNote)} <a href="#weights">Read the criteria</a>.</p>
     ${entries.length ? `<details><summary>Passages in this collection (${entries.length})</summary><p>${entries.map(e => `<a href="#n${esc(e.id)}">${esc(nlab(e.id))}</a>`).join(' · ')}</p></details>` : '<p>The complete document is available through the external source above. Its text has not been added to local passage search.</p>'}
     </header>${entries.map(e => `${e.topic ? `<h2 class="topic">${esc(e.topic)}</h2>` : ''}${entryHtml(e, null, true)}`).join('')}`;
+  window.scrollTo(0, 0);
+}
+
+/* ---------- evidence-backed connections and explicit reader feedback ---------- */
+function relationHtml(r) {
+  return `<details class="source-relation"><summary><a href="#n${esc(r.from)}">${esc(nlab(r.from))}</a> ${esc(r.kind.replace(/-/g, ' '))} <a href="#n${esc(r.to)}">${esc(nlab(r.to))}</a></summary>
+    <p>${esc(r.note)} <span class="count">Editorial relationship.</span></p>
+    ${r.evidence.map(e => `<blockquote>${esc(e.quote)}</blockquote><p class="count"><a href="#n${esc(e.entry)}">${esc(nlab(e.entry))}</a> · <a href="${sourceHref(sourceOf(byId.get(e.entry)))}">Source and context</a></p>`).join('')}</details>`;
+}
+function relationsHtml(e) {
+  const rows = (LIBRARY.relations || []).filter(r => r.from === e.id || r.to === e.id);
+  return rows.length ? `<div class="source-relations"><p class="count">Connections supported by the texts</p>${rows.map(relationHtml).join('')}</div>` : '';
+}
+const Gaps = {
+  load() { try { const rows = JSON.parse(store.get('dz-research-gaps') || '[]'); return Array.isArray(rows) ? rows.filter(r => r && typeof r.query === 'string' && typeof r.date === 'string').slice(0, 40) : []; } catch (_) { return []; } },
+  save(rows) {
+    try { localStorage.setItem('dz-research-gaps', JSON.stringify(rows)); return true; }
+    catch (_) { return false; }
+  },
+  add(query) {
+    const q = query.trim().slice(0, 500); if (!q) return false;
+    return this.save([{ query: q, date: new Date().toISOString().slice(0, 10) }, ...this.load().filter(r => r.query !== q)].slice(0, 40));
+  }
+};
+function proposalUrl(query) {
+  const params = new URLSearchParams({ template: 'new-document.yml', title: 'Source request: ' + query, research: query });
+  return `https://github.com/${SITE.repo}/issues/new?${params}`;
+}
+function renderCoverage() {
+  const roadmap = LIBRARY.roadmap, saved = Gaps.load();
+  view.className = 'col';
+  const vatican = LIBRARY.records.filter(r => r.collection === 'Vatican II');
+  view.innerHTML = `<div class="eyebrow">Coverage and reader feedback</div><h1 class="page-h">What is here, and what comes next</h1>
+    <p class="lede">${esc(roadmap.scope)}</p><p>Vatican II: ${vatican.length} of 16 documents catalogued; ${vatican.filter(r => r.entryIds.length).length} have local selections. Every local entry has a source record, but inferred groups still need review. <a href="#library">Inspect the inventory</a>.</p>
+    <h2 class="sect-h">Editorial priorities</h2>${roadmap.priorities.map(p => `<article class="source-card"><h2>${esc(p.title)}</h2><p class="count">${esc(p.status)}</p><p>${esc(p.note)}</p></article>`).join('')}
+    <h2 class="sect-h">Your saved research gaps</h2><p>${esc(roadmap.feedbackPolicy)}</p>
+    ${saved.length ? saved.map((r, i) => `<article class="source-card"><h2>${esc(r.query)}</h2><p class="count">Saved ${esc(r.date)}</p><div class="row"><button class="btn small" data-gap-search="${i}">Search again</button><button class="btn small" data-gap-remove="${i}">Remove</button>${PAGES && SITE.repo ? `<a class="btn small" href="${esc(proposalUrl(r.query))}" target="_blank" rel="noopener">Open a proposal on GitHub ↗</a>` : ''}</div></article>`).join('') : '<p>No saved gaps. When a search returns no local passages, choose “Save this research gap” to keep it here.</p>'}
+    <h2 class="sect-h">Corrections and source maintenance</h2><p>Use each entry’s report link for a text or authority-label correction. A link check tests availability, not the correctness of the text or its attribution.</p>
+    ${PAGES && SITE.repo ? `<p><a href="https://github.com/${esc(SITE.repo)}/issues/new?template=new-document.yml" target="_blank" rel="noopener">Propose a document ↗</a> · <a href="https://github.com/${esc(SITE.repo)}/issues" target="_blank" rel="noopener">See reported issues ↗</a> · <a href="https://github.com/${esc(SITE.repo)}/actions/workflows/links.yml" target="_blank" rel="noopener">Monthly source-link reports ↗</a></p>` : ''}`;
+  view.querySelectorAll('[data-gap-remove]').forEach(button => button.onclick = () => {
+    const rows = Gaps.load(); rows.splice(+button.dataset.gapRemove, 1);
+    if (Gaps.save(rows)) renderCoverage(); else toast('Browser storage is unavailable; no change was saved.');
+  });
+  view.querySelectorAll('[data-gap-search]').forEach(button => button.onclick = () => {
+    const row = Gaps.load()[+button.dataset.gapSearch]; if (!row) return;
+    state.query = row.query; state.topic = null; state.weight = ''; state.kind = ''; state.period = 0; state.limit = 60; qInput.value = row.query; go('#results');
+  });
   window.scrollTo(0, 0);
 }
 
@@ -769,7 +821,7 @@ function loadLatin() {
 }
 const latinText = n => { if (!LATIN) { loadLatin(); if (!LATIN) return undefined; } return LATIN[n]; };
 function latinArrived() {
-  if (state.view === 'read') { document.querySelectorAll('.entry').forEach(x => refreshEntry(x.id.slice(1))); return; }
+  if (state.view === 'read' || state.view === 'source') { document.querySelectorAll('.entry').forEach(x => refreshEntry(x.id.slice(1))); return; }
   if (state.view === 'ask') { if (typeof fillPreview === 'function') fillPreview(); return; }
   if (state.view === 'search' || state.view === 'compare') { const y = window.scrollY; route(); window.scrollTo(0, y); }
 }
@@ -1030,7 +1082,10 @@ function renderResults() {
     html += shown.slice(0, state.topic ? shown.length : state.limit).map(({ e }) => hitHtml(e, re)).join('');
     if (!state.topic && shown.length > state.limit) html += `<button class="btn more" id="more">Show more (${fmt(shown.length - state.limit)} left)</button>`;
   }
+  if (!shown.length && state.query.trim()) html += '<p><button class="btn small" id="saveResearchGap">Save this research gap</button> · <a href="#coverage">Coverage and saved requests</a></p>';
   view.innerHTML = html;
+  const gapButton = $('saveResearchGap');
+  if (gapButton) gapButton.onclick = () => { const saved = Gaps.add(state.query); toast(saved ? 'Research gap saved on this browser.' : 'Browser storage is unavailable; nothing was saved.'); };
   const more = $('more');
   if (more) more.onclick = () => { state.limit += 100; renderResults(); };
 }
@@ -1584,6 +1639,7 @@ function renderThread(t) {
       html += `<div class="step" id="step-${si}"><span class="when">${stepWhen(st)}</span><span class="dot"></span><div class="what">
         <div class="hd"><a href="#n${esc(e.id)}">${esc(nlab(e.id))}</a>${e.cur !== null && CURATED[e.cur] ? curPill(e) : weightPill(e.weight)}<span>${esc(e.era.name)}</span></div>
         <p>${esc(st.note)}</p>
+        ${relationsHtml(e)}
         <details><summary>Show the text</summary><p>${renderText(text.length > 900 ? text.slice(0, 900).replace(/\s\S*$/, '') + '…' : text, null)}</p></details></div></div>`;
     }
   }
@@ -2359,6 +2415,8 @@ function route() {
     const e = byId.get(m[1]); state.era = e.era; setView('read'); renderEra(e.era, e.id);
   } else if ((m = h.match(/^e(\d+)$/)) && ERAS[+m[1]]) {
     state.era = ERAS[+m[1]]; setView('read'); renderEra(state.era, null);
+  } else if (h === 'coverage') {
+    setView('coverage'); highlightTerms = []; renderCoverage();
   } else if (h === 'library') {
     setView('library'); highlightTerms = []; renderLibrary();
   } else if (h.startsWith('source-') && SOURCES.has(h.slice(7))) {
@@ -2499,8 +2557,8 @@ view.addEventListener('click', async ev => {
   if ((el = t.closest('[data-latin-mode]'))) {
     const anchor = [...document.querySelectorAll('.entry')].find(x => x.getBoundingClientRect().bottom > 80);
     setLatinMode(el.dataset.latinMode);
-    if (state.view === 'read' && state.era) {
-      renderEra(state.era, null);
+    if (state.view === 'read' || state.view === 'source') {
+      route();
       if (anchor) { const n = document.getElementById(anchor.id); if (n) { n.scrollIntoView({ block: 'start' }); window.scrollBy(0, -(document.querySelector('.top').offsetHeight + 12)); } }
     }
     markRail();
@@ -2512,7 +2570,7 @@ view.addEventListener('click', async ev => {
   if ((el = t.closest('[data-latin-all]'))) {
     setLatinAll(!Latin.all);
     if (state.view === 'compare') route();
-    else if (state.view === 'read') { document.querySelectorAll('.entry').forEach(x => refreshEntry(x.id.slice(1))); el.setAttribute('aria-pressed', Latin.all); el.textContent = Latin.all ? 'Hide Latin' : 'Show Latin'; }
+    else if (state.view === 'read' || state.view === 'source') { document.querySelectorAll('.entry').forEach(x => refreshEntry(x.id.slice(1))); el.setAttribute('aria-pressed', Latin.all); el.textContent = Latin.all ? 'Hide Latin' : 'Show Latin'; }
     toast(Latin.all ? 'Latin shown under each entry' : 'Latin hidden'); return;
   }
   if ((el = t.closest('[data-cmp]'))) {

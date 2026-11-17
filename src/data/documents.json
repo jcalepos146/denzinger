@@ -1027,7 +1027,7 @@
     "entryIds": [
       "JD19730510"
     ],
-    "issuer": "Paul VI",
+    "issuer": "Common Declaration of Pope Paul VI and Pope Shenouda III",
     "genre": "Common Declaration of Pope Paul VI and Pope Shenouda III",
     "date": null,
     "collection": "Selected documents",
@@ -2501,7 +2501,7 @@
     "entryIds": [
       "JD19941111"
     ],
-    "issuer": "John Paul II",
+    "issuer": "Common Christological Declaration between the Catholic Church and the Assyrian Church of the East",
     "genre": "Common Christological Declaration between the Catholic Church and the Assyrian Church of the East",
     "date": null,
     "collection": "Selected documents",
@@ -2963,7 +2963,7 @@
       "EGHL36",
       "EGHL42"
     ],
-    "issuer": "John Paul II",
+    "issuer": "Congregation for Catholic Education",
     "genre": "Congregation for Catholic Education",
     "date": "1983-11-01",
     "collection": "Selected documents",
@@ -3003,7 +3003,7 @@
       "DP82",
       "DP83"
     ],
-    "issuer": "John Paul II",
+    "issuer": "Pontifical Council for Interreligious Dialogue and Congregation for the Evangelization of Peoples",
     "genre": "Pontifical Council for Interreligious Dialogue and Congregation for the Evangelization of Peoples",
     "date": "1991-05-19",
     "collection": "Selected documents",
@@ -3031,7 +3031,7 @@
     "entryIds": [
       "WH31"
     ],
-    "issuer": "John Paul II",
+    "issuer": "Pontifical Council Cor Unum",
     "genre": "Pontifical Council Cor Unum",
     "date": "1996-10-04",
     "collection": "Selected documents",
@@ -3061,7 +3061,7 @@
       "VC9",
       "VC13"
     ],
-    "issuer": "John Paul II",
+    "issuer": "Pontifical Council for the Family",
     "genre": "Pontifical Council for the Family",
     "date": "1997-02-12",
     "collection": "Selected documents",
@@ -3089,7 +3089,7 @@
     "entryIds": [
       "EDM4"
     ],
-    "issuer": "John Paul II",
+    "issuer": "Roman dicasteries; see source",
     "genre": "Instruction of eight dicasteries on the collaboration of the non-ordained faithful in the sacred ministry of priests",
     "date": "1997-08-15",
     "collection": "Selected documents",
@@ -3117,7 +3117,7 @@
     "entryIds": [
       "BNFD3"
     ],
-    "issuer": "John Paul II",
+    "issuer": "Congregation for Catholic Education",
     "genre": "Congregation for Catholic Education",
     "date": "1998-02-22",
     "collection": "Selected documents",
@@ -3299,7 +3299,7 @@
       "JDDJ42",
       "JDDJ43"
     ],
-    "issuer": "John Paul II",
+    "issuer": "Lutheran World Federation and the Catholic Church",
     "genre": "Ecumenical agreement with the Lutheran World Federation",
     "date": "1999-10-31",
     "collection": "Selected documents",
@@ -4157,7 +4157,7 @@
     "collection": "Selected documents",
     "sourceLinks": [
       {
-        "url": "https://www.vatican.va/content/john-paul-ii/en/bulls/documents/hf_jp-ii_doc_19981129_incarnationis-mysterium.html",
+        "url": "https://www.vatican.va/content/john-paul-ii/en/bulls/documents/hf_jp-ii_doc_19981129_bolla-incarnationis-mysterium.html",
         "label": "Official full text",
         "language": "en",
         "scope": "full-document"

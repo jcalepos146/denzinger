@@ -1,0 +1,11 @@
+{
+  "scope": "The source inventory covers all local entries and explicitly catalogued external texts. It is not an exhaustive catalogue of Catholic teaching.",
+  "priorities": [
+    {"title": "Review inherited source groups", "status": "Needs editorial review", "note": "Establish document identity, issuing body, translation and dates from primary sources before treating inferred groups as verified documents."},
+    {"title": "Complete local Vatican II texts", "status": "Source access complete; transcription pending", "note": "All 16 documents have official complete-text links. Eleven have local selections. The five external-only documents need reuse review and checked transcription before becoming locally searchable."},
+    {"title": "Preconciliar papal teaching", "status": "Four priority sources catalogued", "note": "Rerum Novarum, Quas Primas, Mediator Dei and Humani Generis have source records and full-text links. Extend one pontificate and genre at a time, beginning with Leo XIII, Pius XI and Pius XII."},
+    {"title": "Additional papal teaching", "status": "Seven external sources added", "note": "Lumen Fidei, Sacramentum Caritatis, Salvifici Doloris, Vita Consecrata, Rosarium Virginis Mariae, Laudate Deum and Dilexit Nos are accessible externally; their complete texts have not been ingested."},
+    {"title": "Episcopal and Eastern Catholic teaching", "status": "Future bounded collections", "note": "Select collections with explicit jurisdiction, approval and provenance rather than attempting an undifferentiated archive."}
+  ],
+  "feedbackPolicy": "No background analytics or automatic transmission of searches. Research gaps are saved only when you choose, on this browser. You can delete them or choose to open a GitHub proposal yourself. Corrections, proposals and scheduled link-check reports guide future priorities."
+}

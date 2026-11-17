@@ -1,6 +1,7 @@
 """Conservative source inventory. Grouping is not a claim of document completeness."""
 import hashlib
 import re
+from datetime import date
 from urllib.parse import urlparse
 
 
@@ -27,10 +28,18 @@ def validate_library(d, order, problems):
             assigned.add(eid)
         if not ids and record.get('coverage') != 'none':
             problems.add(where, 'a record without local entries must have coverage none')
-        if record.get('coverage') == 'full-text' and not record.get('completenessEvidence'):
-            problems.add(where, 'full-text requires completenessEvidence, including comparison source')
-        if record.get('date') and not re.fullmatch(r'\d{4}-\d{2}-\d{2}', record['date']):
-            problems.add(where, 'date must be YYYY-MM-DD')
+        if ids and record.get('coverage') == 'none':
+            problems.add(where, 'coverage none cannot contain local entries')
+        if record.get('coverage') == 'full-text':
+            evidence = record.get('completenessEvidence')
+            fields = ('edition', 'reviewer', 'date', 'scope', 'comparison')
+            if not isinstance(evidence, dict) or any(not evidence.get(f) for f in fields):
+                problems.add(where, 'full-text requires completenessEvidence: edition, reviewer, date, scope and comparison')
+        if record.get('date'):
+            try:
+                date.fromisoformat(record['date'])
+            except (TypeError, ValueError):
+                problems.add(where, 'date must be a valid YYYY-MM-DD date')
         if 'totalSections' in record and (not isinstance(record['totalSections'], int) or record['totalSections'] < 1):
             problems.add(where, 'totalSections must be a positive integer')
         for link in record.get('sourceLinks', []):
@@ -39,6 +48,31 @@ def validate_library(d, order, problems):
                 problems.add(where, 'source links must be HTTPS URLs')
             if link.get('scope') not in ('full-document', 'source-page') or not link.get('language'):
                 problems.add(where, 'source links need scope and language')
+
+
+def validate_relations(d, order, problems):
+    entries = {e['id']: e for e in d['entries']}
+    seen = set()
+    for relation in d['relations']:
+        where = 'relations.json, ' + str(relation.get('id', '?'))
+        if not relation.get('id') or relation['id'] in seen:
+            problems.add(where, 'relationship id must be unique')
+        seen.add(relation.get('id'))
+        a, b = relation.get('from'), relation.get('to')
+        if a not in order or b not in order or a == b:
+            problems.add(where, 'relationship needs two distinct existing entries')
+        if relation.get('kind') not in {'quotes', 'references', 'reaffirms', 'explains', 'changes-discipline'}:
+            problems.add(where, 'unknown relationship kind')
+        if not relation.get('note') or relation.get('status') != 'editorial relationship':
+            problems.add(where, 'relationship needs an editorial explanation and status')
+        evidence = relation.get('evidence', [])
+        if {e.get('entry') for e in evidence} != {a, b}:
+            problems.add(where, 'quote evidence from both endpoints')
+        for item in evidence:
+            entry = entries.get(item.get('entry'))
+            quote = re.sub(r'\s+', ' ', item.get('quote', '')).strip()
+            if not entry or not quote or quote not in re.sub(r'\s+', ' ', ' '.join(entry['text'])):
+                problems.add(where, 'evidence quotation is not present in the named entry')
 
 
 def source_key(entry):

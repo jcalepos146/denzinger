@@ -5,7 +5,7 @@ import unittest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'build'))
 from build import load_all, check, compact, Problems
-from library import source_key, validate_library
+from library import source_key, validate_library, validate_relations
 
 class SourceInventoryTests(unittest.TestCase):
     @classmethod
@@ -49,6 +49,12 @@ class SourceInventoryTests(unittest.TestCase):
         problems=Problems();validate_library(data,self.order,problems)
         self.assertTrue(any('completenessEvidence' in p for p in problems))
 
+    def test_full_text_cannot_use_a_bare_verified_flag(self):
+        data=copy.deepcopy(self.data)
+        data['document_metadata'][0].update(coverage='full-text',completenessEvidence={'verified':True})
+        problems=Problems();validate_library(data,self.order,problems)
+        self.assertTrue(any('completenessEvidence' in p for p in problems))
+
     def test_duplicate_and_missing_references_fail_validation(self):
         data=copy.deepcopy(self.data)
         data['document_metadata'][1]['entryIds'] += [data['document_metadata'][0]['entryIds'][0], 'MISSING-ID']
@@ -60,5 +66,24 @@ class SourceInventoryTests(unittest.TestCase):
         data['document_metadata'][0]['sourceLinks'][0]['url']='javascript:alert(1)'
         problems=Problems();validate_library(data,self.order,problems)
         self.assertTrue(any('HTTPS' in p for p in problems))
+
+class RelationshipTests(unittest.TestCase):
+    def test_changed_quotation_fails(self):
+        data=load_all();order,_=check(data)
+        data['relations'][0]['evidence'][0]['quote']='An invented quotation.'
+        problems=Problems();validate_relations(data,order,problems)
+        self.assertTrue(any('not present' in p for p in problems))
+
+    def test_both_endpoints_require_evidence(self):
+        data=load_all();order,_=check(data)
+        data['relations'][0]['evidence']=data['relations'][0]['evidence'][:1]
+        problems=Problems();validate_relations(data,order,problems)
+        self.assertTrue(any('both endpoints' in p for p in problems))
+
+    def test_no_self_relationships(self):
+        data=load_all();order,_=check(data)
+        data['relations'][0]['to']=data['relations'][0]['from']
+        problems=Problems();validate_relations(data,order,problems)
+        self.assertTrue(any('distinct existing entries' in p for p in problems))
 
 if __name__=='__main__':unittest.main()

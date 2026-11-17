@@ -12,7 +12,7 @@ Only the Python standard library is used. The build checks every data file
 first and stops with a list of problems if anything does not line up.
 """
 import argparse, csv, datetime, html, io, json, os, re, shutil, struct, sys, zlib
-from library import inventory, validate_library
+from library import inventory, validate_library, validate_relations
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SRC = os.path.join(ROOT, 'src')
@@ -126,6 +126,7 @@ def load_all():
         'herm': load('hermeneutics.json'), 'changes': load('changes.json'),
         'latin_checked': load('latin-checked.json'),
         'document_metadata': load('documents.json'),
+        'relations': load('relations.json'), 'roadmap': load('roadmap.json'),
     }
     return d
 
@@ -260,6 +261,7 @@ def check(d):
             ids.add(ch['id'])
             ch['refs'] = expand_refs(ch.get('refs', []), order, f'catechism.json, {ch["id"]}', P)
     validate_library(d, order, P)
+    validate_relations(d, order, P)
     return order, P
 
 
@@ -385,6 +387,8 @@ def entry_year(e, er):
 def compact(d, order):
     E, eras = d['entries'], d['eras']
     d['library'] = inventory(d, entry_year)
+    d['library']['relations'] = d['relations']
+    d['library']['roadmap'] = d['roadmap']
     h = curated_index(E, d['weights'], order)
     cites, cited, _ = cross_refs(E)
     rc = {}
@@ -714,6 +718,14 @@ def entry_pages(d, raw, derived, out, url):
         parts.append(f'<p class="rel">Source and coverage: <a href="../../#source-{esc(record["id"])}">{esc(record["title"])}</a> · {esc(record["coverage"])} locally. Passage grades are editorial assessments.</p>\n')
         for link in record['sourceLinks']:
             parts.append(f'<p class="rel"><a href="{esc(link["url"])}" rel="noopener">{esc(link["label"])} ↗</a> ({esc(link["language"])})</p>\n')
+        for relation in d['relations']:
+            if eid not in (relation['from'], relation['to']):
+                continue
+            a, b = relation['from'], relation['to']
+            parts.append(f'<details><summary>Editorial relationship: <a href="../../n/{enc_id(a)}/">{esc(n_label(a))}</a> {esc(relation["kind"])} <a href="../../n/{enc_id(b)}/">{esc(n_label(b))}</a></summary><p>{esc(relation["note"])}</p>')
+            for evidence in relation['evidence']:
+                parts.append(f'<blockquote>{esc(evidence["quote"])}</blockquote><p>{esc(n_label(evidence["entry"]))}</p>')
+            parts.append('</details>')
         if e.get('links'):
             parts.append('<p class="rel">Full text: ' + ' · '.join(f'<a href="{esc(l["url"])}" rel="noopener">{esc(l["label"])} ↗</a>' for l in e['links']) + '</p>\n')
         rel = []
@@ -823,7 +835,7 @@ def open_data(d, raw, derived, out, url, built):
     cat = json.loads(json.dumps(d['catechism']))
     with open(os.path.join(dd, 'roman-catechism.json'), 'w', encoding='utf-8') as f:
         json.dump(cat, f, ensure_ascii=False, indent=1)
-    guides = {'since1950': d['since'], 'disputed': d['disputed'], 'threads': d['threads'], 'hermeneutics': d['herm']}
+    guides = {'since1950': d['since'], 'disputed': d['disputed'], 'threads': d['threads'], 'hermeneutics': d['herm'], 'relationships': d['relations'], 'roadmap': d['roadmap']}
     with open(os.path.join(dd, 'guides.json'), 'w', encoding='utf-8') as f:
         json.dump(guides, f, ensure_ascii=False, indent=1)
     with open(os.path.join(dd, 'documents.json'), 'w', encoding='utf-8') as f:
