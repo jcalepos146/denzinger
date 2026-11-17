@@ -539,3 +539,23 @@ button.chip[aria-pressed="true"] span { opacity: 1; }
 .step.flash { animation: flash 2.2s ease-out; }
 .tc-dot.approx { stroke-width: 2.5; }
 h1[tabindex="-1"]:focus, .entry[tabindex="-1"]:focus { outline: none; }
+
+/* Source inventory */
+.library-controls { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: .75rem; margin: 1rem 0; font-family: var(--sans); }
+.library-controls label { display: grid; gap: .3rem; font-size: .95rem; }
+.library-controls input, .library-controls select { width: 100%; min-width: 0; padding: .5rem; border: 1px solid var(--rule); border-radius: .4rem; background: var(--surface); }
+.source-card { padding: 1rem 0; border-top: 1px solid var(--rule); }
+.source-card h2 { margin: 0; font-size: 1.25rem; }
+.source-card p { margin: .3rem 0; }
+.source-meta, .source-context { font-family: var(--sans); font-size: .9rem; color: var(--muted); }
+.source-details { border-block: 1px solid var(--rule); padding: .7rem 0; margin: 1rem 0; }
+.source-details dt { font-weight: bold; }
+.source-details dd { margin: 0 0 .65rem; }
+.source-links { font-family: var(--sans); }
+@media (max-width: 700px) { .library-controls { grid-template-columns: 1fr; } }
+.source-relation { margin: .6rem 0; padding: .65rem; background: var(--surface); border: 1px solid var(--rule); border-radius: .4rem; font-size: .95rem; }
+.source-relation blockquote { margin: .5rem 0 .5rem .5rem; padding-left: .75rem; border-left: 2px solid var(--rubric); }
+.source-relation summary { cursor: pointer; font-family: var(--sans); }
+.search-sources { margin: 1rem 0; padding: .75rem; border: 1px solid var(--rule); border-radius: .4rem; }
+
+.step .pill { max-width: 100%; white-space: normal; }

@@ -27,6 +27,10 @@ def links():
                 yield s['url'], f'Since 1950, {s["id"]}'
             if s.get('extra', {}).get('url'):
                 yield s['extra']['url'], f'Since 1950, {s["id"]} (extra)'
+    with open(os.path.join(DATA, 'documents.json'), encoding='utf-8') as f:
+        for record in json.load(f):
+            for link in record.get('sourceLinks', []):
+                yield link['url'], f'Source catalogue, {record["id"]}'
 
 
 def probe(url):
@@ -49,6 +53,7 @@ def probe(url):
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument('--only', help='check only addresses containing this text')
+    ap.add_argument('--report', help='write a JSON availability report (no text or theological verification)')
     a = ap.parse_args()
     seen = {}
     for url, where in links():
@@ -66,6 +71,12 @@ def main():
     for label, rows in (('failed', bad), ('refused', refused)):
         for url, code, why in rows:
             print(f'  {label} {code or "error"}  {url}  ({"; ".join(seen[url])}) {why or ""}')
+    if a.report:
+        def details(rows):
+            return [{'url': url, 'status': code, 'reason': why, 'records': seen[url]} for url, code, why in rows]
+        with open(a.report, 'w', encoding='utf-8') as f:
+            json.dump({'checked': len(seen), 'failed': details(bad), 'refused': details(refused),
+                       'scope': 'HTTP availability only; a response does not verify identity or content'}, f, indent=2)
     sys.exit(1 if bad else 0)
 
 

@@ -94,3 +94,13 @@ Then open <http://localhost:8000>. Add `--strict` to the build to treat its note
 - New documents with a citation to a printed edition, and a translation whose source is stated.
 
 Summaries follow the hermeneutic of continuity and say where others see a break. Changes that argue a position should present it fairly and cite the texts.
+
+## Source records and publication review
+
+Follow [the editorial workflow](docs/EDITORIAL-WORKFLOW.md) for new documents, completeness claims and translation review. The [collection roadmap](docs/COLLECTION-ROADMAP.md) distinguishes completed source access from work still required for complete local texts. Add document-level provenance in `src/data/documents.json`; leave uncertain fields explicitly unresolved. Catalogue review never certifies an entire document’s doctrinal weight.
+
+## Relationships and reader requests
+
+`src/data/relations.json` records `from`, `to`, `kind`, an editorial `note`, `status: "editorial relationship"`, and `evidence` with an exact `quote` from each endpoint. Allowed kinds are `quotes`, `references`, `reaffirms`, `explains`, and `changes-discipline`. Validation checks that the evidence exists, not that an interpretation is correct. Avoid implying that a disciplinary change reverses dogma.
+
+`src/data/roadmap.json` publishes collection priorities and their limits. Reconcile it with the actual inventory when a collection changes. Reader proposals and correction issues, together with the monthly link-check artifacts, are inputs to prioritization.

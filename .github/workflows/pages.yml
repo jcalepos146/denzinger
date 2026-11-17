@@ -29,6 +29,8 @@ jobs:
         id: pages
         if: github.event_name != 'pull_request'
         uses: actions/configure-pages@v6
+      - name: Check source integrity
+        run: python3 -m unittest discover -s tests
       - name: Check the data and build the site
         run: python3 build/build.py --repo "$GITHUB_REPOSITORY" --url "${{ steps.pages.outputs.base_url }}/"
       - uses: actions/upload-pages-artifact@v5

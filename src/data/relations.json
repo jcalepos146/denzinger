@@ -1,0 +1,128 @@
+[
+  {
+    "id": "papal-infallibility-reaffirmed",
+    "from": "LG25",
+    "to": "1839",
+    "kind": "reaffirms",
+    "note": "Lumen Gentium reiterates the irreformability of papal definitions. This identifies a shared doctrinal assertion, not a claim that every sentence in either passage is a definition.",
+    "evidence": [
+      {
+        "entry": "LG25",
+        "quote": "his definitions, of themselves, and not from the consent of the Church, are justly styled irreformable"
+      },
+      {
+        "entry": "1839",
+        "quote": "such definitions of the Roman Pontiff from himself, but not from the consensus of the Church, are unalterable"
+      }
+    ],
+    "status": "editorial relationship"
+  },
+  {
+    "id": "ordination-responsum",
+    "from": "RDOS",
+    "to": "OS4",
+    "kind": "explains",
+    "note": "The responsum explicitly addresses the status of the teaching in Ordinatio Sacerdotalis, rather than announcing a new papal ex cathedra definition.",
+    "evidence": [
+      {
+        "entry": "RDOS",
+        "quote": "which is presented in the Apostolic Letter Ordinatio Sacerdotalis to be held definitively"
+      },
+      {
+        "entry": "OS4",
+        "quote": "this judgment is to be definitively held by all the Church's faithful"
+      }
+    ],
+    "status": "editorial relationship"
+  },
+  {
+    "id": "responsum-cites-council",
+    "from": "RDOS",
+    "to": "LG25",
+    "kind": "references",
+    "note": "The responsum cites Lumen Gentium 25, paragraph 2, when explaining the ordinary and universal magisterium.",
+    "evidence": [
+      {
+        "entry": "RDOS",
+        "quote": "cf. Second Vatican Council, Dogmatic Constitution on the Church Lumen Gentium 25, 2"
+      },
+      {
+        "entry": "LG25",
+        "quote": "they are in agreement on one position as definitively to be held"
+      }
+    ],
+    "status": "editorial relationship"
+  },
+  {
+    "id": "instituted-ministries-priesthood",
+    "from": "MQ",
+    "to": "LG10",
+    "kind": "quotes",
+    "note": "Ministeria Quaedam expressly quotes LG 10 on the relation between the common and ministerial priesthood. Translation wording differs between these local selections.",
+    "evidence": [
+      {
+        "entry": "MQ",
+        "quote": "the common priesthood of the faithful and the ministerial or hierarchical priesthood, though they differ in essence and not only in degree"
+      },
+      {
+        "entry": "LG10",
+        "quote": "the common priesthood of the faithful and the ministerial or hierarchical priesthood are nonetheless interrelated"
+      }
+    ],
+    "status": "editorial relationship"
+  },
+  {
+    "id": "missal-norms-change",
+    "from": "TC",
+    "to": "SUMP",
+    "kind": "changes-discipline",
+    "note": "Traditionis Custodes changes the framework for use of the 1962 Missal and abrogates incompatible prior norms. This relationship concerns discipline; it does not identify a reversal of dogma or claim every earlier norm was abrogated.",
+    "evidence": [
+      {
+        "entry": "TC",
+        "quote": "Previous norms, instructions, permissions, and customs that do not conform to the provisions of the present Motu Proprio are abrogated."
+      },
+      {
+        "entry": "SUMP",
+        "quote": "For such a celebration with either Missal, the priest needs no permission from the Apostolic See or from his own Ordinary."
+      }
+    ],
+    "status": "editorial relationship"
+  },
+  {
+    "id": "death-penalty-explanation",
+    "from": "LDP2",
+    "to": "CCC2267",
+    "kind": "explains",
+    "note": "The accompanying CDF letter explains the reasoning behind the 2018 Catechism revision. This relationship does not resolve the separate disputed question of continuity with earlier teaching.",
+    "evidence": [
+      {
+        "entry": "LDP2",
+        "quote": "the increasing understanding that the dignity of a person is not lost even after committing the most serious crimes"
+      },
+      {
+        "entry": "CCC2267",
+        "quote": "there is an increasing awareness that the dignity of the person is not lost even after the commission of very serious crimes"
+      }
+    ],
+    "status": "editorial relationship"
+  },
+  {
+    "id": "profession-commentary-infallibility",
+    "from": "DCPF11",
+    "to": "1839",
+    "kind": "explains",
+    "note": "The doctrinal commentary lists papal primacy and infallibility among the truths covered by the first paragraph of the profession. This is a classification of the doctrine, not a direct citation of this Denzinger number.",
+    "evidence": [
+      {
+        "entry": "DCPF11",
+        "quote": "the doctrine on the primacy and infallibility of the Roman Pontiff"
+      },
+      {
+        "entry": "1839",
+        "quote": "that the Roman Pontiff, when he speaks ex cathedra"
+      }
+    ],
+    "status": "editorial relationship"
+  }
+]

@@ -18,7 +18,7 @@ A searchable, organized reader for Denzinger's *Enchiridion Symbolorum* in Engli
 - **The full text:** 2,431 entries, from the creeds to Pius XII, including an appendix numbered from 5000. Scanning errors are corrected conservatively.
 - **After 1958:** 968 entries from John XXIII, the Second Vatican Council, Paul VI, John Paul II, Benedict XVI, Francis and Leo XIV to October 2026, one entry per article of each document, numbered by the document and article (`LG 25`, `GS 22`, `EV 62`); addresses are numbered by their date (`AD 19641203`). Each is labelled by kind of document: encyclical, address or homily, document of the Doctrine of the Faith, and so on. Interviews and press conferences are marked as private opinion.
 - **A page for every entry** at `/n/<number>/`, so that search engines find them and shared links show the text, with structured data (JSON-LD) and a share image. Each page links back to its place in the reader and, after 1958, to its whole document. Short links lead to them by the numbers people cite: `ds/3074/`, `lg/25/`.
-- **Whole documents:** each document after 1958 can be read on its own (`lg/` opens Lumen Gentium).
+- **Document selections and sources:** each document selection can be read on its own (`lg/` opens the Lumen Gentium excerpts). This is not a complete-text claim. **Sources and coverage** maps every entry to a source record, separates inferred headings from catalogued documents, and links to complete external texts. All 16 Vatican II documents are catalogued; five are external-only.
 - **Old and new numbers:** each entry shows its Denzinger–Schönmetzer (DS) number, which Denzinger–Hünermann keeps. The Latin text can be shown below each entry or side by side with the English; it is loaded only when first needed, and each Latin block says whether it has been proofread and links to a correction form.
 - **Weights:** every entry carries a grade (defined dogma, definitive, authoritative teaching, discipline, condemned, prudential and others), checked by hand in 512 ranges, each with a note on why; a page lists every range with its reason so the grades can be audited. Condemned propositions also show their censures.
 - **Supplement:** 49 texts: the decrees of Constance and Basel that Denzinger leaves out, Moyses vir Dei and the last bulls of union of Florence (with the Syrians, and with the Chaldeans and Maronites of Cyprus), Pius IV's bull confirming Trent, and the witnesses to the Synod of Sutri (1046), each with its standing.
@@ -36,6 +36,9 @@ A searchable, organized reader for Denzinger's *Enchiridion Symbolorum* in Engli
 
   | Filter | Example |
   |---|---|
+  | Document | `document:"Mediator Dei"`, `doc:LG` |
+  | Issuing body | `issuer:"Doctrine of the Faith"` |
+  | Local coverage | `coverage:excerpts`, `coverage:none` |
   | Pope, council | `pope:"Pius IX"`, `council:trent`, `era:constance` |
   | Date | `year:1850-1900`, `year:16th` (century), `before:800`, `after:1800` |
   | Weight | `weight:dogma`, `weight:condemned`, `weight:discipline` |
@@ -57,6 +60,8 @@ Each build publishes the data at `/data/`:
 | `weights.csv` | The hand-checked weight ranges and their notes |
 | `latin.json` | The Latin text by DS number, as the source page gives it |
 | `roman-catechism.json` | The Roman Catechism's chapters and the entries matched to each |
+| `documents.json` | Source inventory, coverage, provenance, review status and full-text links |
+| `coverage.csv` | The source inventory as a spreadsheet |
 | `guides.json` | Since 1950, the disputed questions, the threads and the principles of hermeneutics |
 
 ## Corrections
@@ -105,3 +110,13 @@ The build stops on problems (a reference to an entry that does not exist, an unk
 | `build/build.py` | Checks the data and builds everything |
 | `tools/check_links.py` | Checks the external links (not part of the build) |
 | `tools/post1958/` | The scripts that imported and aligned the texts after 1958 (see its README) |
+
+## Source inventory
+
+`src/data/documents.json` holds explicit source records. Unassigned entries are conservatively grouped by their inherited source headings; these groups are marked unreviewed, not counted as verified documents. An abbreviation is scoped to its era to prevent collisions such as DCE. Passage grades are editorial assessments, distinct from genre labels. No new document-level grades are inferred from titles.
+
+Run `python3 tools/audit_library.py` for a reproducible coverage report, and `python3 -m unittest discover -s tests` for source-integrity regression checks.
+
+Document title searches also show matching source records, including external-only texts. Those texts are not part of local passage search. `kind:encyclical`, `kind:cdf` and `kind:papal-address` complement the existing structural filters. See [the editorial workflow](docs/EDITORIAL-WORKFLOW.md) and [collection roadmap](docs/COLLECTION-ROADMAP.md).
+
+Evidence-backed relationships appear alongside passages and relevant doctrinal threads. `src/data/relations.json` stores direction, kind, editorial explanation and quotations from both endpoints; the build rejects missing references or quotations absent from the text. **Coverage and requests** publishes the backlog and offers explicitly saved, browser-local research gaps. GitHub proposals are opened by the reader; no search history is transmitted automatically. The monthly link checker now includes catalogue sources and saves a downloadable availability report.

@@ -1,5 +1,5 @@
 name: Propose a document
-description: A text to add — for example a decree of Constance or Basel that Denzinger leaves out, or a papal letter about one.
+description: Propose a missing source, a complete text, or an improvement to an existing selection.
 title: "New document: "
 labels: [new document]
 body:
@@ -39,3 +39,21 @@ body:
     attributes:
       label: Why it belongs here
       description: What it shows, and how much weight it carries.
+  - type: textarea
+    id: research
+    attributes:
+      label: Research question or search that led here
+      description: Optional. Describe the gap you want this source to address.
+  - type: dropdown
+    id: coverage
+    attributes:
+      label: Requested coverage
+      options:
+        - Source record and full-text link
+        - Selected passages
+        - Complete local text
+  - type: textarea
+    id: provenance
+    attributes:
+      label: Translation, reuse basis and verification
+      description: Identify the translation and edition, whether reuse is permitted, and what has been compared with a primary source. Leave uncertain matters explicitly unresolved.
