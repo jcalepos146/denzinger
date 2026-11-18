@@ -217,15 +217,21 @@
  {
   "id": "baius",
   "cat": "censure",
-  "status": "Orthodox sense possible",
+  "status": "Censures applied respectively",
   "title": "Michael du Bay (Baius): the 79 propositions",
-  "question": "Were all the propositions heretical in every sense?",
-  "settled": "Pius V condemned the propositions respectively, that is, with various censures, in the strict and proper sense intended by their authors.",
-  "open": "The bull itself grants that some could be maintained in some sense. A famously ambiguous comma in the Latin made it unclear which clause the concession belonged to.",
-  "reading": "The model case of how condemnation works: what is condemned is the sense intended by the author. Some of the same words, in another sense, need not be wrong.",
+  "question": "What was censured about concupiscence and the gratuity of grace?",
+  "settled": "Pius V condemns the propositions under several censures applied respectively. Trent says that concupiscence remains after baptism and cannot harm those who withhold consent and resist with Christ’s grace.",
+  "open": "The Comma Pianum affects whether the strict and proper sense specifies the censure or the concession about possible defenses. The bull gives no individual censure for propositions 74 or 75.",
+  "reading": "Proposition 75 calls the felt impulse a transgression while denying imputation as sin. Proposition 21 makes participation in divine nature due to original integrity. Case A5 tests these distinct claims against Trent and Humani generis.",
   "refs": [
-   "1001",
-   "1080"
+   "792",
+   "1021",
+   "1024",
+   "1026",
+   "1074",
+   "1075",
+   "1080",
+   "2318"
   ],
   "related": []
  },
@@ -248,12 +254,12 @@
  {
   "id": "quesnel",
   "cat": "censure",
-  "status": "Condemned in the author's sense",
+  "status": "Censures applied respectively",
   "title": "Quesnel: the 101 propositions of Unigenitus",
-  "question": "Some propositions sound almost like Scripture or Augustine. Are they really condemned?",
-  "settled": "Clement XI condemned all 101 in globo with a list of censures applied respectively, as they stand in Quesnel's Réflexions morales and its system; the book as a whole was condemned.",
-  "open": "The bull does not say which censure fits which proposition, which was argued in France for decades. The Roman record shows the examiners judging the propositions \"in the sense of Jansenius\", and Clement himself hesitating over several near-quotations of Augustine and Prosper (propositions 12, 13, 23 and 33) that he thought could bear a Catholic sense, yet were kept (J. M. Gres-Gayer, Theological Studies 49 [1988] 267-69).",
-  "reading": "What is condemned is the sense the propositions had in Quesnel's argument: grace that cannot be resisted, no grace outside the Church (proposition 29), and the like. The bare words of a proposition that echoes Augustine cannot show that Augustine was condemned; but the condemned sense has to be shown from Quesnel's text, not assumed, and the history shows that some cases were close. See the guide on reading a condemnation.",
+  "question": "What did Clement XI censure in propositions that echo Augustine or commend Scripture reading?",
+  "settled": "Clement XI condemned all 101 propositions with censures applied respectively. The bull especially names renewals of Jansenius’s propositions in the sense already condemned. It also condemns Quesnel’s book.",
+  "open": "The bull gives no individual notes. Gres-Gayer reports that Clement initially suspended judgment on proposition 13. It remained in the promulgated list. The precise grounds for that censure and the one on proposition 80 remain open in this review.",
+  "reading": "Quesnel’s defense of his gloss on Luke 5:13 distinguishes different effects of grace. His gloss on Acts 8 commends wide Scripture reading and appeals to the Church’s teachers. Case A3 compares these passages with Augustine, Trent and Vatican II.",
   "refs": [
    "1351",
    "1362",
@@ -261,6 +267,8 @@
    "1373",
    "1379",
    "1383",
+   "1429",
+   "1430",
    "1440",
    "1451"
   ],

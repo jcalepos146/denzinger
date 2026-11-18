@@ -1148,7 +1148,7 @@ function renderDisputed(focus) {
   const order = Object.keys(CATS);
   const shown = DISPUTED.filter(d => !state.dispCat || d.cat === state.dispCat).map((d, i) => [d, i]).sort((a, b) => order.indexOf(a[0].cat) - order.indexOf(b[0].cat) || a[1] - b[1]).map(x => x[0]);
   let html = `<div class="eyebrow">Guide</div><h1 class="page-h">Disputed questions</h1>
-    <p class="lede">Questions the Church leaves open, cases where older and newer teaching must be read together, and condemned propositions whose words can bear an orthodox sense. A condemnation always attaches to a sense: the one its author intended, or the one the words have as they stand. Each entry gives what is settled, what remains argued, and the reading that keeps both in continuity. Where others see a real break, the entry says so.</p>
+    <p class="lede">These cases examine open theological questions, the relation of older and newer teaching, and the scope of censures. The wording of each act, its sources, and its reception help establish what was judged and what remains open.</p>
     <div class="chips" role="group" aria-label="Filter by category"><button class="chip" data-cat="" aria-pressed="${!state.dispCat}">All<span>${DISPUTED.length}</span></button>${Object.keys(CATS).filter(k => counts[k]).map(k => `<button class="chip" data-cat="${k}" aria-pressed="${state.dispCat === k}">${CATS[k][0]}<span>${counts[k]}</span></button>`).join('')}</div>`;
   let cat = null;
   for (const d of shown) {
@@ -1490,7 +1490,7 @@ function renderChecked() {
 const refl = ids => refLinks(ids.map(String));
 // [case, the principle it shows, the reading, entries, disputed question]
 const READING_CASES = [
-  ['Baius (1567)', 'the sense intended by the author', 'Pius V grants that "some of them could be maintained in some way", yet condemns them "in the strict and proper sense intended by those asserting them", respectively. A famously misplaced comma left unclear which clause the concession belongs to.', [1080], 'baius'],
+  ['Baius (1567)', 'punctuation affects the scope of a clause', 'Pius V condemns the propositions with censures applied respectively. The disputed punctuation called the Comma Pianum affects whether the strict and proper sense qualifies the condemnation or the concession that some propositions could be maintained. See <a href="#case-A5">the comparison with Trent</a>.', [792, 1074, 1075, 1080], 'baius'],
   ['Jansen\'s five propositions (1653–1705)', 'the sense can itself be judged', 'Innocent X condemned the propositions; Alexander VII declared them taken from the Augustinus and "condemned in the sense understood by" Jansen; Clement XI ruled that respectful silence about that fact does not satisfy obedience. Here the Church judged which sense the author held, rather than leaving it open.', [1092, 1098, 1350], 'jansen-fact'],
   ['Eckhart (1329)', 'graded censures', 'John XXII condemned seventeen articles as "heretical" and eleven others only as "evil-sounding, rash, and suspected of heresy". To quote one of the eleven as a condemned heresy is to misread the bull.', [529], 'eckhart'],
   ['Fénelon (1699)', 'the obvious sense, or the sense of the connected opinions', 'Innocent XII condemned the twenty-three propositions "in the obvious sense of these words, or in the extended meaning of the thoughts": what is condemned is giving up the hope of salvation as a motive in the "pure love" of the perfect, not the primacy of charity.', [1349], 'fenelon'],
@@ -1509,7 +1509,7 @@ function renderReading() {
     <p>Magisterial texts are written against something: an error in view, an adversary's terms, the argument they answer. Reading them without that setting is reading them wrongly. But the setting has to be shown from evidence, not supplied by assumption.</p>
     <h2 class="sect-h">What a condemnation targets</h2>
     <div class="tips" style="font-size:.95rem">
-      <div><b>A proposition in a determinate sense, not every meaning its words could bear.</b> Pius V condemned the propositions of Baius in the strict and proper sense their authors intended, granting that some could be held in some sense (${refl([1080])}). Pius VI often names the sense outright: a proposition on the power given to the Church is heretical "if thus understood" that the power comes from the community (${refl([1502])}); the Church as "one mystical body", language the Church herself uses, is censured only "understood in this sense" that no one belongs to the Church but the perfect (${refl([1515])}).</div>
+      <div><b>Scope and wording matter.</b> The closing clause on Baius shows how punctuation can affect an interpretation (${refl([1080])}). Pius VI uses explicit qualifications. He censures a proposition on the power given to the Church as heretical "if thus understood" that the power comes from the community (${refl([1502])}). He specifies a sense of "one mystical body" in which only the perfect belong to the Church (${refl([1515])}).</div>
       <div><b>The condemned sense is established, not assumed.</b> The evidence is the source the proposition was taken from and the argument it served there; the wording of the condemnation, with its clauses, conditions and censures; and authoritative explanations or later acts. An intention that none of these shows is not evidence, whether it is used to accuse or to excuse.</div>
       <div><b>Condemned is not the same as declared heretical.</b> When propositions are condemned "respectively" or in globo, a list of censures covers the whole set, and each proposition deserves at least one of them, not necessarily the gravest. Exsurge Domine (${refl([781])}) and Unigenitus (${refl([1451])}) assign none individually.</div>
       <div><b>Rejecting a sense does not affirm its unrestricted opposite.</b> The contradictory of a condemned proposition is not thereby defined.</div>
@@ -1524,10 +1524,9 @@ function renderReading() {
       <div>Proposition 90 (${refl([1440])}), on excommunication with the consent of the whole body, was kept despite the Pope's fear that it would provoke a Gallican rejection (p. 269).</div>
       <div>Against Fénelon's advice, the censures were given in globo, so the bull never says which note fits which proposition; the book as a whole was condemned (pp. 269–70).</div>
     </div>
-    <p>Two conclusions follow, and they pull against each other. The bare words of proposition 13 cannot show that the Church condemned Augustine: what was condemned is the sense the propositions had in Quesnel's work and system, under censures not all of which fit each one. But that sense is not self-evident either. It has to be shown from Quesnel's text and argument, and the record shows that the Pope himself found some cases close. An apparent contradiction is a question to examine, not a refutation, and not something to dissolve by assuming whatever intention is convenient.</p>
-    <p style="font-size:.9rem;color:var(--muted)">Source: Jacques M. Gres-Gayer, "The Unigenitus of Clement XI: A Fresh Look at the Issues," Theological Studies 49 (1988) 259–82. See also the disputed question on Quesnel.</p>
+    <p>The Latin names every proposition and applies the censures respectively. Its express sense clause concerns the renewals of Jansenius’s propositions in the sense already condemned. Quesnel’s later defense of the language in proposition 13 distinguishes the immediate effect God absolutely wills from a further effect that may be resisted. The particular censure and its rationale remain unstated in the promulgated bull. For proposition 80 (${refl([1430])}), both Quesnel’s gloss on Acts and Vatican II pair wide access to Scripture with help from the Church’s teachers. <a href="#case-A3">Read the comparisons and sources</a>.</p>
+    <p style="font-size:.9rem;color:var(--muted)">Jacques M. Gres-Gayer, “The Unigenitus of Clement XI: A Fresh Look at the Issues,” Theological Studies 49 (1988), pp. 267–270. <a href="https://theologicalstudies.net/wp-content/uploads/2022/08/49.2.2.pdf">Read the study</a>.</p>
     <h2 class="sect-h">More cases</h2>
-    <p>Unigenitus is one example. The same distinctions decide most of the texts that are quoted against the Church's consistency.</p>
     <div class="tips" style="font-size:.95rem">
       ${READING_CASES.map(c => `<div><b>${c[0]}</b> <span style="color:var(--muted)">· ${c[1]}</span><br>${c[2]} ${refl(c[3])}${c[4] ? ` · <a class="xref" href="#q-${c[4]}">disputed question</a>` : ''}</div>`).join('')}
     </div>
@@ -1666,7 +1665,7 @@ function renderContinuity(focus) {
       <input class="tfilter cfq" id="cfQ" type="search" placeholder="Pope, council, document or word" aria-label="Filter cases by words" value="${esc(CF.q)}"></div>
     <div id="cfList" aria-live="polite">${caseList()}</div>
     <h3 class="sub-h">The earlier test cases, kept as a regression subset</h3>
-    <p class="cite">The ten cases of the guide <a href="#reading">Reading a condemnation</a> stay as they were and are listed here with the new cases that take them further.</p>
+    <p class="cite">Cases from the guide appear here alongside further studies. <a href="#reading">Reading a condemnation</a></p>
     <div class="tablewrap"><table class="wtable"><tbody>${CONT.regression.map(r => `<tr><td>${esc(r.id)}</td><td><a href="#q-${esc(r.disputed)}">${esc(r.label)}</a></td><td>${r.cases.length ? r.cases.map(id => `<a class="xref" href="#case-${id}">${id}</a>`).join(' ') : '<span class="cite">no new case yet</span>'}</td></tr>`).join('')}</tbody></table></div>
     <h2 class="sect-h" id="cont-graph">Cross-reference graph</h2>
     ${contGraph()}
