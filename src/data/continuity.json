@@ -3919,7 +3919,7 @@
      "refs": [],
      "local": "none",
      "edition": "Printed among the letters revoked in the acts of Basel session 16, Mansi 29, cols. 82–89. See col. 86 for the disputed claim.",
-     "checked": "The letter calls a declaration of Basel’s lawful continuation after the dissolution sacrilegious and heretical. Publication in the acts preserves the text. Eugene’s denial of issuance leaves its status as a papal act disputed.",
+     "checked": "The letter calls a declaration of Basel’s lawful continuation after the dissolution sacrilegious and heretical. Antonio Roselli claims to have drafted the letter in his correspondence with Eugene IV. Eugene denies that Deus novit issued from him or with his knowledge. Its inclusion in the acts preserves the text and its publication history.",
      "verified": true,
      "url": "https://archive.org/details/sacrorumconcilio0029vari/page/n58/mode/1up"
     },
@@ -4306,11 +4306,11 @@
      "ref": null,
      "year": 1433,
      "formal_object": "disputed",
-     "assent": "disputed",
+     "assent": "none",
      "binding_status": "disputed",
      "evidence": "H",
      "says": "The letter says a general synod requires the authority of the supreme pontiff and calls a declaration that Basel lawfully continued after the dissolution sacrilegious and heretical.",
-     "note": "The letter speaks in Eugene IV’s name. In Dudum sacrum he denies that it issued from him or with his knowledge and revokes it ad cautelam. Prior binding force would require proof of authentic papal issuance.",
+     "note": "Roselli names himself as the drafter. In Dudum sacrum Eugene IV denies that the letter issued from him or with his knowledge and revokes it ad cautelam. D1 treats the letter as historical evidence and assigns it no papal magisterial weight on the present evidence. Prior binding force would require proof of papal authorisation.",
      "ext": "Deus novit, printed in the acts of Basel session 16, Mansi 29, cols. 82–89, at col. 86"
     },
     {
@@ -4655,7 +4655,7 @@
      "b": "d1-ds2",
      "level": "juridical",
      "result": "contradiction",
-     "why": "The texts give opposite answers about whether Basel lawfully continued during the same interval. Eugene denies that Deus novit issued from him or with his knowledge, then revokes it as a precaution. That leaves a conflict between the texts, with disputed grounds for attributing both acts to Eugene as pope.",
+     "why": "The texts give opposite answers about whether Basel lawfully continued during the same interval. Roselli claims to have drafted Deus novit. In Dudum sacrum Eugene denies that the letter issued from him or with his knowledge and revokes it as a precaution. The conflict of wording is established. Attributing the earlier position to the papal magisterium would require independent proof of authorisation.",
      "same_subject": true,
      "same_sense": true,
      "same_time": true
@@ -4975,8 +4975,8 @@
     },
     {
      "what": "The first Dudum sacrum (1 August 1433) and the transmission of Deus novit",
-     "source": "Mansi 29, cols. 78–90, and the corresponding register and manuscript witnesses",
-     "settles": "How the successive instruments changed the terms for recognising Basel, and whether any independent witness establishes papal authorisation of Deus novit."
+     "source": "Mansi 29, cols. 78–90, and the corresponding register and manuscript witnesses. Roselli’s letter is in Laurenziana Plut. 16.13, fol. 129r.",
+     "settles": "How the successive instruments changed the terms for recognising Basel, and whether any independent witness establishes papal authorisation of the text Roselli drafted."
     },
     {
      "what": "Joseph Gill’s description of the examination of Deus novit",
@@ -5085,6 +5085,10 @@
     {
      "date": "2026-11-18",
      "change": "Distinguished the decree’s stated scope from the role of disputed papal titles in the historical settlement. Revised the matrix comparison and the fourth scenario. Conditions 2, 3 and 6 continue to require evidence for the broader claims."
+    },
+    {
+     "date": "2026-11-18",
+     "change": "Checked Roselli’s claim to have written Deus novit against the Laurenziana manuscript and Valois’s transcription. D1 assigns the letter no papal magisterial weight on the present evidence. The assessment of the limited historical reconciliation remains at medium confidence."
     }
    ],
    "last_reviewed": "2026-11-18",
@@ -5217,6 +5221,20 @@
      "note": "Eugene disputed the proposed wording at that point in the negotiations. In December he used decree and declaration language to recognise the council’s continuation. The sequence sharpens the question of which legal effects the final bull conferred."
     },
     {
+     "title": "Antonio Roselli claims authorship of Deus novit",
+     "role": "Contemporary letter to Eugene IV",
+     "citation": "Florence, Biblioteca Medicea Laurenziana, Plut. 16.13, letter beginning at fol. 128r. The passage is at fol. 129r. Valois transcribes it in La crise religieuse du XVe siècle I (1909), p. 289 n. 2.",
+     "url": "https://tecabml.contentdm.oclc.org/digital/collection/plutei/id/73351/rec/1",
+     "note": "Roselli calls it epistola a me confecta quae incipit Deus novit, the letter he drafted which begins Deus novit. He reports that papal legates attributed the authorship to him alone during the dispute at Basel. The manuscript establishes his claim to authorship. Papal authorisation is a further historical question."
+    },
+    {
+     "title": "Noël Valois on the authorship and circulation of Deus novit",
+     "role": "Historical analysis with manuscript citations",
+     "citation": "La crise religieuse du XVe siècle I (1909), pp. 252–260 and p. 289 n. 2.",
+     "url": "https://archive.org/details/lacrisereligieus01valouoft/page/254/mode/1up",
+     "note": "Valois identifies Roselli as the drafter and cites testimony that the letter circulated in France through papal envoys. He finds some overlap with Eugene’s position and also differences. A witness to circulation can establish how a text was presented. Evidence of formal approval would have to come from an authentic papal act or reliable contemporary testimony about authorisation."
+    },
+    {
      "title": "Juan de Segovia on Basel’s examination of Deus novit",
      "role": "Contemporary conciliar chronicle",
      "citation": "Historia gestorum generalis synodi Basiliensis VI.19, Monumenta conciliorum generalium II (1873), p. 499.",
@@ -5299,9 +5317,9 @@
      "test": "Prove independently that the alleged misconduct either caused loss of office or gave a competent body authority to declare it. A legal analogy or refusal to obey a disputed tribunal alone leaves the premise open. Test scandal, doctrinal heresy and disputed title separately."
     },
     {
-     "question": "What was judged and revoked in the case of Deus novit?",
-     "finding": "The letter calls Basel’s claimed continuation heretical. At Basel some reviewers called the letter itself heretical. Segovia records their deliberations and says the council made no express synodal definition at the time. Eugene denies the letter issued from him or with his knowledge, revokes it as a precaution, and declares Basel lawfully continued.",
-     "test": "Read the deputations’ censures, Segovia’s interpretation of the settlement, and the enacted text of session 16 each on its own terms. A formal censure would require a corresponding act. A claim that Eugene reversed his own teaching would require independent evidence that he authorised Deus novit."
+     "question": "Who wrote Deus novit, and what authority did it have?",
+     "finding": "Roselli says he drafted the letter. It circulated in Eugene’s name and calls Basel’s claimed continuation heretical. At Basel some reviewers called the letter itself heretical. Segovia records their deliberations and says the council made no express synodal definition at the time. Eugene denied that the letter issued from him or with his knowledge, revoked it as a precaution, and declared Basel lawfully continued. D1 assigns the letter no papal magisterial weight on the present evidence.",
+     "test": "Assess the claim that Eugene shared Roselli’s views against his authenticated acts, one proposition at a time. Treating Deus novit as a papal act would require independent evidence of authorisation. A formal censure by Basel would require a corresponding act of the council."
     },
     {
      "question": "What did papal reception give legal force at Basel?",
