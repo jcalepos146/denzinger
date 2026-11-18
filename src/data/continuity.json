@@ -6,7 +6,7 @@
    {
     "version": "0.4.1",
     "date": "2026-11-18",
-    "change": "The competence and reception test now requires independent evidence for the original legal force of a document revoked as a precaution. D1 applies the change to Deus novit."
+    "change": "The competence and reception test now requires independent evidence for the original legal force of a document revoked as a precaution. D1 applies the change to Deus novit and tests the scope of Haec Sancta independently of the disputed titles at Constance."
    },
    {
     "version": "0.4",
@@ -3771,7 +3771,7 @@
     "Lateran V",
     "Vatican I"
    ],
-   "summary": "Constance brought three rival papal obediences together. Its acts to end the Western Schism had lasting effect. The scope and approval of Haec Sancta, especially its provision for any lawfully assembled general council, remain disputed. Martin V's final declaration approved acts done conciliariter in matters of faith without naming the decree. At Basel, session 2 protected this particular assembly. Session 3 put that claim into practice against Eugene IV. Session 11 went further: its general rule would suspend a reigning pope and transfer papal administration to the council. That rule conflicts with Lateran V and Vatican I, and the reception documents support excluding it from the acts received as binding. The case rates the limited reconciliation as plausible with medium confidence. The sources support compatibility for Constance's settlement and Basel's received acts. The claim that Haec Sancta established an independent, divinely instituted extraordinary power remains disputed.",
+   "summary": "Constance brought three rival papal obediences together. Haec Sancta arose during the schism and requires obedience even from persons of papal dignity in matters of faith, ending the schism and general reform. Its penal clause reaches any lawfully assembled general council. Doubt about a claimant’s title helps explain particular acts that settled the schism. The decree makes lawful assembly and contumacy relevant to its penal clause and leaves disputed which powers it claims over a lawful pope. Martin V’s final declaration approved acts done conciliariter in matters of faith without naming the decree. Basel protected this assembly in session 2 and applied that claim to Eugene IV in session 3. Session 11 made a general rule that could suspend a reigning pope and transfer papal administration to the council. That rule conflicts with Lateran V and Vatican I. The reception documents support excluding it from the acts received as binding. Compatibility for Constance’s settlement and Basel’s received acts is plausible with medium confidence. The scope and reception of the broader claim in Haec Sancta remain open.",
    "texts": [
     {
      "label": "Constance, session 5 (6 April 1415): Haec Sancta",
@@ -4136,7 +4136,7 @@
      "evidence": "D",
      "quote": "even if it be papal, is bound to obey it in what pertains to the faith, to the ending of the said schism, and to the general reform",
      "says": "Everyone, even of papal dignity, must obey it in faith, the ending of the schism and reform in head and members.",
-     "note": "Cerretanus (Finke II, pp. 233–234) sets the fifth session amid the negotiations to obtain John XXIII’s renunciation and records a private protest over what some expected to be passed. The account clarifies the occasion. The decree itself still lacks an express doubtful-title limitation."
+     "note": "Cerretanus (Finke II, pp. 233–234) sets the fifth session amid negotiations to obtain John XXIII’s renunciation. Read the three named matters as written. The negotiations help explain the occasion, and the decree itself places no condition on the certainty of a pope’s title."
     },
     {
      "id": "d1-hs3",
@@ -4535,7 +4535,7 @@
      "b": "d1-v1b",
      "level": "constitutional",
      "result": "undetermined",
-     "why": "Haec Sancta binds a person \"even if papal\" to obey the council in three matters; Vatican I excludes appeal from the judgments of the Roman Pontiff to a council as a higher authority. If Haec Sancta speaks of a certain pope in ordinary conditions, the two conflict. If it speaks of claimants whose title is doubtful (the situation of April 1415), they do not. The text does not say \"doubtful\"; the context does. Whether the context may limit the text is what condition 6 tests.",
+     "why": "Haec Sancta claims obedience in three named matters even from persons of papal dignity. Its next clause provides penalties for contumacy. Vatican I rejects appeals from papal judgments to a council as a higher authority. The conflict would arise if the decree made a council a superior tribunal over the lawful pope within the scope of that prohibition. A duty to heed a decree, coercive jurisdiction after contumacy and appellate superiority each require their own textual and legal evidence. The circumstances of April 1415 do not settle those questions.",
      "same_subject": "disputed",
      "same_sense": "disputed",
      "same_time": false
@@ -4936,7 +4936,7 @@
     {
      "n": 4,
      "status": "pass",
-     "note": "Under protocol v0.3, divided obedience supplied an objective marker of an unresolved papal title, and the four scenarios identify who convoked the assembly in each case. The Pisan scenario now includes Cossa’s 31 May 1415 instrument and the ratification at liberty in 1419. Under the Avignon premise Benedict did not convoke the assembly. The sentence’s declaratory form and the uncertain legal premises of that declaration are assessed in the scenario below."
+     "note": "For the historical settlement, divided obedience supplied an objective marker of competing papal titles. The four scenarios test convocation and the treatment of claimants. The Pisan scenario includes Cossa’s 31 May 1415 instrument and its ratification at liberty in 1419. The Avignon scenario leaves the grounds for the council’s authority over Benedict unresolved. These findings address the settlement. The scope of Haec Sancta and any authority over a lawful pope require the independent tests in conditions 2, 3 and 6."
     },
     {
      "n": 5,
@@ -4946,7 +4946,7 @@
     {
      "n": 6,
      "status": "partial",
-     "note": "The contemporary schism and later reception support a limited reading. Haec Sancta nevertheless extends the penal clause to any lawfully assembled general council and supplies no express doubtful-title limitation. Pius II’s reference to an undoubted pontiff is important later evidence. It leaves the decree’s original scope open. Basel session 11 is explicitly general and requires a judgment about reception."
+     "note": "Haec Sancta names faith, the ending of the schism and reform. Its penalties extend to contumacy before any lawfully assembled general council within the named matters. A disputed title explains the occasion and some applications. Any restriction to such a title would need evidence beyond the circumstances. Pius II’s reference to an undoubted pontiff bears on later reception. Basel session 11 is explicitly general and requires its own judgment about reception."
     },
     {
      "n": 7,
@@ -4954,7 +4954,7 @@
      "note": "The evidence supports the limited historical reconciliation. A conciliarist can still dispute the effect of Eugene IV’s reservations or the scope of Martin V’s approval. A defender of Vatican I can still press the Avignon scenario and the validity or effective date of Cossa’s first renunciation."
     }
    ],
-   "hypothesis": "A lawfully constituted assembly can help restore unity in a schism of rival papal titles through acts that settle the claims, obtain resignations and provide for a new election. The Roman scenario relies on Gregory XII’s convocation and resignation. The two records of Cossa’s renunciation strengthen the Pisan scenario. The Avignon scenario still depends on whether Benedict XIII already lacked title or had incurred the loss the sentence declared. In Basel’s case a reigning pope recognised the assembly and permitted its continuation. Later papal instruments received the council and certain acts with limits. The case for non-reception of session 11 is stronger than the claim that its universal rule can be harmonised with Vatican I. An immediately Christ-given, extraordinary competence in a schism remains a theological hypothesis. The concrete acts and their reception give the limited reconciliation its medium confidence. An independent and general grant of competence would require further evidence.",
+   "hypothesis": "A lawfully constituted assembly can help restore unity through acts that settle rival claims, obtain resignations and provide for an election. The Roman scenario relies on Gregory XII’s convocation and resignation. Two records of Cossa’s renunciation strengthen the Pisan scenario. The Avignon scenario depends on whether Benedict XIII lacked title or incurred the loss the sentence declared. This account explains the settlement. Haec Sancta also speaks of faith and general reform, and its general penal clause needs its own account of a lawfully constituted council’s competence. One proposed reading distinguishes a pope’s duty to heed a decree from coercive authority in exceptional circumstances. It requires proof of the trigger for coercion, who could judge it and what Martin V received. At Basel a reigning pope recognised the assembly, and later papal instruments received specified acts. The evidence supports compatibility for the historical settlement and Basel’s received acts at medium confidence. A general grant of extraordinary competence remains a separate hypothesis.",
    "objection": "A conciliarist can point to the text of Haec Sancta: its penalties reach any lawfully assembled general council, and its obedience clause reaches papal dignity. Basel repeated both clauses, enforced them against Eugene IV and then made the central claim general in session 11. The pope accepted the council in its prescribed form and later received it up to the transfer. The objection takes that broad language as public reception of the general law despite the reservation. A defender of Vatican I can ask what legally authorised the April 1415 assembly under the Roman or Avignon account. He can also ask what gave it authority to declare Benedict XIII already deprived, or whether Cossa’s detention impaired his 1415 consent. The fact that condition 4 was reworded after an earlier failure is recorded alongside the earlier verdict.",
    "rebuttal": "Martin V’s declaration supports a qualified reading of reception. The application to Haec Sancta is uncertain because the declaration does not name it. The 1433 Basel bull makes the dissolution void for this assembly. Its operative clauses do not enact session 11’s rule. The explicit reservation of Peter’s power in the 1446 instructions and the absence of session 11 from Mainz provide separate reasons for reading the later reception as limited. Constance’s record supports several mechanisms for settling the schism. Cossa swore and expressly resigned in 1415, then reaffirmed the resignation at liberty in 1419. The latter act strengthens the eventual surrender under the Pisan premise. It cannot establish whether the May 1415 sentence took effect immediately. The Avignon sentence states a prior loss of office and adds a precautionary deposition. Its declaratory form is established. Its legal and theological premises remain disputed. These limits account for the provisional verdict. The proposed Romanus pontifex procedure at Constance helps explain what some reformers thought an emergency might require. Its abandonment leaves the acts against individual claimants and the general authority to judge a reigning pope as distinct questions. Sutri’s conflicting witness accounts likewise leave the basis of the settlement open.",
    "verdict": "plausible_concord",
@@ -5007,7 +5007,7 @@
    "next_source": "Seek witnesses that connect Martin V’s approval directly to Haec Sancta, compare Benedict’s own texts with the heresy articles, and retrieve the original of Nicholas V’s reported August 1447 confirmation. Each would test a different premise.",
    "benedict": "Inference from Benedict's method: a council is not a constituent assembly that can replace the Church's constitution (rule 1). Read that way, Constance did not create a new constitution but restored the existing one to a certain head; Basel, when it claimed to make conciliar superiority a dogma, attempted what the rule forbids. This is the site's application, not Benedict XVI's judgment on Constance or Basel.",
    "audio": {
-    "taught": "Constance said that its power came directly from Christ and claimed obedience even from someone of papal dignity. Basel protected this assembly in session 2. In session 11 it claimed a general power to suspend a pope and take over papal administration. Vatican I defined the pope’s full and supreme jurisdiction and rejected appeals to a council as a higher authority.",
+    "taught": "Constance said that its power came directly from Christ and claimed obedience even from someone of papal dignity in matters of faith, ending the schism and reform. Its penal clause reaches any lawfully assembled general council. Basel protected this assembly in session 2. In session 11 it claimed a general power to suspend a pope and take over papal administration. Vatican I defined the pope’s full and supreme jurisdiction and rejected appeals to a council as a higher authority.",
     "authority": "Vatican I defined the primacy. Constance’s settlement of the schism had lasting effect. Martin V’s final declaration supports qualified reception, while the reception of Haec Sancta itself remains disputed. The 1446 reservation and the list of Basel decrees accepted at Mainz support the exclusion of session 11 from the received law.",
     "permanence": "The primacy defined at Vatican I is permanent. Practical arrangements such as the schedule of councils could change. The evidence gives medium confidence that the acts settling the schism and the received acts of Basel can be reconciled with Vatican I. The wider thesis about extraordinary conciliar authority remains disputed."
    },
@@ -5081,12 +5081,16 @@
     {
      "date": "2026-11-18",
      "change": "Checked Deus novit in Mansi and Basel’s examination in Segovia. Reclassified the letter’s original legal status as disputed and recorded the textual contradiction over Basel’s continuation. The verdict on the limited reconciliation remains plausible concord, with medium confidence."
+    },
+    {
+     "date": "2026-11-18",
+     "change": "Distinguished the decree’s stated scope from the role of disputed papal titles in the historical settlement. Revised the matrix comparison and the fourth scenario. Conditions 2, 3 and 6 continue to require evidence for the broader claims."
     }
    ],
    "last_reviewed": "2026-11-18",
    "counterfactuals": {
     "title": "Which line was the true papacy? The case under each answer",
-    "note": "Condition 4 (v0.3) requires the historical case to be tested under each rival account of the legitimate papal line, because who convoked Constance, and with what authority, depends on it. The Church has not defined which line was legitimate. The Annuario Pontificio, since the list revised for it in the mid-twentieth century, counts the Roman line (Gregory XII) as legitimate and the Pisan and Avignon claimants as antipopes; Angelo Roncalli took the name John XXIII in 1958. That listing is a historical judgment, not a definition (P3). Martin V, in his own register, called the Pisan Alexander V \"our predecessor\" (C10).",
+    "note": "Condition 4 tests Constance’s convocation and settlement under the rival accounts of the legitimate papal line. The scope and reception of Haec Sancta are also examined under conditions 2, 3 and 6. The current Annuario Pontificio counts the Roman line (Gregory XII) as legitimate and the Pisan and Avignon claimants as antipopes. That listing records a historical judgment (P3). Martin V called the Pisan Alexander V \"our predecessor\" in his own register (C10).",
     "common": "One result holds under every scenario. Martin V, elected on 11 November 1417, was received by the whole Church, including the last Spanish obediences. The classical theologians (John of St Thomas, Billot) hold that the peaceful acceptance of a pope by the universal Church is a certain sign of his legitimate title, a dogmatic fact. So the succession from 1417 is certain whichever line was true, and does not depend on Haec Sancta. (T)",
     "rows": [
      {
@@ -5124,10 +5128,10 @@
       "label": "No claimant was certainly pope (papa dubius)",
       "support": "The canonists' maxim \"papa dubius, papa nullus\"; the hypothesis itself; Jedin's reading of Haec Sancta as an emergency measure. (T)",
       "convocation": "By a claimant (John XXIII) with the emperor, then confirmed by a second claimant's convocation (Gregory XII, session 14). No convocation by a certain pope was possible.",
-      "haec_sancta": "An act of the only body that could restore a certain head; binding in that emergency sense, received later saving Peter's power.",
+      "haec_sancta": "The divided obediences help explain why the decree was issued. The source of the assembly’s jurisdiction, the reach of the decree’s clauses and their later reception still require evidence.",
       "depositions": "The council judged claimants, none of them certainly pope; no certain pope was judged.",
-      "needs_extraordinary": "Yes, and only in this limited form: authority to settle a doubtful title, not authority over a certain pope.",
-      "conditions": "Condition 4 is met in the sense the hypothesis needs: the criterion is objective (no peaceful acceptance) and cannot be invoked against a certain pope."
+      "needs_extraordinary": "A restorative competence could account for the settlement of competing titles in this scenario. Its legal ground would have to be shown.",
+      "conditions": "Historical evidence of divided obedience meets the test for identifying the title emergency. The decree’s claims over a lawful pope remain subject to conditions 2, 3 and 6."
      }
     ],
     "result": "Under the Roman premise the convocation and resignation of Gregory XII provide a path through the ordinary constitution. Under the Pisan premise two records support Cossa’s eventual renunciation. Under the Avignon premise the sentence states a previous loss of office, whose legal grounds remain contested. Under the doubtful-title premise, restorative competence is a plausible explanation of how Constance settled rival claims."
@@ -5166,7 +5170,7 @@
      "verdict": "plausible_concord",
      "confidence": "medium",
      "date": "2026-11-18",
-     "why": "Deus novit and Dudum sacrum disagree about Basel’s continuation. Checking the letter, the revocation and Segovia clarifies which claims have documentary support and which require proof of authorisation or formal synodal action."
+     "why": "Deus novit and Dudum sacrum disagree about Basel’s continuation. The revocation leaves the letter’s authorisation open. The schism explains the occasion of Haec Sancta, while its broader clauses require a separate account of their scope and reception. Medium confidence concerns the limited historical reconciliation."
     }
    ],
    "research_sources": [
@@ -5285,9 +5289,9 @@
    ],
    "evidence_reviews": [
     {
-     "question": "What did Constance claim, and what did Martin V receive?",
-     "finding": "The acts cite disobedience to a lawfully assembled council. The charges against John XXIII cite earlier warnings, and the unused Romanus pontifex draft gives a proposed procedure for correction. Gerson read the decree as reaching the pope in matters of faith. Pierre de Versailles distinguished a duty to heed a decree from the power to enforce it (Cedula Beati Pauli apostoli vox, ed. Thomas Prügl, pp. 124–126).",
-     "test": "Establish the tribunal’s competence independently of any refusal to recognise it. Seek a witness linking Martin V’s qualified approval specifically to the constitutional claims of Haec Sancta."
+     "question": "How far do the obedience and penal clauses of Haec Sancta reach?",
+     "finding": "The obedience clause names faith, the ending of the schism and general reform, and expressly includes papal dignity. The penal clause reaches any lawfully assembled general council on those matters and requires contumacy. The text makes no reference to uncertainty of title. Gerson applied the decree to the pope in matters of faith. Pierre de Versailles distinguished a duty to heed a decree from the power to enforce it (Cedula Beati Pauli apostoli vox, ed. Thomas Prügl, pp. 124–126).",
+     "test": "Establish the tribunal’s competence independently of any refusal to recognise it. Test what evidence supports the proposed distinction between directive and coercive force when the pope’s title is certain. Seek a witness linking Martin V’s qualified approval specifically to the constitutional claims of Haec Sancta."
     },
     {
      "question": "Can notorious scandal cause loss of an otherwise valid papal title?",

@@ -62,6 +62,8 @@ Protocol v0.4 records the status of each witness, the claim it bears on, the str
 
 When an authority revokes a document as a precaution, find independent evidence for its original authorisation and legal force. A record of the document and the order withdrawing it can establish what they said and how they differ. The original act may still require authentication.
 
+Test the wording of a decree separately from its occasion and its application to particular people. In D1 the competing papal titles explain some acts at Constance. A restriction on the scope of *Haec Sancta* requires evidence from its wording, legal context and reception.
+
 When a change affects the method, record the earlier test and apply the revised test to the case. Preserve the previous verdict and show the effect of the change. D1 compares the narrower account of settling disputed titles with the proposal that notorious and incorrigible scandal can make an otherwise legitimate pope subject to a council. The seven conditions continue to govern both. [D1 evidence review](https://jcalepos146.github.io/denzinger/#case-D1-sources)
 
 ## The regression subset
