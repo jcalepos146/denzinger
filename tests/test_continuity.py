@@ -33,7 +33,7 @@ class ContinuityTests(unittest.TestCase):
 
     def test_all_24_cases_present_in_order(self):
         self.assertEqual([c['id'] for c in self.k['cases']], CASE_IDS)
-        self.assertEqual(len(CASE_IDS), 24)
+        self.assertEqual(len(CASE_IDS), 26)
 
     def test_every_case_rests_on_some_text_or_names_its_gap(self):
         for c in self.k['cases']:

@@ -561,7 +561,7 @@
   {
    "id": "BL7",
    "what": "The exact censures in the grace controversies",
-   "need": "Check Auctorem fidei against the Latin bull. The other three clauses have been checked in printed witnesses. For Baius, trace the disputed punctuation and the wording of proposition 75 in earlier witnesses.",
+   "need": "The selected Latin clauses have been checked in printed witnesses. For Baius, trace the disputed punctuation and the wording of proposition 75 in earlier witnesses. For Quesnel, check the votes on propositions 13 and 80.",
    "cases": [
     "A1",
     "A3",
@@ -667,7 +667,7 @@
      "verified": false,
      "edition": "Denzinger, n. 1097 (DS 2008), referring to Paul V and Urban VIII.",
      "checked": "The decree printed in Denzinger disallows an alleged constitution condemning Molina and directs the parties to observe the decrees of Paul V and Urban VIII.",
-     "url": "https://www.clerus.org/bibliaclerusonline/en/dvy.htm"
+     "url": "https://www.clerus.org/bibliaclerusonline/it/foo.htm"
     }
    ],
    "propositions": [
@@ -1547,45 +1547,95 @@
   {
    "id": "A4",
    "group": "A",
-   "title": "Auctorem fidei and Pistoia: the same proposal, judged differently",
-   "question": "Pius VI condemned the Synod of Pistoia's liturgical and pastoral proposals; the Church later adopted similar practices. Did the proposals change, or the judgment, or the reasons?",
+   "title": "Pistoia on liturgical language and Scripture reading",
+   "question": "What exactly did Pius VI censure about the vernacular and Scripture reading, and how do those judgments compare with Vatican II?",
    "period": [
-    1786,
-    1963
+    1562,
+    1965
    ],
    "themes": [
     "liturgy",
+    "scripture",
     "condemnations",
     "discipline"
    ],
    "issuers": [
+    "Council of Trent",
+    "Synod of Pistoia",
     "Pius VI",
     "Vatican II"
    ],
-   "summary": "The Synod of Pistoia (1786) proposed, among much else, more use of the vernacular. Pius VI censured its proposition 66 \"if understood\" as requiring the vernacular in the liturgical prayers, with prudential notes: false, rash, disturbing to the prescribed order, likely to cause harm. Vatican II later allowed the vernacular. The censure attaches to a sense (that apostolic practice and God's plan require the vernacular) and to a prudential judgment in that setting; the later permission does not assert that sense. The pattern holds for several Pistoia propositions; the limbo proposition (26) is a different case, treated in D5.",
+   "summary": "Pistoia proposed a diocesan manual with both Latin and vernacular texts. In proposition 66, Pius VI censured the charge of acting against apostolic practice and God’s designs insofar as it referred to introducing the vernacular into liturgical prayers. Trent and Vatican II both allow for instruction and participation. Vatican II allows the competent authority to extend vernacular use. In proposition 67, Pius VI censured Pistoia’s claim that only genuine inability excuses a person from reading Scripture, together with its account of the effects of neglect. The original synod places that claim in a note to a qualified statement.",
    "texts": [
+    {
+     "label": "Synod of Pistoia, Atti e decreti (1786)",
+     "refs": [],
+     "local": "none",
+     "verified": true,
+     "edition": "Pistoia, Atto Bracali, session III, p. 100, article 11 and its note. Session VI, Della preghiera §24, p. 206.",
+     "checked": "The main text calls Scripture reading useful and denies that everyone needs it for salvation. The note says only genuine inability excuses omission. The proposal on public prayer calls for a bilingual ritual and manual.",
+     "url": "https://archive.org/details/bub_gb_16StF_02tggC"
+    },
     {
      "label": "Pius VI, Auctorem fidei (28 August 1794)",
      "refs": [
-      "1501",
-      "1502",
-      "1526",
-      "1566"
+      "1531",
+      "1532",
+      "1533",
+      "1534",
+      "1535",
+      "1566",
+      "1567"
      ],
      "local": "excerpt",
-     "verified": false
+     "verified": true,
+     "edition": "Typographia Reverendae Camerae Apostolicae, Latin printing, propositions 31–35 and 66–67.",
+     "checked": "The bull gives individual censures. Proposition 66 includes the condition about introducing the vernacular into liturgical prayers. Proposition 67 cites Quesnel without naming a numbered article.",
+     "url": "https://archive.org/details/bub_gb_H0t9JG4guVkC"
     },
     {
-     "label": "Trent, session 22, on the vernacular",
+     "label": "Trent, session XXII, chapter 8 and canon 9 (1562)",
      "refs": [
       "946",
       "956"
      ],
      "local": "excerpt",
-     "verified": false
+     "verified": true,
+     "edition": "J. Waterworth, 1848 English edition. Denzinger Latin for chapter 8 and canon 9.",
+     "checked": "The chapter declines vernacular celebration everywhere and orders explanation to the people. Canon 9 censures the claim that the Mass must be celebrated only in the vernacular.",
+     "url": "https://history.hanover.edu/texts/trent/ct22.html"
+    },
+    {
+     "label": "Vatican II, Sacrosanctum Concilium §§36, 54 (1963)",
+     "refs": [],
+     "local": "none",
+     "verified": true,
+     "edition": "Vatican English edition, 4 December 1963.",
+     "checked": "Section 36 preserves Latin in the Latin rites subject to particular law and regulates the extension of the vernacular. Section 54 applies the regulation to Mass and provides for the faithful to say or sing their parts in Latin.",
+     "url": "https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html"
+    },
+    {
+     "label": "Vatican II, Dei Verbum §§22, 25 (1965)",
+     "refs": [],
+     "local": "none",
+     "verified": true,
+     "edition": "Vatican English edition, 18 November 1965.",
+     "checked": "The constitution asks for easy access to Scripture, urges frequent reading and assigns bishops a role in instruction and suitable translations.",
+     "url": "https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19651118_dei-verbum_en.html"
     }
    ],
    "propositions": [
+    {
+     "id": "a4-syn66",
+     "ref": null,
+     "year": 1786,
+     "formal_object": "pastoral",
+     "assent": "prudential_deference",
+     "binding_status": "not_juridical",
+     "evidence": "D",
+     "says": "The synod says that failing to provide easier ways of joining the people’s voice to the Church’s prayer would offend apostolic practice and God’s designs. It proposes a bilingual ritual and manual.",
+     "ext": "Pistoia, Della preghiera §24"
+    },
     {
      "id": "a4-66",
      "ref": "1566",
@@ -1594,18 +1644,17 @@
      "assent": "prudential_deference",
      "binding_status": "not_juridical",
      "evidence": "D",
-     "quote": "if understood to signify introducing of the use of popular language into the liturgical prayers",
-     "says": "Proposition 66, understood as requiring the vernacular in the liturgy, is false, rash, disturbing to the prescribed order and likely to cause harm."
+     "says": "Pius VI censures the claim insofar as it is understood of introducing the vernacular into liturgical prayers."
     },
     {
      "id": "a4-tr",
      "ref": "956",
      "year": 1562,
-     "formal_object": "definitive",
+     "formal_object": "revealed",
      "assent": "faith",
      "binding_status": "not_juridical",
      "evidence": "D",
-     "says": "Trent anathematises the claim that Mass must be celebrated only in the vernacular."
+     "says": "Trent censures the claim that Mass must be celebrated only in the vernacular."
     },
     {
      "id": "a4-sc",
@@ -1615,89 +1664,178 @@
      "assent": "obedience",
      "binding_status": "in_force",
      "evidence": "D",
-     "says": "Latin is to be preserved in the Latin rites; the vernacular may be given a wider place, as competent authority decides.",
-     "ext": "Sacrosanctum Concilium 36"
+     "says": "Vatican II retains Latin in the Latin rites and provides for wider use of the vernacular under competent authority.",
+     "ext": "Sacrosanctum Concilium §§36, 54"
+    },
+    {
+     "id": "a4-syn67",
+     "ref": null,
+     "year": 1786,
+     "formal_object": "pastoral",
+     "assent": "prudential_deference",
+     "binding_status": "not_juridical",
+     "evidence": "D",
+     "says": "Pistoia calls reading Scripture useful and denies that every individual needs it to attain salvation. The attached note says that only genuine inability excuses omission and blames neglect for obscuring basic truths.",
+     "ext": "Pistoia, session III, article 11 and its note"
+    },
+    {
+     "id": "a4-67",
+     "ref": "1567",
+     "year": 1794,
+     "formal_object": "disputed",
+     "assent": "disputed",
+     "binding_status": "not_juridical",
+     "evidence": "D",
+     "says": "Pius VI censures the rule in the note and its claim about neglect, calling the doctrine previously condemned in Quesnel."
+    },
+    {
+     "id": "a4-dv",
+     "ref": null,
+     "year": 1965,
+     "formal_object": "pastoral",
+     "assent": "prudential_deference",
+     "binding_status": "not_juridical",
+     "evidence": "D",
+     "says": "Vatican II urges frequent Scripture reading by all the faithful and provides for ecclesial instruction and access.",
+     "ext": "Dei Verbum §§22, 25"
     }
    ],
    "matrix": [
+    {
+     "a": "a4-syn66",
+     "b": "a4-66",
+     "level": "doctrinal",
+     "result": "undetermined",
+     "why": "The synod grounds easier participation in an appeal to apostolic practice and proposes a manual with both languages. The censure expressly targets the sense involving the introduction of vernacular into liturgical prayers. The local implementation would help fix the reach of that sense.",
+     "same_subject": true,
+     "same_sense": "disputed",
+     "same_time": true
+    },
     {
      "a": "a4-66",
      "b": "a4-sc",
      "level": "juridical",
      "result": "no_conflict",
-     "why": "Pistoia: apostolic practice requires the vernacular. Vatican II: the vernacular may be used where authority judges it useful. A claim of necessity against a permission: different modality.",
+     "why": "Pius VI judges a proposition about the introduction of vernacular prayers as a requirement of apostolic practice and God’s designs. Vatican II gives competent authority a regulated permission.",
      "same_subject": true,
      "same_sense": false,
-     "same_time": false
+     "same_time": true
     },
     {
      "a": "a4-tr",
      "b": "a4-sc",
      "level": "doctrinal",
      "result": "no_conflict",
-     "why": "Trent condemns \"only in the vernacular\"; Sacrosanctum Concilium keeps Latin and permits the vernacular.",
+     "why": "Trent rejects an exclusive obligation to use the vernacular. Vatican II retains Latin while allowing wider vernacular use under regulation.",
      "same_subject": true,
      "same_sense": false,
-     "same_time": false
+     "same_time": true
+    },
+    {
+     "a": "a4-67",
+     "b": "a4-dv",
+     "level": "doctrinal",
+     "result": "no_conflict",
+     "why": "The censure names an obligation excused only by genuine inability, along with an account of its neglect. Vatican II urges reading and asks the Church’s ministers to facilitate it.",
+     "same_subject": true,
+     "same_sense": false,
+     "same_time": true
     }
    ],
    "edges": [
     [
-     "a4-tr",
+     "a4-syn66",
      "a4-66",
-     "reaffirms"
+     "qualifies"
     ],
     [
-     "a4-66",
      "a4-sc",
+     "a4-66",
      "contrasts_prudentially"
     ],
     [
-     "a4-tr",
-     "a4-sc",
-     "supersedes_discipline"
+     "a4-syn67",
+     "a4-67",
+     "qualifies"
+    ],
+    [
+     "a4-dv",
+     "a4-67",
+     "contrasts_prudentially"
+    ],
+    [
+     "a4-67",
+     "a3-79",
+     "specifies"
     ]
    ],
-   "qualifications": "\"If understood to signify\"; censures of the prudential class.",
-   "reception": "Pistoia was received in Tuscany, then retracted under Leopold's successor; the bull was opposed by Gallican and Josephinist circles. Its liturgical censures were cited in the twentieth-century debates on the vernacular on both sides.",
-   "contingency": "Passes: the judgment that introducing the vernacular was imprudent in 1794 is a prudential determination; its reversal in 1963 under other conditions does not deny a doctrine.",
-   "development": "What survives: no rite is required in the vernacular by divine law, and the Church decides the language of her liturgy.",
-   "hypothesis": "The Pistoia censures that carry prudential notes condemn a sense (a claim of necessity) and a judgment of timeliness; later permission of the practice is a different proposition. (T)",
-   "objection": "The censure \"false\" is not merely prudential, and Pius VI plainly opposed the practice itself, not only a claim of its necessity; reading \"if understood\" as protecting the later practice is anachronistic.",
-   "rebuttal": "\"False\" attaches to the proposition as censured: that apostolic practice and the plans of God require the change. Opposing the practice in 1794 is the prudential part, and the notes \"rash, disturbing, productive of evils\" are notes about prudence. The objection is right that Pius VI would not have favoured the 1963 reform; it does not show that the reform asserts what he condemned.",
+   "qualifications": "The bull’s introduction calls for propositions to be censured individually and sometimes in their connection with others. The term intellecta introduces a condition in proposition 66. In proposition 67 Pius VI identifies a specific note to the decree on grace. His reference to Quesnel gives no individual Unigenitus grade.",
+   "reception": "Vatican II put regulated vernacular use into its own liturgical constitution. The practical extent of permitted use was later developed through the authorized revisions of the liturgical books.",
+   "contingency": "Languages and authorized forms of celebration fall within liturgical regulation. The censure also addresses the claim of apostolic and divine necessity, which requires a separate judgment.",
+   "development": "The conciliar texts preserve the aim of instructing the faithful and enabling their participation. Dei Verbum calls for Scripture access and reading together with pastoral assistance.",
+   "hypothesis": "A comparison of obligations, permissions and historical judgments explains why Vatican II can endorse some practical aims associated with Pistoia. Each censure needs to be read with its own condition and object. (T)",
+   "objection": "Pistoia already wanted a bilingual text and a guided reading of Scripture. Does a later ecclesial preference for these things show that Pius VI had condemned that same policy?",
+   "rebuttal": "The actual synod and bull identify more specific claims. The first combines a local policy with an appeal about what apostolic practice demands, and Pius VI adds an express condition. The second adds a general obligation in a note to a more limited claim about salvation. The conciliar permissions and exhortations can be compared against those precise claims.",
    "verdict": "plausible_concord",
    "confidence": "medium",
-   "stage": 9,
+   "stage": 11,
    "gaps": [
     {
-     "what": "The Latin of propositions 31–35 and 66 with their notes",
-     "source": "Auctorem fidei in Bullarii Romani continuatio",
-     "settles": "Whether the conditional clauses are rendered fully."
+     "what": "How Pistoia intended its bilingual books to be used in public worship",
+     "source": "Ricci’s rubrics and pastoral instructions and evidence of diocesan implementation after 1786.",
+     "settles": "Whether the books were meant to change the language actually spoken in particular liturgical acts or chiefly to help people follow them."
+    },
+    {
+     "what": "The full range of Pistoian liturgical and penitential proposals",
+     "source": "The Eucharist and Penance decrees behind Auctorem fidei 31–35, with their publication and application.",
+     "settles": "Whether the comparisons made here also explain those distinct censures."
     }
    ],
-   "next_source": "The Latin of Auctorem fidei, proposition 66.",
+   "next_source": "Read the rubrics or drafts of Pistoia’s planned ritual and manual beside Della preghiera §24 and Pius VI’s condition.",
    "audio": {
-    "taught": "Pius VI censured the Synod of Pistoia's statement that apostolic practice and God's plan call for the people's own language in the liturgy.",
-    "authority": "A papal constitution, with censures of the prudential kind: false, rash, disturbing, harmful.",
-    "permanence": "Permanent: that the vernacular is not required by divine law. Contingent: whether to use it, which the Church later decided differently."
+    "taught": "Pistoia proposed a bilingual manual. Pius the Sixth censured a specified reading of its proposal and a separate claim about the obligation to read Scripture.",
+    "authority": "The bull names individual censures. Vatican Two addresses the authority to regulate liturgical language and encourages frequent reading of Scripture.",
+    "permanence": "The comparison turns on the scope of a necessity, a permission, and an exhortation. The proposed diocesan practice requires more evidence."
    },
    "related_disputed": [
-    "vernacular"
+    "vernacular",
+    "quesnel"
    ],
    "related_since": [
     "sc"
    ],
    "regression": [],
    "provisional": true,
-   "source_verified": false,
+   "source_verified": true,
    "log": [
     {
      "date": "2026-11-18",
      "change": "Draft created from the texts the site holds; primary sources not yet verified against critical editions."
+    },
+    {
+     "date": "2026-11-18",
+     "change": "Checked the acts of Pistoia, the Roman Latin of propositions 31–35 and 66–67, and Trent and Vatican II. Distinguished the local bilingual proposal and the note on the obligation to read Scripture."
     }
    ],
    "last_reviewed": "2026-11-18",
-   "gate": null
+   "gate": null,
+   "evidence_reviews": [
+    {
+     "question": "What did Pistoia actually propose in §24?",
+     "finding": "The synod proposed that a bishop oversee a bilingual ritual and manual with explanations, including ordinary Mass texts and rites of the sacraments. Its reason invokes apostolic practice and God’s designs.",
+     "test": "Compare the proposal’s details with the express condition in proposition 66. Consult rubrics before equating the proposed use of the book with the language of the celebrant."
+    },
+    {
+     "question": "Does Vatican II prescribe the proposition censured by Pius VI?",
+     "finding": "Trent rejects the exclusive necessity of the vernacular. Vatican II provides for Latin and regulates when the vernacular may be extended.",
+     "test": "Test the claim of necessity and the act granting permission in their own terms, including the competent authority."
+    },
+    {
+     "question": "What does the note on Scripture add to Pistoia’s main text?",
+     "finding": "Article 11 denies that reading is necessary for every individual to be saved and insists on deference to Church authority. Its note makes only true inability an excuse from reading and ascribes doctrinal obscurity to neglect.",
+     "test": "Compare that note with Auctorem fidei 67, Quesnel’s propositions 79 and 80, and Dei Verbum. A censure of the note does not by itself assign a grade or rationale to Quesnel’s proposition 80."
+    }
+   ]
   },
   {
    "id": "A5",
@@ -1993,6 +2131,659 @@
      "citation": "Revue des sciences religieuses 36 (1962), pp. 140–153.",
      "note": "Boissard examines how a censure can stand even if a proposition once had a defensible proper sense in a different linguistic or theological setting.",
      "url": "https://www.persee.fr/doc/rscir_0035-2217_1962_num_36_2_2316"
+    }
+   ]
+  },
+  {
+   "id": "A6",
+   "group": "A",
+   "related_disputed": [
+    "jansen-fact"
+   ],
+   "related_since": [],
+   "regression": [],
+   "gate": null,
+   "title": "Quierzy and Valence on predestination and redemption",
+   "question": "Can the two local councils’ accounts of Christ’s death be read together, and what limits do Trent and Cum occasione set?",
+   "period": [
+    853,
+    1653
+   ],
+   "themes": [
+    "grace",
+    "predestination",
+    "redemption"
+   ],
+   "issuers": [
+    "Quierzy",
+    "Valence",
+    "Council of Trent",
+    "Innocent X"
+   ],
+   "summary": "Quierzy says Christ suffered for every human being and illustrates universal sufficiency with a remedy that helps only when taken. Valence rejects applying the shedding of Christ’s blood to the already damned and speaks of the price given for believers. It also rejects four chapters identified with Quierzy. A distinction between the scope of the passion and its saving application fits Trent and explains some of the language. Whether it fully accounts for Valence’s restriction and explicit rejection of the four chapters remains open.",
+   "texts": [
+    {
+     "label": "Local council of Quierzy (853), four chapters",
+     "refs": [
+      "316",
+      "317",
+      "318",
+      "319"
+     ],
+     "local": "excerpt",
+     "verified": true,
+     "edition": "Monumenta Germaniae Historica, Concilia 3, ed. W. Hartmann (1984), p. 297, chapters 1–4.",
+     "checked": "Chapter 4 asserts universal suffering, distinguishes who is redeemed by the mystery of the passion, and uses the image of a remedy able to benefit everyone.",
+     "url": "https://www.dmgh.de/mgh_conc_3/index.htm#page/297"
+    },
+    {
+     "label": "Local council of Valence (855), canons 3–5",
+     "refs": [
+      "322",
+      "323",
+      "324"
+     ],
+     "local": "excerpt",
+     "verified": true,
+     "edition": "Monumenta Germaniae Historica, Concilia 3, ed. W. Hartmann (1984), pp. 353–356, especially p. 355, note 27.",
+     "checked": "Canon 4 rejects the shedding of Christ’s blood for those already eternally damned and treats the price in connection with believers. It rejects four earlier chapters as well as a separate set of nineteen syllogisms. Canon 5 affirms genuine redemption in baptism even for some who later fail to persevere.",
+     "url": "https://www.dmgh.de/mgh_conc_3/index.htm#page/354"
+    },
+    {
+     "label": "Council of Trent, decree on justification (1547)",
+     "refs": [
+      "795",
+      "808",
+      "827"
+     ],
+     "local": "excerpt",
+     "verified": true,
+     "edition": "Session VI, chapters 3 and 15 and canon 17. J. Waterworth, 1848 English edition, with the Denzinger Latin.",
+     "checked": "Christ died for all. The benefit is communicated to some. Trent rejects limiting justificatory grace to the predestined and teaches that true justification can be lost.",
+     "url": "https://history.hanover.edu/texts/trent/ct06.html"
+    },
+    {
+     "label": "Innocent X, Cum occasione (31 May 1653)",
+     "refs": [
+      "1092",
+      "1093",
+      "1094",
+      "1095",
+      "1096"
+     ],
+     "local": "excerpt",
+     "verified": true,
+     "edition": "Bullarium Romanum, Turin ed., XV (1868), pp. 720–722, especially §4 at p. 721.",
+     "checked": "Checked all five censures in Latin. In the fifth, dumtaxat limits the heretical sense to the claim that Christ died for the salvation of the predestined alone.",
+     "url": "https://archive.org/details/bullarumdiplomat15cath/page/721/mode/1up"
+    }
+   ],
+   "propositions": [
+    {
+     "id": "a6-qpred",
+     "ref": "316",
+     "year": 853,
+     "formal_object": "authentic",
+     "assent": "disputed",
+     "binding_status": "not_juridical",
+     "evidence": "D",
+     "says": "God predestines the elect to life. He foreknows the loss of the others and predestines their just punishment without predestining them to perish by sin."
+    },
+    {
+     "id": "a6-qwill",
+     "ref": "318",
+     "year": 853,
+     "formal_object": "authentic",
+     "assent": "disputed",
+     "binding_status": "not_juridical",
+     "evidence": "D",
+     "says": "God wills all human beings without exception to be saved, though not all are saved."
+    },
+    {
+     "id": "a6-qatone",
+     "ref": "319",
+     "year": 853,
+     "formal_object": "authentic",
+     "assent": "disputed",
+     "binding_status": "not_juridical",
+     "evidence": "D",
+     "says": "Christ suffered for every human being. The remedy can benefit all, but its saving effect requires receiving it."
+    },
+    {
+     "id": "a6-vpred",
+     "ref": "322",
+     "year": 855,
+     "formal_object": "authentic",
+     "assent": "disputed",
+     "binding_status": "not_juridical",
+     "evidence": "D",
+     "says": "Valence speaks of predestination to life and death. It reserves predestination to what God himself does in mercy or judgment, and excludes human malice from what he predestines."
+    },
+    {
+     "id": "a6-vprice",
+     "ref": "323",
+     "year": 855,
+     "formal_object": "authentic",
+     "assent": "disputed",
+     "binding_status": "not_juridical",
+     "evidence": "D",
+     "says": "Valence rejects saying the blood was shed even for the already damned before the passion. It refers the payment of the price to those described as believing.",
+     "note": "Canon 4 also rejects the four earlier chapters. Its identification with Quierzy is given in the critical edition’s notes."
+    },
+    {
+     "id": "a6-vbapt",
+     "ref": "324",
+     "year": 855,
+     "formal_object": "authentic",
+     "assent": "disputed",
+     "binding_status": "not_juridical",
+     "evidence": "D",
+     "says": "Valence says that those truly regenerated in baptism are truly redeemed and washed of sins. Some fail to persevere and do not attain final salvation."
+    },
+    {
+     "id": "a6-trent",
+     "ref": "795",
+     "year": 1547,
+     "formal_object": "authentic",
+     "assent": "religious_submission",
+     "binding_status": "not_juridical",
+     "evidence": "D",
+     "says": "Christ died for all, and only those to whom the merits of his passion are communicated receive the benefit of his death."
+    },
+    {
+     "id": "a6-cum",
+     "ref": "1096",
+     "year": 1653,
+     "formal_object": "disputed",
+     "assent": "disputed",
+     "binding_status": "not_juridical",
+     "evidence": "D",
+     "says": "Innocent X rejects the charge of Semipelagianism. The additional note of heresy applies in the specified sense that Christ died for the salvation of the predestined alone."
+    }
+   ],
+   "matrix": [
+    {
+     "a": "a6-qpred",
+     "b": "a6-vpred",
+     "level": "doctrinal",
+     "result": "no_conflict",
+     "why": "Quierzy numbers predestination as one and distinguishes grace and punishment. Valence speaks of two outcomes while restricting divine predestination to God’s own acts of mercy and justice. Both deny that God predestines human malice.",
+     "same_subject": true,
+     "same_sense": false,
+     "same_time": true
+    },
+    {
+     "a": "a6-qatone",
+     "b": "a6-vprice",
+     "level": "doctrinal",
+     "result": "undetermined",
+     "why": "The contrast between universal suffering and particular saving application could account for the wording. Valence expressly contests earlier chapters and excludes the already damned from the scope of the assertion it rejects. The sense of that exclusion has to be established from its own context.",
+     "same_subject": true,
+     "same_sense": "disputed",
+     "same_time": true
+    },
+    {
+     "a": "a6-qatone",
+     "b": "a6-trent",
+     "level": "doctrinal",
+     "result": "no_conflict",
+     "why": "Both distinguish dying for all from all sharing in saving benefit. Quierzy’s remedy image explicitly affirms universal capacity to benefit.",
+     "same_subject": true,
+     "same_sense": true,
+     "same_time": true
+    },
+    {
+     "a": "a6-vbapt",
+     "b": "a6-cum",
+     "level": "doctrinal",
+     "result": "no_conflict",
+     "why": "Valence treats people who subsequently fail to persevere as genuinely redeemed through baptism. That distinction gives direct evidence against treating its believers as identical with the finally predestined.",
+     "same_subject": true,
+     "same_sense": false,
+     "same_time": true
+    }
+   ],
+   "edges": [
+    [
+     "a6-vpred",
+     "a6-qpred",
+     "qualifies"
+    ],
+    [
+     "a6-vprice",
+     "a6-qatone",
+     "disputed_reception"
+    ],
+    [
+     "a6-trent",
+     "a6-qatone",
+     "reaffirms"
+    ],
+    [
+     "a6-vbapt",
+     "a6-vprice",
+     "qualifies"
+    ],
+    [
+     "a6-cum",
+     "a1-p5",
+     "reaffirms"
+    ]
+   ],
+   "qualifications": "The ninth-century witnesses are local synods. Quierzy distinguishes Christ’s suffering from being redeemed by the mystery of his passion. Valence’s term for the price and its exclusion of the already damned require attention to the specific controversy.",
+   "reception": "Valence’s canon 4 sets itself against four chapters attributed to Quierzy. The later efforts at Langres and Savonnières are relevant to what was retained or reconciled.",
+   "contingency": "The local prohibitions, the vocabulary of the dispute, and the doctrinal claims about the passion and its fruits require separate judgments.",
+   "development": "Trent expressly combines universal death with particular reception of the benefit. The later censure in Cum occasione sets a limit on restricting the saving scope of Christ’s death to the predestined alone.",
+   "hypothesis": "Christ’s death has a genuinely universal saving sufficiency, while saving benefits must be communicated and can be lost. This accounts for Quierzy, Trent and Valence’s teaching on baptism. Its adequacy to the exact exclusion in Valence 4 remains to be tested. (T)",
+   "objection": "Valence does not simply describe people who fail to receive a benefit. It contests the claim about blood shed for those already damned. Why should its words be taken as a restriction on application?",
+   "rebuttal": "Valence’s reference to believers and its next canon on people truly redeemed without final perseverance provide grounds for reading it in terms of the communication of redemption. Its explicit objection in canon 4 still requires an explanation from the debate and from the subsequent negotiations.",
+   "gaps": [
+    {
+     "what": "The specific thesis targeted by Valence’s example of the already damned",
+     "source": "The texts of Hincmar, Florus, and the Lorraine and Lyon responses surrounding the two councils.",
+     "settles": "Whether the excluded claim concerns intention, payment of the price, or application of the effects of the passion."
+    },
+    {
+     "what": "The reception of the contested chapters after 855",
+     "source": "The Latin acts and surrounding correspondence for Langres and Savonnières (859) in the MGH.",
+     "settles": "Which formulas were revised, dropped or received during attempts at agreement."
+    }
+   ],
+   "next_source": "Trace the discussion of the already damned in the Lyon responses and later conference documents.",
+   "audio": {
+    "taught": "Quierzy says Christ suffered for all and uses the image of a remedy. Valence distinguishes those who are truly redeemed from those who persevere.",
+    "authority": "The earlier witnesses are local councils. Trent distinguishes Christ dying for all from people receiving the benefit, and Innocent the Tenth censures a specified restriction.",
+    "permanence": "The universal death and the particular reception of grace can stand together. The exact objection made by Valence still needs an explanation."
+   },
+   "evidence_reviews": [
+    {
+     "question": "Do Quierzy and Valence teach opposite causes of damnation?",
+     "finding": "Both place malice on the human side and punishment within divine judgment. Their ways of counting predestination differ.",
+     "test": "Test whether their differing use of predestination changes the thing predestined, especially the difference between sinful action and its punishment."
+    },
+    {
+     "question": "How strong is Quierzy’s statement of sufficiency?",
+     "finding": "It says Christ suffered for everyone and that the remedy has in itself the capacity to benefit all. It gives unbelief and lack of faith working through love as the reason that not all are healed.",
+     "test": "Distinguish universal ability to benefit from a theory about the intentions of God or the distribution of every particular aid."
+    },
+    {
+     "question": "What makes Valence the hard case?",
+     "finding": "Canon 4 rejects four earlier chapters and has narrower language about the price. Canon 5 affirms actual redemption in some who do not attain eternal salvation.",
+     "test": "Find the use of blood shed for the already damned in the arguments Valence answers. The explicit rejection carries more evidentiary weight than a reconciliation based on vocabulary alone."
+    }
+   ],
+   "verdict": "unresolved_tension",
+   "confidence": "medium",
+   "stage": 11,
+   "provisional": true,
+   "source_verified": true,
+   "last_reviewed": "2026-11-18",
+   "log": [
+    {
+     "date": "2026-11-18",
+     "change": "Compared Quierzy and Valence against the MGH Latin and checked Trent and the fifth Jansenist censure. Kept Valence’s explicit rejection as an unresolved point."
+    }
+   ]
+  },
+  {
+   "id": "A7",
+   "group": "A",
+   "related_disputed": [
+    "de-auxiliis",
+    "quesnel"
+   ],
+   "related_since": [],
+   "regression": [],
+   "gate": null,
+   "title": "De auxiliis and the power to resist grace",
+   "question": "How do Báñez, Molina and Quesnel account for free consent under grace, and what did Rome actually settle?",
+   "period": [
+    1547,
+    1713
+   ],
+   "themes": [
+    "grace",
+    "free will",
+    "jansenism"
+   ],
+   "issuers": [
+    "Council of Trent",
+    "Paul V",
+    "Innocent X",
+    "Clement XI"
+   ],
+   "summary": "Trent teaches that prevenient grace moves the will, which truly cooperates and can dissent. Báñez and Molina differ on what explains the efficacy of an aid that produces consent. Báñez distinguishes an invitation that can be refused from grace that infallibly brings about free consent by divine motion. Molina says people can respond differently to equal aids and uses middle knowledge to explain the certainty of foreknowledge. Quesnel allows resistance to a further effect but says the immediate effect God absolutely wills always occurs. The Roman acts leave the schools’ dispute open, and the comparison with Quesnel turns on the substance of the power to dissent.",
+   "texts": [
+    {
+     "label": "Council of Trent, decree on justification (1547)",
+     "refs": [
+      "797",
+      "814",
+      "815"
+     ],
+     "local": "excerpt",
+     "verified": true,
+     "edition": "Session VI, chapter 5 and canons 4–5. J. Waterworth, 1848 English edition, and the Denzinger Latin.",
+     "checked": "The decree names prevenient grace, the person’s actual cooperation, the possibility of dissent, and the persistence of free will after the fall.",
+     "url": "https://history.hanover.edu/texts/trent/ct06.html"
+    },
+    {
+     "label": "Luis de Molina, Concordia",
+     "refs": [],
+     "local": "none",
+     "verified": true,
+     "edition": "Paris, P. Lethielleux, 1876, on I q. 14 a. 13, disputations 12 and 52, and on I q. 23 aa. 4–5, disputation 1, member 6, pp. 462–463.",
+     "checked": "Molina says equal interior aids can receive different responses. His middle knowledge concerns what a free agent would do while retaining the capacity to do otherwise. He distinguishes a person’s cooperation from the supernatural efficacy that comes from grace.",
+     "url": "https://archive.org/details/concordialiberia00moli/page/317/mode/1up"
+    },
+    {
+     "label": "Domingo Báñez, Disputatio and Responsio on the efficacy of grace",
+     "refs": [],
+     "local": "none",
+     "verified": true,
+     "edition": "Latin transcription of the exchange with Jesuit theologians, ca. 1599–1600. Disputatio §§11, 34–35 and Responsio answers 1–5. The edition identifies Biblioteca Angelica, cod. 862 for the Responsio.",
+     "checked": "Báñez distinguishes the aids that invite and can be refused from divine aid that brings about consent infallibly. He attributes the act of consent to the will as a real, subordinate cause.",
+     "url": "https://scholathomistica.com/works/disputatio-de-efficacia-praevenientis-auxilii-gratiae?lang=la"
+    },
+    {
+     "label": "Paul V on the Congregatio de Auxiliis (1607)",
+     "refs": [
+      "1090"
+     ],
+     "local": "excerpt",
+     "verified": false,
+     "edition": "Denzinger, n. 1090 (DS 1997), from the formula sent to both superiors on 5 September 1607.",
+     "checked": "The printed formula sends the disputants home and forbids either side to censure the other. It anticipates a later determination. Independent review of the source behind the printed formula remains open.",
+     "url": "https://www.romanmissal.org/denzinger/p346.html"
+    },
+    {
+     "label": "Innocent X, Cum occasione (31 May 1653)",
+     "refs": [
+      "1092",
+      "1093",
+      "1094",
+      "1095",
+      "1096"
+     ],
+     "local": "excerpt",
+     "verified": true,
+     "edition": "Bullarium Romanum, Turin ed., XV (1868), pp. 720–722, especially §4 at p. 721.",
+     "checked": "Checked all five censures in Latin. In the fifth, dumtaxat limits the heretical sense to the claim that Christ died for the salvation of the predestined alone.",
+     "url": "https://archive.org/details/bullarumdiplomat15cath/page/721/mode/1up"
+    },
+    {
+     "label": "Innocent X, decree on alleged acts of De auxiliis (23 April 1654)",
+     "refs": [
+      "1097"
+     ],
+     "local": "excerpt",
+     "verified": false,
+     "edition": "Denzinger, n. 1097 (DS 2008), referring to Paul V and Urban VIII.",
+     "checked": "The decree printed in Denzinger disallows an alleged constitution condemning Molina and directs the parties to observe the decrees of Paul V and Urban VIII.",
+     "url": "https://www.clerus.org/bibliaclerusonline/it/foo.htm"
+    },
+    {
+     "label": "Quesnel, Explication apologétique (1712)",
+     "refs": [],
+     "local": "none",
+     "verified": true,
+     "edition": "First part, pp. 108–113, especially pp. 112–113.",
+     "checked": "Quesnel includes the line about the touch of grace in his defense of absolutely efficacious grace. He distinguishes the immediate effect God absolutely wills from a further effect that may be resisted.",
+     "url": "https://archive.org/details/bub_gb_ttSTSpv5uSUC/page/112/mode/2up"
+    },
+    {
+     "label": "Clement XI, Unigenitus (8 September 1713)",
+     "refs": [
+      "1351",
+      "1362",
+      "1363",
+      "1373",
+      "1379",
+      "1383",
+      "1429",
+      "1430",
+      "1440",
+      "1451"
+     ],
+     "local": "excerpt",
+     "verified": true,
+     "edition": "Bullarium Romanum, Turin ed., XXI (1871), pp. 568–575, especially §4, pp. 573–574.",
+     "checked": "The Latin gives a collective list with respective application. The express sense clause concerns the earlier censures of Jansenius. Section 4 then condemns the book again.",
+     "url": "https://archive.org/details/bullarumdiplomat21cath/page/573/mode/2up"
+    }
+   ],
+   "propositions": [
+    {
+     "id": "a7-tr",
+     "ref": "814",
+     "year": 1547,
+     "formal_object": "revealed",
+     "assent": "faith",
+     "binding_status": "not_juridical",
+     "evidence": "D",
+     "says": "The will moved and aroused by God can dissent if it wills and actively cooperates when it assents."
+    },
+    {
+     "id": "a7-mol",
+     "ref": null,
+     "year": 1595,
+     "formal_object": "opinion",
+     "assent": "none",
+     "binding_status": "not_juridical",
+     "evidence": "D",
+     "says": "For Molina, equal interior aids can meet different responses. God knows what the person would freely do in given circumstances, and the supernatural character of the salutary act comes from grace.",
+     "ext": "Molina, Concordia, disputations 12 and 52, and q. 23 aa. 4–5"
+    },
+    {
+     "id": "a7-ban",
+     "ref": null,
+     "year": 1599,
+     "formal_object": "opinion",
+     "assent": "none",
+     "binding_status": "not_juridical",
+     "evidence": "D",
+     "says": "Báñez distinguishes an inviting aid that can be refused from properly efficacious aid, with which actual dissent cannot coexist. The will itself actively and freely consents under divine motion.",
+     "ext": "Báñez, Disputatio §§34–35 and Responsio 1–5"
+    },
+    {
+     "id": "a7-pv",
+     "ref": "1090",
+     "year": 1607,
+     "formal_object": "juridical",
+     "assent": "obedience",
+     "binding_status": "disputed",
+     "evidence": "D",
+     "says": "Paul V ends the proceedings and prohibits each side from censuring the other while reserving a decision."
+    },
+    {
+     "id": "a7-co",
+     "ref": "1093",
+     "year": 1653,
+     "formal_object": "disputed",
+     "assent": "disputed",
+     "binding_status": "not_juridical",
+     "evidence": "D",
+     "says": "Innocent X declares heretical the proposition that in fallen nature one never resists interior grace."
+    },
+    {
+     "id": "a7-ix",
+     "ref": "1097",
+     "year": 1654,
+     "formal_object": "juridical",
+     "assent": "obedience",
+     "binding_status": "disputed",
+     "evidence": "D",
+     "says": "Innocent X disallows alleged acts circulated in support of either party and an alleged constitution of Paul V condemning Molina."
+    },
+    {
+     "id": "a7-qu",
+     "ref": null,
+     "year": 1712,
+     "formal_object": "opinion",
+     "assent": "none",
+     "binding_status": "not_juridical",
+     "evidence": "D",
+     "says": "Quesnel says a person retains the power to resist. He says the immediate effect absolutely willed by God occurs, while a further effect may be hindered.",
+     "ext": "Quesnel, Explication apologétique, pp. 108–113",
+     "note": "Quesnel appeals to Thomist authors. His defense is evidence for his own position. His proposition 13 still appears in the final Unigenitus list."
+    }
+   ],
+   "matrix": [
+    {
+     "a": "a7-tr",
+     "b": "a7-mol",
+     "level": "doctrinal",
+     "result": "no_conflict",
+     "why": "Molina reads Trent as teaching the power to refuse interior grace, and expressly distinguishes grace as necessary for a salutary act from free consent under grace.",
+     "same_subject": true,
+     "same_sense": true,
+     "same_time": true
+    },
+    {
+     "a": "a7-tr",
+     "b": "a7-ban",
+     "level": "doctrinal",
+     "result": "potential_contradiction",
+     "why": "Báñez allows an inviting interior aid to be refused. He denies the coexistence of actual dissent with the aid that infallibly brings about consent. The disputed question is whether his account preserves the power of the will, under grace, in the sense affirmed by Trent.",
+     "same_subject": true,
+     "same_sense": "disputed",
+     "same_time": true
+    },
+    {
+     "a": "a7-ban",
+     "b": "a7-mol",
+     "level": "logical",
+     "result": "contradiction",
+     "why": "The authors give opposed answers about the cause of efficacy. For Báñez an efficacious aid, as given by God, infallibly produces free consent. Molina makes free cooperation a condition for the aid to be efficacious with respect to the resulting act. Both require grace and an active will.",
+     "same_subject": true,
+     "same_sense": true,
+     "same_time": true
+    },
+    {
+     "a": "a7-co",
+     "b": "a7-ban",
+     "level": "doctrinal",
+     "result": "no_conflict",
+     "why": "The censure concerns never resisting interior grace. Báñez explicitly allows refusal of interior invitation and restricts the incompatibility with actual dissent to efficacious aid.",
+     "same_subject": true,
+     "same_sense": false,
+     "same_time": true
+    },
+    {
+     "a": "a7-co",
+     "b": "a7-qu",
+     "level": "doctrinal",
+     "result": "undetermined",
+     "why": "Quesnel explicitly rejects the universal denial of resistance. His claim that every grace secures the immediately intended effect leaves a further question about what the person has real power to refuse and how his account bears on the censured proposition.",
+     "same_subject": true,
+     "same_sense": "disputed",
+     "same_time": true
+    },
+    {
+     "a": "a7-pv",
+     "b": "a7-ix",
+     "level": "juridical",
+     "result": "no_conflict",
+     "why": "Paul V forbids the parties to censure each other. Innocent X refuses evidentiary weight to circulating texts, including the alleged condemnation of Molina, and directs the parties to observe the earlier decrees.",
+     "same_subject": true,
+     "same_sense": true,
+     "same_time": true
+    }
+   ],
+   "edges": [
+    [
+     "a7-mol",
+     "a7-tr",
+     "reaffirms"
+    ],
+    [
+     "a7-ban",
+     "a7-tr",
+     "qualifies"
+    ],
+    [
+     "a7-ban",
+     "a7-mol",
+     "potential_contradiction"
+    ],
+    [
+     "a7-co",
+     "a7-ban",
+     "qualifies"
+    ],
+    [
+     "a7-qu",
+     "a7-co",
+     "potential_contradiction"
+    ],
+    [
+     "a7-qu",
+     "a3-13",
+     "qualifies"
+    ],
+    [
+     "a7-ix",
+     "a7-pv",
+     "reaffirms"
+    ],
+    [
+     "a7-co",
+     "a1-p2",
+     "reaffirms"
+    ]
+   ],
+   "qualifications": "Separate the cause of a grace’s efficacy, the power to dissent, and the fact that dissent does or does not occur. In particular, the proposition censured by Innocent X uses the quantifier never.",
+   "reception": "Paul V leaves a declaration for a later time and forbids partisan censures. In 1654 Innocent X disallows alleged records and a supposed constitution condemning Molina. This identifies which documentary claims cannot decide the dispute.",
+   "contingency": "The directions about how the schools conduct their dispute are juridical. The doctrinal comparison rests on Trent’s teaching and the text of the Jansenist censure.",
+   "development": "The distinction between inviting grace and grace that effects consent helps compare the schools with later censures. The causes and conditions of efficacy still admit competing theological accounts.",
+   "hypothesis": "The ability to dissent needs a positive explanation in each account. An assertion about the actual consent produced by a specified efficacious aid can have a different scope from denying that any interior aid can ever be refused. (T)",
+   "objection": "If consent infallibly follows the efficacious aid, how can the will dissent if it wills in the precise sense of Trent? Calling a different aid resistible leaves the modal question about the person under precisely this aid.",
+   "rebuttal": "Báñez expressly treats consent as the will’s own act and locates the efficacy that secures it in God. Molina distinguishes the certainty of what God knows from necessity in the free act. Those are positive accounts with a real difference. Quesnel’s separate argument still has to meet the same test, including what his sufficient aid makes possible.",
+   "gaps": [
+    {
+     "what": "The power to dissent under properly efficacious aid",
+     "source": "Báñez’s related treatments of concurrence and the later scholastic discussion of the power considered apart from and in conjunction with the actual divine motion.",
+     "settles": "Whether each account gives a coherent reading of the same power affirmed in Trent."
+    },
+    {
+     "what": "Quesnel’s account of sufficient grace beyond his defense of the gloss",
+     "source": "The rest of the 1712 Explication apologétique, his related propositions and the Roman votes for Unigenitus.",
+     "settles": "Whether the power he attributes to grace and the will is sufficient for a genuinely available contrary act, and what reason the examiners gave for the censure."
+    }
+   ],
+   "next_source": "Read Quesnel’s fuller passages on sufficient grace beside Báñez’s distinctions and the Roman votes on proposition 13.",
+   "audio": {
+    "taught": "Trent teaches that grace comes first and the will can assent or dissent. Báñez and Molina offer different accounts of what makes aid efficacious.",
+    "authority": "Paul the Fifth stopped the proceedings without promulgating a judgment choosing a school. Innocent the Tenth condemned the blanket claim that interior grace is never resisted.",
+    "permanence": "The Church’s teaching on grace and cooperation binds. The explanations of how divine action and free consent fit together remain disputed."
+   },
+   "evidence_reviews": [
+    {
+     "question": "What claim do the two schools actually disagree about?",
+     "finding": "Both attribute the supernatural aid to God. Molina says free cooperation is a condition for the aid’s efficacy relative to the effect. Báñez says the act of consent is the will’s own act and the grace that brings it about has its infallible efficacy from God.",
+     "test": "Compare efficacy as divine causal power with efficacy in relation to the effect. Trace the different senses of power and actual dissent."
+    },
+    {
+     "question": "What does the Roman record rule out?",
+     "finding": "Paul V forbade partisan censures. Innocent X explicitly disallows the purported acts and supposed constitution condemning Molina. Cum occasione separately censures the universal denial of resistance.",
+     "test": "Distinguish the content of the promulgated acts from claims in circulated materials and from the theological positions themselves."
+    },
+    {
+     "question": "Does Quesnel’s distinction meet Trent’s test?",
+     "finding": "He says resistance can hinder a further effect and describes the immediate effect intended by God as infallible. He invokes Thomist authorities and explicitly rejects the second proposition of Jansenius.",
+     "test": "Ask what the aided person can actually refuse in the cases described. Similar language about God’s absolute will cannot decide that without comparing the scope of the two accounts and the Roman record."
+    }
+   ],
+   "verdict": "plausible_concord",
+   "confidence": "medium",
+   "stage": 11,
+   "provisional": true,
+   "source_verified": true,
+   "last_reviewed": "2026-11-18",
+   "log": [
+    {
+     "date": "2026-11-18",
+     "change": "Read selected Latin passages in Molina and Báñez, the Roman acts on the controversy, and Quesnel’s treatment of immediate and further effects."
     }
    ]
   },
@@ -2380,34 +3171,26 @@
   {
    "id": "B3",
    "group": "B",
-   "title": "Outside the Church no salvation: Florence, Unam Sanctam and Lumen Gentium 14–16",
-   "question": "What do incorporation, desire, culpability and invincible ignorance mean in the teaching that there is no salvation outside the Church?",
+   "title": "Florence, the Holy Office and salvation outside the Church",
+   "question": "What kind of union with the Church is necessary for salvation, and how does the 1949 letter interpret that necessity?",
    "period": [
-    1215,
-    1964
+    1302,
+    2000
    ],
    "themes": [
     "salvation",
     "ecclesiology"
    ],
    "issuers": [
-    "Lateran IV",
     "Boniface VIII",
     "Council of Florence",
     "Pius IX",
     "Pius XII",
+    "Holy Office",
     "Vatican II"
    ],
-   "summary": "Florence taught that no one outside the Catholic Church, pagan, Jew, heretic or schismatic, can share in eternal life unless joined to her before death; Boniface VIII defined that subjection to the Roman Pontiff is necessary for salvation. Pius IX taught that those in invincible ignorance of the true religion are not guilty for it before God. Lumen Gentium teaches that the Church is necessary, that those who know it and refuse to enter cannot be saved, and that those who through no fault do not know the Gospel can be saved by grace. The dogma stands in every text; what developed is the account of how a person is joined to the Church. The Holy Office letter of 1949 against Leonard Feeney's strict reading is not yet on the site.",
+   "summary": "Florence says that those outside the Catholic Church cannot share in eternal life unless they are joined to her before death. The Holy Office letter Suprema haec sacra, approved by Pius XII in 1949, distinguishes actual incorporation as a member from union by desire. In invincible ignorance that desire can be implicit. The letter requires perfect charity and supernatural faith. Lumen Gentium describes different relationships to the Church and cites the letter in its treatment of those who have yet to receive the Gospel.",
    "texts": [
-    {
-     "label": "Lateran IV (1215)",
-     "refs": [
-      "430"
-     ],
-     "local": "excerpt",
-     "verified": false
-    },
     {
      "label": "Boniface VIII, Unam Sanctam (1302)",
      "refs": [
@@ -2415,48 +3198,74 @@
       "469"
      ],
      "local": "excerpt",
-     "verified": false
+     "verified": true,
+     "edition": "Medieval Sourcebook, English text, with the Denzinger Latin.",
+     "checked": "The closing declaration makes subjection to the Roman Pontiff necessary for salvation. The bull also treats the Church as one body.",
+     "url": "https://sourcebooks.fordham.edu/source/B8-unam.asp"
     },
     {
-     "label": "Florence, Cantate Domino (1442)",
+     "label": "Florence, Cantate Domino (4 February 1442)",
      "refs": [
       "714"
      ],
      "local": "excerpt",
-     "verified": false
+     "verified": true,
+     "edition": "Vatican Latin edition, union with the Copts.",
+     "checked": "The bull names several groups outside the Church, requires that they be joined to her before death and locates the saving fruit of the sacraments within the unity of her body.",
+     "url": "https://www.vatican.va/content/eugenius-iv/la/documents/bulla-cantate-domino-4-febr-1442.html"
     },
     {
-     "label": "Pius IX, Singulari quadam (1854) and Quanto conficiamur (1863)",
+     "label": "Pius IX, Quanto conficiamur (1863)",
      "refs": [
-      "1647",
       "1677"
      ],
      "local": "excerpt",
-     "verified": false
+     "verified": true,
+     "edition": "Vatican Italian edition, 10 August 1863.",
+     "checked": "Pius IX considers involuntary ignorance, life in accord with the moral law, readiness to obey God, and the operation of divine light and grace.",
+     "url": "https://www.vatican.va/content/pius-ix/it/documents/enciclica-quanto-conficiamur-10-agosto-1863.html"
     },
     {
-     "label": "Pius XII, Mystici Corporis (1943)",
+     "label": "Pius XII, Mystici Corporis §§22, 103 (1943)",
      "refs": [
       "2286"
      ],
      "local": "excerpt",
-     "verified": false
+     "verified": true,
+     "edition": "Vatican English edition, 29 June 1943.",
+     "checked": "Pius XII distinguishes actual membership from the relation of some people to the Mystical Body through unrecognized yearning and desire.",
+     "url": "https://www.vatican.va/content/pius-xii/en/encyclicals/documents/hf_p-xii_enc_29061943_mystici-corporis-christi.html"
     },
     {
-     "label": "Vatican II, Lumen Gentium 14–16",
+     "label": "Holy Office, Suprema haec sacra (8 August 1949)",
+     "refs": [],
+     "local": "none",
+     "verified": true,
+     "edition": "Protocol 122/49. English version published by Archbishop Richard Cushing under instructions from the Holy Office, Boston, 1952.",
+     "checked": "The letter calls the Church both a commanded end of incorporation and a necessary means of salvation. It allows implicit desire under specified conditions. It records Pius XII’s approval on 28 July 1949.",
+     "url": "https://www.catholicculture.org/culture/library/view.cfm?id=5142"
+    },
+    {
+     "label": "Vatican II, Lumen Gentium §§14–16 (1964)",
      "refs": [
       "LG14",
       "LG15",
       "LG16"
      ],
      "local": "excerpt",
-     "verified": true
+     "verified": true,
+     "edition": "Vatican English edition, 21 November 1964, especially the note citing the Holy Office letter.",
+     "checked": "The council distinguishes Catholic incorporation, connection through baptism and gifts shared with other Christians, and the ways those without the Gospel are related to the people of God.",
+     "url": "https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19641121_lumen-gentium_en.html"
     },
     {
-     "label": "Holy Office, letter to the Archbishop of Boston (8 August 1949)",
+     "label": "Congregation for the Doctrine of the Faith, Dominus Iesus §§20–22 (2000)",
      "refs": [],
      "local": "none",
-     "verified": false
+     "verified": true,
+     "edition": "Vatican English edition, 6 August 2000.",
+     "checked": "The declaration affirms that grace can reach those who are not formal and visible members through a relationship to the Church. It describes the way grace reaches individual persons as known to God.",
+     "url": "https://www.vatican.va/roman_curia/congregations/cfaith/documents/rc_con_cfaith_doc_20000806_dominus-iesus_en.html"
     }
    ],
    "propositions": [
@@ -2468,8 +3277,8 @@
      "assent": "faith",
      "binding_status": "not_juridical",
      "evidence": "D",
-     "quote": "those not living within the Catholic Church",
-     "says": "Those not living within the Catholic Church cannot share in eternal life unless joined to her before death."
+     "says": "Those outside the Catholic Church cannot share in eternal life unless they have been joined to her before death.",
+     "note": "The Latin is nisi ante finem vite eidem fuerint aggregati. The bull speaks in the setting of an act of ecclesial reunion."
     },
     {
      "id": "b3-us",
@@ -2479,18 +3288,49 @@
      "assent": "faith",
      "binding_status": "not_juridical",
      "evidence": "D",
-     "says": "Unam Sanctam's closing sentence: it is altogether necessary for salvation for every human creature to be subject to the Roman Pontiff."
+     "says": "Boniface VIII declares subjection to the Roman Pontiff necessary for salvation."
     },
     {
      "id": "b3-ii",
-     "ref": "1647",
-     "year": 1854,
+     "ref": "1677",
+     "year": 1863,
      "formal_object": "authentic",
      "assent": "religious_submission",
      "binding_status": "not_juridical",
      "evidence": "D",
-     "quote": "if this ignorance is invincible, are not stained by any guilt in this matter in the eyes of God",
-     "says": "It is of faith that outside the Roman Church no one is saved; and it is certain that those in invincible ignorance are not guilty for it before God."
+     "says": "Under divine light and grace, people who are invincibly ignorant and are disposed to obey God can attain eternal life."
+    },
+    {
+     "id": "b3-p12",
+     "ref": "2286",
+     "year": 1943,
+     "formal_object": "authentic",
+     "assent": "religious_submission",
+     "binding_status": "not_juridical",
+     "evidence": "D",
+     "says": "Some outside the visible Catholic body are related to the Mystical Body through a yearning and desire of which they are unaware."
+    },
+    {
+     "id": "b3-horefusal",
+     "ref": null,
+     "year": 1949,
+     "formal_object": "authentic",
+     "assent": "religious_submission",
+     "binding_status": "not_juridical",
+     "evidence": "D",
+     "says": "A person who knows that Christ founded the Church and nevertheless refuses submission cannot be saved.",
+     "ext": "Holy Office, Suprema haec sacra, doctrinal explanation"
+    },
+    {
+     "id": "b3-hodesire",
+     "ref": null,
+     "year": 1949,
+     "formal_object": "authentic",
+     "assent": "religious_submission",
+     "binding_status": "not_juridical",
+     "evidence": "D",
+     "says": "Salvation requires at least union with the Church by desire. In invincible ignorance that desire can be implicit. It must be formed by perfect charity, and implicit desire requires supernatural faith.",
+     "ext": "Holy Office, Suprema haec sacra, doctrinal explanation"
     },
     {
      "id": "b3-lg14",
@@ -2500,8 +3340,17 @@
      "assent": "religious_submission",
      "binding_status": "not_juridical",
      "evidence": "D",
-     "quote": "would refuse to enter or to remain in it, could not be saved",
-     "says": "Whoever, knowing that the Catholic Church was made necessary by Christ, would refuse to enter or remain, could not be saved."
+     "says": "The Church is necessary. Anyone who knows it was made necessary by Christ and refuses to enter or remain cannot be saved. Full incorporation without perseverance in charity also fails to save."
+    },
+    {
+     "id": "b3-lg15",
+     "ref": "LG15",
+     "year": 1964,
+     "formal_object": "authentic",
+     "assent": "religious_submission",
+     "binding_status": "not_juridical",
+     "evidence": "D",
+     "says": "The Church recognizes several bonds with baptized Christians who are outside full communion."
     },
     {
      "id": "b3-lg16",
@@ -2511,80 +3360,131 @@
      "assent": "religious_submission",
      "binding_status": "not_juridical",
      "evidence": "D",
-     "says": "Those who through no fault do not know the Gospel, but seek God and try to do his will, can attain salvation."
+     "says": "Those who through no fault of their own do not know the Gospel or the Church, sincerely seek God and try under grace to do his will as known through conscience can attain salvation."
+    },
+    {
+     "id": "b3-di",
+     "ref": null,
+     "year": 2000,
+     "formal_object": "authentic",
+     "assent": "religious_submission",
+     "binding_status": "not_juridical",
+     "evidence": "D",
+     "says": "Saving grace for those outside formal visible membership has a relationship to the Church and comes from Christ in the Spirit.",
+     "ext": "Dominus Iesus §20"
     }
    ],
    "matrix": [
     {
      "a": "b3-fl",
-     "b": "b3-lg16",
+     "b": "b3-hodesire",
      "level": "doctrinal",
      "result": "apparent",
-     "why": "Florence names pagans and Jews among those who cannot be saved \"unless joined\" to the Church; Lumen Gentium 16 says some who do not know the Gospel can be saved. The conflict is removed if \"joined\" admits a union by grace and implicit desire (Pius IX, Pius XII, LG 16); it returns if Florence meant visible membership only, as Feeney read it, a reading the Holy Office rejected in 1949.",
+     "why": "Florence requires union before death. The Holy Office explains that actual membership and union by desire are distinct, and that in specified circumstances the latter can suffice. That is the later magisterial explanation of the dogma. The exact range of the term in Florence’s drafting is a historical question.",
      "same_subject": true,
      "same_sense": "disputed",
-     "same_time": false
+     "same_time": true
     },
     {
-     "a": "b3-ii",
+     "a": "b3-us",
+     "b": "b3-horefusal",
+     "level": "doctrinal",
+     "result": "apparent",
+     "why": "The Holy Office names the duty of submission and identifies knowing refusal as incompatible with salvation. It gives its account of implicit desire within the same explanation. The letter does not give a separate exegesis of every clause of Unam Sanctam.",
+     "same_subject": true,
+     "same_sense": "disputed",
+     "same_time": true
+    },
+    {
+     "a": "b3-hodesire",
+     "b": "b3-lg16",
+     "level": "doctrinal",
+     "result": "no_conflict",
+     "why": "The council describes the conditions under which people unaware of the Gospel may attain salvation and cites the Holy Office letter. The letter describes the union, faith and charity at issue. Neither passage specifies how grace produces these dispositions in each person.",
+     "same_subject": true,
+     "same_sense": false,
+     "same_time": true
+    },
+    {
+     "a": "b3-horefusal",
      "b": "b3-lg14",
      "level": "doctrinal",
      "result": "no_conflict",
-     "why": "Both make culpability the condition: knowing refusal excludes, invincible ignorance does not incur guilt.",
+     "why": "Both texts distinguish a knowing refusal from the case of a person without knowledge of the Church. Both affirm the obligation to enter.",
      "same_subject": true,
      "same_sense": true,
-     "same_time": false
+     "same_time": true
     }
    ],
    "edges": [
     [
-     "b3-us",
+     "b3-hodesire",
      "b3-fl",
-     "reaffirms"
-    ],
-    [
-     "b3-fl",
-     "b3-ii",
      "qualifies"
     ],
     [
-     "b3-ii",
+     "b3-us",
+     "b3-horefusal",
+     "specifies"
+    ],
+    [
+     "b3-p12",
+     "b3-hodesire",
+     "specifies"
+    ],
+    [
+     "b3-hodesire",
+     "b3-lg16",
+     "qualifies"
+    ],
+    [
+     "b3-horefusal",
      "b3-lg14",
      "reaffirms"
     ],
     [
-     "b3-fl",
-     "b3-lg16",
-     "disputed_reception"
+     "b3-lg15",
+     "b3-lg14",
+     "qualifies"
     ],
     [
-     "b3-lg14",
+     "b3-di",
      "b3-lg16",
      "specifies"
+    ],
+    [
+     "b3-di",
+     "a3-29",
+     "qualifies"
     ]
    ],
-   "qualifications": "Florence: \"unless before the end of life they are joined\". Pius IX: \"if this ignorance is invincible\". Lumen Gentium 14: \"knowing that\". Lumen Gentium 16: \"through no fault of their own\".",
-   "reception": "The Feeney controversy (1949, excommunication 1953) fixed the rejection of the strictest reading. Some traditionalist theologians read Florence as requiring explicit faith; the common reading admits implicit desire.",
-   "contingency": "Not applicable: doctrine.",
-   "development": "What survives: the necessity of the Church and of faith and baptism; no salvation except through Christ. What developed: the account of how those outside visible membership are related to the Church.",
-   "hypothesis": "The dogma concerns the necessity of the Church, binding on all who know it; it does not define that every person not visibly a member is lost, which the Church has taught against since at least 1854. (T)",
-   "objection": "Florence names pagans, Jews, heretics and schismatics without qualification, and the Fathers it cites (Fulgentius) meant visible membership. \"Joined\" in the sense of Lumen Gentium is a later meaning read back into the text (adversarial test 3).",
-   "rebuttal": "Florence's own condition, \"unless joined before death\", leaves room for how; Trent had taught baptism of desire (n. 796), so the means were not limited to the visible rite even before 1854. The objection is strongest on the question how explicit faith must be, which remains open.",
+   "qualifications": "The letter distinguishes the divine command to enter the Church from the Church’s role as a means of salvation. A person’s desire may be implicit, but ignorance alone is insufficient. The letter requires proper dispositions and notes the loss of helps available within the Church.",
+   "reception": "At the Holy Office’s direction, Archbishop Cushing published the letter in 1952. Lumen Gentium cites the letter in §16. Dominus Iesus §§20–22 further explains the Church’s relation to saving grace and the duty of evangelization.",
+   "contingency": "The 1949 letter also addresses the conduct of the parties and applies the canon law then in force. Those disciplinary instructions have a different object from the explanation of the dogma.",
+   "development": "Florence’s necessity of union remains in view. Pius XII and the Holy Office articulate a relation to the Church through desire distinct from visible membership. Vatican II situates that teaching among the different ways people are related to the people of God.",
+   "hypothesis": "Florence’s requirement of union and the later account of non-visible union can be read together. The Holy Office’s account supplies the positive claim, including the role of faith, charity, and grace. (T)",
+   "objection": "Florence names people outside Catholic unity and requires aggregation before death. Does implicit desire satisfy the kind of union Florence actually requires, especially where the person does not know the Church?",
+   "rebuttal": "Suprema haec sacra expressly reads the dogma as requiring union and permits that union by desire in the specified circumstances. The council’s citation of the letter gives direct evidence of how later teaching received this explanation. The exact understanding of the Florence drafters and the manner in which supernatural faith is present in individual cases remain distinct questions.",
    "verdict": "plausible_concord",
    "confidence": "medium",
-   "stage": 9,
+   "stage": 11,
    "gaps": [
     {
-     "what": "The Holy Office letter of 8 August 1949",
-     "source": "DS 3866–3873; American Ecclesiastical Review 127 (1952)",
-     "settles": "The authoritative rejection of the strict reading."
+     "what": "The force and historical reception of aggregati in Florence",
+     "source": "The drafting and sources of Cantate Domino, especially the use of Fulgentius, and early commentaries on the decree.",
+     "settles": "How the decree’s reunion setting and source language bear on the precise form of union it requires."
+    },
+    {
+     "what": "The scope of supernatural faith in the case of implicit desire",
+     "source": "The history of the Holy Office letter and studies of the drafting of Lumen Gentium §16 and Dominus Iesus §21.",
+     "settles": "Which accounts of supernatural faith and implicit desire fit the conditions explicitly named in the acts."
     }
    ],
-   "next_source": "The 1949 letter, Suprema haec sacra.",
+   "next_source": "Trace the text of Lumen Gentium §16 and its citation of Suprema haec sacra through the conciliar drafts and relatio.",
    "audio": {
-    "taught": "Florence taught that no one outside the Catholic Church can be saved unless joined to her before death. Pius IX and the Second Vatican Council taught that those who through no fault of their own do not know the Gospel can be saved by grace.",
-    "authority": "Florence and Boniface VIII define the necessity of the Church; Pius IX and Lumen Gentium are authoritative teaching on how it applies.",
-    "permanence": "Permanent: the Church is necessary for salvation, and salvation comes only through Christ. Developed: how people outside her visible boundaries can be joined to her."
+    "taught": "Florence requires union with the Church before death. The Holy Office says that a person can be joined through desire, which can be implicit under certain conditions.",
+    "authority": "The Holy Office letter was approved by Pius the Twelfth. The Second Vatican Council cites it and describes different relationships to the people of God.",
+    "permanence": "The Church is necessary for salvation. The letter names supernatural faith and charity, and the application to particular people belongs to God."
    },
    "related_disputed": [
     "outside-church",
@@ -2598,15 +3498,36 @@
     "R8"
    ],
    "provisional": true,
-   "source_verified": false,
+   "source_verified": true,
    "log": [
     {
      "date": "2026-11-18",
      "change": "Draft created from the texts the site holds; primary sources not yet verified against critical editions."
+    },
+    {
+     "date": "2026-11-18",
+     "change": "Read the Latin of Cantate Domino and the published 1949 Holy Office letter. Added the letter’s conditions, the citation in Lumen Gentium and the later explanation in Dominus Iesus."
     }
    ],
    "last_reviewed": "2026-11-18",
-   "gate": null
+   "gate": null,
+   "evidence_reviews": [
+    {
+     "question": "Does Florence expressly specify visible membership?",
+     "finding": "The Latin requires aggregation to the Church before the end of life. The decree states the necessity of ecclesial unity and speaks to an act of reunion.",
+     "test": "Read the Latin and its sources, and recognize the Holy Office letter as the later authority that expressly distinguishes actual incorporation and union by desire."
+    },
+    {
+     "question": "What conditions does the 1949 letter actually state?",
+     "finding": "For the invincibly ignorant, implicit desire can be present in the wish to conform one’s will to God. The desire must be formed by perfect charity, and implicit desire needs supernatural faith.",
+     "test": "Keep ignorance, desire, charity and faith distinct. The letter gives a reason that someone can be joined to the Church while outside visible membership."
+    },
+    {
+     "question": "How did Vatican II receive this explanation?",
+     "finding": "Lumen Gentium §14 affirms necessity and warns against knowing refusal and loss of charity. Sections 15 and 16 consider distinct groups and bonds. Section 16 cites the Holy Office letter.",
+     "test": "Compare the council’s conditions and its citation with Dominus Iesus §§20–22. Avoid inferring indifference between paths from the possibility of grace outside visible membership."
+    }
+   ]
   },
   {
    "id": "B4",
@@ -5924,7 +6845,7 @@
    "id": "D2",
    "group": "D",
    "title": "Honorius I, Constantinople III and Vatican I",
-   "question": "How is a pope's personal culpability, even his condemnation by a council, distinguished from the conditions of infallibility?",
+   "question": "What did Honorius teach and direct in his letters, what did the council and Leo II judge, and do the letters meet Vatican I’s conditions?",
    "period": [
     634,
     1870
@@ -5941,16 +6862,19 @@
     "Leo II",
     "Vatican I"
    ],
-   "summary": "Honorius wrote to Sergius in 634 of \"one will\" in Christ. Constantinople III (681) anathematised him with the Monothelites; Leo II confirmed the council, saying Honorius had allowed the faith to be stained rather than defending it. Vatican I examined the case and defined infallibility under conditions that Honorius's letters do not meet. Honorius's letters are private replies, not definitions to be held by the whole Church; the condemnation is a judgment on his conduct and teaching in those letters; John IV explained that by \"one will\" Honorius meant no contrary will of sinful flesh. The case is consistent with the definition; the council's and Leo II's texts are not yet on the site.",
+   "summary": "Honorius confessed one will in Christ while arguing from the absence of sinful conflict in Christ’s humanity. He urged Sergius and other bishops to avoid the formulas of one or two operations. John IV later defended the reference to one will. Constantinople III rejected Honorius’s letter and said he had confirmed Sergius’s impious teachings. Leo II confirmed the council and anathematized Honorius. His letter to the Spanish bishops faults him for fostering error by negligence, while the letter to the emperor has a stronger Latin reading alongside the Greek wording. The letters have a doctrinal and governing purpose. The surviving text gives no universal definition of the kind Vatican I specifies.",
    "texts": [
     {
-     "label": "Honorius I, Scripta fraternitatis to Sergius (634)",
+     "label": "Honorius I, two replies to Sergius (c. 634)",
      "refs": [
       "251",
       "252"
      ],
      "local": "excerpt",
-     "verified": false
+     "verified": true,
+     "edition": "Mansi XI, acts XII–XIII. First letter Scripta fraternitatis and surviving passages of the second letter. Patrologia Latina 80, epistles IV–V.",
+     "checked": "The first letter confesses one will and gives a reason drawn from Christ’s sinlessness. The second directs the parties away from either formula for operations and acknowledges the proper activity of both natures.",
+     "url": "https://la.wikisource.org/wiki/Epistolae_(Honorius_I)"
     },
     {
      "label": "John IV, Dominus qui dixit (641)",
@@ -5958,10 +6882,22 @@
       "253"
      ],
      "local": "excerpt",
-     "verified": false
+     "verified": true,
+     "edition": "Denzinger Latin and English, from John IV’s imperial letter.",
+     "checked": "John defends Honorius by explaining the single will as the absence of contrary wills of flesh and mind within Christ’s assumed humanity.",
+     "url": "https://www.romanmissal.org/denzinger/p132.html"
     },
     {
-     "label": "Constantinople III, definition (681)",
+     "label": "Constantinople III, session XIII, judgment (681)",
+     "refs": [],
+     "local": "none",
+     "verified": true,
+     "edition": "Mansi XI, cols. 553–556, Greek and Latin.",
+     "checked": "The judgment rejects the correspondence and anathematizes Honorius on the ground that in following Sergius he confirmed impious teachings.",
+     "url": "https://isidore.co/misc/Res%20pro%20Deo/ITOPL_OCR-layer-only/4b.%20Mansi/Mansi%20tomus%2011%20-%20653-687_OCR.PDF#page=284"
+    },
+    {
+     "label": "Constantinople III, sessions XVI and XVIII (681)",
      "refs": [
       "289",
       "290",
@@ -5969,22 +6905,39 @@
       "293"
      ],
      "local": "excerpt",
-     "note": "The anathema on Honorius (session 13) is not in the excerpt.",
-     "verified": false
+     "verified": true,
+     "edition": "Mansi XI, the acclamations in session XVI and the definition in session XVIII. Denzinger for the definition.",
+     "checked": "Session XVI acclaims anathema to Honorius the heretic. The definition establishes two natural wills and two natural operations in the one Christ.",
+     "url": "https://www.newadvent.org/fathers/3813.htm"
     },
     {
-     "label": "Leo II, letter confirming the council (683)",
+     "label": "Leo II, confirmation to Emperor Constantine IV (682–683)",
      "refs": [],
      "local": "none",
-     "verified": false
+     "verified": true,
+     "edition": "Mansi XI, cols. 731–732, and Patrologia Latina 96, epistle III, cols. 407–408.",
+     "checked": "Leo receives the council and includes Honorius in his anathema. The printed Latin says he attempted to overturn the immaculate faith. The alternate Greek wording speaks of permitting it to be stained.",
+     "url": "https://isidore.co/misc/Res%20pro%20Deo/ITOPL_OCR-layer-only/4b.%20Mansi/Mansi%20tomus%2011%20-%20653-687_OCR.PDF#page=372"
     },
     {
-     "label": "Vatican I, Pastor aeternus 4",
+     "label": "Leo II, letter to the Spanish bishops (682–683)",
+     "refs": [],
+     "local": "none",
+     "verified": true,
+     "edition": "Mansi XI, cols. 1051–1052, and Patrologia Latina 96, epistle IV, col. 414.",
+     "checked": "Leo says Honorius failed to extinguish heresy at its inception and fostered it by negligence.",
+     "url": "https://isidore.co/misc/Res%20pro%20Deo/ITOPL_OCR-layer-only/4b.%20Mansi/Mansi%20tomus%2011%20-%20653-687_OCR.PDF#page=532"
+    },
+    {
+     "label": "Vatican I, Pastor aeternus, chapter 4 (1870)",
      "refs": [
       "1839"
      ],
-     "local": "full",
-     "verified": true
+     "local": "excerpt",
+     "verified": true,
+     "edition": "Vatican Latin edition, 18 July 1870, chapter 4, final definition.",
+     "checked": "The defining act must concern faith or morals, be made in the exercise of the office of pastor and teacher of all Christians by supreme apostolic authority, and propose a doctrine to be held by the universal Church.",
+     "url": "https://www.vatican.va/content/pius-ix/la/documents/constitutio-dogmatica-pastor-aeternus-18-iulii-1870.html"
     }
    ],
    "propositions": [
@@ -5992,12 +6945,23 @@
      "id": "d2-h",
      "ref": "251",
      "year": 634,
-     "formal_object": "opinion",
-     "assent": "none",
+     "formal_object": "authentic",
+     "assent": "disputed",
      "binding_status": "not_juridical",
      "evidence": "D",
-     "quote": "we confess one will of our Lord Jesus Christ",
-     "says": "We confess one will of our Lord Jesus Christ, since our nature, not our guilt, was assumed."
+     "says": "Honorius confesses one will in Christ and explains it by Christ’s assumption of human nature without sin or the conflict of the flesh.",
+     "note": "His letter also treats scriptural statements about Christ’s will in relation to the assumed humanity. The scope of his use of one will is disputed."
+    },
+    {
+     "id": "d2-h2",
+     "ref": "252",
+     "year": 634,
+     "formal_object": "pastoral",
+     "assent": "prudential_deference",
+     "binding_status": "not_juridical",
+     "evidence": "D",
+     "says": "Honorius directs the parties away from preaching one or two operations and confesses that Christ operates what is proper to each nature.",
+     "note": "The surviving passages mention directions to Cyrus and Sophronius. The reply has official purposes beyond a private opinion."
     },
     {
      "id": "d2-j4",
@@ -6006,30 +6970,52 @@
      "formal_object": "authentic",
      "assent": "religious_submission",
      "binding_status": "not_juridical",
-     "evidence": "T",
-     "says": "John IV: Honorius meant that Christ had no two contrary wills of mind and flesh."
+     "evidence": "D",
+     "says": "John IV explains his predecessor as denying internal opposition between the will of the flesh and the will of the mind in Christ."
     },
     {
      "id": "d2-c3",
      "ref": null,
      "year": 681,
      "formal_object": "judicial",
-     "assent": "obedience",
-     "binding_status": "in_force",
-     "evidence": "H",
-     "says": "The council anathematises Sergius, Cyrus, Pyrrhus, Paul, Peter and Honorius.",
-     "ext": "Constantinople III, session 13 and the definition"
+     "assent": "disputed",
+     "binding_status": "disputed",
+     "evidence": "D",
+     "says": "The council rejects the correspondence and anathematizes Honorius because it found that he followed Sergius and confirmed his impious doctrines.",
+     "ext": "Constantinople III, session XIII"
+    },
+    {
+     "id": "d2-two",
+     "ref": "291",
+     "year": 681,
+     "formal_object": "revealed",
+     "assent": "faith",
+     "binding_status": "not_juridical",
+     "evidence": "D",
+     "says": "Christ has two natural wills and two natural operations. His human will follows the divine will without opposition."
     },
     {
      "id": "d2-l2",
      "ref": null,
      "year": 683,
      "formal_object": "judicial",
-     "assent": "obedience",
-     "binding_status": "in_force",
-     "evidence": "H",
-     "says": "Honorius is anathematised because he permitted the immaculate faith to be stained, instead of purifying the apostolic Church by apostolic doctrine.",
-     "ext": "Leo II to Emperor Constantine IV"
+     "assent": "disputed",
+     "binding_status": "disputed",
+     "evidence": "D",
+     "says": "Leo II confirms the council and also anathematizes Honorius. His letter to the emperor attributes a grave injury to apostolic faith.",
+     "ext": "Leo II, confirmation to Constantine IV",
+     "note": "The printed Latin and Greek differ in how they express Honorius’s agency. The act of anathematizing him is explicit."
+    },
+    {
+     "id": "d2-l2sp",
+     "ref": null,
+     "year": 683,
+     "formal_object": "historical",
+     "assent": "none",
+     "binding_status": "not_juridical",
+     "evidence": "D",
+     "says": "Leo II tells the Spanish bishops that Honorius fostered heresy through negligence instead of extinguishing it.",
+     "ext": "Leo II, ad episcopos Hispaniae"
     },
     {
      "id": "d2-v1",
@@ -6039,76 +7025,130 @@
      "assent": "faith",
      "binding_status": "not_juridical",
      "evidence": "D",
-     "quote": "when he speaks ex cathedra",
-     "says": "The Roman Pontiff is infallible when he speaks ex cathedra, defining a doctrine of faith or morals to be held by the universal Church."
+     "says": "Papal infallibility applies when the pope, acting as pastor and teacher of all Christians by supreme apostolic authority, defines a doctrine of faith or morals to be held by the whole Church."
     }
    ],
    "matrix": [
     {
      "a": "d2-h",
+     "b": "d2-two",
+     "level": "doctrinal",
+     "result": "potential_contradiction",
+     "why": "If one will means only one natural will altogether, it conflicts with the definition. John IV reads it as the absence of a contrary, disordered will in Christ’s humanity. Honorius’s argument about sin supports that reading, while his general wording and the council’s judgment require attention.",
+     "same_subject": true,
+     "same_sense": "disputed",
+     "same_time": true
+    },
+    {
+     "a": "d2-h2",
+     "b": "d2-two",
+     "level": "doctrinal",
+     "result": "no_conflict",
+     "why": "The earlier letter tells bishops to set aside disputed terminology. The later council defines which terminology expresses the faith. The later definition settles a question that Honorius had sought to quiet.",
+     "same_subject": true,
+     "same_sense": false,
+     "same_time": false
+    },
+    {
+     "a": "d2-h",
+     "b": "d2-c3",
+     "level": "doctrinal",
+     "result": "undetermined",
+     "why": "The council explicitly says the writings confirmed Sergius’s doctrine. That establishes the council’s judgment. How its conclusion bears on Honorius’s private intention requires evidence from his complete arguments.",
+     "same_subject": true,
+     "same_sense": "disputed",
+     "same_time": true
+    },
+    {
+     "a": "d2-c3",
+     "b": "d2-l2sp",
+     "level": "juridical",
+     "result": "no_conflict",
+     "why": "The conciliar finding concerns the effect of what Honorius wrote. The Spanish letter describes how he fostered the error by failing to suppress it. Leo’s explicit confirmation to the emperor includes the anathema.",
+     "same_subject": true,
+     "same_sense": false,
+     "same_time": true
+    },
+    {
+     "a": "d2-h",
      "b": "d2-v1",
      "level": "doctrinal",
      "result": "no_conflict",
-     "why": "Honorius's letters are replies to a patriarch, not definitions to be held by the universal Church; the definition is not engaged.",
+     "why": "The letter addresses a matter of faith and is official correspondence. There is no evidence that it purports to use supreme apostolic authority as teacher of all Christians to define a doctrine required of the whole Church.",
      "same_subject": false,
      "same_sense": false,
-     "same_time": false
+     "same_time": true
     },
     {
      "a": "d2-c3",
      "b": "d2-v1",
      "level": "constitutional",
-     "result": "apparent",
-     "why": "A council anathematised a pope. Vatican I does not say a pope cannot err as a private teacher or be judged after death for his conduct; it defines infallibility under conditions. The condemnation is of a dead pope and was confirmed by his successor.",
+     "result": "no_conflict",
+     "why": "The posthumous sentence concerns Honorius and his letters, and Leo II confirms it. Vatican I’s definition concerns a specified type of papal act. It gives no procedure for judging a reigning pope.",
      "same_subject": false,
      "same_sense": false,
-     "same_time": false
+     "same_time": true
     }
    ],
    "edges": [
     [
-     "d2-h",
      "d2-j4",
+     "d2-h",
      "qualifies"
+    ],
+    [
+     "d2-two",
+     "d2-h",
+     "potential_contradiction"
+    ],
+    [
+     "d2-two",
+     "d2-h2",
+     "specifies"
     ],
     [
      "d2-c3",
-     "d2-l2",
-     "qualifies"
+     "d2-h",
+     "disputed_reception"
     ],
     [
      "d2-l2",
-     "d2-v1",
+     "d2-c3",
      "reaffirms"
     ],
     [
-     "d2-h",
-     "d2-c3",
-     "disputed_reception"
+     "d2-l2sp",
+     "d2-l2",
+     "qualifies"
     ]
    ],
-   "qualifications": "Leo II's confirmation explains the anathema as for negligence; the council's text names Honorius among heretics.",
-   "reception": "Döllinger and the minority at Vatican I pressed the case; Hefele first saw it as an obstacle, then submitted; the majority answered that the letters were not ex cathedra.",
-   "contingency": "Not applicable.",
-   "development": "The case helped fix the conditions of the definition (H).",
-   "hypothesis": "The case is consistent with Vatican I: the letters are not ex cathedra, and the condemnation concerns the person and his letters, as Leo II interpreted it. (T)",
-   "objection": "The council named Honorius a heretic, not merely negligent, and the Greek acts read that he followed the heretics' teaching; Leo II's gloss softens what the council said. If a pope can teach heresy in an official letter, the protection of the papal office is weaker than the definition implies.",
-   "rebuttal": "The definition protects only acts that meet its conditions; it implies nothing about official letters that do not. That Honorius erred in such a letter is compatible with the definition, though it is relevant to case D1 and to theories of wider securitas doctrinalis (P7).",
+   "qualifications": "The acts distinguish a Christological definition, a posthumous sentence and its confirmation, and the terms of a papal reply. The stronger wording of the Latin confirmation and Leo’s wording about negligence both belong in the account.",
+   "reception": "The council’s judgment in session XIII and the acclamations in session XVI name Honorius. Leo II expressly confirms the council and includes him in the anathema. The subsequent transmission to Spain explains his part in terms of failure to suppress error.",
+   "contingency": "Honorius’s directions on vocabulary concern how the bishops were to conduct a dispute. Constantinople III later defines the doctrine in that disputed vocabulary.",
+   "development": "The council defines two natural wills without opposition. Vatican I specifies the conditions of an ex cathedra act. The settled doctrinal content of each act can be compared with the historical judgment about Honorius.",
+   "hypothesis": "Honorius’s letters are official interventions whose meaning and consequences can be judged. They do not have the defining form and universal scope Vatican I requires. (T)",
+   "objection": "Honorius speaks doctrinally and asks other bishops to preach his position. An ecumenical council identifies his letters as confirming impious teaching. Is calling his reply a private opinion enough to reconcile the texts?",
+   "rebuttal": "His direction to other bishops establishes an official act. The further question under Pastor aeternus is whether he defined a doctrine to be held by the universal Church. His second reply directs bishops away from defining either formula for operations. The council’s strong judgment can be stated in full while recognizing the difference in the form and scope of the acts.",
    "verdict": "plausible_concord",
    "confidence": "medium",
-   "stage": 9,
+   "stage": 11,
    "gaps": [
     {
-     "what": "Constantinople III, session 13, and Leo II's letter",
-     "source": "ACO ser. II vol. II; Denzinger–Hünermann (numbers to verify)",
-     "settles": "The exact terms of the anathema and confirmation."
+     "what": "The best text of Leo II’s confirmation and the relation of its Latin and Greek versions",
+     "source": "Riedinger, Acta Conciliorum Oecumenicorum, series II, vol. 2, part 2, and the relevant manuscript witnesses.",
+     "settles": "Which wording was transmitted in each recension and how strongly the confirmation describes Honorius’s agency."
+    },
+    {
+     "what": "The extent to which the council’s judgment addressed Honorius’s intended meaning",
+     "source": "The wider sequence of sessions XII–XVI, the controversial letters of Sergius and Cyrus, and John IV’s full letter.",
+     "settles": "Whether the council’s concern was the stated proposition, the effect of suppressing a formula, or both."
     }
    ],
-   "next_source": "The acts of Constantinople III, session 13.",
+   "next_source": "Collate the text of Leo II’s confirmation in Riedinger with the Mansi Latin and Greek and Leo’s letter to Spain.",
    "audio": {
-    "taught": "Pope Honorius wrote of one will in Christ. A later council condemned him with the heretics who taught that, and Pope Leo II confirmed it, saying Honorius had let the faith be stained. Vatican I defined that the pope is infallible only when he defines a doctrine for the whole Church.",
-    "authority": "A private papal letter; a conciliar judgment confirmed by a pope; a conciliar definition.",
-    "permanence": "Permanent: Christ has two wills, and the conditions of infallibility. Historical: the judgment on Honorius himself."
+    "taught": "Honorius wrote of one will and tried to quiet the dispute over operations. Constantinople Three condemned him and defined two natural wills and operations in Christ.",
+    "authority": "The council’s judgment gave a reason from the correspondence. Leo the Second confirmed the anathema. Vatican One defined infallibility for a specified act addressed to the whole Church.",
+    "permanence": "The dogmas on Christ and papal infallibility stand. The precise historical reading of Honorius and the wording of Leo’s confirmation still deserve study."
    },
    "related_disputed": [
     "honorius",
@@ -6119,15 +7159,36 @@
     "R6"
    ],
    "provisional": true,
-   "source_verified": false,
+   "source_verified": true,
    "log": [
     {
      "date": "2026-11-18",
      "change": "Draft created from the texts the site holds; primary sources not yet verified against critical editions."
+    },
+    {
+     "date": "2026-11-18",
+     "change": "Checked the two replies, the conciliar judgment and acclamations, the published Latin and Greek confirmation and Leo II’s letter to the Spanish bishops. Applied the criteria in Pastor aeternus."
     }
    ],
    "last_reviewed": "2026-11-18",
-   "gate": null
+   "gate": null,
+   "evidence_reviews": [
+    {
+     "question": "What does Honorius’s official correspondence say?",
+     "finding": "The first letter says one will and invokes Christ’s freedom from fallen conflict. The second directs bishops to avoid one or two operations while confessing that each nature acts in the same Christ.",
+     "test": "Compare both letters with John IV’s defense and with the later distinction between two natural wills and contrary wills."
+    },
+    {
+     "question": "What grounds did the council and Leo II actually give?",
+     "finding": "The council says Honorius followed Sergius and confirmed impious doctrines. The Latin confirmation’s stronger expression and the Greek wording about allowing the faith to be stained are both transmitted. Leo’s letter to Spain expressly says negligence fostered the error.",
+     "test": "Read the conciliar sentence, the confirmation, and the Spanish letter as distinct witnesses. Check the versions before deciding the precise meaning of the confirmation."
+    },
+    {
+     "question": "Do the letters meet Vatican I’s conditions?",
+     "finding": "The letters address a doctrinal dispute and direct bishops. Their stated aim and audience give no evidence of a definition of doctrine to be held by the whole Church.",
+     "test": "Apply the criteria to the stated action and addressees. The doctrinal subject and the pope’s official capacity do not establish the form or universal scope of a definition."
+    }
+   ]
   },
   {
    "id": "D3",
