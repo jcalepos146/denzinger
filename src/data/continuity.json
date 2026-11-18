@@ -1,8 +1,13 @@
 {
  "meta": {
-  "version": "0.4",
+  "version": "0.4.1",
   "protocol_date": "2026-11-18",
   "changes": [
+   {
+    "version": "0.4.1",
+    "date": "2026-11-18",
+    "change": "The competence and reception test now requires independent evidence for the original legal force of a document revoked as a precaution. D1 applies the change to Deus novit."
+   },
    {
     "version": "0.4",
     "date": "2026-11-18",
@@ -38,7 +43,7 @@
   ],
   "evidence_review": [
    "Record the witness and how it is known. Distinguish the enacted text, contemporary testimony, a draft, a later interpretation and a citation still to verify.",
-   "State the claim the evidence supports or weakens. For a contested legal act distinguish the fact of the act, the competence to perform it and the scope of its reception.",
+   "State the claim the evidence supports or weakens. For a contested legal act distinguish the fact of the act, the competence to perform it and the scope of its reception. If an act was revoked as a precaution, establish its prior force independently.",
    "Compare the strongest rival explanations against the same evidence. Record the missing premise and what evidence could change the conclusion.",
    "Rerun the conditions and comparisons. If the method itself changes, give the reason and retain the previous assessment alongside the new one."
   ]
@@ -3903,11 +3908,20 @@
      "refs": [
       "B2"
      ],
-     "local": "none",
+     "local": "summary",
      "verified": true,
      "edition": "Mansi 29 (Venice, 1788; Paris reprint 1904), cols. 78–79, in the acts of Basel session 16. Also Monumenta conciliorum generalium saeculi XV 2, 565–74.",
-     "checked": "2026-11-18: read in Mansi and checked against the page images (archive.org sacrorumconcilio0029vari, pp. n54–n55). The bull is dated \"xviii Kalendas Januarii\" 1433 (15 December) and subscribed by cardinals; session 16 approves and accepts it (\"approbat, acceptat ... ratasque habet & gratas\").",
+     "checked": "Checked in Mansi. The bull is dated 15 December 1433 and subscribed by cardinals. Eugene says Deus novit never issued from him or with his knowledge and revokes it as a precaution if it should appear. Session 16 approves and accepts Dudum sacrum and incorporates the revoked letters in its acts.",
      "url": "https://archive.org/details/sacrorumconcilio0029vari/page/n54/mode/2up"
+    },
+    {
+     "label": "Deus novit (13 September 1433), letter circulated in Eugene IV’s name",
+     "refs": [],
+     "local": "none",
+     "edition": "Printed among the letters revoked in the acts of Basel session 16, Mansi 29, cols. 82–89. See col. 86 for the disputed claim.",
+     "checked": "The letter calls a declaration of Basel’s lawful continuation after the dissolution sacrilegious and heretical. Publication in the acts preserves the text. Eugene’s denial of issuance leaves its status as a papal act disputed.",
+     "verified": true,
+     "url": "https://archive.org/details/sacrorumconcilio0029vari/page/n58/mode/1up"
     },
     {
      "verified": true,
@@ -4291,13 +4305,13 @@
      "id": "d1-dn",
      "ref": null,
      "year": 1433,
-     "formal_object": "authentic",
+     "formal_object": "disputed",
      "assent": "disputed",
-     "binding_status": "abrogated",
+     "binding_status": "disputed",
      "evidence": "H",
-     "says": "No general synod is or ever will be valid that is not supported by the authority of the supreme pontiff; to declare that a council had continued at Basel after the dissolution would be sacrilegious and heretical.",
-     "note": "Read in the OCR; the column is still to be checked against the image. Dudum sacrum revokes it \"ad cautelam\" while denying that it ever issued from the pope or with his knowledge.",
-     "ext": "Eugene IV, Deus novit (13 September 1433), printed with the acts of session 16 in Mansi 29"
+     "says": "The letter says a general synod requires the authority of the supreme pontiff and calls a declaration that Basel lawfully continued after the dissolution sacrilegious and heretical.",
+     "note": "The letter speaks in Eugene IV’s name. In Dudum sacrum he denies that it issued from him or with his knowledge and revokes it ad cautelam. Prior binding force would require proof of authentic papal issuance.",
+     "ext": "Deus novit, printed in the acts of Basel session 16, Mansi 29, cols. 82–89, at col. 86"
     },
     {
      "id": "d1-ds2",
@@ -4640,11 +4654,11 @@
      "a": "d1-dn",
      "b": "d1-ds2",
      "level": "juridical",
-     "result": "apparent",
-     "why": "Deus novit states the principle that no council is valid without papal authority; Dudum sacrum revokes it while denying it was ever the pope's act. Revoking a document is not the same as rejecting its doctrine, and Eugene restated that doctrine in Moyses vir Dei (1439) and Etsi non dubitemus (1441); but in December 1433 he withdrew it publicly.",
+     "result": "contradiction",
+     "why": "The texts give opposite answers about whether Basel lawfully continued during the same interval. Eugene denies that Deus novit issued from him or with his knowledge, then revokes it as a precaution. That leaves a conflict between the texts, with disputed grounds for attributing both acts to Eugene as pope.",
      "same_subject": true,
-     "same_sense": "disputed",
-     "same_time": false
+     "same_sense": true,
+     "same_time": true
     },
     {
      "a": "d1-e4b",
@@ -4851,12 +4865,7 @@
     [
      "d1-dn",
      "d1-ds2",
-     "contrasts_prudentially"
-    ],
-    [
-     "d1-dn",
-     "d1-mvd",
-     "reaffirms"
+     "potential_contradiction"
     ],
     [
      "d1-e4b",
@@ -4965,9 +4974,14 @@
      "settles": "Confirms Koch's text of the instrument and the list of decrees."
     },
     {
-     "what": "The first Dudum sacrum (1 August 1433) and Deus novit",
-     "source": "Mansi 29 (archive.org sacrorumconcilio0029vari)",
-     "settles": "How the successive papal instruments changed the conditions for recognising Basel. The session 14 form and the second Dudum sacrum have been compared in Mansi."
+     "what": "The first Dudum sacrum (1 August 1433) and the transmission of Deus novit",
+     "source": "Mansi 29, cols. 78–90, and the corresponding register and manuscript witnesses",
+     "settles": "How the successive instruments changed the terms for recognising Basel, and whether any independent witness establishes papal authorisation of Deus novit."
+    },
+    {
+     "what": "Joseph Gill’s description of the examination of Deus novit",
+     "source": "Gill’s histories of Eugene IV and the Council of Florence, compared with Segovia, Historia gestorum VI.19",
+     "settles": "Whether Gill reports a censure voiced at Basel or gives that judgment himself. His exact wording and page remain to be verified."
     },
     {
      "what": "Etsi non dubitemus (21 April 1441)",
@@ -5063,6 +5077,10 @@
     {
      "date": "2026-11-18",
      "change": "Applied protocol v0.4 to the proposed moderate conciliarist reading and added the tests that could change the assessment."
+    },
+    {
+     "date": "2026-11-18",
+     "change": "Checked Deus novit in Mansi and Basel’s examination in Segovia. Reclassified the letter’s original legal status as disputed and recorded the textual contradiction over Basel’s continuation. The verdict on the limited reconciliation remains plausible concord, with medium confidence."
     }
    ],
    "last_reviewed": "2026-11-18",
@@ -5142,6 +5160,13 @@
      "confidence": "medium",
      "date": "2026-11-18",
      "why": "The new review distinguishes evidence that historical actors proposed an emergency theory from evidence that the Church enacted or received it. The limited reconciliation remains plausible. The broader claim about judging a pope for notorious, incorrigible scandal still requires independent proof."
+    },
+    {
+     "protocol": "0.4.1",
+     "verdict": "plausible_concord",
+     "confidence": "medium",
+     "date": "2026-11-18",
+     "why": "Deus novit and Dudum sacrum disagree about Basel’s continuation. Checking the letter, the revocation and Segovia clarifies which claims have documentary support and which require proof of authorisation or formal synodal action."
     }
    ],
    "research_sources": [
@@ -5186,6 +5211,13 @@
      "citation": "Deutsche Reichstagsakten XI, pp. 67–68. Compare the second Dudum sacrum (B2) and the later letter to Basel (B20).",
      "url": "https://www.digitale-sammlungen.de/en/view/bsb11833358?page=130,131",
      "note": "Eugene disputed the proposed wording at that point in the negotiations. In December he used decree and declaration language to recognise the council’s continuation. The sequence sharpens the question of which legal effects the final bull conferred."
+    },
+    {
+     "title": "Juan de Segovia on Basel’s examination of Deus novit",
+     "role": "Contemporary conciliar chronicle",
+     "citation": "Historia gestorum generalis synodi Basiliensis VI.19, Monumenta conciliorum generalium II (1873), p. 499.",
+     "url": "https://nlp.fi.muni.cz/projekty/ahisto/portal/book/111?lpage=499",
+     "note": "Segovia reports that some theologians and jurists called the letter erroneous and others called it heretical, blasphemous, seditious or scandalous. Their conclusions were reported in the deputations. He says no express synodal definition was issued then, and explains why many thought a public revocation would suffice in the proceedings on faith."
     },
     {
      "title": "Stieber on Nicholas V’s confirmation",
@@ -5261,6 +5293,11 @@
      "question": "Can notorious scandal cause loss of an otherwise valid papal title?",
      "finding": "The broader proposal treats grave, notorious and incorrigible scandal as legally analogous to heresy. Some medieval canonists give grounds for that analogy. Dati’s argument about exercise of jurisdiction supplies a historically attested mechanism where the pope is absent, illegitimate or deposed.",
      "test": "Prove independently that the alleged misconduct either caused loss of office or gave a competent body authority to declare it. A legal analogy or refusal to obey a disputed tribunal alone leaves the premise open. Test scandal, doctrinal heresy and disputed title separately."
+    },
+    {
+     "question": "What was judged and revoked in the case of Deus novit?",
+     "finding": "The letter calls Basel’s claimed continuation heretical. At Basel some reviewers called the letter itself heretical. Segovia records their deliberations and says the council made no express synodal definition at the time. Eugene denies the letter issued from him or with his knowledge, revokes it as a precaution, and declares Basel lawfully continued.",
+     "test": "Read the deputations’ censures, Segovia’s interpretation of the settlement, and the enacted text of session 16 each on its own terms. A formal censure would require a corresponding act. A claim that Eugene reversed his own teaching would require independent evidence that he authorised Deus novit."
     },
     {
      "question": "What did papal reception give legal force at Basel?",
