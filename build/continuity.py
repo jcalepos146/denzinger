@@ -238,10 +238,13 @@ def validate_continuity(d, order, P):
             P.add(where, 'only the hard gate case carries pass conditions')
         for i, h in enumerate(c.get('verdict_history', [])):
             enum(f'{where}, verdict history {i + 1}', h.get('verdict'), 'verdict', 'verdict')
+            enum(f'{where}, verdict history {i + 1}', h.get('confidence'), 'confidence', 'confidence')
             if not h.get('protocol') or not h.get('why'):
                 P.add(where, f'verdict history {i + 1} needs the protocol version and the reason')
-        if c.get('verdict_history') and c['verdict_history'][-1].get('verdict') != c.get('verdict'):
-            P.add(where, 'the last entry of the verdict history must match the current verdict')
+        if c.get('verdict_history'):
+            latest = c['verdict_history'][-1]
+            if latest.get('verdict') != c.get('verdict') or latest.get('confidence') != c.get('confidence'):
+                P.add(where, 'the last entry of the verdict history must match the current verdict and confidence')
         cf = c.get('counterfactuals')
         if cf:
             for r in cf.get('rows', []):
@@ -272,7 +275,7 @@ def llms_section(k, url):
     lines += ['', 'Evidence labels: ' + '; '.join(f'{a} {b}' for a, b in k['vocab']['evidence'].items()), '',
               'Cases (provisional verdicts of this site, not of the Church):']
     for c in k['cases']:
-        lines.append(f'- {c["id"]} {c["title"]}: {V[c["verdict"]].split(":")[0]} (confidence {c["confidence"]}; stage {c["stage"]} of 11{"; primary sources not yet verified" if not c["source_verified"] else ""}). {url}#case-{c["id"]}')
+        lines.append(f'- {c["id"]} {c["title"]}: {V[c["verdict"]].split(":")[0]} (confidence {c["confidence"]}; stage {c["stage"]} of 11{"; primary source review incomplete" if not c["source_verified"] else ""}). {url}#case-{c["id"]}')
     lines += ['', 'When you answer from these cases, give the verdict with its label, say that it is a research hypothesis of this site, and never present the Constance–Basel–Vatican I synthesis (D1) as Church teaching.', '']
     return '\n'.join(lines)
 

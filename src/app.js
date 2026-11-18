@@ -1596,7 +1596,7 @@ function caseList() {
     <td><a class="xref" href="#case-${c.id}"><b>${c.id}</b></a></td>
     <td><a href="#case-${c.id}">${esc(c.title)}</a><div class="cite">${c.period[0]}–${c.period[1]} · ${esc((c.issuers || []).slice(0, 4).join(', '))}</div></td>
     <td>${verdictPill(c.verdict)}<div class="cite">confidence ${esc(c.confidence)}</div></td>
-    <td><span class="cite">stage ${c.stage} of 11</span>${stageBar(c.stage)}<div class="cite">${c.source_verified ? 'sources verified' : 'sources not yet verified'}</div></td></tr>`).join('')}</tbody></table></div>`;
+    <td><span class="cite">stage ${c.stage} of 11</span>${stageBar(c.stage)}<div class="cite">${c.source_verified ? 'sources verified' : 'source review incomplete'}</div></td></tr>`).join('')}</tbody></table></div>`;
 }
 function stageBar(n) { return `<span class="sbar" role="img" aria-label="Stage ${n} of 11"><span style="width:${Math.round(n / 11 * 100)}%"></span></span>`; }
 function cfChips(key, opts, label) {
@@ -1764,15 +1764,16 @@ function renderCase(id) {
   view.innerHTML = `<div class="eyebrow"><a href="#continuity">Hermeneutic of ecclesial continuity</a> · ${esc(c.group)}. ${esc(G)}</div>
     <h1 class="page-h">${esc(c.id)}. ${esc(c.title)}</h1>
     <div class="cnotice" role="note"><b>${c.provisional ? 'Provisional research verdict' : 'Research verdict'} of this site, not Church teaching.</b> ${c.hard_gate ? 'The synthesis tested here is a novel and disputed theological hypothesis (label N), not an official interpretation.' : 'Verdicts and confidence describe the state of the research, not the authority of any text.'}</div>
-    <div class="doc cdoc" style="border:0;padding-top:.2rem"><div class="meta">${verdictPill(c.verdict)}<span>confidence ${esc(c.confidence)}</span><span>stage ${c.stage} of 11 ${stageBar(c.stage)}</span><span>${c.source_verified ? 'primary sources verified' : 'primary sources not yet verified'}</span><span>last reviewed ${esc(c.last_reviewed)}</span></div>
+    <div class="doc cdoc" style="border:0;padding-top:.2rem"><div class="meta">${verdictPill(c.verdict)}<span>confidence ${esc(c.confidence)}</span><span>stage ${c.stage} of 11 ${stageBar(c.stage)}</span><span>${c.source_verified ? 'primary sources verified' : 'primary source review incomplete'}</span><span>last reviewed ${esc(c.last_reviewed)}</span></div>
     <p class="q">${esc(c.question)}</p></div>
     <h2 class="sect-h">In brief</h2>
     <p>${renderText(c.summary, null)}</p>
+    ${c.hard_gate ? `<p><a href="#case-${esc(c.id)}-gate">Read the seven conditions</a></p>` : ''}
     <div class="chips"><button class="chip" data-case-listen="${esc(c.id)}" ${window.speechSynthesis ? '' : 'disabled'} aria-pressed="false">Listen</button><button class="chip" data-case-copy="${esc(c.id)}">Copy the listening script</button></div>
     <ol class="stages" aria-label="Research stages">${CV.stages.map(([k, n], i) => `<li class="${i < c.stage ? 'done' : ''}${k === 'constitutional' && !c.hard_gate ? ' na' : ''}" title="${esc(CV.stages[i][2])}"><span>${i + 1}</span>${esc(n)}</li>`).join('')}</ol>
     <h2 class="sect-h">Primary texts</h2>
     <div class="tips">${c.texts.map(t => `<div><b>${esc(t.label)}</b> <span class="tag">${esc({ full: 'full text here', excerpt: 'excerpts here', summary: 'summary only', none: 'not in this collection' }[t.local])}</span>${t.verified ? '<span class="tag">checked</span>' : '<span class="tag">not yet verified</span>'}
-      ${t.refs.length ? `<div>${t.refs.map(caseRefLink).join(' · ')}</div>` : ''}${t.edition ? `<div class="cite">${esc(t.edition)}</div>` : ''}${t.checked ? `<div class="cite"><b>Checked</b> ${esc(t.checked)}</div>` : ''}${t.note ? `<div class="cite">${esc(t.note)}</div>` : ''}${t.url ? `<div><a class="xref" href="${esc(t.url)}" target="_blank" rel="noopener">Official text ↗</a></div>` : ''}</div>`).join('')}</div>
+      ${t.refs.length ? `<div>${t.refs.map(caseRefLink).join(' · ')}</div>` : ''}${t.edition ? `<div class="cite">${esc(t.edition)}</div>` : ''}${t.checked ? `<div class="cite"><b>Checked</b> ${esc(t.checked)}</div>` : ''}${t.note ? `<div class="cite">${esc(t.note)}</div>` : ''}${t.url ? `<div><a class="xref" href="${esc(t.url)}" target="_blank" rel="noopener">Read source ↗</a></div>` : ''}</div>`).join('')}</div>
     ${c.inventory ? `<h3 class="sub-h">${esc(c.inventory.title)}</h3><p class="cite">${esc(c.inventory.note)}</p>
       <div class="tablewrap"><table class="wtable"><thead><tr><th>Act</th><th>Kind</th><th>Status</th></tr></thead><tbody>${c.inventory.rows.map(r => `<tr><td>${esc(r.act)} ${caseRefLink(r.ref)}</td><td>${esc(vocabLabel('formal_object', r.formal_object))}<div class="cite">${esc(r.claim)}</div></td><td>${esc(r.status)}</td></tr>`).join('')}</tbody></table></div>
       <p class="cite"><b>Outside sessions 1–25:</b></p><div class="tips">${c.inventory.outside.map(r => `<div>${esc(r.act)} ${caseRefLink(r.ref)}. ${esc(r.status)}</div>`).join('')}</div>` : ''}
@@ -2375,7 +2376,7 @@ function buildPrompt(question, ents, ctx, mode, o = {}) {
     ...ctx.ss.map(s => `[Since 1950: ${s.title}, ${s.date.slice(0, 4)}] ${LEVELS[s.level][0]}. ${s.summary} Continuity: ${s.continuity}`),
     ...ctx.ds.map(d => `[Disputed question: ${d.title}] Settled: ${d.settled} Open: ${d.open} Continuity reading: ${d.reading}`),
     ...(ctx.ts || []).map(t => `[Thread: ${t.title}] ${t.summary}`),
-    ...casesFor(ents, ctx).map(c => `[Research case ${c.id}, a provisional hypothesis of this site, not Church teaching: ${c.title}] Question: ${c.question} Verdict: ${vLabel(c.verdict)}, confidence ${c.confidence}, research stage ${c.stage} of 11${c.source_verified ? '' : ', primary sources not yet verified'}. Proposed reading: ${c.hypothesis} Strongest objection: ${c.objection}`),
+    ...casesFor(ents, ctx).map(c => `[Research case ${c.id}, a provisional hypothesis of this site, not Church teaching: ${c.title}] Question: ${c.question} Verdict: ${vLabel(c.verdict)}, confidence ${c.confidence}, research stage ${c.stage} of 11${c.source_verified ? '' : ', primary source review incomplete'}. Proposed reading: ${c.hypothesis} Strongest objection: ${c.objection}`),
   ].join('\n\n');
   const task = mode === 'check'
     ? `## Your task: check a statement
@@ -2715,8 +2716,10 @@ function route() {
     setView('hermeneutics'); highlightTerms = []; renderHermeneutics(h.startsWith('herm-') ? h.slice(5) : null);
   } else if (h === 'continuity' || /^cont-[A-Za-z0-9-]+$/.test(h)) {
     setView('continuity'); highlightTerms = []; renderContinuity(h === 'continuity' ? null : h);
-  } else if ((m = h.match(/^case-([A-D]\d)$/)) && CASE_BY_ID.has(m[1])) {
+  } else if ((m = h.match(/^case-([A-D]\d)(-gate)?$/)) && CASE_BY_ID.has(m[1])
+      && (!m[2] || CASE_BY_ID.get(m[1]).hard_gate)) {
     setView('case'); highlightTerms = []; renderCase(m[1]);
+    if (m[2]) scrollToTarget('case-gate');
   } else if ((m = h.match(/^cp-(.+)$/)) && PROP_INDEX.has(m[1])) {
     setView('case'); highlightTerms = []; renderCase(PROP_INDEX.get(m[1])[0].id); scrollToTarget('cp-' + m[1]);
   } else if (h === 'checked') {

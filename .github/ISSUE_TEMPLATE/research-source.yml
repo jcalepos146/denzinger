@@ -1,0 +1,34 @@
+name: Send a source for the continuity research
+description: A primary text, critical edition or study that settles an item in the verification backlog of a research case.
+title: "Source for "
+body:
+  - type: input
+    id: case
+    attributes:
+      label: Which case?
+      description: A1 to D6, or "protocol". Filled in when you come from the site.
+  - type: input
+    id: item
+    attributes:
+      label: Which item of the backlog?
+      description: Filled in when you come from the site.
+    validations:
+      required: true
+  - type: textarea
+    id: source
+    attributes:
+      label: The source
+      description: Full citation (edition, volume, page or column), and a link to a scan if there is one. Original language first.
+    validations:
+      required: true
+  - type: textarea
+    id: bearing
+    attributes:
+      label: What it shows
+      description: Quote the decisive words briefly and say which proposition, comparison or pass condition they bear on. Evidence against the site's proposed reading is as welcome as evidence for it.
+  - type: checkboxes
+    id: checked
+    attributes:
+      label: Checked
+      options:
+        - label: I have read the passage in the edition I cite, not only in a secondary source.

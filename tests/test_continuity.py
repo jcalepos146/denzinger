@@ -39,10 +39,11 @@ class ContinuityTests(unittest.TestCase):
         for c in self.k['cases']:
             self.assertTrue(case_refs(c) or c['gaps'], c['id'])
 
-    def test_d1_is_the_hard_gate_and_unresolved(self):
+    def test_d1_is_the_hard_gate_and_provisional(self):
         d1 = self.cases['D1']
         self.assertTrue(d1.get('hard_gate'))
         self.assertEqual([g['n'] for g in d1['gate']], list(range(1, 8)))
+        self.assertTrue(d1['provisional'])
         self.assertNotEqual(d1['verdict'], 'demonstrated_concord')
 
     def test_d1_cannot_be_declared_demonstrated_by_analogy(self):
@@ -121,10 +122,23 @@ class ContinuityTests(unittest.TestCase):
         self.assertTrue(h and h[0]['version'] == '0.2' and 'Specify who discerns' in h[0]['text'])
 
     def test_d1_shows_its_verdict_under_each_protocol(self):
-        hist = self.cases['D1']['verdict_history']
-        self.assertEqual([x['protocol'] for x in hist], ['0.2', '0.3'])
-        self.assertEqual(hist[0]['verdict'], 'unresolved_tension')
-        self.assertEqual(hist[-1]['verdict'], self.cases['D1']['verdict'])
+        case = self.cases['D1']
+        history = case['verdict_history']
+        self.assertEqual(history[0]['protocol'], '0.2')
+        self.assertEqual(history[0]['verdict'], 'unresolved_tension')
+        self.assertEqual(history[1]['protocol'], '0.3')
+        self.assertEqual(history[1]['confidence'], 'low')
+        self.assertEqual(history[-1]['protocol'], self.k['meta']['version'])
+        self.assertEqual(history[-1]['verdict'], case['verdict'])
+        self.assertEqual(history[-1]['confidence'], case['confidence'])
+
+    def test_d1_rejects_confidence_out_of_sync_with_history(self):
+        def change_confidence(k):
+            history = next(c for c in k['cases'] if c['id'] == 'D1')['verdict_history']
+            history[-1]['confidence'] = 'high'
+
+        self.assertTrue(any('must match the current verdict and confidence' in p
+                            for p in self.problems_after(change_confidence)))
 
     def test_d1_tests_every_papal_line(self):
         rows = self.cases['D1']['counterfactuals']['rows']
