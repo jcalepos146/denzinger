@@ -7,6 +7,7 @@ things still to verify, and no case is called "demonstrated concord" while a pre
 """
 import re
 import unicodedata
+from urllib.parse import urlparse
 
 CASE_IDS = ['A1', 'A2', 'A3', 'A4', 'A5', 'B1', 'B2', 'B3', 'B4', 'B5', 'B6', 'B7',
             'C1', 'C2', 'C3', 'C4', 'C5', 'C6', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6']
@@ -155,6 +156,15 @@ def validate_continuity(d, order, P):
             for r in t.get('refs', []):
                 if r not in order:
                     P.add(where, f'no entry {r}')
+        for i, item in enumerate(c.get('evidence_reviews', []), 1):
+            if any(not item.get(key) for key in ('question', 'finding', 'test')):
+                P.add(where, f'evidence review {i} requires a question, finding and test')
+        for i, item in enumerate(c.get('research_sources', []), 1):
+            if any(not item.get(key) for key in ('title', 'role', 'citation', 'note')):
+                P.add(where, f'research source {i} requires a title, role, citation and note')
+            link = urlparse(item.get('url', ''))
+            if link.scheme != 'https' or not link.netloc:
+                P.add(where, f'research source {i} requires an HTTPS URL')
         for r in c.get('refs_extra', []):
             if r not in order:
                 P.add(where, f'no entry {r}')
@@ -272,6 +282,8 @@ def llms_section(k, url):
         'Principles P1–P8:',
     ]
     lines += [f'- {p["id"]} {p["title"]}: {p["rule"]}' for p in k['principles']]
+    if k['meta'].get('evidence_review'):
+        lines += ['', 'Review new evidence:'] + [f'- {step}' for step in k['meta']['evidence_review']]
     lines += ['', 'Evidence labels: ' + '; '.join(f'{a} {b}' for a, b in k['vocab']['evidence'].items()), '',
               'Cases (provisional verdicts of this site, not of the Church):']
     for c in k['cases']:

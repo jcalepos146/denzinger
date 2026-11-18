@@ -1,8 +1,13 @@
 {
  "meta": {
-  "version": "0.3",
+  "version": "0.4",
   "protocol_date": "2026-11-18",
   "changes": [
+   {
+    "version": "0.4",
+    "date": "2026-11-18",
+    "change": "Added a review step that tests how new evidence changes a claim, which inference remains unsupported, and what would change the verdict. D1 records the first application."
+   },
    {
     "version": "0.3",
     "date": "2026-11-18",
@@ -30,6 +35,12 @@
    "gate",
    "graph",
    "backlog"
+  ],
+  "evidence_review": [
+   "Record the witness and how it is known. Distinguish the enacted text, contemporary testimony, a draft, a later interpretation and a citation still to verify.",
+   "State the claim the evidence supports or weakens. For a contested legal act distinguish the fact of the act, the competence to perform it and the scope of its reception.",
+   "Compare the strongest rival explanations against the same evidence. Record the missing premise and what evidence could change the conclusion.",
+   "Rerun the conditions and comparisons. If the method itself changes, give the reason and retain the previous assessment alongside the new one."
   ]
  },
  "vocab": {
@@ -3840,7 +3851,7 @@
      "local": "excerpt",
      "edition": "Hardt, Mansi, Raynald, Fink, as each entry states; not yet checked against scans.",
      "verified": false,
-     "checked": "The session 45 declaration has its own verified record. The 10 March 1418 act and Martin V’s later letters still need checking."
+     "checked": "The session 45 declaration is checked separately below. Gerson quotes a text on appeals attributed to Martin V. The papal instrument’s date and formal status, and Martin V’s later letters, still need checking."
     },
     {
      "label": "Basel, sessions 1–25 (1431–1437)",
@@ -3919,7 +3930,7 @@
      "local": "full",
      "edition": "Moyses vir Dei translated for the site from the Latin on vatican.va (COD, 2013).",
      "verified": true,
-     "checked": "2026-11-18: Moyses vir Dei checked in Tanner, Florence session 7 (4 September 1439): the propositions condemned \"as understood in the perverse sense of the men at Basel\", \"contrary to the sound sense of sacred scripture, the holy fathers and the council of Constance itself\"; the post-transfer acts \"null ... and of no effect\"."
+     "checked": "2026-11-18: Moyses vir Dei checked in Tanner, Florence session 7, and dated 4 September 1439 in both Tanner and the Holy See’s Latin edition: the propositions condemned \"as understood in the perverse sense of the men at Basel\", \"contrary to the sound sense of sacred scripture, the holy fathers and the council of Constance itself\"; the post-transfer acts \"null ... and of no effect\"."
     },
     {
      "label": "Eugene IV and Nicholas V, 1446–1447",
@@ -3975,11 +3986,31 @@
       "1831",
       "1839"
      ],
-     "local": "full",
+     "local": "excerpt",
      "edition": "Holy See, Latin edition, chapters 1–4. Deferrari translation in the linked entries.",
      "verified": true,
      "checked": "The Latin was read across all four chapters, including the chapter 3 canon, the prohibition of appeals to a council as a higher authority, and the conditions and irreformability of ex cathedra definitions in chapter 4.",
      "url": "https://www.vatican.va/archive/hist_councils/i-vatican-council/documents/vat-i_const_18700718_pastor-aeternus_la.html"
+    },
+    {
+     "label": "Jean Gerson, on appeals from the supreme pontiff in matters of faith (1418)",
+     "refs": [
+      "C7"
+     ],
+     "local": "none",
+     "verified": true,
+     "edition": "Opera omnia, ed. Louis Ellies Du Pin, vol. 2 (1706), cols. 303–304.",
+     "url": "https://archive.org/details/JoannisGersoniiOperaOmnia17062/page/n159/mode/1up",
+     "checked": "Gerson quotes and contests the prohibition attributed to Martin V, citing Haec Sancta. He says the provision was reported to have been issued on 10 March. This is a contemporary witness to the dispute. The papal instrument and its promulgation still need independent verification."
+    },
+    {
+     "label": "The prosecution of Benedict XIII and Gerson’s trial materials (1417)",
+     "refs": [],
+     "local": "none",
+     "verified": true,
+     "edition": "Mansi 27, cols. 1099–1100. Gerson, Opera omnia II (1706), cols. 301–302.",
+     "url": "https://archive.org/details/sacrorumconcilio0027joan/page/n563/mode/1up",
+     "checked": "The prosecution sought removal even on an alternative that did not depend on heresy. Gerson’s trial materials distinguish conduct giving rise to suspicion from proof of heresy in Benedict’s own statements. Session 37 declared loss of office and added a precautionary deposition."
     }
    ],
    "inventory": {
@@ -4873,10 +4904,10 @@
      "reaffirms"
     ]
    ],
-   "qualifications": "Haec Sancta names three matters (faith, the ending of the schism, reform in head and members), and its penal clause reaches \"any other general council lawfully assembled\". Basel's session 2 speaks of \"this council\". Moyses vir Dei condemns the three truths in Basel's sense. Eugene IV's reception runs \"up to the translation\" and \"without prejudice\" to the Apostolic See.",
-   "reception": "Martin V’s recorded approval is qualified by conciliariter and matters of faith. It was given during the Falkenberg dispute, and its application to Haec Sancta remains contested. Florence invokes a sound sense of Constance when condemning Basel’s later theses. Pius II’s 1463 bull honours Constance and distinguishes cases with an undoubted Roman pontiff. That is evidence of later papal reception. It does not settle the original decree’s meaning. Scholars remain divided over the scope of Haec Sancta and the significance of Eugene IV’s adherence to Basel. See the Companion to the Council of Basel, pp. 17, 122–123, 251.",
+   "qualifications": "Haec Sancta names three matters (faith, the ending of the schism, reform in head and members), and its penal clause reaches \"any other general council lawfully assembled\". Basel's session 2 speaks of \"this council\". Moyses vir Dei condemns the three truths in Basel's sense. Eugene IV's reception runs \"up to the translation\" and \"without prejudice\" to the Apostolic See. Medieval commentary supplies different reasons for warning or judging a pope, including notoriety and incorrigibility. Those arguments clarify the language at Constance. They leave open which of those reasons the assembly could validly apply to a legitimate pope.",
+   "reception": "Martin V’s recorded approval is qualified by conciliariter and matters of faith. It was given during the Falkenberg dispute, and its application to Haec Sancta remains contested. Florence invokes a sound sense of Constance when condemning Basel’s later theses. Pius II’s 1463 bull honours Constance and distinguishes cases with an undoubted Roman pontiff. That is evidence of later papal reception. It does not settle the original decree’s meaning. Scholars remain divided over the scope of Haec Sancta and the significance of Eugene IV’s adherence to Basel. See the Companion to the Council of Basel, pp. 17, 122–123, 251. Gerson’s response to the reported prohibition on appeals is contemporary evidence that he understood Haec Sancta to bind the pope in matters of faith. The scope of Martin V’s approval remains open.",
    "contingency": "Several acts in this file are plainly contingent determinations and pass the test: Frequens lapsed; the Compacts were revoked by Pius II (B4); the reform decrees were partly received in concordats and partly replaced (B6, B14). The depositions are judicial acts on persons and remain settled (C11). The test does not dissolve the hard core: Haec Sancta and Basel session 2 assert a right, not only a policy, and the right asserted is constitutional.",
-   "development": "The limited reading preserves the four chapters of Pastor aeternus. A disputed title is a question of who holds the office instituted in the first two chapters. The full jurisdiction of its holder in chapter 3 and the conditions and irreformability of ex cathedra definitions in chapter 4 remain intact. Lumen gentium 22 describes supreme authority of the episcopal college with its head. It cannot by itself establish a headless council’s claimed competence during a schism.",
+   "development": "The limited reading preserves the four chapters of Pastor aeternus. A disputed title is a question of who holds the office instituted in the first two chapters. The full jurisdiction of its holder in chapter 3 and the conditions and irreformability of ex cathedra definitions in chapter 4 remain intact. Lumen gentium 22 describes supreme authority of the episcopal college with its head. It cannot by itself establish a headless council’s claimed competence during a schism. The Vatican I debates also distinguished the pope’s authority as head from its joint exercise with the bishops. The official report discussed hypothetical emergencies without specifying a remedy.",
    "gate": [
     {
      "n": 1,
@@ -4916,7 +4947,7 @@
    ],
    "hypothesis": "A lawfully constituted assembly can help restore unity in a schism of rival papal titles through acts that settle the claims, obtain resignations and provide for a new election. The Roman scenario relies on Gregory XII’s convocation and resignation. The two records of Cossa’s renunciation strengthen the Pisan scenario. The Avignon scenario still depends on whether Benedict XIII already lacked title or had incurred the loss the sentence declared. In Basel’s case a reigning pope recognised the assembly and permitted its continuation. Later papal instruments received the council and certain acts with limits. The case for non-reception of session 11 is stronger than the claim that its universal rule can be harmonised with Vatican I. An immediately Christ-given, extraordinary competence in a schism remains a theological hypothesis. The concrete acts and their reception give the limited reconciliation its medium confidence. An independent and general grant of competence would require further evidence.",
    "objection": "A conciliarist can point to the text of Haec Sancta: its penalties reach any lawfully assembled general council, and its obedience clause reaches papal dignity. Basel repeated both clauses, enforced them against Eugene IV and then made the central claim general in session 11. The pope accepted the council in its prescribed form and later received it up to the transfer. The objection takes that broad language as public reception of the general law despite the reservation. A defender of Vatican I can ask what legally authorised the April 1415 assembly under the Roman or Avignon account. He can also ask what gave it authority to declare Benedict XIII already deprived, or whether Cossa’s detention impaired his 1415 consent. The fact that condition 4 was reworded after an earlier failure is recorded alongside the earlier verdict.",
-   "rebuttal": "Martin V’s declaration supports a qualified reading of reception. The application to Haec Sancta is uncertain because the declaration does not name it. The 1433 Basel bull makes the dissolution void for this assembly. Its operative clauses do not enact session 11’s rule. The explicit reservation of Peter’s power in the 1446 instructions and the absence of session 11 from Mainz provide separate reasons for reading the later reception as limited. Constance’s record supports several mechanisms for settling the schism. Cossa swore and expressly resigned in 1415, then reaffirmed the resignation at liberty in 1419. The latter act strengthens the eventual surrender under the Pisan premise. It cannot establish whether the May 1415 sentence took effect immediately. The Avignon sentence states a prior loss of office and adds a precautionary deposition. Its declaratory form is established. Its legal and theological premises remain disputed. These limits account for the provisional verdict.",
+   "rebuttal": "Martin V’s declaration supports a qualified reading of reception. The application to Haec Sancta is uncertain because the declaration does not name it. The 1433 Basel bull makes the dissolution void for this assembly. Its operative clauses do not enact session 11’s rule. The explicit reservation of Peter’s power in the 1446 instructions and the absence of session 11 from Mainz provide separate reasons for reading the later reception as limited. Constance’s record supports several mechanisms for settling the schism. Cossa swore and expressly resigned in 1415, then reaffirmed the resignation at liberty in 1419. The latter act strengthens the eventual surrender under the Pisan premise. It cannot establish whether the May 1415 sentence took effect immediately. The Avignon sentence states a prior loss of office and adds a precautionary deposition. Its declaratory form is established. Its legal and theological premises remain disputed. These limits account for the provisional verdict. The proposed Romanus pontifex procedure at Constance helps explain what some reformers thought an emergency might require. Its abandonment leaves the acts against individual claimants and the general authority to judge a reigning pope as distinct questions. Sutri’s conflicting witness accounts likewise leave the basis of the settlement open.",
    "verdict": "plausible_concord",
    "confidence": "medium",
    "stage": 11,
@@ -4925,8 +4956,8 @@
    "gaps": [
     {
      "what": "Obstinate schism as heresy: the canonists and theologians of Constance",
-     "source": "Gerson, De auferibilitate papae; Zabarella; Torquemada, Summa de ecclesia IV; the articles against Benedict XIII (Mansi 27)",
-     "settles": "Whether treating Benedict's obstinacy as heresy against the article on the one Church was a received doctrine or a device, the remaining dependence of the Avignon scenario."
+     "source": "Mansi 27, cols. 1099–1100 and 1141; Gerson, Opera omnia II, cols. 301–302 (checked); Gerson, Zabarella and Torquemada for the wider legal tradition",
+     "settles": "Whether Benedict’s own statements established heresy independently of his denial of Constance’s jurisdiction, and who could declare the loss of a legitimate title."
     },
     {
      "what": "The Acceptation of Mainz in the modern edition",
@@ -4949,14 +4980,9 @@
      "settles": "How the decree was framed during the schism and whether any contemporary witness identifies it as an act Martin V received in matters of faith."
     },
     {
-     "what": "Martin V's consistory of 10 March 1418 on appeals",
-     "source": "Finke, Acta IV, pp. 352–432 (the Falkenberg trial, the setting of the conciliariter declaration) and pp. 200–235 (election, coronation and recognition of Martin V); Hardt; not in Tanner",
-     "settles": "Whether Martin V rejected appeals from the pope to a council while Constance sat."
-    },
-    {
-     "what": "The date of Moyses vir Dei",
-     "source": "Tanner gives 4 September 1439; the Companion, p. 133, gives 9 September",
-     "settles": "Which date to print."
+     "what": "The papal text on appeals reported by Gerson",
+     "source": "Gerson, Opera omnia II, cols. 303–304 (checked); Finke, Acta IV, pp. 352–432; Bäumer’s study of the Falkenberg dispute",
+     "settles": "The wording, date and status of the reported papal provision. Gerson’s copy and his opposition to it are documented."
     },
     {
      "what": "Aragon, Castile and the council; the letter to Alfonso V (C13)",
@@ -4964,7 +4990,7 @@
      "settles": "The date and context of the Aragon letter (1423 or 1426), and when Spain adhered (relevant to Salembier's view that the early sessions were not ecumenical)."
     }
    ],
-   "next_source": "A contemporary witness that expressly identifies Haec Sancta among Martin V’s approved acts, together with the Latin of the 10 March 1418 act on appeals and the contemporary response attributed to Gerson. The session 45 formula is already checked.",
+   "next_source": "Seek witnesses that connect Martin V’s approval directly to Haec Sancta, compare Benedict’s own texts with the heresy articles, and retrieve the original of Nicholas V’s reported August 1447 confirmation. Each would test a different premise.",
    "benedict": "Inference from Benedict's method: a council is not a constituent assembly that can replace the Church's constitution (rule 1). Read that way, Constance did not create a new constitution but restored the existing one to a certain head; Basel, when it claimed to make conciliar superiority a dogma, attempted what the rule forbids. This is the site's application, not Benedict XVI's judgment on Constance or Basel.",
    "audio": {
     "taught": "Constance said that its power came directly from Christ and claimed obedience even from someone of papal dignity. Basel protected this assembly in session 2. In session 11 it claimed a general power to suspend a pope and take over papal administration. Vatican I defined the pope’s full and supreme jurisdiction and rejected appeals to a council as a higher authority.",
@@ -5029,6 +5055,14 @@
     {
      "date": "2026-11-18",
      "change": "Checked the 31 May 1415 notarial instrument, Fillastre’s account of the ratification in 1419, Martin V’s final declaration in Hardt and Mansi, the session 5 context in Cerretanus, Basel sessions 2–3 and 14 and Eugene IV’s June 1434 letter in Mansi, In minoribus agentes in Cotta-Schönberg and Pastor aeternus in the Holy See’s Latin edition. Updated the reader’s verdict and completed the publication stage of the case record. Medium confidence applies to the limited reconciliation. The four partly met conditions and incomplete source review are recorded alongside it."
+    },
+    {
+     "date": "2026-11-18",
+     "change": "Added Gerson’s response on appeals, the prosecution’s alternative argument against Benedict XIII and supporting sources on Sutri, the medieval canonists, Constance’s reform proposals, Basel’s reception, Ugoni, Vitoria and the Vatican I debates. Corrected the distinction between Cajetan’s and Bellarmine’s accounts of loss of office."
+    },
+    {
+     "date": "2026-11-18",
+     "change": "Applied protocol v0.4 to the proposed moderate conciliarist reading and added the tests that could change the assessment."
     }
    ],
    "last_reviewed": "2026-11-18",
@@ -5064,8 +5098,8 @@
       "convocation": "Never by the true pope: Benedict XIII rejected Constance. The council's authority over him would have to come from elsewhere.",
       "haec_sancta": "An act of an assembly that, on this premise, had no legitimate convocation; it binds only through later papal reception.",
       "depositions": "The council deposed, on this premise, the true pope, against his will (session 37, 26 July 1417), after the Capitulation of Narbonne had withdrawn his last kingdoms. But the sentence (Mansi 27, col. 1141; checked) is declaratory in form: it declares him a pertinacious heretic against the article of faith \"one holy catholic Church\", \"cast out and cut off by God\" and \"deprived by the law itself\" of every right in the papacy; only then, as a precaution and insofar as he holds the papacy in fact, does it deprive and depose him.",
-      "needs_extraordinary": "Not in the sense Vatican I excludes, on the sentence's own form: the council declares a loss of office already incurred, and acts against him only as a de facto holder. That is the model Cajetan and Bellarmine later defended (a council declares, it does not judge, a pope who has fallen from office). It rests on two premises the texts do not prove: the classical thesis that a manifest, pertinacious heretic loses his office (T, not defined), and the council's qualification of obstinate schism as heresy against the article on the one Church (contested).",
-      "conditions": "Condition 4: the criterion (no pope peacefully accepted) is met, the convocation is not by the true pope, and the council's act takes the declaratory form that needs no jurisdiction over a pope. The scenario remains the most exposed, but its exposure is now a received theological thesis, not a claim of conciliar superiority."
+      "needs_extraordinary": "The sentence’s declaration of a previous loss of office resembles Bellarmine’s later view that manifest heresy itself causes the loss. Cajetan held that an act of deposition was required. The prosecutors also argued for removal even without heresy, a ground distinct from the sentence’s declaration. Under the Avignon premise the questions are whether Benedict was a manifest, pertinacious heretic, what took away his title, and who could make that judgment.",
+      "conditions": "Condition 4 assesses the divided obediences and the source of convocation under v0.3. The Avignon premise leaves jurisdiction and the legal effect of the sentence open, including the alleged grounds for prior loss of office."
      },
      {
       "id": "D",
@@ -5101,6 +5135,142 @@
      "confidence": "medium",
      "date": "2026-11-18",
      "why": "The notarial instrument and the 1419 witness strengthen the Pisan account. The Basel Latin and reception instruments support a distinction between acts for this council and session 11’s general law. The verified wording of Martin V and Pius II supports the qualified reading, while Haec Sancta’s reception and the Avignon premise keep the result provisional."
+    },
+    {
+     "protocol": "0.4",
+     "verdict": "plausible_concord",
+     "confidence": "medium",
+     "date": "2026-11-18",
+     "why": "The new review distinguishes evidence that historical actors proposed an emergency theory from evidence that the Church enacted or received it. The limited reconciliation remains plausible. The broader claim about judging a pope for notorious, incorrigible scandal still requires independent proof."
+    }
+   ],
+   "research_sources": [
+    {
+     "title": "Zinelli on chapter 3 of Pastor aeternus",
+     "role": "Official report to Vatican I",
+     "citation": "Mansi 52, cols. 1109–1110. Cited in Lumen gentium 22, Latin notes 63–64.",
+     "url": "https://archive.org/details/sacrorum-conciliorum-nova-et-amplissima-collectio-52-mansi/page/n570/mode/1up",
+     "note": "Checked in Mansi. Zinelli distinguishes the pope’s full power as head from its exercise together with the bishops. He says means would be available in the hypothetical cases of heresy or incapacity and leaves them unspecified. Lumen gentium cites the report on the pope and bishops."
+    },
+    {
+     "title": "Kleutgen on the revised schema on the Church",
+     "role": "Report on the revised, unpromulgated conciliar schema",
+     "citation": "Mansi 53, cols. 321–322. Cited in Lumen gentium 22, Latin note 64.",
+     "url": "https://archive.org/details/sacrorum-conciliorum-nova-et-amplissima-collectio-53-mansi/page/n182/mode/1up",
+     "note": "Checked in Mansi. Kleutgen describes bishops as true judges with the pope and speaks of full power in the pope alone and in the pope with the bishops. In the same report he says a decree the pope has not approved is not a judgment of the supreme authority. Lumen gentium cites this account."
+    },
+    {
+     "title": "Bishop Maret’s intervention at Vatican I",
+     "role": "Speech by a council father",
+     "citation": "64th General Congregation, 3 June 1870, Mansi 52, col. 434.",
+     "url": "https://archive.org/details/sacrorum-conciliorum-nova-et-amplissima-collectio-52-mansi/page/n232/mode/1up",
+     "note": "Checked in Mansi. Maret argues about the ordinary exercise of infallibility and says the 1682 Gallican wording fails to account for antecedent or concurrent episcopal consent. The intervention records his position during debate."
+    },
+    {
+     "title": "Bishop Maret’s account of his assent",
+     "role": "Private notes published posthumously",
+     "citation": "G. Bazin, Vie de Mgr Maret III (1891), pp. 218–219.",
+     "url": "https://www.digitale-sammlungen.de/en/view/bsb11573621?page=240,241",
+     "note": "Maret interpreted the final definition as compatible with episcopal concurrence and explained why he could accept it. The explanation is his interpretation of the definition."
+    },
+    {
+     "title": "Palanque on the French reception of Vatican I",
+     "role": "Modern historical study",
+     "citation": "Jean-Rémy Palanque, Catholiques libéraux et gallicans en France face au Concile du Vatican, 1867–1870 (1962), pp. 185–186.",
+     "url": "https://archive.org/details/bwb_T5-DGI-086/page/184/mode/2up",
+     "note": "The supplied extract describes how Abbé Bernard and other French Catholics understood the first three chapters when accepting the constitution."
+    },
+    {
+     "title": "Eugene IV’s letter to the doge of Venice",
+     "role": "Contemporary papal correspondence",
+     "citation": "Deutsche Reichstagsakten XI, pp. 67–68. Compare the second Dudum sacrum (B2) and the later letter to Basel (B20).",
+     "url": "https://www.digitale-sammlungen.de/en/view/bsb11833358?page=130,131",
+     "note": "Eugene disputed the proposed wording at that point in the negotiations. In December he used decree and declaration language to recognise the council’s continuation. The sequence sharpens the question of which legal effects the final bull conferred."
+    },
+    {
+     "title": "Stieber on Nicholas V’s confirmation",
+     "role": "Modern historical study",
+     "citation": "Joachim W. Stieber, Pope Eugenius IV, the Council of Basel and the Secular and Ecclesiastical Authorities in the Empire (1978), p. 303 n. 49.",
+     "url": "https://books.google.com/books?id=5R_2clxgcr4C&pg=PA303",
+     "note": "The supplied reference reports a further confirmation dated 2 August 1447, reciting specified instruments word for word. The original confirmation would help establish whether anything beyond those instruments was received (B16)."
+    },
+    {
+     "title": "Huguccio and the gloss on Si papa",
+     "role": "Medieval canon law commentary",
+     "citation": "Huguccio, Summa on Distinction 40, canon 6, in Brian Tierney, Foundations of the Conciliar Theory, pp. 248–250. Compare Johannes Teutonicus, Glossa ordinaria, Rome 1582, cols. 260–261.",
+     "url": "https://archive.org/details/foundationsofcon00tier/page/247/mode/2up",
+     "note": "In the supplied excerpts, some canonists extend the question beyond doctrinal heresy to notorious scandal and refusal of correction after warning. Their reasoning supplies a historically available argument. The canonists differ over the conditions and procedure."
+    },
+    {
+     "title": "Stump on correction and the Romanus pontifex draft",
+     "role": "Modern study of Constance’s reform proposals",
+     "citation": "Phillip H. Stump, The Reforms of the Council of Constance (1414–1418) (1994), pp. 132–135, 225–226, 232 and 267.",
+     "url": "https://archive.org/details/reformsofcouncil0000stum/page/135/mode/2up",
+     "note": "The supplied excerpts connect schism, reform and the contemporary language of incorrigibility. The proposed procedure for warning and judging a pope was abandoned before enactment."
+    },
+    {
+     "title": "Cesarini and Nicholas of Cusa on Basel",
+     "role": "Modern study of contemporary arguments",
+     "citation": "Gerald Christianson, Cardinal Cesarini and Cusa’s Concordantia, Church History 54 (1985), pp. 7–19.",
+     "url": "https://www.jstor.org/stable/3165746",
+     "note": "The supplied excerpts describe Cesarini’s use of faith, schism and reform and his objection to dissolving Basel. They also show that these arguments went beyond the problem of an uncertain papal title."
+    },
+    {
+     "title": "Mattia Ugoni on appeals and papal correction",
+     "role": "Sixteenth-century canonist’s argument",
+     "citation": "De conciliis: Synodia (Venice, 1568), fols. 111, 123–130.",
+     "url": "https://www.digitale-sammlungen.de/en/view/bsb10142954?page=256,257",
+     "note": "Ugoni reads Si papa broadly under conditions of notoriety, scandal and incorrigibility. He applies this reading to Constance and argues for exceptions to Exsecrabilis. The publication approval and his argument have different evidentiary force."
+    },
+    {
+     "title": "Francisco de Vitoria on conciliar decrees and dispensation",
+     "role": "Sixteenth-century theological argument",
+     "citation": "De potestate papae et concilii, ed. P. Landry (Lyon, 1586), pp. 133–136, 144–145 and 151–153. See also the commentary on Aquinas’s Secunda Secundae edited by Cándido Pozo, Archivo teológico granadino 25 (1962), pp. 278–282.",
+     "url": "https://gallica.bnf.fr/ark:/12148/bpt6k87147467/f153.item",
+     "note": "The supplied excerpts distinguish defining faith and divine law from governing through ecclesiastical statutes. Vitoria also distinguishes mistaking or abusing the exercise of jurisdiction from lacking jurisdiction, including when discussing papal dispensations."
+    },
+    {
+     "title": "Sutri and the conflicting accounts of Gregory VI",
+     "role": "Historical precedent debated in later sources",
+     "citation": "Peter Damian, Letter 72, PL 145, col. 441. See Jacques van Wijnendaele, Silences et mensonges autour d’un concile (2005).",
+     "url": "https://www.persee.fr/doc/rbph_0035-0818_2005_num_83_2_4926",
+     "note": "Peter Damian reports a deposition. Other witnesses describe a resignation or contest the legitimacy of the action. The accounts leave the officeholder’s title, the effect of simony and the competence of Henry III and the synod open (S2, S7–S9)."
+    },
+    {
+     "title": "Leonardo Dati on jurisdiction and its exercise",
+     "role": "Contemporary theological argument",
+     "citation": "Debate at Constance, in Heinrich Finke, Acta Concilii Constanciensis II (1923), pp. 719–720.",
+     "url": "https://archive.org/details/actaconciliicons02counuoft/page/719/mode/2up",
+     "note": "Dati distinguishes the Church’s capacity for jurisdiction from its exercise. He argues for the latter in the absence of a legitimate pope and applies his reasoning to John XXIII. This is evidence of a contemporary rationale for Constance’s acts."
+    },
+    {
+     "title": "Gregory XII’s authorisation and the charges against John XXIII",
+     "role": "Constance proceedings",
+     "citation": "Constance sessions 10–11 and 14. Von der Hardt IV, cols. 200, 205, 230–235 and 370–378.",
+     "url": "https://www.digitale-sammlungen.de/en/view/bsb10321568?page=456,457",
+     "note": "The articles against John record allegations of prior warnings and incorrigibility. Gregory’s act authorises the assembly under his own title in session 14. Read the articles, the sentence and the later authorisation as separate acts."
+    }
+   ],
+   "evidence_reviews": [
+    {
+     "question": "What did Constance claim, and what did Martin V receive?",
+     "finding": "The acts cite disobedience to a lawfully assembled council. The charges against John XXIII cite earlier warnings, and the unused Romanus pontifex draft gives a proposed procedure for correction. Gerson read the decree as reaching the pope in matters of faith. Pierre de Versailles distinguished a duty to heed a decree from the power to enforce it (Cedula Beati Pauli apostoli vox, ed. Thomas Prügl, pp. 124–126).",
+     "test": "Establish the tribunal’s competence independently of any refusal to recognise it. Seek a witness linking Martin V’s qualified approval specifically to the constitutional claims of Haec Sancta."
+    },
+    {
+     "question": "Can notorious scandal cause loss of an otherwise valid papal title?",
+     "finding": "The broader proposal treats grave, notorious and incorrigible scandal as legally analogous to heresy. Some medieval canonists give grounds for that analogy. Dati’s argument about exercise of jurisdiction supplies a historically attested mechanism where the pope is absent, illegitimate or deposed.",
+     "test": "Prove independently that the alleged misconduct either caused loss of office or gave a competent body authority to declare it. A legal analogy or refusal to obey a disputed tribunal alone leaves the premise open. Test scandal, doctrinal heresy and disputed title separately."
+    },
+    {
+     "question": "What did papal reception give legal force at Basel?",
+     "finding": "The second Dudum sacrum recognised continuity in forceful terms. The 1446 reservation and the narrower 1447 concession support excluding session 11’s general rule. The Venice letter and the final bull record different moments in the negotiations.",
+     "test": "Read the final legal act alongside the reserved rights and the specified decrees. Check the original of Nicholas V’s reported August 1447 confirmation for any broader reception."
+    },
+    {
+     "question": "What does Vatican I permit the historical explanations to claim?",
+     "finding": "Pastor aeternus excludes a higher court over the reigning pope. Zinelli’s report explains the pope’s authority alone and with the bishops. It anticipates that remedies would be available in hypothetical emergencies and leaves them unspecified. The proposed extension of Pierre de Versailles’s habitual mediation to a coercive remedy remains a theological inference.",
+     "test": "Test a procedure for restoring the office and an appeal from the judgment of its lawful holder separately. An appeal that falls under chapter 3’s prohibition cannot be justified by the emergency itself or by appealing to habitual mediation."
     }
    ]
   },

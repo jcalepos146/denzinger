@@ -724,6 +724,9 @@ def entry_pages(d, raw, derived, out, url):
             parts.append(f'<p class="curnote"><b>Editorial assessment · {esc(GRADE_LABEL[w["g"]][0])}{rng}.</b> {static_text(w["n"], by_id, by_base)}</p>\n')
         record = source_records[d['library']['entryMap'][eid]]
         parts.append(f'<p class="rel">Source and coverage: <a href="../../#source-{esc(record["id"])}">{esc(record["title"])}</a> · {esc(record["coverage"])} locally. Passage grades are editorial assessments.</p>\n')
+        if record.get('papalDefinition'):
+            classification = record['papalDefinition']
+            parts.append(f'<p class="rel"><a href="../../#weight-papal-def">Papal definition collection</a> · {esc(classification["label"])}</p>\n')
         for link in record['sourceLinks']:
             parts.append(f'<p class="rel"><a href="{esc(link["url"])}" rel="noopener">{esc(link["label"])} ↗</a> ({esc(link["language"])})</p>\n')
         for relation in d['relations']:
@@ -804,6 +807,7 @@ def open_data(d, raw, derived, out, url, built):
     dd = os.path.join(out, 'data')
     os.makedirs(dd, exist_ok=True)
     E, eras = d['entries'], d['eras']
+    papal_sources = {r['id']: r['papalDefinition'] for r in d['library']['records'] if r.get('papalDefinition')}
     rows = []
     for k, e in enumerate(E):
         y = raw['entries'][k][6]['y']
@@ -821,6 +825,8 @@ def open_data(d, raw, derived, out, url, built):
              'refersTo': derived['cites'].get(e['id'], []), 'citedBy': derived['cited'].get(e['id'], []),
              'romanCatechism': derived['rc'].get(e['id'], []),
              'url': f'{url}n/{enc_id(e["id"])}/' if url else None}
+        if o['documentId'] in papal_sources:
+            o['papalDefinition'] = papal_sources[o['documentId']]
         if 'censure' in e:
             o['censure'] = d['censures'][e['censure']]['w']
         rows.append(o)

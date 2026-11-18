@@ -21,6 +21,15 @@ def validate_library(d, order, problems):
                 problems.add(where, 'missing ' + field)
         if record.get('coverage') not in COVERAGE:
             problems.add(where, 'unknown coverage')
+        if 'papalDefinition' in record:
+            classification = record['papalDefinition']
+            if not isinstance(classification, dict) or any(
+                not isinstance(classification.get(field), str) or not classification[field].strip()
+                for field in ('label', 'note')
+            ):
+                problems.add(where, 'papalDefinition requires a label and source note')
+            if not record.get('sourceLinks'):
+                problems.add(where, 'papalDefinition requires a source link')
         ids = record.get('entryIds', [])
         for eid in ids:
             if eid not in order or eid in assigned:
