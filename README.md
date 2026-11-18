@@ -29,6 +29,7 @@ A searchable, organized reader for Denzinger's *Enchiridion Symbolorum* in Engli
   - *Since 1950*, 47 points read by the hermeneutic of continuity;
   - 45 disputed questions.
 - **Hermeneutics:** ten principles for reading magisterial texts (development in the same sense, weighing a text before reading it, what is proposed as against its reasoning, the occasion a text answers, formula and truth, the analogy of faith, Scripture read in the Church, principle and application, condemnations, private words), each stated as a rule, grounded in texts of the collection, with the misreading it guards against and test cases among the disputed questions; then the two hermeneutics and a method. The rules also go into every prompt Ask writes and into `llms.txt`.
+- **Continuity research** (a research layer, not Church teaching): the hermeneutic of ecclesial continuity, taking Benedict XVI's address of 22 December 2005 as its method, with eight principles for testing an apparent conflict (P1–P8) and four levels of continuity (logical, doctrinal, juridical, constitutional). Twenty-four cases, from Cum occasione and Unigenitus to Dignitatis Humanae, the death penalty, slavery and Anglican orders, are each broken into propositions with their doctrinal grade and legal force kept apart, a contradiction matrix, a graph of relations, the strongest objection, a provisional verdict and the evidence still required. Case D1 tests a novel hypothesis on Constance, Basel and Vatican I against seven pass conditions and is marked unresolved. A verification backlog lists every claim still resting on an unchecked source. See [the protocol](docs/HERMENEUTIC-PROTOCOL.md).
 - **Reading a condemnation:** a guide to reading condemned propositions in the sense they were condemned, with the case of Unigenitus; every condemned proposition links to it.
 - **Ask or check a statement:** ask a question, or test a statement against the texts for formation; an AI answers from the entries and cites them. The texts are chosen from the words of the question, the doctrines it names (with their defining texts), the guides that discuss them and any numbers it gives (`n. 1839`, `DS 3074`, `LG 25`, `Matt 16:18`), with binding texts first. The page lists them before you ask, with the reason for each, so you can untick some or add others by number or words. Opened in Claude it answers in the page; anywhere else it copies or downloads a prompt with the texts in full, a link to each, what their labels mean and the reading rules, optionally with the Latin, for any AI client. `llms.txt` describes the data for AI clients and agents.
 - **Cross-references:** "cited by" links between entries that refer to each other by number.
@@ -63,6 +64,8 @@ Each build publishes the data at `/data/`:
 | `documents.json` | Source inventory, coverage, provenance, review status and full-text links |
 | `coverage.csv` | The source inventory as a spreadsheet |
 | `guides.json` | Since 1950, the disputed questions, the threads and the principles of hermeneutics |
+| `continuity.json` | The continuity research layer: principles, cases, propositions, comparisons, verdicts and evidence gaps |
+| `continuity-audio.md` | Listening scripts for each case: what was taught, by what authority, what is permanent |
 
 ## Corrections
 
@@ -98,6 +101,7 @@ The build stops on problems (a reference to an entry that does not exist, an unk
 | `src/data/weights.json` | Hand-checked weight ranges |
 | `src/data/catechism.json` | The Roman Catechism map |
 | `src/data/since1950.json`, `disputed.json`, `threads.json`, `hermeneutics.json` | The guides |
+| `src/data/continuity.json` | The continuity research layer (see [the protocol](docs/HERMENEUTIC-PROTOCOL.md)); checked by `build/continuity.py` |
 | `src/data/changes.json` | What was added and when, for the home page and the feed |
 | `src/data/latin-checked.json` | Which Latin texts have been proofread, against what |
 | `src/data/concepts.json` | The doctrines Ask recognises in a question, and their defining texts |

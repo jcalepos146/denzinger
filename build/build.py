@@ -13,6 +13,7 @@ first and stops with a list of problems if anything does not line up.
 """
 import argparse, csv, datetime, html, io, json, os, re, shutil, struct, sys, zlib
 from library import inventory, validate_library, validate_relations
+from continuity import validate_continuity, compact_continuity, llms_section, audio_script, case_refs
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SRC = os.path.join(ROOT, 'src')
@@ -39,6 +40,7 @@ LLMS = """# Sources of Catholic Dogma
 - [documents.json]({url}data/documents.json): source inventory, local coverage, provenance, review status and full-text links. An excerpt view is not a complete document.\n- [weights.csv]({url}data/weights.csv): the hand-checked grades and the reason for each.
 - [latin.json]({url}data/latin.json): the Latin text by DS number.
 - [guides.json]({url}data/guides.json): the disputed questions, the guide to documents since 1950, the doctrinal threads, and the principles of hermeneutics.
+- [continuity.json]({url}data/continuity.json): the hermeneutic of ecclesial continuity, a research layer: principles P1-P8 and 24 cases with propositions, contradiction matrices, provisional verdicts and evidence gaps. Not Church teaching.
 - A page for each entry: {url}n/<id>/
 
 ## Citing
@@ -127,6 +129,7 @@ def load_all():
         'latin_checked': load('latin-checked.json'),
         'document_metadata': load('documents.json'),
         'relations': load('relations.json'), 'roadmap': load('roadmap.json'),
+        'continuity': load('continuity.json'),
     }
     return d
 
@@ -262,6 +265,7 @@ def check(d):
             ch['refs'] = expand_refs(ch.get('refs', []), order, f'catechism.json, {ch["id"]}', P)
     validate_library(d, order, P)
     validate_relations(d, order, P)
+    validate_continuity(d, order, P)
     return order, P
 
 
@@ -449,6 +453,7 @@ def reader_body(raw, d, site):
             f'<script type="application/json" id="disputed-data">{dump(d["disputed"])}</script>\n'
             f'<script type="application/json" id="threads-data">{dump(d["threads"])}</script>\n'
             f'<script type="application/json" id="hermeneutics-data">{dump(d["herm"])}</script>\n'
+            f'<script type="application/json" id="continuity-data">{dump(compact_continuity(d))}</script>\n'
             f'<script type="application/json" id="changes-data">{dump(d["changes"])}</script>\n'
             f'<script type="application/json" id="library-data">{dump(d["library"])}</script>\n'
             f'<script type="application/json" id="concepts-data">{dump(d["concepts"])}</script>\n'
@@ -473,7 +478,7 @@ def reader_split(raw, d, site, out):
     site['latin'] = hashed(out, 'latin', 'json', dump(d['latin']))
     blocks = {'site-data': site, 'data': raw, 'since-data': d['since'], 'disputed-data': d['disputed'],
               'threads-data': d['threads'], 'concepts-data': d['concepts'], 'hermeneutics-data': d['herm'],
-              'changes-data': d['changes'], 'library-data': d['library']}
+              'changes-data': d['changes'], 'library-data': d['library'], 'continuity-data': compact_continuity(d)}
     data_rel = hashed(out, 'reader', 'json', dump(blocks))
     css_rel = hashed(out, 'styles', 'css', read_src('styles.css'))
     app_rel = hashed(out, 'app', 'js', read_src('app.js'))
@@ -645,6 +650,9 @@ def entry_pages(d, raw, derived, out, url):
     for p in d['herm']['principles']:
         for r in p['refs']:
             disc.setdefault(r, []).append((f'#herm-{p["id"]}', p['title'] + ' (hermeneutics)'))
+    for c in d['continuity']['cases']:
+        for r in case_refs(c):
+            disc.setdefault(r, []).append((f'#case-{c["id"]}', f'Case {c["id"]}: {c["title"]} (research)'))
     derived_years = [abs(r[6]['y']) for r in raw['entries']]
     docs = documents(E)
     source_records = {r['id']: r for r in d['library']['records']}
@@ -836,6 +844,10 @@ def open_data(d, raw, derived, out, url, built):
     with open(os.path.join(dd, 'roman-catechism.json'), 'w', encoding='utf-8') as f:
         json.dump(cat, f, ensure_ascii=False, indent=1)
     guides = {'since1950': d['since'], 'disputed': d['disputed'], 'threads': d['threads'], 'hermeneutics': d['herm'], 'relationships': d['relations'], 'roadmap': d['roadmap']}
+    with open(os.path.join(dd, 'continuity.json'), 'w', encoding='utf-8') as f:
+        json.dump(compact_continuity(d), f, ensure_ascii=False, indent=1)
+    with open(os.path.join(dd, 'continuity-audio.md'), 'w', encoding='utf-8') as f:
+        f.write(audio_script(d['continuity'], url or './'))
     with open(os.path.join(dd, 'guides.json'), 'w', encoding='utf-8') as f:
         json.dump(guides, f, ensure_ascii=False, indent=1)
     with open(os.path.join(dd, 'documents.json'), 'w', encoding='utf-8') as f:
@@ -854,6 +866,8 @@ def open_data(d, raw, derived, out, url, built):
         ('latin.json', 'The Latin text by DS number, as the source page gives it (not proofread).'),
         ('roman-catechism.json', 'The chapters of the Roman Catechism with the entries matched to each.'),
         ('guides.json', 'Since 1950, the disputed questions, the doctrinal threads and the principles of hermeneutics.'),
+        ('continuity.json', 'The hermeneutic of ecclesial continuity: principles P1-P8 and the 24 research cases with propositions, comparisons, verdicts and evidence gaps. A research layer, not Church teaching.'),
+        ('continuity-audio.md', 'Listening scripts for the 24 cases: what was taught, by what authority, what is permanent and what was a determination for its time.'),
     ]
     with open(os.path.join(dd, 'index.json'), 'w', encoding='utf-8') as f:
         json.dump({'built': built, 'files': [{'file': a, 'url': f'{url}data/{a}' if url else f'data/{a}', 'about': b} for a, b in files]},
@@ -939,7 +953,8 @@ def pages_build(args):
     version = f'{built}-{zlib.crc32((index + "".join(assets)).encode()) & 0xffffffff:08x}'
     write(os.path.join(out, 'sw.js'), read_src('sw.js').replace('__VERSION__', version).replace("'__ASSETS__'", ', '.join(json.dumps(a) for a in assets)))
     write(os.path.join(out, '.nojekyll'), '')
-    write(os.path.join(out, 'llms.txt'), LLMS.replace('{herm}', '\n'.join('- ' + p['rule'] for p in d['herm']['principles'])).replace('{url}', url or './'))
+    write(os.path.join(out, 'llms.txt'), LLMS.replace('{herm}', '\n'.join('- ' + p['rule'] for p in d['herm']['principles'])).replace('{url}', url or './')
+          + '\n' + llms_section(d['continuity'], url or './'))
     if url:
         write(os.path.join(out, 'feed.xml'), atom(d['changes'], url))
     write(os.path.join(out, 'robots.txt'), 'User-agent: *\nAllow: /\n' + (f'Sitemap: {url}sitemap.xml\n' if url else ''))

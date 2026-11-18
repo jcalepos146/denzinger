@@ -12,6 +12,10 @@ const DISPUTED = DATA('disputed-data');
 const THREADS = DATA('threads-data');
 const CHANGES = (() => { try { return DATA('changes-data'); } catch (_) { return []; } })();
 const HERM = (() => { try { return DATA('hermeneutics-data'); } catch (_) { return { principles: [], method: [] }; } })();
+const CONT = (() => { try { return DATA('continuity-data'); } catch (_) { return null; } })();
+const CASES = CONT ? CONT.cases : [];
+const CASE_BY_ID = new Map(CASES.map(c => [c.id, c]));
+const PROP_INDEX = new Map(); for (const c of CASES) for (const p of c.propositions) PROP_INDEX.set(p.id, [c, p]);
 const LIBRARY = DATA('library-data');
 const SOURCES = new Map(LIBRARY.records.map(r => [r.id, r]));
 const CENS = RAW.censures || [];
@@ -52,6 +56,7 @@ for (const d of DISPUTED) for (const r of d.refs) addDisc(r, { href: '#q-' + d.i
 for (const s of SINCE) for (const r of s.refs) addDisc(r, { href: '#since-' + s.id, label: s.title, kind: 'Since 1950' });
 for (const t of THREADS) for (const st of t.steps) if (st.ref) addDisc(st.ref, { href: '#thread-' + t.id, label: t.title + ' (thread)', kind: 'Thread' });
 for (const p of HERM.principles) for (const r of p.refs) addDisc(r, { href: '#herm-' + p.id, label: p.title + ' (hermeneutics)', kind: 'Hermeneutics' });
+for (const c of CASES) for (const r of c.refs || []) addDisc(r, { href: '#case-' + c.id, label: 'Case ' + c.id + ': ' + c.title + ' (research)', kind: 'Research case' });
 const DISP_BY_ID = new Map(DISPUTED.map(d => [d.id, d]));
 /* the Roman Catechism, chapter by chapter */
 const RC = RAW.rc || { parts: [] };
@@ -283,6 +288,8 @@ function reviewItems() {
     ...DISPUTED.map(d => ({ key: 'q:' + d.id, label: d.title, href: '#q-' + d.id, group: 'Disputed questions' })),
     ...THREADS.map(t => ({ key: 'thread:' + t.id, label: t.title, href: '#thread-' + t.id, group: 'Doctrinal threads' })),
     ...[...RC_CH.values()].map(c => ({ key: 'rc:' + c.id, label: 'Roman Catechism: ' + c.title, href: '#rc-' + c.id, group: 'Roman Catechism' })),
+    ...CASES.map(c => ({ key: 'case:' + c.id, label: 'Research case ' + c.id + ': ' + c.title, href: '#case-' + c.id, group: 'Continuity research' })),
+    { key: 'cont:guide', label: 'Hermeneutic of ecclesial continuity (guide)', href: '#continuity', group: 'Continuity research' },
     ...CURATED.map(c => ({ key: 'w:' + c.from, label: `${nlab(c.from)}${c.to !== c.from ? "–" + dispId(c.to) : ""}: ${GRADES[c.g][0]}`, href: '#n' + c.from, group: 'Hand-checked weights' })),
   ];
 }
@@ -352,6 +359,7 @@ const GUIDES = [
   ['#weights', 'Weight and censures', ''],
   ['#checked', 'Hand-checked weights', CURATED.length + ' ranges'],
   ['#hermeneutics', 'Hermeneutics', HERM.principles.length + ' principles'],
+  ['#continuity', 'Continuity research', CASES.length + ' cases'],
   ['#reading', 'Reading a condemnation', ''],
   ['#scripture', 'Scripture index', ''],
   ['#concordance', 'Old and new numbers', ''],
@@ -384,7 +392,7 @@ function markRail() {
   let b = null;
   if (state.view === 'read' && state.era) b = rail.querySelector(`[data-era="${state.era.i}"]`);
   else {
-    const map = { coverage: '#coverage', library: '#library', source: '#library', home: '#home', catechism: '#catechism', timeline: '#timeline', since: '#since', disputed: '#disputed', scripture: '#scripture', book: '#scripture', topics: '#topics', saved: '#saved', threads: '#threads', thread: '#threads', ask: '#ask', compare: '#compare', weights: '#weights', checked: '#checked', reading: '#reading', hermeneutics: '#hermeneutics', edition: '#edition', concordance: '#concordance' };
+    const map = { coverage: '#coverage', library: '#library', source: '#library', home: '#home', catechism: '#catechism', timeline: '#timeline', since: '#since', disputed: '#disputed', scripture: '#scripture', book: '#scripture', topics: '#topics', saved: '#saved', threads: '#threads', thread: '#threads', ask: '#ask', compare: '#compare', weights: '#weights', checked: '#checked', reading: '#reading', hermeneutics: '#hermeneutics', continuity: '#continuity', case: '#continuity', edition: '#edition', concordance: '#concordance' };
     if (map[state.view]) b = rail.querySelector(`[data-go="${map[state.view]}"]`);
   }
   if (b) {
@@ -462,6 +470,7 @@ function renderHome() {
       <a class="guide" href="#topics"><b>Topics</b><span>The section headings of the whole collection, A to Z.</span></a>
       <a class="guide" href="#weights"><b>Weight and censures</b><span>What each kind of text binds, the theological notes, and the grades of censure.</span></a>
       <a class="guide" href="#hermeneutics"><b>Hermeneutics</b><span>How to read magisterial texts: development in the same sense, weight, occasion, formula and truth, principle and application, each grounded in the texts.</span></a>
+      <a class="guide" href="#continuity"><b>Continuity research</b><span>A research layer, not Church teaching: 24 hard cases tested proposition by proposition, from the Jansenist bulls to Constance, Basel and Vatican I, with verdicts that stay unresolved where the evidence does.</span></a>
       <a class="guide" href="#reading"><b>Reading a condemnation</b><span>Why a condemned proposition is read in the sense condemned, how that sense is established, and the case of Unigenitus.</span></a>
       <a class="guide" href="#e${ERAS.find(x => x.sup).i}"><b>Constance and Basel</b><span>The conciliar decrees Denzinger leaves out, from Haec Sancta to Basel's "three truths," with their standing.</span></a>
       <a class="guide" href="#compare"><b>Compare two texts</b><span>Read two entries side by side, with the guides that discuss them together.</span></a>
@@ -1551,8 +1560,267 @@ function renderHermeneutics(focus) {
     <p style="font-size:.95rem">Questions where the two readings meet: ${tests.map(d => `<a class="xref" href="#q-${esc(d.id)}">${esc(d.title)}</a> <span style="color:var(--muted)">(${esc(d.status)})</span>`).join(' · ')}</p>
     <h2 class="sect-h" id="herm-method">A method</h2>
     <ol style="font-size:.95rem">${HERM.method.map(m => `<li>${esc(m)}</li>`).join('')}</ol>
+    <h2 class="sect-h" id="herm-research">Testing hard cases</h2>
+    <p style="font-size:.95rem">The <a href="#continuity">continuity research</a> layer applies these principles to twenty-four cases where texts seem to conflict, with eight further principles for testing a conflict (P1–P8) and four levels at which continuity can hold or fail. Where each principle above is used: ${CONT ? HERM.principles.map(p => { const ps = CONT.principles.filter(x => x.old.includes(p.id)); return ps.length ? `<a href="#herm-${esc(p.id)}">${esc(p.title)}</a> → ${ps.map(x => `<a href="#cont-${x.id}">${x.id}</a>`).join(', ')}` : ''; }).filter(Boolean).join(' · ') : ''}</p>
     <p style="font-size:.9rem;color:var(--muted)">These principles were drawn together for this site from the texts they cite. They are a reading aid, not an official statement; read the texts themselves.</p>`;
   scrollToTarget(focus ? 'herm-' + focus : null);
+}
+
+/* ---------- hermeneutic of ecclesial continuity (a research layer, kept apart from the texts) ---------- */
+const CV = CONT ? CONT.vocab : {};
+const VERDICT_LV = { demonstrated_concord: 'discipline', plausible_concord: 'authentic', unresolved_tension: 'prudential', textual_conflict_requires_revision: 'definitive', not_comparable: 'study' };
+const vLabel = v => ((CV.verdict || {})[v] || v).split(':')[0];
+const verdictPill = v => `<span class="pill lv-${VERDICT_LV[v] || 'study'}" title="${esc((CV.verdict || {})[v] || '')}">${esc(vLabel(v))}</span>`;
+const evTag = l => `<span class="ev ev-${esc(l)}" title="${esc((CV.evidence || {})[l] || '')}">${esc(l)}</span>`;
+const vocabLabel = (kind, k) => k === 'disputed' && !(CV[kind] || {})[k] ? 'Disputed' : ((CV[kind] || {})[k] || k).split(':')[0].replace(/\.$/, '');
+const CF = { g: '', v: '', c: '', src: '', st: '', theme: '', per: '', q: '' };
+const CASE_PERIODS = [['', 'All periods'], ['m', 'Begins before 1500'], ['e', '1500–1799'], ['l', '1800 and after']];
+function caseRefLink(id) {
+  const e = byId.get(id);
+  if (!e) return '';
+  return `<a class="xref" href="#n${esc(id)}">${esc(nlab(id))}</a>${e.ds.length ? ` <span class="cite">DS ${esc(dsRange(e.ds))}</span>` : ''}`;
+}
+function caseFiltered() {
+  const q = norm(CF.q).trim();
+  return CASES.filter(c => (!CF.g || c.group === CF.g) && (!CF.v || c.verdict === CF.v) && (!CF.c || c.confidence === CF.c)
+    && (!CF.src || (CF.src === 'yes') === !!c.source_verified)
+    && (!CF.st || (CF.st === 'early' ? c.stage <= 4 : CF.st === 'mid' ? c.stage > 4 && c.stage < 9 : c.stage >= 9))
+    && (!CF.theme || c.themes.includes(CF.theme))
+    && (!CF.per || (CF.per === 'm' ? c.period[0] < 1500 : CF.per === 'e' ? c.period[0] >= 1500 && c.period[0] < 1800 : c.period[0] >= 1800))
+    && (!q || norm([c.id, c.title, c.question, (c.issuers || []).join(' '), c.themes.join(' ')].join(' ')).includes(q)));
+}
+function caseList() {
+  const shown = caseFiltered();
+  if (!shown.length) return '<p class="empty">No case matches these filters.</p>';
+  return `<div class="tablewrap"><table class="wtable ctable"><thead><tr><th>Case</th><th>Question</th><th>Verdict</th><th>Research</th></tr></thead><tbody>${shown.map(c => `<tr>
+    <td><a class="xref" href="#case-${c.id}"><b>${c.id}</b></a></td>
+    <td><a href="#case-${c.id}">${esc(c.title)}</a><div class="cite">${c.period[0]}–${c.period[1]} · ${esc((c.issuers || []).slice(0, 4).join(', '))}</div></td>
+    <td>${verdictPill(c.verdict)}<div class="cite">confidence ${esc(c.confidence)}</div></td>
+    <td><span class="cite">stage ${c.stage} of 11</span>${stageBar(c.stage)}<div class="cite">${c.source_verified ? 'sources verified' : 'sources not yet verified'}</div></td></tr>`).join('')}</tbody></table></div>`;
+}
+function stageBar(n) { return `<span class="sbar" role="img" aria-label="Stage ${n} of 11"><span style="width:${Math.round(n / 11 * 100)}%"></span></span>`; }
+function cfChips(key, opts, label) {
+  return `<div class="chips" role="group" aria-label="${esc(label)}"><span class="lbl">${esc(label)}</span>${opts.map(([k, name]) => `<button class="chip" data-cf="${key}" data-cfv="${esc(k)}" aria-pressed="${CF[key] === k}">${esc(name)}${k ? `<span>${CASES.filter(c => cfMatch(key, k, c)).length}</span>` : ''}</button>`).join('')}</div>`;
+}
+function cfMatch(key, k, c) {
+  return key === 'g' ? c.group === k : key === 'v' ? c.verdict === k : key === 'c' ? c.confidence === k : key === 'src' ? (k === 'yes') === !!c.source_verified
+    : key === 'st' ? (k === 'early' ? c.stage <= 4 : k === 'mid' ? c.stage > 4 && c.stage < 9 : c.stage >= 9) : true;
+}
+function renderContinuity(focus) {
+  view.className = 'col wide';
+  if (!CONT) { view.innerHTML = '<p class="empty">The research layer is not in this build.</p>'; return; }
+  const M = CONT.meta, B = CONT.benedict;
+  const themes = [...new Set(CASES.flatMap(c => c.themes))].sort();
+  const herm = id => { const p = HERM.principles.find(x => x.id === id); return p ? `<a href="#herm-${esc(id)}">${esc(p.title)}</a>` : esc(id); };
+  const dataLinks = PAGES ? `<div class="links"><div>Open data: <a href="data/continuity.json">continuity.json</a> · <a href="data/continuity-audio.md">listening scripts</a> · <a href="llms.txt">llms.txt</a></div></div>` : '';
+  view.innerHTML = `<div class="eyebrow">Research layer</div><h1 class="page-h">${esc(M.title)}</h1>
+    <div class="cnotice" role="note"><b>Not Church teaching.</b> ${esc(M.notice)} <span class="cite">Protocol version ${esc(M.version)}, ${esc(M.protocol_date)}.</span></div>
+    <nav class="toc" aria-label="On this page"><ol>
+      <li><a href="#cont-plain">In plain words</a></li><li><a href="#cont-benedict">The guiding light: Benedict XVI, 2005</a></li>
+      <li><a href="#cont-principles">Eight principles</a></li><li><a href="#cont-levels">Four levels of continuity</a></li>
+      <li><a href="#cont-cases">The 24 cases</a></li><li><a href="#case-D1">The hard gate: Constance, Basel and Vatican I</a></li>
+      <li><a href="#cont-graph">Cross-reference graph</a></li><li><a href="#cont-backlog">Verification backlog</a></li>
+      <li><a href="#cont-method">Method, labels and tests</a></li></ol></nav>
+    <h2 class="sect-h" id="cont-plain">In plain words</h2>
+    ${M.plain.map(p => `<p>${esc(p)}</p>`).join('')}
+    <h2 class="sect-h" id="cont-benedict">The guiding light: Benedict XVI, 22 December 2005</h2>
+    <p>${esc(B.summary)}</p>
+    <p class="cite">${esc(B.status)} <a class="xref" href="${esc(B.url)}" target="_blank" rel="noopener">Read the address ↗</a> · <a class="xref" href="#since-${esc(B.since)}">in Since 1950</a></p>
+    <h3 class="sub-h">Five operational rules drawn from the address</h3>
+    <ol class="rules">${B.rules.map(r => `<li id="cont-rule-${esc(r.id)}"><b>${esc(r.title)}.</b> ${esc(r.text)}</li>`).join('')}</ol>
+    <div class="blk-note"><b>${esc(B.inference_label)}.</b> ${esc(B.inference_note)}</div>
+    <h2 class="sect-h" id="cont-principles">Eight principles</h2>
+    <p class="lede" style="font-size:.95rem">These eight principles govern the research cases. They do not replace the site's <a href="#hermeneutics">ten principles of hermeneutics</a>, which say how to read a magisterial text; these say how to test whether two texts conflict. Each lists the earlier principles it draws on.</p>
+    ${CONT.principles.map(p => `<article class="doc herm" id="cont-${esc(p.id)}">
+      <div class="meta"><span>${esc(p.id)}</span></div><h2>${esc(p.title)}</h2>
+      <p class="rule">${esc(p.rule)}</p>
+      <div class="blk"><b>Guards against</b><div>${esc(p.guards)}</div></div>
+      <div class="links"><div>Earlier principles: ${p.old.map(herm).join(' · ')}</div>${p.refs.length ? `<div>Texts: ${refLinks(p.refs)}</div>` : ''}</div>
+    </article>`).join('')}
+    <h2 class="sect-h" id="cont-levels">Four levels of continuity</h2>
+    <p>A change can be real at one level and absent at another. Each comparison in a case is made at one of these levels.</p>
+    <div class="tablewrap"><table class="wtable"><thead><tr><th>Level</th><th>Test</th><th>What may change</th></tr></thead><tbody>${CONT.levels.map(l => `<tr><td><b>${esc(l.title)}</b></td><td>${esc(l.test)}</td><td>${esc(l.change)}</td></tr>`).join('')}</tbody></table></div>
+    <h2 class="sect-h" id="cont-cases">The 24 cases</h2>
+    <p>Each case is a test, not a predetermined answer. Most are drafts: the primary texts have not yet been checked against critical editions, and the verdict is provisional. A case that fails or cannot yet be decided says so.</p>
+    ${cfChips('g', [['', 'All'], ...Object.entries(CONT.groups).map(([k, v]) => [k, k + '. ' + v.split(',')[0]])], 'Group')}
+    ${cfChips('v', [['', 'All'], ...Object.keys(CV.verdict).filter(v => CASES.some(c => c.verdict === v)).map(v => [v, vLabel(v)])], 'Verdict')}
+    ${cfChips('c', [['', 'All'], ['high', 'High'], ['medium', 'Medium'], ['low', 'Low']], 'Confidence')}
+    ${cfChips('st', [['', 'All'], ['early', 'Stages 1–4'], ['mid', 'Stages 5–8'], ['late', 'Stages 9–11']], 'Research')}
+    ${cfChips('src', [['', 'All'], ['yes', 'Sources verified'], ['no', 'Not yet verified']], 'Sources')}
+    <div class="chips cfrow"><span class="lbl">Theme</span><select class="wsel" id="cfTheme" aria-label="Filter by theme"><option value="">All themes</option>${themes.map(t => `<option value="${esc(t)}" ${CF.theme === t ? 'selected' : ''}>${esc(t)}</option>`).join('')}</select>
+      <span class="lbl">Period</span><select class="wsel" id="cfPer" aria-label="Filter by period">${CASE_PERIODS.map(([k, n]) => `<option value="${k}" ${CF.per === k ? 'selected' : ''}>${n}</option>`).join('')}</select>
+      <input class="tfilter cfq" id="cfQ" type="search" placeholder="Pope, council, document or word" aria-label="Filter cases by words" value="${esc(CF.q)}"></div>
+    <div id="cfList" aria-live="polite">${caseList()}</div>
+    <h3 class="sub-h">The earlier test cases, kept as a regression subset</h3>
+    <p class="cite">The ten cases of the guide <a href="#reading">Reading a condemnation</a> stay as they were and are listed here with the new cases that take them further.</p>
+    <div class="tablewrap"><table class="wtable"><tbody>${CONT.regression.map(r => `<tr><td>${esc(r.id)}</td><td><a href="#q-${esc(r.disputed)}">${esc(r.label)}</a></td><td>${r.cases.length ? r.cases.map(id => `<a class="xref" href="#case-${id}">${id}</a>`).join(' ') : '<span class="cite">no new case yet</span>'}</td></tr>`).join('')}</tbody></table></div>
+    <h2 class="sect-h" id="cont-graph">Cross-reference graph</h2>
+    ${contGraph()}
+    <h2 class="sect-h" id="cont-backlog">Verification backlog</h2>
+    ${contBacklog()}
+    <h2 class="sect-h" id="cont-method">Method, labels and tests</h2>
+    <h3 class="sub-h">Eleven research stages</h3>
+    <ol class="rules">${CV.stages.map(([, n, d]) => `<li><b>${esc(n)}.</b> ${esc(d)}</li>`).join('')}</ol>
+    <h3 class="sub-h">Evidence labels</h3>
+    <div class="legend">${Object.entries(CV.evidence).map(([k, d]) => `<div>${evTag(k)} <span>${esc(d)}</span></div>`).join('')}</div>
+    <h3 class="sub-h">Doctrinal grade and legal force are kept apart</h3>
+    <p class="cite">Each proposition carries a formal object and a grade of assent (its doctrinal weight), and separately a binding status (its force as law). A text can be binding law and not doctrine, or doctrine and not law.</p>
+    <details class="cdetails"><summary>Formal objects</summary><div class="tips">${Object.values(CV.formal_object).map(d => `<div>${esc(d)}</div>`).join('')}</div></details>
+    <details class="cdetails"><summary>Grades of assent</summary><div class="tips">${Object.values(CV.assent).map(d => `<div>${esc(d)}</div>`).join('')}</div></details>
+    <details class="cdetails"><summary>Binding status</summary><div class="tips">${Object.values(CV.binding_status).map(d => `<div>${esc(d)}</div>`).join('')}</div></details>
+    <details class="cdetails"><summary>Verdicts</summary><div class="tips">${Object.entries(CV.verdict).map(([k, d]) => `<div>${verdictPill(k)} ${esc(d.split(': ').slice(1).join(': '))}</div>`).join('')}</div></details>
+    <h3 class="sub-h">Protocol versions</h3>
+    <div class="tips">${(M.changes || []).map(ch => `<div><b>v${esc(ch.version)}</b> (${esc(ch.date)}). ${esc(ch.change)}</div>`).join('')}</div>
+    <h3 class="sub-h">Adversarial tests applied to every case</h3>
+    <ol class="rules">${CONT.adversarial.map(t => `<li>${esc(t)}</li>`).join('')}</ol>
+    <h3 class="sub-h">For condemnations</h3>
+    <p class="cite">Cases on Cum occasione, Ad sacram, Unigenitus, Auctorem fidei, Baius and Trent record: ${esc(CONT.condemnation_fields.join('; '))}. "Heretical", "erroneous", "rash" and "scandalous" are not flattened into one severity.</p>
+    ${dataLinks}
+    ${reviewRow('cont:guide')}`;
+  bindCaseFilters();
+  scrollToTarget(focus ? focus : null);
+}
+function bindCaseFilters() {
+  const upd = () => { const el = $('cfList'); if (el) el.innerHTML = caseList(); };
+  const t = $('cfTheme'), p = $('cfPer'), q = $('cfQ');
+  if (t) t.onchange = () => { CF.theme = t.value; upd(); };
+  if (p) p.onchange = () => { CF.per = p.value; upd(); };
+  if (q) q.oninput = () => { CF.q = q.value; upd(); };
+}
+/* the proposition graph of one case, or the case graph of all */
+const EDGE_COLOR = { reaffirms: 'var(--lv-disc)', specifies: 'var(--lv-auth)', qualifies: 'var(--lv-other)', supersedes_discipline: 'var(--lv-prud)', contrasts_prudentially: 'var(--lv-prud)', potential_contradiction: 'var(--rubric)', disputed_reception: 'var(--lv-dogma)' };
+const EDGE_DASH = { supersedes_discipline: '5 3', contrasts_prudentially: '2 3', disputed_reception: '6 3 2 3' };
+function edgeLegend(types) {
+  return `<div class="glegend">${types.map(t => `<span><svg width="26" height="8" aria-hidden="true"><line x1="1" y1="4" x2="25" y2="4" stroke="${EDGE_COLOR[t]}" stroke-width="2" ${EDGE_DASH[t] ? `stroke-dasharray="${EDGE_DASH[t]}"` : ''}/></svg>${esc(CV.edge[t])}</span>`).join('')}</div>`;
+}
+function caseGraph(c) {
+  const props = c.propositions;
+  if (props.length < 2) return '';
+  const local = new Set(props.map(p => p.id));
+  const edges = c.edges.filter(e => local.has(e[0]) && local.has(e[1]));
+  const W = 640, rowH = 24, top = 16, X = 250, sorted = [...props].sort((a, b) => a.year - b.year);
+  const pos = new Map(sorted.map((p, i) => [p.id, { x: X, y: top + i * rowH }]));
+  const H = top + sorted.length * rowH;
+  const lines = edges.map(([a, b, t]) => { const A = pos.get(a), Bp = pos.get(b); const mx = X + 18 + Math.min(W - X - 30, Math.abs(A.y - Bp.y) * .55);
+    return `<path d="M${X + 6},${A.y} C${mx},${A.y} ${mx},${Bp.y} ${X + 6},${Bp.y}" fill="none" stroke="${EDGE_COLOR[t]}" stroke-width="1.8" ${EDGE_DASH[t] ? `stroke-dasharray="${EDGE_DASH[t]}"` : ''} opacity=".9"><title>${esc(a)} ${esc(CV.edge[t])} ${esc(b)}</title></path>`; }).join('');
+  const nodes = sorted.map(p => { const P = pos.get(p.id); const label = `${p.year} · ${p.ref ? nlab(p.ref) : (p.ext || '').split(',')[0]}`;
+    return `<g><circle cx="${P.x}" cy="${P.y}" r="5" fill="var(--surface)" stroke="var(--ink)" stroke-width="1.5"/><text x="${P.x - 12}" y="${P.y + 4}" text-anchor="end" font-size="13" fill="var(--muted)">${esc(label.length > 30 ? label.slice(0, 29) + '…' : label)}</text></g>`; }).join('');
+  const types = [...new Set(edges.map(e => e[2]))];
+  return `<figure class="cgraph"><svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Graph of how the propositions of case ${esc(c.id)} relate; the same relations are listed below">${lines}${nodes}</svg>${edgeLegend(types)}
+    <figcaption class="cite">Propositions in date order, top to bottom; each arc joins two of them. ${edges.length} relations:</figcaption>
+    <ul class="elist">${edges.map(([a, b, t]) => `<li><a href="#cp-${esc(a)}">${esc(a)}</a> ${esc(CV.edge[t])} <a href="#cp-${esc(b)}">${esc(b)}</a></li>`).join('')}</ul></figure>`;
+}
+function contGraph() {
+  const types = Object.keys(CV.edge);
+  const shared = [];
+  for (let i = 0; i < CASES.length; i++) for (let j = i + 1; j < CASES.length; j++) {
+    const a = new Set(CASES[i].refs), n = CASES[j].refs.filter(r => a.has(r));
+    const rel = CASES[i].related_disputed.filter(x => CASES[j].related_disputed.includes(x));
+    if (n.length || rel.length) shared.push([CASES[i], CASES[j], n, rel]);
+  }
+  const W = 760, H = 330, cx = W / 2, cy = H / 2, R = 135;
+  const pos = new Map(CASES.map((c, i) => { const ang = -Math.PI / 2 + i / CASES.length * 2 * Math.PI; return [c.id, [cx + R * 1.75 * Math.cos(ang), cy + R * Math.sin(ang)]]; }));
+  const lines = shared.map(([a, b, n, rel]) => { const [x1, y1] = pos.get(a.id), [x2, y2] = pos.get(b.id);
+    return `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="var(--rule)" stroke-width="${Math.min(4, 1 + n.length / 2)}"><title>${a.id}–${b.id}: ${n.length} shared texts${rel.length ? ', ' + rel.length + ' shared disputed questions' : ''}</title></line>`; }).join('');
+  const nodes = CASES.map(c => { const [x, y] = pos.get(c.id);
+    return `<a href="#case-${c.id}"><circle cx="${x}" cy="${y}" r="15" fill="var(--surface)" stroke="var(--lv-${VERDICT_LV[c.verdict] === 'authentic' ? 'auth' : VERDICT_LV[c.verdict] === 'prudential' ? 'prud' : VERDICT_LV[c.verdict] === 'definitive' ? 'def' : VERDICT_LV[c.verdict] === 'discipline' ? 'disc' : 'other'})" stroke-width="3"/><text x="${x}" y="${y + 4}" text-anchor="middle" font-size="11" font-weight="700" fill="var(--ink)">${c.id}</text><title>${esc(c.id + '. ' + c.title + ' — ' + vLabel(c.verdict))}</title></a>`; }).join('');
+  const counts = {}; for (const c of CASES) for (const e of c.edges) counts[e[2]] = (counts[e[2]] || 0) + 1;
+  return `<p>Each case links its propositions to one another by seven kinds of relation; each case page draws its own graph. Here the cases are joined where they rest on the same texts or the same disputed questions. A ring's colour gives the verdict: blue plausible concord, amber unresolved.</p>
+    <figure class="cgraph"><svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Cases joined by shared texts; the pairs are listed below">${lines}${nodes}</svg></figure>
+    <div class="tablewrap"><table class="wtable"><thead><tr><th>Relation</th><th>Count</th></tr></thead><tbody>${types.map(t => `<tr><td>${edgeLegend([t])}</td><td>${counts[t] || 0}</td></tr>`).join('')}</tbody></table></div>
+    <details class="cdetails"><summary>Cases that share texts (${shared.length} pairs)</summary><div class="tips">${shared.map(([a, b, n, rel]) => `<div><a href="#case-${a.id}">${a.id}</a> and <a href="#case-${b.id}">${b.id}</a>: ${n.length ? n.map(r => esc(nlab(r))).join(', ') : ''}${rel.length ? `${n.length ? '; ' : ''}disputed: ${rel.map(x => esc((DISP_BY_ID.get(x) || {}).title || x)).join(', ')}` : ''}</div>`).join('')}</div></details>`;
+}
+function sourceIssue(caseId, what) {
+  if (!PAGES || !SITE.repo) return '';
+  const q = new URLSearchParams({ template: 'research-source.yml', title: `Source for ${caseId || 'protocol'}: ${what}`.slice(0, 120), case: caseId || '', item: what });
+  return ` <a class="xref" href="https://github.com/${SITE.repo}/issues/new?${q.toString()}" target="_blank" rel="noopener">Send a source ↗</a>`;
+}
+function contBacklog() {
+  const rows = [];
+  for (const b of CONT.backlog) rows.push([b.cases.join(', ') || 'all', b.what, b.need, b.refs, b.cases[0] || '']);
+  for (const c of CASES) for (const g of c.gaps) rows.push([c.id, g.what, `${g.source}. Settles: ${g.settles}`, [], c.id]);
+  const ext = CASES.flatMap(c => c.texts.filter(t => t.local === 'none').map(t => [c.id, t.label]));
+  const unres = CASES.flatMap(c => c.propositions.filter(p => p.evidence === 'U').map(p => [c.id, p]));
+  return `<p>Every claim the research still rests on without a checked source. A verdict cannot become <i>demonstrated concord</i> while any of its items is open. Corrections and sources are welcome.</p>
+    <div class="tablewrap"><table class="wtable"><thead><tr><th>Case</th><th>To verify</th><th>What would settle it</th></tr></thead><tbody>${rows.map(([cs, what, need, refs, cid]) => `<tr><td>${esc(cs)}</td><td>${esc(what)}${refs.length ? `<div class="cite">${refs.map(caseRefLink).join(' · ')}</div>` : ''}</td><td>${esc(need)}${sourceIssue(cid, what)}</td></tr>`).join('')}</tbody></table></div>
+    <h3 class="sub-h">Primary texts not yet in the collection (${ext.length})</h3>
+    <div class="tips">${ext.map(([id, l]) => `<div><a class="xref" href="#case-${id}">${id}</a> ${esc(l)}</div>`).join('')}</div>
+    <h3 class="sub-h">Propositions labelled unresolved (${unres.length})</h3>
+    <div class="tips">${unres.map(([id, p]) => `<div><a class="xref" href="#case-${id}">${id}</a> ${esc(p.ext || p.id)}: ${esc(p.says)}</div>`).join('')}</div>`;
+}
+let speaking = null;
+function stopSpeech() { if (window.speechSynthesis && speaking) { speechSynthesis.cancel(); speaking = null; } }
+function caseAudioText(c) { const a = c.audio; return `${c.id}. ${c.title}. What was taught. ${a.taught} By what authority. ${a.authority} What is permanent, and what was determined for its time. ${a.permanence} The site's provisional verdict is ${vLabel(c.verdict).toLowerCase()}, with ${c.confidence} confidence. This is a research judgment of the site, not a judgment of the Church.`; }
+function renderCase(id) {
+  const c = CASE_BY_ID.get(id);
+  view.className = 'col wide';
+  const G = CONT.groups[c.group];
+  const pById = new Map(c.propositions.map(p => [p.id, p]));
+  const pLabel = pid => { const p = pById.get(pid) || (PROP_INDEX.get(pid) || [])[1]; return p ? (p.ref ? nlab(p.ref) : (p.ext || pid).split(',')[0]) : pid; };
+  const yn = v => v === true ? 'yes' : v === false ? 'no' : v === 'disputed' ? 'disputed' : '–';
+  const rel = c.related_disputed.map(x => DISP_BY_ID.get(x)).filter(Boolean), since = c.related_since.map(x => SINCE_BY_ID.get(x)).filter(Boolean);
+  const idx = CASES.indexOf(c), prev = CASES[idx - 1], next = CASES[idx + 1];
+  const blk = (label, text, cls = '') => text ? `<div class="blk ${cls}"><b>${label}</b><div>${renderText(text, null)}</div></div>` : '';
+  view.innerHTML = `<div class="eyebrow"><a href="#continuity">Hermeneutic of ecclesial continuity</a> · ${esc(c.group)}. ${esc(G)}</div>
+    <h1 class="page-h">${esc(c.id)}. ${esc(c.title)}</h1>
+    <div class="cnotice" role="note"><b>${c.provisional ? 'Provisional research verdict' : 'Research verdict'} of this site, not Church teaching.</b> ${c.hard_gate ? 'The synthesis tested here is a novel and disputed theological hypothesis (label N), not an official interpretation.' : 'Verdicts and confidence describe the state of the research, not the authority of any text.'}</div>
+    <div class="doc cdoc" style="border:0;padding-top:.2rem"><div class="meta">${verdictPill(c.verdict)}<span>confidence ${esc(c.confidence)}</span><span>stage ${c.stage} of 11 ${stageBar(c.stage)}</span><span>${c.source_verified ? 'primary sources verified' : 'primary sources not yet verified'}</span><span>last reviewed ${esc(c.last_reviewed)}</span></div>
+    <p class="q">${esc(c.question)}</p></div>
+    <h2 class="sect-h">In brief</h2>
+    <p>${renderText(c.summary, null)}</p>
+    <div class="chips"><button class="chip" data-case-listen="${esc(c.id)}" ${window.speechSynthesis ? '' : 'disabled'} aria-pressed="false">Listen</button><button class="chip" data-case-copy="${esc(c.id)}">Copy the listening script</button></div>
+    <ol class="stages" aria-label="Research stages">${CV.stages.map(([k, n], i) => `<li class="${i < c.stage ? 'done' : ''}${k === 'constitutional' && !c.hard_gate ? ' na' : ''}" title="${esc(CV.stages[i][2])}"><span>${i + 1}</span>${esc(n)}</li>`).join('')}</ol>
+    <h2 class="sect-h">Primary texts</h2>
+    <div class="tips">${c.texts.map(t => `<div><b>${esc(t.label)}</b> <span class="tag">${esc({ full: 'full text here', excerpt: 'excerpts here', summary: 'summary only', none: 'not in this collection' }[t.local])}</span>${t.verified ? '<span class="tag">checked</span>' : '<span class="tag">not yet verified</span>'}
+      ${t.refs.length ? `<div>${t.refs.map(caseRefLink).join(' · ')}</div>` : ''}${t.edition ? `<div class="cite">${esc(t.edition)}</div>` : ''}${t.checked ? `<div class="cite"><b>Checked</b> ${esc(t.checked)}</div>` : ''}${t.note ? `<div class="cite">${esc(t.note)}</div>` : ''}${t.url ? `<div><a class="xref" href="${esc(t.url)}" target="_blank" rel="noopener">Official text ↗</a></div>` : ''}</div>`).join('')}</div>
+    ${c.inventory ? `<h3 class="sub-h">${esc(c.inventory.title)}</h3><p class="cite">${esc(c.inventory.note)}</p>
+      <div class="tablewrap"><table class="wtable"><thead><tr><th>Act</th><th>Kind</th><th>Status</th></tr></thead><tbody>${c.inventory.rows.map(r => `<tr><td>${esc(r.act)} ${caseRefLink(r.ref)}</td><td>${esc(vocabLabel('formal_object', r.formal_object))}<div class="cite">${esc(r.claim)}</div></td><td>${esc(r.status)}</td></tr>`).join('')}</tbody></table></div>
+      <p class="cite"><b>Outside sessions 1–25:</b></p><div class="tips">${c.inventory.outside.map(r => `<div>${esc(r.act)} ${caseRefLink(r.ref)}. ${esc(r.status)}</div>`).join('')}</div>` : ''}
+    <h2 class="sect-h">Propositions</h2>
+    <p class="cite">Each claim in the site's words, with the exact words where the collection holds them. Doctrinal grade and legal force are given separately.</p>
+    <div class="tablewrap"><table class="wtable ptable"><thead><tr><th>Claim</th><th>Doctrinal grade</th><th>Legal force</th><th>Evidence</th></tr></thead><tbody>${c.propositions.map(p => `<tr id="cp-${esc(p.id)}">
+      <td><div class="cite">${esc(p.id)} · ${p.year} · ${p.ref ? caseRefLink(p.ref) : esc(p.ext || '')}</div>${esc(p.says)}${p.quote ? `<div class="q">"${esc(p.quote)}"</div>` : ''}${p.note ? `<div class="cite">${esc(p.note)}</div>` : ''}</td>
+      <td>${esc(vocabLabel('formal_object', p.formal_object))}<div class="cite">${esc(vocabLabel('assent', p.assent))}</div></td>
+      <td>${esc(vocabLabel('binding_status', p.binding_status))}</td><td>${evTag(p.evidence)}</td></tr>`).join('')}</tbody></table></div>
+    <h2 class="sect-h">Contradiction matrix</h2>
+    <p class="cite">Two propositions conflict only if they are asserted of the same subject, in the same sense and at the same time (P1).</p>
+    <div class="tablewrap"><table class="wtable mtable"><thead><tr><th>Compared</th><th>Level</th><th>Same subject · sense · time</th><th>Result</th></tr></thead><tbody>${c.matrix.map(m => `<tr>
+      <td><a href="#cp-${esc(m.a)}">${esc(pLabel(m.a))}</a> / <a href="#cp-${esc(m.b)}">${esc(pLabel(m.b))}</a></td><td>${esc((CONT.levels.find(l => l.id === m.level) || {}).title || m.level)}</td>
+      <td class="cite">${yn(m.same_subject)} · ${yn(m.same_sense)} · ${yn(m.same_time)}</td>
+      <td><b>${esc(vocabLabel('matrix_result', m.result))}</b><div>${esc(m.why)}</div></td></tr>`).join('')}</tbody></table></div>
+    <h2 class="sect-h">How the propositions relate</h2>
+    ${caseGraph(c)}
+    <h2 class="sect-h">Tests</h2>
+    <div class="doc cdoc" style="border:0">${blk('Qualifications', c.qualifications)}${blk('Reception', c.reception)}${blk('Contingency', c.contingency)}${blk('Development', c.development)}
+    ${c.hard_gate ? '' : blk('Constitutional', 'Not applicable: this case does not turn on the relation of pope and council.')}</div>
+    ${c.hard_gate ? `<h3 class="sub-h" id="case-gate">The seven pass conditions</h3><p class="cite">${esc(CONT.gate.rule)}</p>
+      <div class="tablewrap"><table class="wtable gtable"><thead><tr><th>#</th><th>Condition</th><th>Status</th></tr></thead><tbody>${c.gate.map(g => `<tr><td>${g.n}</td><td><b>${esc(CONT.gate.conditions[g.n - 1])}</b><div>${renderText(g.note, null)}</div></td><td><span class="gs gs-${esc(g.status)}">${esc(CV.gate_status[g.status])}</span></td></tr>`).join('')}</tbody></table></div>
+      ${(CONT.gate.history || []).map(h => `<div class="blk-note"><b>Condition ${h.n}, earlier wording (protocol v${esc(h.version)}).</b> "${esc(h.text)}" <div class="cite" style="margin-top:.3rem">${esc(h.reason)}</div></div>`).join('')}
+      <div class="blk-note"><b>The theory under test.</b> ${esc(CONT.gate.theory)}</div><div class="blk-note"><b>Methodological warning.</b> ${esc(CONT.gate.warning)}</div>` : ''}
+    ${c.counterfactuals ? `<h3 class="sub-h" id="case-cf">${esc(c.counterfactuals.title)}</h3><p class="cite">${esc(c.counterfactuals.note)}</p>
+      <div class="tablewrap"><table class="wtable ctable cftable"><thead><tr><th>Scenario</th><th>Convocation</th><th>Haec Sancta</th><th>Depositions</th><th>Extraordinary competence needed?</th></tr></thead><tbody>${c.counterfactuals.rows.map(r => `<tr>
+        <td><b>${esc(r.id)}. ${esc(r.label)}</b><div class="cite">${esc(r.support)}</div></td><td>${esc(r.convocation)}</td><td>${esc(r.haec_sancta)}</td><td>${esc(r.depositions)}</td>
+        <td>${esc(r.needs_extraordinary)}<div class="cite"><b>Conditions:</b> ${esc(r.conditions)}</div></td></tr>`).join('')}</tbody></table></div>
+      <div class="blk-note"><b>Common to every scenario.</b> ${esc(c.counterfactuals.common)}</div><div class="blk-note"><b>Result.</b> ${esc(c.counterfactuals.result)}</div>` : ''}
+    <h2 class="sect-h">Proposed reading, and the case against it</h2>
+    <div class="doc cdoc" style="border:0">${blk('Proposed reading', c.hypothesis)}${blk('Strongest objection', c.objection, 'obj')}${blk('Rebuttal', c.rebuttal)}
+    ${c.benedict ? blk('Benedict\'s method', c.benedict) : ''}</div>
+    <h2 class="sect-h">Verdict</h2>
+    <p>${verdictPill(c.verdict)} ${esc((CV.verdict[c.verdict] || '').split(': ').slice(1).join(': '))} Confidence: ${esc(c.confidence)}.</p>
+    ${(c.verdict_history || []).length > 1 ? `<div class="tablewrap"><table class="wtable"><thead><tr><th>Protocol</th><th>Verdict</th><th>Why</th></tr></thead><tbody>${c.verdict_history.map(h => `<tr><td>v${esc(h.protocol)}</td><td>${verdictPill(h.verdict)}<div class="cite">confidence ${esc(h.confidence || '')}</div></td><td>${esc(h.why)}</td></tr>`).join('')}</tbody></table></div>` : ''}
+    <h3 class="sub-h">Evidence still required</h3>
+    <div class="tips">${c.gaps.map(g => `<div><b>${esc(g.what)}</b>. ${esc(g.source)}. <span class="cite">Settles: ${esc(g.settles)}</span>${sourceIssue(c.id, g.what)}</div>`).join('')}</div>
+    <p><b>Next most probative source:</b> ${esc(c.next_source)}</p>
+    <div class="links">
+      ${rel.length ? `<div>Disputed questions: ${rel.map(d => `<a href="#q-${d.id}">${esc(d.title)}</a>`).join(' · ')}</div>` : ''}
+      ${since.length ? `<div>Since 1950: ${since.map(s => `<a href="#since-${s.id}">${esc(s.title)}</a>`).join(' · ')}</div>` : ''}
+      ${(c.regression || []).length ? `<div>Earlier test case: ${c.regression.map(r => esc((CONT.regression.find(x => x.id === r) || {}).label || r)).join(' · ')}</div>` : ''}
+      ${c.refs.length >= 2 ? `<div><a href="#cmp-${encId(c.refs[0])}~${encId(c.refs[c.refs.length - 1])}">Compare ${esc(nlab(c.refs[0]))} with ${esc(nlab(c.refs[c.refs.length - 1]))}</a></div>` : ''}
+    </div>
+    <details class="cdetails"><summary>Record of changes</summary><div class="tips">${c.log.map(l => `<div>${esc(l.date)}: ${esc(l.change)}</div>`).join('')}</div></details>
+    ${reviewRow('case:' + c.id)}
+    <nav class="cnav">${prev ? `<a href="#case-${prev.id}">← ${prev.id}. ${esc(prev.title)}</a>` : '<span></span>'}${next ? `<a href="#case-${next.id}">${next.id}. ${esc(next.title)} →</a>` : ''}</nav>`;
+  window.scrollTo(0, 0);
 }
 
 /* ---------- threads ---------- */
@@ -2044,6 +2312,12 @@ function pickEvents(el) {
 }
 
 /* ----- the prompt ----- */
+const CONT_RULES = CONT ? 'How to test an apparent conflict (this site\'s research protocol, P1-P8):\n' + CONT.principles.map(p => '- ' + p.id + ' ' + p.title + ': ' + p.rule).join('\n') + '\n- ' + CONT.meta.notice + '\n\n' : '';
+function casesFor(ents, ctx) {
+  const ids = new Set(ents.map(e => e.id)), ds = new Set((ctx.ds || []).map(d => d.id));
+  const score = c => c.refs.filter(r => ids.has(r)).length + 3 * c.related_disputed.filter(x => ds.has(x)).length;
+  return CASES.map(c => [c, score(c)]).filter(x => x[1] > 0).sort((a, b) => b[1] - a[1]).slice(0, 4).map(x => x[0]);
+}
 const HERM_RULES = HERM.principles.length ? 'How to read magisterial texts (hermeneutics):\n' + HERM.principles.map(p => '- ' + p.rule).join('\n') + '\n\n' : '';
 const READING_RULES = `How to read condemned propositions and controversial bulls:
 - A condemnation targets a proposition in a determinate doctrinal sense, not every meaning its words could bear. Establish that sense from the source the proposition was taken from, the wording of the condemnation (named senses such as "if thus understood"; censures), and authoritative explanations. Never supply an intention the evidence does not show, whether to accuse or to excuse.
@@ -2101,6 +2375,7 @@ function buildPrompt(question, ents, ctx, mode, o = {}) {
     ...ctx.ss.map(s => `[Since 1950: ${s.title}, ${s.date.slice(0, 4)}] ${LEVELS[s.level][0]}. ${s.summary} Continuity: ${s.continuity}`),
     ...ctx.ds.map(d => `[Disputed question: ${d.title}] Settled: ${d.settled} Open: ${d.open} Continuity reading: ${d.reading}`),
     ...(ctx.ts || []).map(t => `[Thread: ${t.title}] ${t.summary}`),
+    ...casesFor(ents, ctx).map(c => `[Research case ${c.id}, a provisional hypothesis of this site, not Church teaching: ${c.title}] Question: ${c.question} Verdict: ${vLabel(c.verdict)}, confidence ${c.confidence}, research stage ${c.stage} of 11${c.source_verified ? '' : ', primary sources not yet verified'}. Proposed reading: ${c.hypothesis} Strongest objection: ${c.objection}`),
   ].join('\n\n');
   const task = mode === 'check'
     ? `## Your task: check a statement
@@ -2126,7 +2401,7 @@ Question: ${question}`;
 - Read later teaching in continuity with earlier binding texts. Where others see a break, say so briefly and fairly.
 - Answer in the language of the question.
 
-${HERM_RULES}${READING_RULES}
+${HERM_RULES}${CONT_RULES}${READING_RULES}
 
 ## What the labels mean
 ${[...kinds, ...grades].join('\n') || '- (no texts given)'}
@@ -2410,7 +2685,7 @@ function setView(v) {
 function route() {
   const h = decodeURIComponent(location.hash.slice(1));
   let m;
-  Marks.editing = null; Cite.open = null;
+  Marks.editing = null; Cite.open = null; stopSpeech();
   if ((m = h.match(/^n(.+)$/)) && byId.has(m[1])) {
     const e = byId.get(m[1]); state.era = e.era; setView('read'); renderEra(e.era, e.id);
   } else if ((m = h.match(/^e(\d+)$/)) && ERAS[+m[1]]) {
@@ -2438,6 +2713,12 @@ function route() {
     state.era = DOCS.get(m[1])[0].era; setView('read'); renderDoc(m[1]);
   } else if (h === 'hermeneutics' || h.startsWith('herm-')) {
     setView('hermeneutics'); highlightTerms = []; renderHermeneutics(h.startsWith('herm-') ? h.slice(5) : null);
+  } else if (h === 'continuity' || /^cont-[A-Za-z0-9-]+$/.test(h)) {
+    setView('continuity'); highlightTerms = []; renderContinuity(h === 'continuity' ? null : h);
+  } else if ((m = h.match(/^case-([A-D]\d)$/)) && CASE_BY_ID.has(m[1])) {
+    setView('case'); highlightTerms = []; renderCase(m[1]);
+  } else if ((m = h.match(/^cp-(.+)$/)) && PROP_INDEX.has(m[1])) {
+    setView('case'); highlightTerms = []; renderCase(PROP_INDEX.get(m[1])[0].id); scrollToTarget('cp-' + m[1]);
   } else if (h === 'checked') {
     setView('checked'); highlightTerms = []; renderChecked();
   } else if (h === 'reading') {
@@ -2581,6 +2862,14 @@ view.addEventListener('click', async ev => {
   if ((el = t.closest('[data-chk]'))) { CHK.g = el.dataset.chk; const y = window.scrollY; renderChecked(); window.scrollTo(0, y); return; }
   if ((el = t.closest('[data-level]'))) { state.sinceLevel = el.dataset.level; renderSince(null); return; }
   if ((el = t.closest('[data-cat]'))) { state.dispCat = el.dataset.cat; renderDisputed(null); return; }
+  if ((el = t.closest('[data-cf]'))) { CF[el.dataset.cf] = el.dataset.cfv; el.parentNode.querySelectorAll('[data-cf]').forEach(b => b.setAttribute('aria-pressed', b === el)); $('cfList').innerHTML = caseList(); return; }
+  if ((el = t.closest('[data-case-listen]'))) {
+    if (speaking) { stopSpeech(); el.textContent = 'Listen'; el.setAttribute('aria-pressed', 'false'); return; }
+    const u = new SpeechSynthesisUtterance(caseAudioText(CASE_BY_ID.get(el.dataset.caseListen))); u.lang = 'en';
+    u.onend = () => { speaking = null; el.textContent = 'Listen'; el.setAttribute('aria-pressed', 'false'); };
+    speaking = u; speechSynthesis.speak(u); el.textContent = 'Stop'; el.setAttribute('aria-pressed', 'true'); return;
+  }
+  if ((el = t.closest('[data-case-copy]'))) { try { await navigator.clipboard.writeText(caseAudioText(CASE_BY_ID.get(el.dataset.caseCopy))); toast('Listening script copied'); } catch (_) { toast('Copying is not allowed here'); } return; }
   if ((el = t.closest('[data-topic]'))) { state.topic = el.dataset.topic; state.query = ''; state.kind = ''; qInput.value = ''; highlightTerms = []; go('#results'); return; }
   if ((el = t.closest('[data-go]'))) { go(el.dataset.go); return; }
   if ((el = t.closest('[data-save]'))) { const id = el.dataset.save; const m = Marks.get(id); await Marks.set(id, { b: !(m && m.b) }); refreshEntry(id); toast(m && m.b ? 'Removed from saved' : 'Saved'); return; }
