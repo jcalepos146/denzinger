@@ -126,6 +126,7 @@ const GRADES = {
   prudential: ['Prudential decision', 'prudential'], witness: ['Historical witness', 'study'], editorial: ['Editorial note', 'study'],
 };
 const wKey = w => w === 'papal' ? 'papal-teaching' : w;
+const hasWeight = (e, weight) => wKey(e.weight) === weight || (weight === 'papal-def' && !!sourceOf(e)?.papalDefinition);
 const levelOf = e => e.cur !== null && CURATED[e.cur] && GRADES[CURATED[e.cur].g] ? GRADES[CURATED[e.cur].g][1] : (WEIGHTS[wKey(e.weight)] || WEIGHTS['papal-teaching'])[1];
 const W = w => WEIGHTS[wKey(w)] || WEIGHTS['papal-teaching'];
 const CATS = {
@@ -525,7 +526,9 @@ function curNote(e) {
 }
 function entryHtml(e, re, showCur) {
   const m = Marks.get(e.id);
-  const tags = `<div class="wline">${dsTag(e)}${weightPill(e.weight)}${curPill(e)}${censHtml(e)}${e.kinds.filter(k => k === 'definition' || k === 'anathema').map(k => `<span class="tag">${KIND_LABEL[k]}</span>`).join('')}</div>`;
+  const papal = sourceOf(e)?.papalDefinition;
+  const papalTag = papal ? `<a class="pill" href="#weight-papal-def" title="Papal definition collection · ${esc(papal.note)}">${esc(papal.label)}</a>` : '';
+  const tags = `<div class="wline">${dsTag(e)}${weightPill(e.weight)}${papalTag}${curPill(e)}${censHtml(e)}${e.kinds.filter(k => k === 'definition' || k === 'anathema').map(k => `<span class="tag">${KIND_LABEL[k]}</span>`).join('')}</div>`;
   const disc = DISCUSSED.get(e.id);
   const side = Latin.mode === 'side' && !e.sup;
   const body = `<div class="body">${tags}${e.paras.map(p => `<p>${renderText(p, re)}</p>`).join('')}</div>`;
@@ -687,6 +690,7 @@ function renderSource(id) {
     <dt>Catalogue review</dt><dd>${esc(r.review.status)}${r.review.date ? ' · ' + esc(r.review.date) : ''}. ${esc(r.review.note)}</dd>
     <dt>Collection headings</dt><dd>${esc(r.collectionHeadings.join('; ') || 'No local entries')}</dd></dl>
     ${r.sourceLines.map(t => `<p class="src">${esc(t)}</p>`).join('')}</details>
+    ${r.papalDefinition ? `<p><a href="#weight-papal-def">Papal definition collection</a> · <b>${esc(r.papalDefinition.label)}.</b> ${esc(r.papalDefinition.note)}</p>` : ''}
     ${r.summary ? `<p>${esc(r.summary)} <span class="count">Editorial overview.</span></p>` : ''}
     <p class="curnote">${esc(r.authorityNote)} <a href="#weights">Read the criteria</a>.</p>
     ${entries.length ? `<details><summary>Passages in this collection (${entries.length})</summary><p>${entries.map(e => `<a href="#n${esc(e.id)}">${esc(nlab(e.id))}</a>`).join(' · ')}</p></details>` : '<p>The complete document is available through the external source above. Its text has not been added to local passage search.</p>'}
@@ -949,14 +953,14 @@ function filterTest(f) {
       const gk = Object.entries(GRADES).filter(([k, x]) => norm(k).startsWith(nv) || startsWord(x[0], v)).map(([k]) => k);
       const lk = Object.entries(LEVELS).filter(([k, x]) => norm(k).startsWith(nv) || startsWord(x[0], v)).map(([k]) => k);
       if (!wk.length && !gk.length && !lk.length) return { error: `No weight called “${v}”. Try dogma, definitive, authentic, discipline, prudential, condemned or creed.` };
-      return e => lk.includes(levelOf(e)) || (e.cur !== null && CURATED[e.cur] ? gk.includes(CURATED[e.cur].g) : wk.includes(wKey(e.weight)));
+      return e => lk.includes(levelOf(e)) || (wk.includes('papal-def') && hasWeight(e, 'papal-def')) || (e.cur !== null && CURATED[e.cur] ? gk.includes(CURATED[e.cur].g) : wk.includes(wKey(e.weight)));
     }
     case 'kind': {
       const ks = KINDS.filter(([k, label]) => k && (k.startsWith(nv) || startsWord(label, v))).map(([k]) => k);
       const weights = Object.entries(WEIGHTS).filter(([k,x]) => norm(k).startsWith(nv) || startsWord(x[0], v)).map(([k]) => k);
       const genres = LIBRARY.records.filter(r => r.genre && startsWord(r.genre, v)).map(r => r.id);
       if (!ks.length && !weights.length && !genres.length) return { error: `No kind of text called “${v}”. Try encyclical, papal-address, cdf, creed or anathema.` };
-      return e => ks.some(k => e.kinds.includes(k)) || weights.includes(wKey(e.weight)) || genres.includes(e.documentId);
+      return e => ks.some(k => e.kinds.includes(k)) || weights.some(w => hasWeight(e, w)) || genres.includes(e.documentId);
     }
     case 'year': { const r = yearRange(v); if (!r) return { error: `Give a year or a span, like year:1854 or year:1850-1900.` }; return e => e.year >= r[0] && e.year <= r[1]; }
     case 'before': { const r = yearRange(v); if (!r) return { error: 'Give a year, like before:800.' }; return e => e.year < r[0]; }
@@ -988,10 +992,9 @@ function runSearch() {
   const { terms, neg, filters } = splitQuery(state.query);
   const tests = [], errors = [];
   for (const f of filters) { const t = filterTest(f); if (t && t.error) errors.push(t.error); else if (t) tests.push(t); }
-  const pass = e => tests.every(t => t(e)) && !neg.some(n => e.hay.includes(' ' + n) || e.meta.includes(' ' + n));
+  const pass = e => (!state.weight || hasWeight(e, state.weight)) && tests.every(t => t(e)) && !neg.some(n => e.hay.includes(' ' + n) || e.meta.includes(' ' + n));
   if (!terms.length) {
-    if (tests.length || neg.length) return { hits: ENTRIES.filter(pass).map(e => ({ e, score: 0 })), terms, filters, errors };
-    if (state.weight) return { hits: ENTRIES.filter(e => wKey(e.weight) === state.weight).map(e => ({ e, score: 0 })), terms, filters, errors };
+    if (tests.length || neg.length || state.weight) return { hits: ENTRIES.filter(pass).map(e => ({ e, score: 0 })), terms, filters, errors };
     return { hits: state.kind ? ENTRIES.filter(e => e.kinds.includes(state.kind)).map(e => ({ e, score: 0 })) : [], terms, filters, errors };
   }
   const hits = [];
@@ -1023,10 +1026,10 @@ function snippet(e, re) {
   return h;
 }
 function hitHtml(e, re) {
-  const m = Marks.get(e.id);
+  const m = Marks.get(e.id), source = sourceOf(e);
   return `<a class="hit" href="#n${esc(e.id)}">
     <span class="n">${esc(dispId(e.id))}</span>
-    <span><span class="ctx">${W(e.weight)[0]} · ${esc(e.era.name)}${e.era.dates ? ' · ' + esc(e.era.dates) : ''}${e.ses ? ' · ' + esc(e.ses.replace(/\s*\(.*\)$/, '')) : ''}</span>
+    <span><span class="ctx">${W(e.weight)[0]}${source?.papalDefinition ? ' · ' + esc(source.papalDefinition.label) : ''} · ${esc(e.era.name)}${e.era.dates ? ' · ' + esc(e.era.dates) : ''}${e.ses ? ' · ' + esc(e.ses.replace(/\s*\(.*\)$/, '')) : ''}</span>
     ${e.topic ? `<div class="ht">${re ? esc(e.topic).replace(re, '<mark>$1</mark>') : esc(e.topic)}</div>` : ''}
     <div class="snip">${snippet(e, re)}</div>${m && m.note ? `<div class="nt">${esc(m.note)}</div>` : ''}</span></a>`;
 }
@@ -1036,13 +1039,14 @@ function sourceSearchMatches(terms, filters) {
     if (['document', 'doc'].includes(f.key)) return libraryMatches(r, f.val);
     if (f.key === 'issuer') return r.issuer && startsWord(r.issuer, f.val);
     if (f.key === 'coverage') return r.coverage === f.val || startsWord(COVERAGE_LABEL[r.coverage], f.val);
+    if (r.papalDefinition && ['weight', 'grade', 'level', 'kind'].includes(f.key) &&
+        (norm('papal-def').startsWith(norm(f.val)) || startsWord(WEIGHTS['papal-def'][0], f.val))) return true;
     const test = filterTest(f);
     return typeof test === 'function' && r.entryIds.some(id => test(byId.get(id)));
   }));
 }
 function renderResults() {
-  let { hits, terms, filters, errors } = runSearch();
-  if (state.weight && terms.length) hits = hits.filter(h => wKey(h.e.weight) === state.weight);
+  const { hits, terms, filters, errors } = runSearch();
   highlightTerms = terms;
   const re = termRegex(terms);
   view.className = 'col';
@@ -1083,6 +1087,14 @@ function renderResults() {
     html += `<div class="chips" role="group" aria-label="Filter by kind of text"><span class="lbl">Kind</span>${KINDS.map(([k, name], i) =>
       `<button class="chip" data-kind="${k}" aria-pressed="${state.kind === k}" ${kindCounts[i] || !k ? '' : 'disabled'}>${name}<span>${fmt(kindCounts[i])}</span></button>`).join('')}</div>`;
     html += `<div class="chips"><span class="lbl">Weight</span><select class="wsel" id="wsel" aria-label="Filter by weight"><option value="">All weights</option>${Object.entries(WEIGHTS).map(([k, x]) => `<option value="${k}" ${state.weight === k ? 'selected' : ''}>${x[0]}</option>`).join('')}</select></div>`;
+  }
+  if (state.weight === 'papal-def' && !terms.length && !filters.length) {
+    const sources = new Set(shown.map(h => h.e.documentId));
+    const works = LIBRARY.records.filter(r => r.papalDefinition && (sources.has(r.id) ||
+      (!state.kind && !state.period && !r.entryIds.length)));
+    html += '<p class="lede">Includes standalone papal definitions, papal letters received by councils, papal synodal acts and texts promulgated with a council. Each passage still carries its own source label and editorial grade where available.</p>';
+    if (works.length) html += `<details class="search-sources"><summary>Documents with council context (${works.length})</summary>
+      <ul>${works.map(r => `<li><a href="${sourceHref(r)}">${esc(r.title)}</a>${r.entryIds.length ? '' : ' · external text'}</li>`).join('')}</ul></details>`;
   }
   if (!shown.length) {
     if (!terms.length && filters.length) html += `<div class="empty">No entries match these filters. Check the spelling of a name (this collection writes <b>Pius IX</b>, <b>Trent</b>, <b>Vatican Council</b>), or widen the years.</div>`;
@@ -1411,6 +1423,7 @@ const CENSURE_GRADES = [
 function renderWeights() {
   view.className = 'col wide';
   const counts = {}; for (const e of ENTRIES) { const k = wKey(e.weight); counts[k] = (counts[k] || 0) + 1; }
+  counts['papal-def'] = ENTRIES.filter(e => hasWeight(e, 'papal-def')).length;
   view.innerHTML = `<div class="eyebrow">Guide</div><h1 class="page-h">Weight and censures</h1>
     <p class="lede">Not every text in Denzinger binds in the same way. Document genre, issuing authority and the doctrinal status of a particular passage are separate questions. Genre labels do not settle the authority of every sentence. These editorial reading aids are assigned by rules (the kind of council, the presence of a defining formula, an anathema or a censure) and a short list of papal definitions chosen by hand; treat them as a guide, and weigh each text by what it actually proposes.</p>
     <h2 class="sect-h">How to assess authority</h2>
@@ -1420,6 +1433,7 @@ function renderWeights() {
     <div class="tablewrap"><table class="wtable"><thead><tr><th>Label</th><th>What it means</th><th>Entries</th></tr></thead><tbody>
     ${Object.entries(WEIGHTS).map(([k, x]) => `<tr><td><span class="pill lv-${x[1]}">${x[0]}</span></td><td>${esc(x[2])}</td><td><a class="xref" href="#weight-${k}">${fmt(counts[k] || 0)}</a></td></tr>`).join('')}
     </tbody></table></div>
+    <p>The <a href="#weight-papal-def">Papal definition collection</a> also indexes received papal letters, papal synodal acts and texts promulgated with a council. Their entry counts overlap with their original categories.</p>
     <p>Many entries also carry a grade checked by hand, with the reason for it. <a href="#checked">See every hand-checked range</a>.</p>
     <h2 class="sect-h">Four cautions</h2>
     <div class="tips" style="font-size:.95rem">
@@ -1659,6 +1673,9 @@ function renderContinuity(focus) {
     <h2 class="sect-h" id="cont-backlog">Verification backlog</h2>
     ${contBacklog()}
     <h2 class="sect-h" id="cont-method">Method, labels and tests</h2>
+    ${M.evidence_review?.length ? `<h3 class="sub-h">How new evidence changes the analysis</h3>
+      <ol class="rules">${M.evidence_review.map(step => `<li>${esc(step)}</li>`).join('')}</ol>` : ''}
+
     <h3 class="sub-h">Eleven research stages</h3>
     <ol class="rules">${CV.stages.map(([, n, d]) => `<li><b>${esc(n)}.</b> ${esc(d)}</li>`).join('')}</ol>
     <h3 class="sub-h">Evidence labels</h3>
@@ -1768,7 +1785,10 @@ function renderCase(id) {
     <p class="q">${esc(c.question)}</p></div>
     <h2 class="sect-h">In brief</h2>
     <p>${renderText(c.summary, null)}</p>
-    ${c.hard_gate ? `<p><a href="#case-${esc(c.id)}-gate">Read the seven conditions</a></p>` : ''}
+    ${c.hard_gate || c.evidence_reviews?.length ? `<p>${[
+      c.hard_gate && `<a href="#case-${esc(c.id)}-gate">Read the seven conditions</a>`,
+      c.evidence_reviews?.length && `<a href="#case-${esc(c.id)}-sources">Read the evidence review and sources</a>`,
+    ].filter(Boolean).join(' · ')}</p>` : ''}
     <div class="chips"><button class="chip" data-case-listen="${esc(c.id)}" ${window.speechSynthesis ? '' : 'disabled'} aria-pressed="false">Listen</button><button class="chip" data-case-copy="${esc(c.id)}">Copy the listening script</button></div>
     <ol class="stages" aria-label="Research stages">${CV.stages.map(([k, n], i) => `<li class="${i < c.stage ? 'done' : ''}${k === 'constitutional' && !c.hard_gate ? ' na' : ''}" title="${esc(CV.stages[i][2])}"><span>${i + 1}</span>${esc(n)}</li>`).join('')}</ol>
     <h2 class="sect-h">Primary texts</h2>
@@ -1806,6 +1826,14 @@ function renderCase(id) {
     <h2 class="sect-h">Proposed reading, and the case against it</h2>
     <div class="doc cdoc" style="border:0">${blk('Proposed reading', c.hypothesis)}${blk('Strongest objection', c.objection, 'obj')}${blk('Rebuttal', c.rebuttal)}
     ${c.benedict ? blk('Benedict\'s method', c.benedict) : ''}</div>
+    ${c.evidence_reviews?.length ? `<h2 class="sect-h" id="case-sources">Evidence review</h2>
+      <div class="tips">${c.evidence_reviews.map(r => `<div><b>${esc(r.question)}</b><div>${renderText(r.finding, null)}</div>
+        <div class="cite"><b>What would change the assessment.</b> ${renderText(r.test, null)}</div></div>`).join('')}</div>` : ''}
+    ${c.research_sources?.length ? `<details class="cdetails"><summary>Sources for the synthesis (${c.research_sources.length})</summary>
+      <div class="tips">${c.research_sources.map(r => `<div><b>${esc(r.title)}</b> <span class="tag">${esc(r.role)}</span>
+        <div class="cite">${renderText(r.citation, null)}</div><div>${renderText(r.note, null)}</div>
+        <a class="xref" href="${esc(r.url)}" target="_blank" rel="noopener">Read source ↗</a></div>`).join('')}</div>
+      </details>` : ''}
     <h2 class="sect-h">Verdict</h2>
     <p>${verdictPill(c.verdict)} ${esc((CV.verdict[c.verdict] || '').split(': ').slice(1).join(': '))} Confidence: ${esc(c.confidence)}.</p>
     ${(c.verdict_history || []).length > 1 ? `<div class="tablewrap"><table class="wtable"><thead><tr><th>Protocol</th><th>Verdict</th><th>Why</th></tr></thead><tbody>${c.verdict_history.map(h => `<tr><td>v${esc(h.protocol)}</td><td>${verdictPill(h.verdict)}<div class="cite">confidence ${esc(h.confidence || '')}</div></td><td>${esc(h.why)}</td></tr>`).join('')}</tbody></table></div>` : ''}
@@ -2708,7 +2736,7 @@ function route() {
   } else if (h === 'weights') {
     setView('weights'); renderWeights();
   } else if ((m = h.match(/^weight-([a-z-]+)$/)) && WEIGHTS[m[1]]) {
-    state.weight = m[1]; state.kind = ''; state.query = ''; state.topic = null; state.limit = 60; qInput.value = '';
+    state.weight = m[1]; state.kind = ''; state.query = ''; state.topic = null; state.period = 0; state.limit = 60; qInput.value = '';
     setView('search'); renderResults(); window.scrollTo(0, 0);
   } else if ((m = h.match(/^doc-([A-Z]+)$/)) && DOCS.has(m[1])) {
     state.era = DOCS.get(m[1])[0].era; setView('read'); renderDoc(m[1]);
@@ -2716,10 +2744,10 @@ function route() {
     setView('hermeneutics'); highlightTerms = []; renderHermeneutics(h.startsWith('herm-') ? h.slice(5) : null);
   } else if (h === 'continuity' || /^cont-[A-Za-z0-9-]+$/.test(h)) {
     setView('continuity'); highlightTerms = []; renderContinuity(h === 'continuity' ? null : h);
-  } else if ((m = h.match(/^case-([A-D]\d)(-gate)?$/)) && CASE_BY_ID.has(m[1])
-      && (!m[2] || CASE_BY_ID.get(m[1]).hard_gate)) {
-    setView('case'); highlightTerms = []; renderCase(m[1]);
-    if (m[2]) scrollToTarget('case-gate');
+  } else if ((m = h.match(/^case-([A-D]\d)(?:-(gate|sources))?$/)) && CASE_BY_ID.has(m[1])) {
+    const c = CASE_BY_ID.get(m[1]);
+    setView('case'); highlightTerms = []; renderCase(c.id);
+    if ((m[2] === 'gate' && c.hard_gate) || (m[2] === 'sources' && c.evidence_reviews?.length)) scrollToTarget('case-' + m[2]);
   } else if ((m = h.match(/^cp-(.+)$/)) && PROP_INDEX.has(m[1])) {
     setView('case'); highlightTerms = []; renderCase(PROP_INDEX.get(m[1])[0].id); scrollToTarget('cp-' + m[1]);
   } else if (h === 'checked') {

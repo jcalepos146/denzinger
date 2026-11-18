@@ -1,6 +1,6 @@
 # Hermeneutic of ecclesial continuity: the research protocol
 
-Version 0.3, 18 November 2026. Reader: <https://jcalepos146.github.io/denzinger/#continuity>
+Version 0.4, 18 November 2026. Reader: <https://jcalepos146.github.io/denzinger/#continuity>
 
 This is a research layer, kept apart from the texts. It does not change any entry, its numbering or its weight. Its verdicts, confidence levels and the synthesis proposed for Constance, Basel and Vatican I are scholarly hypotheses, not teaching of the Church and not a judgment of any office of the Holy See.
 
@@ -55,6 +55,12 @@ The field checklist of the handoff maps as follows: `entry_id` → `id`; `docume
 3. Rerun the matrix and the tests. If the result changes, change the verdict, even if it goes against the proposed reading.
 4. Add a line to `log`, update `last_reviewed`, and move the item out of `gaps`.
 5. `python3 build/build.py` and `python3 -m unittest discover -s tests`.
+
+## Revising the method as evidence changes
+
+Protocol v0.4 records the status of each witness, the claim it bears on, the strongest rival reading and the evidence that could change the result. For a contested act, assess the event, the authority to act, and later reception in their own right. A draft or a canonist’s argument can establish that an explanation was available to historical actors. Its legal authority is a further question.
+
+When a change affects the method, record the earlier test and apply the revised test to the case. Preserve the previous verdict and show the effect of the change. D1 compares the narrower account of settling disputed titles with the proposal that notorious and incorrigible scandal can make an otherwise legitimate pope subject to a council. The seven conditions continue to govern both. [D1 evidence review](https://jcalepos146.github.io/denzinger/#case-D1-sources)
 
 ## The regression subset
 

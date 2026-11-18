@@ -4204,5 +4204,441 @@
       "date": "2026-11-17",
       "note": "Document identity and official source link checked; this does not certify the transcription or a doctrinal grade"
     }
+  },
+  {
+    "id": "tome-of-leo",
+    "title": "St. Leo’s Tome to Flavian",
+    "entryIds": [
+      "143",
+      "144"
+    ],
+    "issuer": "Pope St. Leo I",
+    "genre": "Dogmatic letter",
+    "date": "0449-06-13",
+    "collection": "Chalcedon",
+    "sourceLinks": [
+      {
+        "url": "https://www.newadvent.org/fathers/3604028.htm",
+        "label": "Letter 28 to Flavian",
+        "language": "en",
+        "scope": "full-document"
+      },
+      {
+        "url": "https://www.newadvent.org/fathers/3811.htm",
+        "label": "Chalcedon, session 2 and the definition",
+        "language": "en",
+        "scope": "source-page"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Denzinger English selection",
+    "textVerification": "Source identity checked. A critical comparison of the local transcription is pending.",
+    "rights": "Reuse status of the complete source has not been assessed.",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-18",
+      "note": "Identity, form of issuance and conciliar context reviewed."
+    },
+    "papalDefinition": {
+      "label": "Papal letter received by a council",
+      "note": "Leo sets out the doctrine of the two natures in one person. Chalcedon received the Tome in 451. The acts of session 2 record the bishops’ acclamation that Peter had spoken through Leo."
+    }
+  },
+  {
+    "id": "lateran-649",
+    "title": "Lateran Synod of 649: canons on faith",
+    "entryIds": [
+      "254",
+      "255",
+      "256",
+      "257",
+      "258",
+      "259",
+      "260",
+      "261",
+      "262",
+      "263",
+      "264",
+      "265",
+      "266",
+      "267",
+      "268",
+      "269",
+      "270",
+      "271",
+      "272",
+      "273",
+      "274"
+    ],
+    "issuer": "Pope St. Martin I and the Roman Synod",
+    "genre": "Synodal canons",
+    "date": "0649-10-31",
+    "collection": "Lateran Synod of 649",
+    "sourceLinks": [
+      {
+        "url": "https://www.jstor.org/stable/jj.38238618",
+        "label": "Acts of the Lateran Synod, edited by Richard Price",
+        "language": "en",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Denzinger English selection",
+    "textVerification": "Source identity checked. A critical comparison of the local transcription is pending.",
+    "rights": "Reuse status of the complete source has not been assessed.",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-18",
+      "note": "Identity, form of issuance and conciliar context reviewed."
+    },
+    "papalDefinition": {
+      "label": "Papal synod",
+      "note": "Martin I presided over a Roman synod at the Lateran in 649. Its twenty canons include the confession of Christ’s two natural wills and operations. Constantinople III upheld that doctrine in its own definition. The synod predates the numbered ecumenical Lateran councils."
+    }
+  },
+  {
+    "id": "agatho-tome",
+    "title": "St. Agatho’s Tome to the emperors (Consideranti mihi)",
+    "entryIds": [],
+    "issuer": "Pope St. Agatho",
+    "genre": "Dogmatic letter",
+    "date": "0680-03-27",
+    "collection": "Constantinople III",
+    "sourceLinks": [
+      {
+        "url": "https://archive.org/details/patrologiaecursu0087mign/page/n586/mode/2up",
+        "label": "Complete letter in Patrologia Latina 87, cols. 1161–1214",
+        "language": "la",
+        "scope": "full-document"
+      },
+      {
+        "url": "https://www.newadvent.org/fathers/3813.htm",
+        "label": "Abridged English translation in the acts of Constantinople III",
+        "language": "en",
+        "scope": "source-page"
+      },
+      {
+        "url": "https://www.vatican.va/content/leo-xiii/en/encyclicals/documents/hf_l-xiii_enc_29061896_satis-cognitum.html",
+        "label": "Satis cognitum, quoting the council’s final session",
+        "language": "en",
+        "scope": "source-page"
+      }
+    ],
+    "coverage": "none",
+    "translation": "English translation in the linked council acts",
+    "textVerification": "Latin text and abridged English translation are linked externally.",
+    "rights": "Reuse status of the complete source has not been assessed.",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-18",
+      "note": "Identity, form of issuance and conciliar context reviewed."
+    },
+    "papalDefinition": {
+      "label": "Papal letter received by a council",
+      "note": "Agatho’s personal letter and the accompanying Roman synodal letter were read at Constantinople III in 680. The council’s final message to the emperor said that Peter spoke through Agatho. Leo XIII cites that passage in Satis cognitum."
+    }
+  },
+  {
+    "id": "agatho-roman-synod",
+    "title": "Agatho and the Roman Synod (Omnium bonorum spes)",
+    "entryIds": [
+      "288"
+    ],
+    "issuer": "Pope St. Agatho and the Roman Synod",
+    "genre": "Synodal dogmatic letter",
+    "date": null,
+    "collection": "Constantinople III",
+    "sourceLinks": [
+      {
+        "url": "https://archive.org/details/patrologiaecursu0087mign/page/n613/mode/2up",
+        "label": "Joint letter of Agatho and 125 bishops in Patrologia Latina 87",
+        "language": "la",
+        "scope": "full-document"
+      },
+      {
+        "url": "https://www.newadvent.org/fathers/3813.htm",
+        "label": "Acts and definition of Constantinople III",
+        "language": "en",
+        "scope": "source-page"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Denzinger English selection",
+    "textVerification": "Source identity checked. A critical comparison of the local transcription is pending.",
+    "rights": "Reuse status of the complete source has not been assessed.",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-18",
+      "note": "Identity, form of issuance and conciliar context reviewed."
+    },
+    "papalDefinition": {
+      "label": "Papal synod",
+      "note": "Constantinople III received this joint letter alongside Agatho’s personal letter. The local Denzinger excerpt is from the joint letter."
+    }
+  },
+  {
+    "id": "laetentur-caeli",
+    "title": "Laetentur caeli: decree of union with the Greeks",
+    "entryIds": [
+      "691",
+      "692",
+      "693",
+      "694"
+    ],
+    "issuer": "Pope Eugene IV and the Council of Florence",
+    "genre": "Bull of union",
+    "date": "1439-07-06",
+    "collection": "Council of Florence",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/content/eugenius-iv/la/documents/bulla-laetentur-caeli-6-iulii-1439.html",
+        "label": "Holy See text",
+        "language": "la",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Denzinger English selection",
+    "textVerification": "Source identity checked. A critical comparison of the local transcription is pending.",
+    "rights": "Reuse status of the complete source has not been assessed.",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-18",
+      "note": "Identity, form of issuance and conciliar context reviewed."
+    },
+    "papalDefinition": {
+      "label": "Papal promulgation with a council",
+      "note": "Eugene IV promulgated the union with the approval of Florence. The decree defines the procession of the Holy Spirit, Eucharistic bread, the state of souls after death and Roman primacy."
+    }
+  },
+  {
+    "id": "moyses-vir-dei",
+    "title": "Moyses vir Dei: decree concerning Basel",
+    "entryIds": [
+      "B11"
+    ],
+    "issuer": "Pope Eugene IV and the Council of Florence",
+    "genre": "Bull of condemnation",
+    "date": "1439-09-04",
+    "collection": "Council of Florence",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/content/eugenius-iv/la/documents/decretum-moyses-vir-4-sept-1439.html",
+        "label": "Holy See text",
+        "language": "la",
+        "scope": "source-page"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Site English translation",
+    "textVerification": "Source identity checked. A critical comparison of the local transcription is pending.",
+    "rights": "Reuse status of the complete source has not been assessed.",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-18",
+      "note": "Identity, form of issuance and conciliar context reviewed."
+    },
+    "papalDefinition": {
+      "label": "Papal promulgation with a council",
+      "note": "Eugene IV and Florence condemned three propositions of Basel in the sense asserted by the assembly and declared its post-transfer acts void. The judgment is recorded here in its stated scope."
+    }
+  },
+  {
+    "id": "exultate-deo",
+    "title": "Exultate Deo: decree of union with the Armenians",
+    "entryIds": [
+      "695",
+      "696",
+      "697",
+      "698",
+      "699",
+      "700",
+      "701",
+      "702"
+    ],
+    "issuer": "Pope Eugene IV and the Council of Florence",
+    "genre": "Bull of union",
+    "date": "1439-11-22",
+    "collection": "Council of Florence",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/content/eugenius-iv/la/documents/bulla-exultate-deo-22-nov-1439.html",
+        "label": "Holy See text",
+        "language": "la",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Denzinger English selection",
+    "textVerification": "Source identity checked. A critical comparison of the local transcription is pending.",
+    "rights": "Reuse status of the complete source has not been assessed.",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-18",
+      "note": "Identity, form of issuance and conciliar context reviewed."
+    },
+    "papalDefinition": {
+      "label": "Papal promulgation with a council",
+      "note": "Eugene IV promulgated the decree with Florence. Its sacramental instruction includes teaching and descriptions of rites."
+    }
+  },
+  {
+    "id": "cantate-domino",
+    "title": "Cantate Domino: decree of union with the Copts and Ethiopians",
+    "entryIds": [
+      "703",
+      "704",
+      "705",
+      "706",
+      "707",
+      "708",
+      "709",
+      "710",
+      "711",
+      "712",
+      "713",
+      "714",
+      "715"
+    ],
+    "issuer": "Pope Eugene IV and the Council of Florence",
+    "genre": "Bull of union",
+    "date": "1442-02-04",
+    "collection": "Council of Florence",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/content/eugenius-iv/la/documents/bulla-cantate-domino-4-febr-1442.html",
+        "label": "Holy See text",
+        "language": "la",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Denzinger English selection",
+    "textVerification": "Source identity checked. A critical comparison of the local transcription is pending.",
+    "rights": "Reuse status of the complete source has not been assessed.",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-18",
+      "note": "Identity, form of issuance and conciliar context reviewed."
+    },
+    "papalDefinition": {
+      "label": "Papal promulgation with a council",
+      "note": "Eugene IV promulgated the decree with Florence. The source includes professions of faith, condemnations and instructions for reunion. The older Denzinger headings call the communities Jacobites."
+    }
+  },
+  {
+    "id": "multa-et-admirabilia",
+    "title": "Multa et admirabilia: decree of union with the Syrians",
+    "entryIds": [
+      "F1"
+    ],
+    "issuer": "Pope Eugene IV and the Council of Florence",
+    "genre": "Bull of union",
+    "date": "1444-11-30",
+    "collection": "Council of Florence",
+    "sourceLinks": [
+      {
+        "url": "https://www.papalencyclicals.net/councils/ecum17.htm",
+        "label": "Tanner edition, session 13",
+        "language": "en",
+        "scope": "source-page"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Site English translation",
+    "textVerification": "Source identity checked. A critical comparison of the local transcription is pending.",
+    "rights": "Reuse status of the complete source has not been assessed.",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-18",
+      "note": "Identity, form of issuance and conciliar context reviewed."
+    },
+    "papalDefinition": {
+      "label": "Papal promulgation with a council",
+      "note": "Eugene IV records the profession and the conditions of reunion with the council’s approval, while it was sitting in Rome."
+    }
+  },
+  {
+    "id": "benedictus-sit-deus",
+    "title": "Benedictus sit Deus: decree of union with the Chaldeans and Maronites of Cyprus",
+    "entryIds": [
+      "F2"
+    ],
+    "issuer": "Pope Eugene IV and the Council of Florence",
+    "genre": "Bull of union",
+    "date": "1445-08-07",
+    "collection": "Council of Florence",
+    "sourceLinks": [
+      {
+        "url": "https://www.papalencyclicals.net/councils/ecum17.htm",
+        "label": "Tanner edition, session 14",
+        "language": "en",
+        "scope": "source-page"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Site English translation",
+    "textVerification": "Source identity checked. A critical comparison of the local transcription is pending.",
+    "rights": "Reuse status of the complete source has not been assessed.",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-18",
+      "note": "Identity, form of issuance and conciliar context reviewed."
+    },
+    "papalDefinition": {
+      "label": "Papal promulgation with a council",
+      "note": "This bull of Eugene IV records the professions made by representatives of the two communities and their reception at the council’s final session."
+    }
+  },
+  {
+    "id": "pastor-aeternus",
+    "title": "Pastor aeternus",
+    "entryIds": [
+      "1821",
+      "1822",
+      "1823",
+      "1824",
+      "1825",
+      "1826",
+      "1827",
+      "1828",
+      "1829",
+      "1830",
+      "1831",
+      "1832",
+      "1833",
+      "1834",
+      "1835",
+      "1836",
+      "1837",
+      "1838",
+      "1839",
+      "1840"
+    ],
+    "issuer": "Pope Pius IX and the First Vatican Council",
+    "genre": "Dogmatic constitution",
+    "date": "1870-07-18",
+    "collection": "Vatican I",
+    "sourceLinks": [
+      {
+        "url": "https://www.vatican.va/archive/hist_councils/i-vatican-council/documents/vat-i_const_18700718_pastor-aeternus_la.html",
+        "label": "Holy See text",
+        "language": "la",
+        "scope": "full-document"
+      }
+    ],
+    "coverage": "excerpts",
+    "translation": "Denzinger English selection",
+    "textVerification": "Source identity checked. A critical comparison of the local transcription is pending.",
+    "rights": "Reuse status of the complete source has not been assessed.",
+    "review": {
+      "status": "source-record-checked",
+      "date": "2026-11-18",
+      "note": "Identity, form of issuance and conciliar context reviewed."
+    },
+    "papalDefinition": {
+      "label": "Papal promulgation with a council",
+      "note": "Pius IX promulgated the constitution with the approval of Vatican I. The defining passages and canons concern the institution and perpetuity of the primacy, papal jurisdiction and infallibility. The constitution also contains argument and historical evidence."
+    }
   }
 ]

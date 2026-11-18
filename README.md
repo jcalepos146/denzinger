@@ -123,4 +123,6 @@ Run `python3 tools/audit_library.py` for a reproducible coverage report, and `py
 
 Document title searches also show matching source records, including external-only texts. Those texts are not part of local passage search. `kind:encyclical`, `kind:cdf` and `kind:papal-address` complement the existing structural filters. See [the editorial workflow](docs/EDITORIAL-WORKFLOW.md) and [collection roadmap](docs/COLLECTION-ROADMAP.md).
 
+The [Papal definition collection](https://jcalepos146.github.io/denzinger/#weight-papal-def) includes received papal letters, Roman synodal acts and definitions promulgated with a council. The source records give the basis for inclusion, and each entry retains its own genre and editorial grade.
+
 Evidence-backed relationships appear alongside passages and relevant doctrinal threads. `src/data/relations.json` stores direction, kind, editorial explanation and quotations from both endpoints; the build rejects missing references or quotations absent from the text. **Coverage and requests** publishes the backlog and offers explicitly saved, browser-local research gaps. GitHub proposals are opened by the reader; no search history is transmitted automatically. The monthly link checker now includes catalogue sources and saves a downloadable availability report.
