@@ -602,25 +602,33 @@
     "Innocent X",
     "Alexander VII"
    ],
-   "summary": "Innocent X condemned five propositions on grace in 1653, giving each its own censure. Some of their words resemble Augustine; the Jansenists said that the propositions, read in Augustine's sense of efficacious grace, were orthodox and not in Jansen. The texts answer the first question themselves: the censures are assigned one by one, and Alexander VII declared that they were condemned \"in the sense understood by\" Jansen. A sense that keeps the Thomist doctrine of efficacious grace, which Paul V had allowed, is not touched. The live question is only whether a given orthodox reading still says what the proposition says.",
+   "summary": "Innocent X assigned a censure to each of five propositions on grace. The fifth calls it Semipelagian to say that Christ died for everyone. The bull calls that statement false, rash and scandalous and gives the note of heresy to the sense that Christ died for the salvation of the predestined alone. Trent teaches both that Christ died for all and that the benefit of his death is received by those to whom his merits are communicated. Alexander VII confirms the censures as given and declares that the propositions were condemned in Jansen’s intended sense. The distinction between a death genuinely for all and its particular application gives a basis for comparing accounts of the atonement. The first four propositions raise separate questions about prevenient grace, resistance and freedom.",
    "texts": [
     {
      "label": "Innocent X, Cum occasione (31 May 1653)",
      "refs": [
       "1092",
       "1093",
+      "1094",
+      "1095",
       "1096"
      ],
      "local": "excerpt",
-     "verified": false
+     "verified": true,
+     "edition": "Bullarium Romanum, Turin ed., XV (1868), pp. 720–722, especially §4 at p. 721.",
+     "checked": "Checked all five censures in Latin. In the fifth, dumtaxat limits the heretical sense to the claim that Christ died for the salvation of the predestined alone.",
+     "url": "https://archive.org/details/bullarumdiplomat15cath/page/721/mode/1up"
     },
     {
-     "label": "Alexander VII, Ad sacram beati Petri sedem (16 October 1656)",
+     "label": "Alexander VII, Ad sanctam beati Petri sedem (16 October 1656)",
      "refs": [
       "1098"
      ],
      "local": "excerpt",
-     "verified": false
+     "verified": true,
+     "edition": "Bullarium Romanum, Turin ed., XVI (1869), pp. 245–247, §6. Also cited as Ad sacram.",
+     "checked": "The bull confirms the earlier constitution, identifies the intended sense of Jansenius and renews the censures with the same note assigned to each proposition.",
+     "url": "https://archive.org/details/04672031.16.emory.edu/page/247/mode/1up"
     },
     {
      "label": "Paul V on the Congregatio de Auxiliis (1607)",
@@ -628,7 +636,38 @@
       "1090"
      ],
      "local": "excerpt",
-     "verified": false
+     "verified": false,
+     "edition": "Denzinger, n. 1090 (DS 1997), from the formula sent to both superiors on 5 September 1607.",
+     "checked": "The printed formula sends the disputants home and forbids either side to censure the other. It anticipates a later determination. Independent review of the source behind the printed formula remains open.",
+     "url": "https://www.romanmissal.org/denzinger/p346.html"
+    },
+    {
+     "label": "Council of Trent, decree on justification (1547)",
+     "refs": [
+      "795",
+      "797",
+      "804",
+      "808",
+      "814",
+      "827",
+      "828"
+     ],
+     "local": "excerpt",
+     "verified": true,
+     "edition": "Session VI, chapters 3, 5, 11 and 15 and canons 4, 17 and 18.",
+     "checked": "Chapter 3 distinguishes death for all from the communication of its merits. Chapter 5 starts with prevenient grace and affirms free assent and the possibility of refusing it.",
+     "url": "https://www.papalencyclicals.net/councils/trent/sixth-session.htm"
+    },
+    {
+     "label": "Innocent X, decree on alleged acts of De auxiliis (23 April 1654)",
+     "refs": [
+      "1097"
+     ],
+     "local": "excerpt",
+     "verified": false,
+     "edition": "Denzinger, n. 1097 (DS 2008), referring to Paul V and Urban VIII.",
+     "checked": "The decree printed in Denzinger disallows an alleged constitution condemning Molina and directs the parties to observe the decrees of Paul V and Urban VIII.",
+     "url": "https://www.clerus.org/bibliaclerusonline/en/dvy.htm"
     }
    ],
    "propositions": [
@@ -640,7 +679,8 @@
      "assent": "faith",
      "binding_status": "not_juridical",
      "evidence": "D",
-     "says": "Proposition 1 (some commandments are impossible to the just who will and strive, the grace that would make them possible being lacking) is condemned as rash, impious, blasphemous and heretical."
+     "says": "Proposition 1 (some commandments are impossible to the just who will and strive, the grace that would make them possible being lacking) is condemned as rash, impious, blasphemous and heretical.",
+     "note": "The proposition includes the absence of the grace by which the precepts could be kept. Trent chapter 11 and canon 18 directly bear on that premise."
     },
     {
      "id": "a1-p2",
@@ -651,7 +691,30 @@
      "binding_status": "not_juridical",
      "evidence": "D",
      "quote": "In the state of fallen nature one never resists interior grace",
-     "says": "Proposition 2 (in fallen nature interior grace is never resisted) is condemned as heretical."
+     "says": "Proposition 2 (in fallen nature interior grace is never resisted) is condemned as heretical.",
+     "note": "This claim quantifies over all instances of interior grace. An account of how a particular grace infallibly brings about free consent is a different claim."
+    },
+    {
+     "id": "a1-p3",
+     "ref": "1094",
+     "year": 1653,
+     "formal_object": "revealed",
+     "assent": "faith",
+     "binding_status": "not_juridical",
+     "evidence": "D",
+     "says": "The bull censures as heretical the claim that freedom from coercion alone suffices for merit or demerit and that freedom from necessity is unnecessary.",
+     "note": "Analyse what kind of necessity is claimed and whether it removes the agent’s freedom. The formula alone does not explain how assent can follow infallibly from a grace."
+    },
+    {
+     "id": "a1-p4",
+     "ref": "1095",
+     "year": 1653,
+     "formal_object": "revealed",
+     "assent": "faith",
+     "binding_status": "not_juridical",
+     "evidence": "D",
+     "says": "The bull calls the fourth proposition false and heretical. It claims that the Semipelagians held prevenient grace necessary even for the first movement of faith and were heretical for making that grace resistible.",
+     "note": "Trent chapter 5 and canon 4 affirm both the necessity of prevenient grace and the possibility of refusal. The heresy cannot consist in affirming that the will can refuse grace."
     },
     {
      "id": "a1-p5",
@@ -661,19 +724,20 @@
      "assent": "disputed",
      "binding_status": "not_juridical",
      "evidence": "D",
-     "says": "Proposition 5 (it is Semipelagian to say Christ died for all without exception) is condemned with graded notes: false, rash and scandalous, and heretical if understood to mean that Christ died only for the predestined.",
-     "note": "The censure itself names a sense."
+     "says": "The proposition calls it Semipelagian to say that Christ died for all without exception. Innocent X calls it false, rash and scandalous. In the sense that Christ died for the salvation of the predestined alone he also calls it impious, blasphemous, contumelious, injurious to divine goodness and heretical.",
+     "note": "The Latin dumtaxat means alone or only. This word is part of the stated condition for the further censures."
     },
     {
      "id": "a1-sense",
      "ref": "1098",
      "year": 1656,
      "formal_object": "dogmatic_fact",
-     "assent": "definitive_assent",
+     "assent": "disputed",
      "binding_status": "not_juridical",
      "evidence": "D",
      "quote": "in the sense understood by that same Cornelius condemned",
-     "says": "The propositions are taken from Jansen's Augustinus and condemned in the sense he intended."
+     "says": "The propositions are taken from Jansen's Augustinus and condemned in the sense he intended.",
+     "note": "Section 6 confirms the preceding constitution and renews each censure with its original theological note. The precise grade of the dogmatic fact is discussed in A2."
     },
     {
      "id": "a1-aux",
@@ -683,7 +747,30 @@
      "assent": "obedience",
      "binding_status": "in_force",
      "evidence": "D",
-     "says": "Paul V lets Thomists and Molinists each teach their account of efficacious grace and forbids either to call the other heretical."
+     "says": "Paul V dismisses the disputants and forbids either side to attach a theological censure to the other’s position.",
+     "note": "The 1607 formula reserves a later determination. Innocent X’s 1654 decree rejects the alleged constitution condemning Molina (1097)."
+    },
+    {
+     "id": "a1-universal",
+     "ref": "795",
+     "year": 1547,
+     "formal_object": "revealed",
+     "assent": "faith",
+     "binding_status": "not_juridical",
+     "evidence": "D",
+     "says": "Christ died for all. Those to whom the merits of his passion are communicated receive the benefit of his death.",
+     "note": "Trent, session VI, chapter 3. Catechism §605 explicitly reiterates that Christ died for everyone and cites Quiercy."
+    },
+    {
+     "id": "a1-cooperate",
+     "ref": "814",
+     "year": 1547,
+     "formal_object": "revealed",
+     "assent": "faith",
+     "binding_status": "not_juridical",
+     "evidence": "D",
+     "says": "The will moved by God can cooperate by assenting to his call and can refuse if it wills. The beginning of justification depends on prevenient grace (797).",
+     "note": "Trent, session VI, chapter 5 and canon 4. Canon 17 rejects the claim that only the predestined to life receive justifying grace and that the rest are called without grace as if predestined to evil. Chapter 15 teaches that justifying grace, once received, can be lost."
     }
    ],
    "matrix": [
@@ -692,7 +779,7 @@
      "b": "a1-aux",
      "level": "doctrinal",
      "result": "no_conflict",
-     "why": "Grace efficacious of itself (the Thomist thesis allowed in 1607) does not say that grace is never resisted: in that school sufficient grace is resisted, and the will moved by efficacious grace is free. Different predicates.",
+     "why": "Proposition 2 rules out resistance to every interior grace. A Thomist account of some graces as effecting free consent can affirm that other interior graces are resisted. The 1607 formula leaves the explanation of efficacy open.",
      "same_subject": true,
      "same_sense": false,
      "same_time": false
@@ -701,11 +788,31 @@
      "a": "a1-p5",
      "b": "a1-sense",
      "level": "logical",
-     "result": "apparent",
-     "why": "The censure of proposition 5 already distinguishes senses; Alexander VII adds which sense is the author's. Together they condemn a determinate sense, not every construal of the words.",
+     "result": "no_conflict",
+     "why": "Alexander VII confirms each original censure in the sense intended by Jansen. The additional censure in proposition 5 depends on the sense that Innocent X states, including the word alone.",
      "same_subject": true,
      "same_sense": true,
      "same_time": false
+    },
+    {
+     "a": "a1-p5",
+     "b": "a1-universal",
+     "level": "doctrinal",
+     "result": "no_conflict",
+     "why": "The earlier Trent text states both universal death and particular communication of its benefits. The condemned sense excludes people from the saving scope of Christ’s death itself. Particular reception leaves that universal scope intact.",
+     "same_subject": true,
+     "same_sense": false,
+     "same_time": true
+    },
+    {
+     "a": "a1-p4",
+     "b": "a1-cooperate",
+     "level": "doctrinal",
+     "result": "no_conflict",
+     "why": "Trent affirms the priority of grace and the possibility of refusing it. Innocent X rejects the proposition that such resistibility was itself the Semipelagians’ heresy.",
+     "same_subject": true,
+     "same_sense": false,
+     "same_time": true
     }
    ],
    "edges": [
@@ -723,30 +830,50 @@
      "a1-p1",
      "a1-sense",
      "specifies"
+    ],
+    [
+     "a1-universal",
+     "a1-p5",
+     "specifies"
+    ],
+    [
+     "a1-cooperate",
+     "a1-p4",
+     "specifies"
     ]
    ],
-   "qualifications": "Censures assigned to each proposition, not in globo; proposition 5 carries a conditional note of heresy.",
-   "reception": "The Jansenists accepted the condemnation of the propositions \"in themselves\" and denied that they were in Jansen (the droit/fait distinction); see case A2. Dominicans held that their doctrine of efficacious grace was untouched, and Rome did not contradict them.",
-   "contingency": "Not a contingent determination: a doctrinal condemnation. The test does not apply.",
-   "development": "What survives unchanged: grace can be resisted; the commandments are possible with grace; Christ died for all. Later teaching (Trent before, the Catechism after) is consistent with each.",
-   "hypothesis": "The condemnation attaches to each proposition in the sense its censure names and, by 1098, in the sense of Jansen's Augustinus. It does not attach to every sense the words could bear, and it leaves the schools free on how grace is efficacious. (T)",
-   "objection": "If the condemnation is only of \"Jansen's sense\", and that sense is said to be Augustine's on efficacious grace, the Church condemned Augustine, or else the condemned sense is so thin that nothing definite is condemned.",
-   "rebuttal": "The propositions are not Augustine's doctrine of efficacious grace: proposition 2 denies that grace is ever resisted, proposition 1 that the just always have the grace to keep the law. The Thomists held efficacious grace while affirming both, and Rome let them. The condemned sense is definite: grace never resisted, commandments impossible, Christ dying only for the elect.",
+   "qualifications": "Innocent X assigns a censure to each proposition. The fifth receives three censures as stated and additional censures under its expressly stated restrictive sense.",
+   "reception": "Alexander VII confirmed the five censures and declared that the propositions were condemned in the sense intended by Jansen. The Jansenist distinction between doctrine and attribution is examined in A2.",
+   "contingency": "The censure and the duty to reject the condemned doctrine are doctrinal questions. The penalties imposed to enforce the constitution are juridical.",
+   "development": "Orange II and Trent teach the priority of grace for faith and justification. Trent affirms the reality of free cooperation, the possibility of refusing divine inspiration and the communication of Christ’s merits. Catechism §605 reiterates that Christ died for everyone.",
+   "hypothesis": "A genuinely universal atonement and a particular reception of its benefits agree with Trent and the fifth censure. This point can be shared by hypothetical universalism when it means that Christ’s death was truly offered for all. Its wider account of how grace is given and received must be tested separately.",
+   "objection": "A theory may grant that the sacrifice has infinite value while holding that it was offered only for the elect. It may also call reception conditional while restricting justifying grace to the finally predestined. Either move would affect the claimed agreement with Trent. On the grace side, an account of infallible efficacy still has to explain how the act remains free.",
+   "rebuttal": "The test is whether all are included in the saving scope of Christ’s death and whether receipt of its merits is a further claim. Davenant’s distinction between universal sufficiency by divine ordination and an application through faith illustrates that first distinction. Trent separately requires prevenient grace, real cooperation and the possibility of refusal. Canon 17 rejects the restriction of justifying grace to the predestined in the stated sense, and chapter 15 says that justifying grace can be lost. Infallible efficacy can be compared with the third proposition only after the proposed kind of necessity is identified.",
    "verdict": "plausible_concord",
    "confidence": "medium",
-   "stage": 9,
+   "stage": 11,
    "gaps": [
     {
-     "what": "The Latin of the censures of each proposition",
-     "source": "The bull in Bullarium Romanum; DH 2001–2005",
-     "settles": "Whether the English excerpts give each censure fully."
+     "what": "Jansenius’s treatment of the first four propositions in Augustinus",
+     "source": "Augustinus, Louvain (1640), especially De gratia Christi, compared with the submitted propositions and Alexander VII’s §6.",
+     "settles": "How the first four propositions relate to Jansenius’s wording and argument. A2 begins the comparison with the fifth."
+    },
+    {
+     "what": "Freedom from necessity in the third proposition",
+     "source": "The contemporary examinations and the Thomist and Molinist accounts of freedom, read with Trent, chapter 5 and canon 4.",
+     "settles": "Which kinds of necessity the parties meant, and what follows for any particular account of efficacious grace."
+    },
+    {
+     "what": "The original witnesses for the settlement of De auxiliis",
+     "source": "The 1607 formula and Innocent X’s 1654 decree (1090, 1097), with the register and early printed witnesses.",
+     "settles": "The scope of the permission and the distinction between the conclusions considered in the congregations and the acts that had authority."
     }
    ],
-   "next_source": "The Latin text of Cum occasione with its five censure clauses.",
+   "next_source": "Compare Jansenius’s account of grace and freedom in Augustinus with the first four censures. A2 examines his own discussion of Christ dying for all.",
    "audio": {
-    "taught": "Innocent X condemned five statements about grace, for example that the just sometimes lack the grace to keep God's law, and that grace is never resisted.",
-    "authority": "A papal constitution with a named censure on each proposition: four are declared heretical, and the fifth heretical in one sense. Alexander VII then declared that the propositions are in Jansen's book and are condemned in his sense.",
-    "permanence": "Permanent: the doctrines the condemnations protect, that grace can be resisted and that Christ died for all. Left open on purpose: how grace is effective, where the Thomists and Molinists may both be held."
+    "taught": "Innocent X assigns each of five propositions its own censure. The fifth calls it Semipelagian to say Christ died for all. Its strongest censure applies to the claim that he died for the salvation of the predestined alone.",
+    "authority": "Alexander VII confirms the censures as given and declares that they were condemned in Jansenius’s intended sense. Paul V had closed the De auxiliis proceedings while forbidding the parties to censure one another.",
+    "permanence": "Christ died for all, and Trent distinguishes his universal death from the communication of its merits. Trent also affirms that prevenient grace comes first and that the will can freely cooperate or refuse."
    },
    "related_disputed": [
     "jansen-fact",
@@ -762,10 +889,54 @@
     {
      "date": "2026-11-18",
      "change": "Draft created from the texts the site holds; primary sources not yet verified against critical editions."
+    },
+    {
+     "date": "2026-11-18",
+     "change": "Checked Cum occasione and Alexander VII’s confirmation in the Latin Bullarium. Corrected the date and restored dumtaxat in the English fifth censure. Added Trent on the scope and reception of the atonement and the comparisons for propositions 3 and 4."
     }
    ],
    "last_reviewed": "2026-11-18",
-   "gate": null
+   "gate": null,
+   "research_sources": [
+    {
+     "title": "Catechism §605 on Christ dying for all",
+     "role": "Catechism with a citation of Quiercy",
+     "citation": "Catechism of the Catholic Church, §605, citing Quiercy (853), DS 624 (n. 319).",
+     "url": "https://www.vatican.va/content/catechism/en/part_one/section_two/chapter_two/article_4/paragraph_2_jesus_died_crucified.html",
+     "note": "The Catechism teaches that Christ died for all without exception. Quiercy also distinguishes his suffering for all from the salvation of all."
+    },
+    {
+     "title": "John Davenant on a sacrifice actually offered for all",
+     "role": "Reformed theological comparison",
+     "citation": "Dissertation on the Death of Christ, sect. 31 in the linked edition.",
+     "url": "https://viapatrum.org/works/davenant-dissertationes-duae/31/",
+     "note": "Davenant distinguishes the unlimited worth of Christ’s sacrifice from its divine appointment as a remedy for all. In his example the price may be sufficient to pay every debtor’s debt and yet be offered for only some. His argument for universal sufficiency requires the offer to extend to all."
+    },
+    {
+     "title": "Jansenius on Christ dying for all",
+     "role": "Original text of Augustinus",
+     "citation": "Augustinus, Louvain (1640), vol. III, De gratia Christi Salvatoris III.21, especially cols. 381–382.",
+     "url": "https://digital.ub.uni-paderborn.de/download/pdf/893411.pdf",
+     "note": "Jansenius reports the explanation that Christ paid a sufficient price for all. He then says that offering a ransom for someone implies directing it to that person’s liberation, and the direction cannot be in vain. He reads all as the Church throughout the world, drawn from every kind of person."
+    }
+   ],
+   "evidence_reviews": [
+    {
+     "question": "What does the fifth censure say about the death of Christ for all?",
+     "finding": "Innocent X calls the charge of Semipelagianism false, rash and scandalous. He calls it heretical in the sense that Christ died for the salvation of the predestined alone. Trent says he died for all and distinguishes that from the actual communication of his merits (795).",
+     "test": "Ask whether a theory says that Christ’s death was truly offered for every person or whether it grants only that the price would have been enough. Examine separately how it says the benefits are applied."
+    },
+    {
+     "question": "How much does the comparison with hypothetical universalism establish?",
+     "finding": "Davenant’s account of the sacrifice as a remedy ordained for all can agree with Trent on the scope of the atonement. Jansenius acknowledges the worth of the price and restricts the saving direction of the offering in his reading of all. Trent also teaches the priority of grace and that the will can assent or refuse. Its teaching on losing justifying grace and canon 17 bear on who receives that grace (808, 827).",
+     "test": "Compare a particular author’s account of faith, justification and the offer and reception of grace with Trent. Agreement on the scope of the atonement establishes agreement on that point."
+    },
+    {
+     "question": "What remains open on the efficacy of grace?",
+     "finding": "Trent affirms God’s prior action and the will’s real cooperation. Innocent X censures the denial of resistance to interior grace and the claim that freedom from coercion alone suffices for merit. Paul V forbids the two schools to censure each other on the disputed means of efficacy.",
+     "test": "Distinguish a grace that can be resisted from the claim that an efficacious grace infallibly brings about a free act. Examine what kind of necessity is asserted and whether it removes the will’s agency."
+    }
+   ]
   },
   {
    "id": "A2",
@@ -786,23 +957,29 @@
     "Clement XI",
     "Doctrine of the Faith"
    ],
-   "summary": "The Jansenists accepted the condemnation of the five propositions but denied that Jansen held them, and offered \"respectful silence\" on that question of fact. Alexander VII declared it as a fact, a formulary required subscription, and Clement XI ruled that silence does not satisfy the obedience owed. Theologians call such a judgment a dogmatic fact: a fact so tied to doctrine that the Church can judge it. The 1998 commentary on the Profession of Faith lists dogmatic facts among truths held definitively, though it does not name this one. The classification is the established theological reading; whether every particular dogmatic fact is infallibly judged is a further question that the texts do not settle.",
+   "summary": "The dispute concerned two claims. Innocent X censured five propositions on grace and Alexander VII declared that they were taken from Jansenius’s Augustinus and condemned in his intended sense. The 1665 formulary required a sincere rejection of that sense. Clement XI ruled in 1705 that respectful silence fell short of the required obedience and called for rejection in word and heart. Theologians use the category of dogmatic fact for a judgment of fact bound up with doctrine. The 1998 commentary on the Profession of Faith illustrates that category. The precise grade of assent owed to this particular judgment is a further question.",
    "texts": [
     {
-     "label": "Alexander VII, Ad sacram (1656)",
+     "label": "Alexander VII, Ad sanctam beati Petri sedem (16 October 1656)",
      "refs": [
       "1098"
      ],
      "local": "excerpt",
-     "verified": false
+     "verified": true,
+     "edition": "Bullarium Romanum, Turin ed., XVI (1869), pp. 245–247, §6. Also cited as Ad sacram.",
+     "checked": "The bull confirms the earlier constitution, identifies the intended sense of Jansenius and renews the censures with the same note assigned to each proposition.",
+     "url": "https://archive.org/details/04672031.16.emory.edu/page/247/mode/1up"
     },
     {
-     "label": "Alexander VII, the formulary of submission (1665)",
+     "label": "Alexander VII, Regiminis apostolici and its formulary (1665)",
      "refs": [
       "1099"
      ],
      "local": "excerpt",
-     "verified": false
+     "verified": true,
+     "edition": "Bullarium Romanum, Turin ed., XVII (1869), p. 336.",
+     "checked": "The formulary links the earlier bulls and requires the signatory to reject the five propositions with a sincere mind in the sense intended by their author.",
+     "url": "https://archive.org/details/04672031.17.emory.edu/page/336/mode/1up"
     },
     {
      "label": "Clement XI, Vineam Domini (1705)",
@@ -810,14 +987,28 @@
       "1350"
      ],
      "local": "excerpt",
-     "verified": false
+     "verified": true,
+     "edition": "Bullarium Romanum, Turin ed., XXI (1871), pp. 233–236, especially §6, p. 235.",
+     "checked": "Section 6 demands interior rejection of the condemned sense and sincere subscription. Section 5 confirms the earlier constitutions.",
+     "url": "https://archive.org/details/bullarumdiplomat21cath/page/235/mode/1up"
     },
     {
      "label": "Doctrine of the Faith, commentary on the Professio fidei (1998)",
      "refs": [],
      "local": "none",
      "url": "https://www.vatican.va/roman_curia/congregations/cfaith/documents/rc_con_cfaith_doc_1998_professio-fidei_en.html",
-     "verified": false
+     "verified": true,
+     "edition": "Doctrinal commentary on the concluding formula of the Professio fidei, §11.",
+     "checked": "The commentary gives examples of truths connected to revelation by historical necessity. Its examples include canonisations and the legitimacy of an ecumenical council."
+    },
+    {
+     "label": "Cornelius Jansenius, Augustinus on the scope of Christ’s death (1640)",
+     "refs": [],
+     "local": "none",
+     "edition": "Augustinus, Louvain (1640), vol. III, De gratia Christi Salvatoris III.21, cols. 381–382.",
+     "checked": "Jansenius first sets out the reading of all in terms of the sufficiency of the price. He then argues that offering redemption for a person directs it to that person’s liberation and that Christ’s offering cannot be in vain. He explains all as the Church drawn from every people.",
+     "verified": true,
+     "url": "https://digital.ub.uni-paderborn.de/download/pdf/893411.pdf"
     }
    ],
    "propositions": [
@@ -826,11 +1017,12 @@
      "ref": "1098",
      "year": 1656,
      "formal_object": "dogmatic_fact",
-     "assent": "definitive_assent",
+     "assent": "disputed",
      "binding_status": "not_juridical",
      "evidence": "D",
      "quote": "have been taken from the book of the aforementioned Cornelius Jansen",
-     "says": "The five propositions are taken from the Augustinus and condemned in Jansen's sense."
+     "says": "The five propositions are taken from the Augustinus and condemned in Jansen's sense.",
+     "note": "The declaration’s demand for real assent is documented. The site leaves the exact theological grade of this particular judgment open."
     },
     {
      "id": "a2-form",
@@ -851,7 +1043,8 @@
      "binding_status": "not_juridical",
      "evidence": "D",
      "quote": "is not satisfied by any obsequious silence",
-     "says": "The obedience owed is not satisfied by respectful silence; the condemned sense of Jansen's book must be rejected in heart."
+     "says": "The obedience owed is not satisfied by respectful silence; the condemned sense of Jansen's book must be rejected in heart.",
+     "note": "Clement XI confirms the earlier constitutions and requires rejection of the condemned sense. Read the fifth proposition with Innocent X’s express qualification and Alexander VII’s renewal of each censure."
     },
     {
      "id": "a2-cdf",
@@ -860,8 +1053,8 @@
      "formal_object": "authentic",
      "assent": "religious_submission",
      "binding_status": "not_juridical",
-     "evidence": "T",
-     "says": "Truths connected with revelation by historical necessity, such as dogmatic facts, belong to the second paragraph of the Profession: held definitively.",
+     "evidence": "D",
+     "says": "The commentary gives examples of truths to be held definitively because of their historical connection to revelation. It refers to dogmatic facts and includes canonisations among the examples.",
      "ext": "Doctrine of the Faith, commentary on the Professio fidei, no. 11 (1998)"
     }
    ],
@@ -871,7 +1064,7 @@
      "b": "a2-cdf",
      "level": "doctrinal",
      "result": "no_conflict",
-     "why": "The 1998 commentary gives the class; Ad sacram is the classical instance. Whether this instance was judged infallibly is not stated by either text.",
+     "why": "The commentary illustrates a class of historical judgments that can be definitive. Applying that class to this passage of Alexander VII requires evidence of the grade of the particular act.",
      "same_subject": false,
      "same_sense": true,
      "same_time": false
@@ -910,18 +1103,23 @@
    "development": "The category was clarified, not changed, by the 1998 commentary.",
    "hypothesis": "Ad sacram is a judgment of dogmatic fact, binding with definitive assent according to the common theological reading, and consistent with the 1998 commentary. (T)",
    "objection": "Whether a sentence is in a book, and in what sense its author meant it, is a historical question that revelation does not contain. To demand interior assent to it is to extend the Church's protection beyond faith and morals (P7). Modern historians also argue that some propositions are not verbatim in the Augustinus.",
-   "rebuttal": "The judgment is not that the words occur verbatim but that the book teaches their sense; and the Church cannot guard a doctrine if it cannot say which books teach its contrary. That is the reason given for the secondary object. The objection stands against any claim that this particular judgment is defined dogma, which the site does not make.",
+   "rebuttal": "Alexander VII affirms that the propositions come from the book and names Jansenius’s intended sense. Clement XI explicitly requires rejection of the condemned sense even in the heart. That establishes the practical obligation. How the propositions were formulated, where their sense is found in the book, and the precise theological grade of the attribution require their own evidence.",
    "verdict": "plausible_concord",
    "confidence": "medium",
-   "stage": 9,
+   "stage": 11,
    "gaps": [
     {
-     "what": "The 1998 commentary's paragraph on dogmatic facts in full",
-     "source": "AAS 90 (1998) 544–551",
-     "settles": "Whether the commentary's examples reach this case."
+     "what": "Jansenius’s text and the formulation of the remaining propositions",
+     "source": "Augustinus (1640), the propositions submitted to Rome, and the examinators’ records.",
+     "settles": "How the propositions reproduce or summarise Jansenius’s arguments. For the fifth, book III, chapter 21 already shows why the argument’s context matters."
+    },
+    {
+     "what": "Early theological accounts of the grade of Alexander VII’s judgment",
+     "source": "The dispute over the formulary and later theological treatments of dogmatic facts.",
+     "settles": "What warrants the attribution of definitive assent to this particular judgment."
     }
    ],
-   "next_source": "The 1998 commentary, no. 11, and its notes.",
+   "next_source": "Read the passages in Augustinus bearing on the first four propositions beside the submissions to Rome and the papal acts.",
    "audio": {
     "taught": "Alexander VII declared that the five condemned propositions really are in Jansen's book and were condemned in the sense he meant. Clement XI added that keeping a respectful silence about this is not enough.",
     "authority": "Papal constitutions; a formulary of submission imposed by law. The judgment is what theologians call a dogmatic fact.",
@@ -942,10 +1140,35 @@
     {
      "date": "2026-11-18",
      "change": "Draft created from the texts the site holds; primary sources not yet verified against critical editions."
+    },
+    {
+     "date": "2026-11-18",
+     "change": "Checked the Latin of Alexander VII’s declaration and the formulary and of Vineam Domini §6. Compared the judgments with the examples in the 1998 commentary §11 and recorded the open question about the precise grade."
+    },
+    {
+     "date": "2026-11-18",
+     "change": "Read Augustinus III.21, cols. 381–382, in the 1640 Louvain edition. Added a comparison of the fifth censure with Jansenius’s discussion of sufficiency and the meaning of all."
     }
    ],
    "last_reviewed": "2026-11-18",
-   "gate": null
+   "gate": null,
+   "evidence_reviews": [
+    {
+     "question": "What did the three papal acts require?",
+     "finding": "In 1656 Alexander VII attributed the propositions and the condemned sense to Jansenius. His 1665 formulary made the required submission explicit. In 1705 Clement XI said the faithful owed interior rejection of the condemned sense.",
+     "test": "Use the formulary and Vineam Domini as evidence for the obligation imposed. Compare Augustinus itself with the five propositions to assess how the words express the argument of the book."
+    },
+    {
+     "question": "How does the 1998 commentary bear on the grade of the judgment?",
+     "finding": "The commentary illustrates definitive claims connected to revelation by historical necessity. Application to this particular judgment is a theological inference.",
+     "test": "Look for evidence of the intention and mode of the particular act when assessing its grade. Use the earlier bulls to establish what was required of the faithful."
+    },
+    {
+     "question": "How does the fifth proposition relate to Jansenius’s argument?",
+     "finding": "Jansenius sets out the sufficient-price reading and then argues that Christ’s offering for someone is directed to that person’s liberation. He reads all as the worldwide Church. This gives a textual basis for comparing his argument with the restricted sense in Innocent X’s censure.",
+     "test": "Read both parts of the chapter. Distinguish the unlimited worth Jansenius reports from his explanation of whom the offering was directed to save. Check the wording of the submitted proposition before judging how closely it follows the book."
+    }
+   ]
   },
   {
    "id": "A3",

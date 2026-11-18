@@ -17,7 +17,7 @@
 {"w": ["rash", "impious", "blasphemous", "heretical"], "r": false, "at": "1092", "own": true},
 {"w": ["heretical"], "r": false, "at": "1094", "own": true},
 {"w": ["false", "heretical"], "r": false, "at": "1095", "own": true},
-{"w": ["false", "rash", "scandalous", "impious", "blasphemous", "heretical"], "r": false, "at": "1096", "own": true},
+{"w": ["false", "rash", "scandalous"], "r": false, "at": "1096", "own": true},
 {"w": ["scandalous", "pernicious", "injurious"], "r": false, "at": "1215"},
 {"w": ["rash"], "r": false, "at": "1218"},
 {"w": ["heretical", "erroneous", "scandalous", "blasphemous", "offensive to pious ears", "rash", "seditious"], "r": true, "at": "1288"},
