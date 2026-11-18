@@ -1154,6 +1154,7 @@ function renderDisputed(focus) {
   for (const d of shown) {
     if (d.cat !== cat) { cat = d.cat; html += `<h2 class="sect-h">${CATS[cat][0]}</h2><p class="lede" style="font-size:.95rem;margin-top:-.3rem">${CATS[cat][1]}</p>`; }
     const rel = (d.related || []).map(id => SINCE_BY_ID.get(id)).filter(Boolean);
+    const continuity = CASES.filter(c => c.related_disputed.includes(d.id));
     html += `<article class="doc" id="q-${d.id}">
       <div class="meta"><span class="pill lv-${d.cat === 'continuity' ? 'authentic' : d.cat === 'censure' ? 'definitive' : d.cat === 'formula' ? 'dogma' : d.cat === 'discipline' ? 'discipline' : d.cat === 'open' ? 'prudential' : 'study'}">${esc(d.status)}</span></div>
       <h2>${esc(d.title)}</h2>
@@ -1164,6 +1165,7 @@ function renderDisputed(focus) {
       <div class="links">
         ${d.refs.length ? `<div>Texts: ${refLinks(d.refs)}</div>` : ''}
         ${rel.length ? `<div>Since 1950: ${rel.map(s => `<a href="#since-${s.id}">${esc(s.title)}</a>`).join(' · ')}</div>` : ''}
+        ${continuity.map(c => `<div><a href="#case-${c.id}">${esc(c.id)}. ${esc(c.title)}</a></div>`).join('')}
         ${d.refs.length >= 2 ? `<div><a href="#cmp-${encId(d.refs[0])}~${encId(d.refs[d.refs.length - 1])}">Compare ${esc(nlab(d.refs[0]))} with ${esc(nlab(d.refs[d.refs.length - 1]))}</a></div>` : ''}
       </div>
       ${reviewRow('q:' + d.id)}
@@ -1495,7 +1497,7 @@ const READING_CASES = [
   ['Eckhart (1329)', 'graded censures', 'John XXII condemned seventeen articles as "heretical" and eleven others only as "evil-sounding, rash, and suspected of heresy". To quote one of the eleven as a condemned heresy is to misread the bull.', [529], 'eckhart'],
   ['Fénelon (1699)', 'the obvious sense, or the sense of the connected opinions', 'Innocent XII condemned the twenty-three propositions "in the obvious sense of these words, or in the extended meaning of the thoughts": what is condemned is giving up the hope of salvation as a motive in the "pure love" of the perfect, not the primacy of charity.', [1349], 'fenelon'],
   ['Rosmini (1887)', 'the condemned sense may not be the author\'s', 'The Holy Office condemned forty propositions drawn from his works. In 2001 the Congregation for the Doctrine of the Faith declared that the sense in which they were condemned does not belong to Rosmini\'s own position, though the decree keeps its force against that sense; he was beatified in 2007.', [1891, 1930], 'rosmini'],
-  ['Honorius (634; 681)', 'the same words, different doctrines', 'Honorius wrote of "one will" in Christ. John IV explained that he meant Christ had no contrary will of sinful flesh, not one natural will; Constantinople III anathematized him, and Leo II confirmed it as a failure to suppress heresy. Neither the letters nor the condemnation is a definition about papal infallibility.', [251, 253], 'honorius'],
+  ['Honorius (634; 681)', 'wording, judgment and authority', 'Honorius confessed "one will" in Christ. John IV explained this as the absence of a contrary will of sinful flesh. Constantinople III said Honorius confirmed Sergius’s impious doctrines. Leo II confirmed the anathema and described negligence in his letter to Spain. The official replies give no evidence of a definition for the whole Church. <a href="#case-D2">Read the acts and their comparison</a>.', [251, 252, 253, 291, 1839], 'honorius'],
   ['Luther, proposition 33 (1520)', 'rejecting a sense does not affirm its opposite', '"That heretics be burned is against the will of the Spirit" was condemned among forty-one propositions with censures given respectively, none assigned to it. Rejecting Luther\'s denial of the Church\'s right to punish does not define that burning is God\'s will.', [773, 781], 'luther-33'],
   ['Unam Sanctam (1302)', 'a definition is not its reasoning', 'Only the closing declaration, that subjection to the Roman Pontiff is necessary for salvation, is defined. The argument about the two swords and the subjection of temporal power is the reasoning of the bull.', [468, 469], 'unam-sanctam'],
   ['The Syllabus, proposition 80 (1864)', 'read each proposition in its source', 'Every proposition of the Syllabus refers to the act it was drawn from. "The Roman Pontiff can and should reconcile himself with progress, liberalism and modern civilization" comes from the allocution Iamdudum cernimus (1861), where these words name the anticlerical programme of the time.', [1700, 1780], 'syllabus-80'],

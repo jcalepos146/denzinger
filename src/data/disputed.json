@@ -6,8 +6,8 @@
   "title": "Grace and free will (Thomists and Molinists)",
   "question": "How does efficacious grace move the will without destroying its freedom?",
   "settled": "Grace is necessary for every salutary act, and the free will moved by God truly cooperates and can refuse (Trent).",
-  "open": "The schools explain the efficacy of grace differently. Báñez gives an account through divine premotion. Molina uses God’s middle knowledge of how free creatures would act in given circumstances. Paul V closed the Congregatio de Auxiliis proceedings and forbade the disputants to censure each other.",
-  "reading": "Cum occasione condemns the claim that interior grace is never resisted. The schools may explain how a grace brings about free consent while affirming that interior grace can be resisted. Innocent X’s 1654 decree also disallows the alleged constitution of Paul V condemning Molina.",
+  "open": "Báñez attributes the infallible efficacy of a certain aid to divine motion and allows a different kind of interior aid to be refused. Molina says equal aids can receive different responses. His account of middle knowledge explains how God knows what a free person would do.",
+  "reading": "Paul V closed the proceedings and forbade the disputants to censure each other. Innocent X disallows the circulating acts and the alleged condemnation of Molina. The comparison with Quesnel turns on the genuine power to dissent when moved by grace.",
   "refs": [
    "1090",
    "1097",
@@ -169,13 +169,15 @@
   "status": "Historical question",
   "title": "Pope Honorius I and monothelitism",
   "question": "Did Honorius teach the heresy of one will in Christ?",
-  "settled": "Christ has two wills, divine and human, in harmony (Constantinople III). Honorius's letters were not ex cathedra definitions.",
-  "open": "Constantinople III anathematized Honorius, and Leo II confirmed this as condemnation for failing to stamp out heresy rather than for teaching it. John IV defended him as meaning that Christ had no contrary will of sinful flesh.",
-  "reading": "The case was examined at Vatican I and judged no obstacle to infallibility, because the letters do not meet its conditions.",
+  "settled": "Constantinople III defines two natural wills and operations in Christ. It rejects Honorius’s correspondence and says he confirmed Sergius’s impious doctrines. Leo II confirms the anathema.",
+  "open": "John IV understood Honorius to mean that Christ had no divided or sinful human will. Leo’s letter to Spain describes negligence. The printed Latin and Greek of the confirmation differ in their description of Honorius’s agency.",
+  "reading": "The letters instruct bishops on a controversy. Their purpose and addressees give no evidence of a definition binding the whole Church under the criteria in Pastor aeternus.",
   "refs": [
    "251",
    "252",
-   "253"
+   "253",
+   "291",
+   "1839"
   ],
   "related": []
  },
@@ -326,16 +328,17 @@
  {
   "id": "vernacular",
   "cat": "censure",
-  "status": "Condemned in the author's sense",
+  "status": "Censure qualified by its wording",
   "title": "Pistoia and the vernacular liturgy",
-  "question": "Was the vernacular Mass condemned before Vatican II allowed it?",
-  "settled": "Trent condemned the claim that Mass must be said only in the vernacular and judged that vernacular use everywhere was not expedient. Pius VI censured Pistoia's proposition 66, which said it would be against apostolic practice and God's plan not to give the people easier ways to join their voice to the Church's, if that was understood to mean bringing the vernacular into the liturgical prayers.",
-  "open": "Nothing doctrinal. Pius VI's censures are the prudential grades (false, rash, disturbing to the prescribed order, likely to cause harm), not heresy, and they are conditioned on a stated sense.",
-  "reading": "What was rejected is the claim that apostolic practice and God's plan require the vernacular, which would make the Latin liturgy contrary to them, together with a judgment that the change was imprudent in that setting. Using the vernacular is a disciplinary choice, which the Church later made herself in Sacrosanctum Concilium.",
+  "question": "What did Pius VI censure in Pistoia’s proposal for public worship?",
+  "settled": "Pistoia proposed a bilingual ritual and manual. Pius VI censured the charge of acting against apostolic practice and God’s designs as applied to bringing the vernacular into liturgical prayers.",
+  "open": "The practical use intended for the local ritual and manual needs further documentary evidence. Proposition 67 addresses a separate claim about the obligation to read Scripture.",
+  "reading": "Trent rejects an exclusive obligation to say Mass in the vernacular. Vatican II retains Latin and permits a wider use of the vernacular under competent authority.",
   "refs": [
    "946",
    "956",
-   "1566"
+   "1566",
+   "1567"
   ],
   "related": [
    "sc"
@@ -432,18 +435,18 @@
   "status": "Continuity reading available",
   "title": "Outside the Church no salvation",
   "question": "How do Florence and Vatican II fit together?",
-  "settled": "The dogma that outside the Church there is no salvation (Florence; the necessity of the Church in Boniface VIII and Pius IX). The proposition that no grace is given outside the Church was condemned (Quesnel 29). Those in invincible ignorance who follow the natural law and respond to grace can attain eternal life (Pius IX). Baptism of desire (Trent).",
-  "open": "How the grace of Christ reaches those who never knew the Church, and how explicit their faith must be.",
-  "reading": "Salvation is always through Christ and his Church; those saved without visible membership are joined to the Church in a way known to God. The strict reading of Leonard Feeney, which denied baptism of desire, was rejected by the Holy Office in 1949.",
+  "settled": "Florence requires union with the Church before death. The Holy Office in 1949 explains that actual incorporation as a member and union by desire are distinct. In invincible ignorance that desire can be implicit.",
+  "open": "How the saving grace of Christ reaches persons who have not heard the Gospel and how supernatural faith is present in those cases.",
+  "reading": "The Holy Office requires that the desire be formed by perfect charity and that implicit desire be accompanied by supernatural faith. Lumen Gentium cites the letter in its account of those who have yet to receive the Gospel.",
   "refs": [
-   "247",
-   "388",
-   "413",
+   "469",
    "714",
    "796",
    "1379",
-   "1647",
-   "1677"
+   "1677",
+   "2286",
+   "LG14",
+   "LG16"
   ],
   "related": [
    "na",

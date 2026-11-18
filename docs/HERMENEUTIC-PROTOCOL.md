@@ -20,7 +20,7 @@ The build also publishes `data/continuity.json` and `data/continuity-audio.md` (
 
 | Field | Meaning |
 |---|---|
-| `id`, `group`, `title`, `question` | A1–A5, B1–B7, C1–C6, D1–D6; the question is a test, not a predetermined answer |
+| `id`, `group`, `title`, `question` | A1–A7, B1–B7, C1–C6 and D1–D6. Each question states what the case tests. |
 | `summary` | The reader's summary |
 | `period`, `themes`, `issuers` | For the filters |
 | `texts[]` | Primary texts: `label`, `refs` (entry ids), `local` (`full`, `excerpt`, `summary`, `none`), `edition`, `verified`, `url` |
