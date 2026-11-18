@@ -561,7 +561,7 @@
   {
    "id": "BL7",
    "what": "The exact censures in the grace controversies",
-   "need": "Latin of the censure clauses of Cum occasione, Ex omnibus afflictionibus, Unigenitus and Auctorem fidei, checked against the bulls.",
+   "need": "Check Auctorem fidei against the Latin bull. The other three clauses have been checked in printed witnesses. For Baius, trace the disputed punctuation and the wording of proposition 75 in earlier witnesses.",
    "cases": [
     "A1",
     "A3",
@@ -1173,10 +1173,10 @@
   {
    "id": "A3",
    "group": "A",
-   "title": "Unigenitus: how censures given in globo are distributed",
-   "question": "When 101 propositions are condemned together under a list of censures, which censure falls on which proposition, and what role does Quesnel's context play?",
+   "title": "Unigenitus and the censure of Quesnel",
+   "question": "What does the bull settle about the 101 propositions, and how far do Augustine and later teaching help us read particular censures?",
    "period": [
-    1713,
+    1693,
     1988
    ],
    "themes": [
@@ -1187,7 +1187,7 @@
    "issuers": [
     "Clement XI"
    ],
-   "summary": "Clement XI condemned 101 propositions from Quesnel's Réflexions morales together, with a list of censures from \"false\" to \"heretical\", without saying which fits which. Some propositions are close to Augustine or Prosper. The censures given in globo mean that each proposition deserves at least one of the notes, not necessarily the gravest, and the condemned sense is the one each had in Quesnel's book and system. The Roman record shows the Pope himself hesitating over several near-patristic propositions, so the condemned sense has to be shown proposition by proposition, not assumed. The site already discusses this case in its guide to reading a condemnation.",
+   "summary": "Clement XI condemns all 101 propositions and applies a list of censures respectively, without assigning a note to each one. The closing clause particularly calls out renewals of propositions of Jansenius in the sense already condemned. The bull separately condemns Quesnel’s book. The Roman preparatory record preserves disagreements that help frame the inquiry into individual propositions. The comparison below tests grace and freedom, grace and the Church, and access to Scripture. Quesnel’s glosses and his 1712 defense help identify what he claims. The final bull gives no individual rationale for propositions 13 and 80.",
    "texts": [
     {
      "label": "Clement XI, Unigenitus (8 September 1713)",
@@ -1198,17 +1198,83 @@
       "1373",
       "1379",
       "1383",
+      "1429",
+      "1430",
       "1440",
       "1451"
      ],
      "local": "excerpt",
-     "verified": false
+     "verified": true,
+     "edition": "Bullarium Romanum, Turin ed., XXI (1871), pp. 568–575, especially §4, pp. 573–574.",
+     "checked": "The Latin gives a collective list with respective application. The express sense clause concerns the earlier censures of Jansenius. Section 4 then condemns the book again.",
+     "url": "https://archive.org/details/bullarumdiplomat21cath/page/573/mode/2up"
     },
     {
-     "label": "J. M. Gres-Gayer, \"The Unigenitus of Clement XI: A Fresh Look at the Issues\", Theological Studies 49 (1988) 259–82",
+     "label": "Quesnel, Réflexions morales on Luke 5:12–14",
      "refs": [],
      "local": "none",
-     "verified": false
+     "verified": true,
+     "edition": "Paris, 1698, tome II, pp. 92–93.",
+     "checked": "The gloss on verse 13 applies Christ’s healing of the leper to absolution through the ministry of the Church.",
+     "url": "https://archive.org/details/bub_gb_d5VvDOOuHhIC/page/93/mode/1up"
+    },
+    {
+     "label": "Quesnel, Réflexions morales on Acts 8:27–31",
+     "refs": [],
+     "local": "none",
+     "verified": true,
+     "edition": "Paris, 1693, tome III, pp. 95–96.",
+     "checked": "The gloss on verse 28 presents a man occupied with affairs and finances reading Scripture as evidence that the reading is for everyone. The gloss on verse 31 calls it presumptuous to rely on one’s own understanding without the Church’s teachers.",
+     "url": "https://archive.org/details/bub_gb_-wuvjltVTPIC/page/95/mode/2up"
+    },
+    {
+     "label": "Quesnel, Explication apologétique (1712)",
+     "refs": [],
+     "local": "none",
+     "verified": true,
+     "edition": "First part, pp. 108–113, especially pp. 112–113.",
+     "checked": "Quesnel includes the line about the touch of grace in his defense of absolutely efficacious grace. He distinguishes the immediate effect God absolutely wills from a further effect that may be resisted.",
+     "url": "https://archive.org/details/bub_gb_ttSTSpv5uSUC/page/112/mode/2up"
+    },
+    {
+     "label": "Augustine, De correptione et gratia",
+     "refs": [],
+     "local": "none",
+     "verified": true,
+     "edition": "De correptione et gratia 14.43 (PL 44, col. 942).",
+     "checked": "Augustine says that no human will resists God when he wills to save, in a discussion of the efficacy of divine action and of correction.",
+     "url": "https://www.augustinus.it/LATINO/correzione_grazia/correzione_grazia_libro.htm#GR_001_014_043"
+    },
+    {
+     "label": "Vatican II, Lumen Gentium §16",
+     "refs": [
+      "LG16"
+     ],
+     "local": "excerpt",
+     "verified": true,
+     "edition": "Vatican English edition, 21 November 1964.",
+     "checked": "Section 16 speaks of grace among those without knowledge of the Gospel and of their relation to the people of God.",
+     "url": "https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19641121_lumen-gentium_en.html"
+    },
+    {
+     "label": "Pius VI, Auctorem fidei, proposition 67",
+     "refs": [
+      "1567"
+     ],
+     "local": "excerpt",
+     "verified": true,
+     "edition": "Vatican Italian edition, 28 August 1794, proposition 67. Denzinger Latin at DS 2667.",
+     "checked": "Pius VI censures the Pistoian doctrine that only true inability excuses failure to read Scripture, with its claim about the effects of neglect. He identifies this doctrine as previously condemned in Quesnel.",
+     "url": "https://www.vatican.va/content/pius-vi/it/documents/bolla-auctorem-fidei-28-agosto-1794.html"
+    },
+    {
+     "label": "Vatican II, Dei Verbum §§22, 25",
+     "refs": [],
+     "local": "none",
+     "verified": true,
+     "edition": "Vatican English edition, 18 November 1965.",
+     "checked": "Section 22 calls for easy access to Scripture for all the faithful. Section 25 urges them to read frequently and asks bishops to provide suitable instruction and editions.",
+     "url": "https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19651118_dei-verbum_en.html"
     }
    ],
    "propositions": [
@@ -1220,77 +1286,212 @@
      "assent": "disputed",
      "binding_status": "not_juridical",
      "evidence": "D",
-     "says": "Proposition 13: when God wills to save a soul and touches it with the interior hand of grace, no human will resists him.",
-     "note": "Near-quotation of Augustine, De correptione et gratia; Clement suspended judgment on it (Gres-Gayer, p. 268)."
+     "says": "Proposition 13 says that when God wills to save a soul and touches it with interior grace, no human will resists him.",
+     "note": "On Luke 5:13, Quesnel compares the healing of the leper to Christ healing sinners through the Church’s ministry. He invokes efficacious grace when defending this language in 1712. Gres-Gayer reports a preliminary suspension of judgment."
+    },
+    {
+     "id": "a3-apology",
+     "ref": null,
+     "ext": "Quesnel, Explication apologétique, pp. 108–113",
+     "year": 1712,
+     "formal_object": "opinion",
+     "assent": "none",
+     "binding_status": "not_juridical",
+     "evidence": "D",
+     "says": "Quesnel says that a grace achieves the immediate effect God absolutely intends, while its further effect may be resisted. He identifies the touch of grace as an example of absolutely efficacious grace.",
+     "note": "He says that the person retains the power to reject grace. His defense appeals to Thomist authors and expressly rejects the second Jansenist proposition."
+    },
+    {
+     "id": "a3-aug",
+     "ref": null,
+     "year": 426,
+     "formal_object": "opinion",
+     "assent": "none",
+     "binding_status": "not_juridical",
+     "evidence": "D",
+     "says": "When God wills to save, no human will resists him.",
+     "ext": "Augustine, De correptione et gratia 14.43"
+    },
+    {
+     "id": "a3-tr",
+     "ref": "814",
+     "year": 1547,
+     "formal_object": "revealed",
+     "assent": "faith",
+     "binding_status": "not_juridical",
+     "evidence": "D",
+     "says": "The will moved by God can dissent if it wishes and cooperates by assenting to his call."
     },
     {
      "id": "a3-glob",
      "ref": "1451",
      "year": 1713,
      "formal_object": "disputed",
-     "assent": "religious_submission",
+     "assent": "disputed",
      "binding_status": "not_juridical",
      "evidence": "D",
-     "says": "All 101 propositions are condemned as respectively false, captious, scandalous, rash, erroneous, heretical and the rest, as they stand in the book."
+     "says": "Clement XI condemns every proposition under a list of censures applied respectively, singling out renewals of condemned Jansenist propositions in their condemned sense."
     },
     {
      "id": "a3-29",
      "ref": "1379",
      "year": 1713,
-     "formal_object": "revealed",
+     "formal_object": "disputed",
      "assent": "disputed",
      "binding_status": "not_juridical",
      "evidence": "D",
-     "says": "Proposition 29: outside the Church no grace is granted.",
-     "note": "The rejection of this proposition is used again in B3."
+     "says": "Proposition 29 says that outside the Church no grace is granted.",
+     "note": "See B3 for how the Church’s role in salvation bears on this proposition."
+    },
+    {
+     "id": "a3-lg",
+     "ref": "LG16",
+     "year": 1964,
+     "formal_object": "authentic",
+     "assent": "religious_submission",
+     "binding_status": "not_juridical",
+     "evidence": "D",
+     "says": "God’s grace can act among people who have yet to receive the Gospel and can move them to seek God and do his will."
+    },
+    {
+     "id": "a3-79",
+     "ref": "1429",
+     "year": 1713,
+     "formal_object": "disputed",
+     "assent": "disputed",
+     "binding_status": "not_juridical",
+     "evidence": "D",
+     "says": "Proposition 79 calls study of Scripture useful and necessary at all times, in all places, and for every kind of person."
+    },
+    {
+     "id": "a3-80",
+     "ref": "1430",
+     "year": 1713,
+     "formal_object": "disputed",
+     "assent": "disputed",
+     "binding_status": "not_juridical",
+     "evidence": "D",
+     "says": "Proposition 80 says that the reading of Sacred Scripture is for all.",
+     "note": "In the gloss on Acts 8:31 Quesnel requires the help of the Church’s teachers to understand Scripture."
+    },
+    {
+     "id": "a3-dv",
+     "ref": null,
+     "year": 1965,
+     "formal_object": "pastoral",
+     "assent": "prudential_deference",
+     "binding_status": "not_juridical",
+     "evidence": "D",
+     "says": "The council calls for easy access to Scripture for all the Christian faithful, urges them to read frequently, and directs bishops to teach them how to use it well.",
+     "ext": "Vatican II, Dei Verbum §§22, 25"
     }
    ],
    "matrix": [
     {
      "a": "a3-13",
-     "b": "a3-glob",
-     "level": "logical",
-     "result": "apparent",
-     "why": "The in globo censure does not declare proposition 13 heretical; it says it deserves at least one note, which may be \"captious\" or \"ill-sounding\" in its setting. That removes the charge that Augustine was condemned, but leaves open which note applies.",
+     "b": "a3-aug",
+     "level": "doctrinal",
+     "result": "undetermined",
+     "why": "The words closely parallel Augustine. The gloss applies the claim to healing through the Church’s ministry. Quesnel’s defense calls it a case of absolutely efficacious grace. The final bull gives no individual note or rationale.",
      "same_subject": true,
+     "same_sense": "disputed",
+     "same_time": true
+    },
+    {
+     "a": "a3-tr",
+     "b": "a3-13",
+     "level": "doctrinal",
+     "result": "undetermined",
+     "why": "Trent affirms the power to dissent when God moves the will. Quesnel also affirms that power in his defense and allows that grace can be resisted with respect to its further effect. His additional claim that an immediate effect absolutely willed by God always occurs requires its own comparison with Trent and Cum occasione.",
+     "same_subject": true,
+     "same_sense": "disputed",
+     "same_time": true
+    },
+    {
+     "a": "a3-29",
+     "b": "a3-lg",
+     "level": "doctrinal",
+     "result": "no_conflict",
+     "why": "Grace can reach people outside visible Catholic communion. This later teaching accords with the rejection of a blanket denial of grace beyond the Church’s visible bounds. Lumen Gentium still speaks of these people’s relation to the people of God.",
+     "same_subject": false,
+     "same_sense": "disputed",
+     "same_time": true
+    },
+    {
+     "a": "a3-79",
+     "b": "a3-dv",
+     "level": "doctrinal",
+     "result": "no_conflict",
+     "why": "The council urges frequent reading with instruction and pastoral provision. Proposition 79 asserts necessity at all times and places for every kind of person. Pius VI connects a Pistoian doctrine of obligation with what had already been condemned in Quesnel.",
+     "same_subject": false,
+     "same_sense": false,
+     "same_time": true
+    },
+    {
+     "a": "a3-80",
+     "b": "a3-dv",
+     "level": "doctrinal",
+     "result": "undetermined",
+     "why": "Quesnel takes the Ethiopian’s reading as a model for everyone. In the same passage he insists on help from the Church’s teachers. This gives real overlap with Dei Verbum §25. Establishing a further implication in proposition 80 or the reason for its censure requires more evidence.",
+     "same_subject": "disputed",
      "same_sense": "disputed",
      "same_time": true
     }
    ],
    "edges": [
     [
+     "a3-aug",
      "a3-13",
-     "a3-glob",
      "qualifies"
     ],
     [
+     "a3-apology",
+     "a3-13",
+     "qualifies"
+    ],
+    [
+     "a3-tr",
+     "a3-13",
+     "potential_contradiction"
+    ],
+    [
+     "a3-lg",
      "a3-29",
-     "a3-glob",
-     "specifies"
+     "qualifies"
+    ],
+    [
+     "a3-dv",
+     "a3-80",
+     "potential_contradiction"
     ]
    ],
-   "qualifications": "Censures in globo and respectively; the propositions are condemned \"as they stand\" in Quesnel's book.",
-   "reception": "Appealed against by part of the French episcopate (the Appellants); made a law of the State in France in 1730; argued for decades. Gres-Gayer's study of the preparation shows the Pope's own doubts over propositions 12, 13, 23 and 33.",
-   "contingency": "Not applicable to the doctrinal censures. The French conflicts over the bull's civil enforcement were contingent and have lapsed.",
-   "development": "Nothing defined in the bull was later reversed. The rejection of proposition 29 is kept in later teaching on grace outside the visible Church (LG 16).",
-   "hypothesis": "Each proposition is condemned in the sense it had in Quesnel's work, under at least one of the listed notes. The bare words of a near-patristic proposition do not show that a Father was condemned. (T)",
-   "objection": "If the condemned sense of proposition 13 cannot be distinguished from Augustine's, then either Augustine was censured or the bull condemned nothing definite in it; the Pope's own hesitation suggests the first.",
-   "rebuttal": "The bull does not say which note fits proposition 13, and a light note such as \"captious\" can fall on true words used to carry a false thesis (irresistible grace as Quesnel's system meant it). That is a real but limited concession: the site keeps the case close, as Clement XI did.",
+   "qualifications": "Omnes et singulas covers every listed proposition. Respective applies the list of censures without naming an individual grade. In eo sensu, in quo hae damnatae fuerunt refers to the earlier censures of Jansenius’s propositions.",
+   "reception": "French opponents appealed to a future council. Gres-Gayer reports that Fénelon urged individual censures during drafting. In Auctorem fidei 67, Pius VI identifies the Pistoian doctrine on the obligation to read Scripture as previously condemned in Quesnel. He gives no Unigenitus proposition number.",
+   "contingency": "Section 4 also prescribes penalties for defending the propositions or circulating the book. The legal enforcement history is a separate question from the sense and grade of an individual doctrinal censure.",
+   "development": "Lumen Gentium §16 describes grace at work among people who have not heard the Gospel. Dei Verbum §§22 and 25 call for easy access to Scripture and invite all the faithful to read it with prayer and pastoral guidance. Proposition 80 remains the closest comparison on Scripture.",
+   "hypothesis": "Quesnel’s defense offers a possible account of the scope of proposition 13. The glosses on Acts show that Quesnel both commends broad reading and insists on ecclesial instruction. Each comparison must still account for the wording of the operative censure and the evidence about its rationale. (T)",
+   "objection": "Proposition 13 echoes Augustine closely. Proposition 80 appears to say what Vatican II later urges. What evidence shows which sense or implication drew either censure?",
+   "rebuttal": "The Roman record supports a Catholic reading of proposition 13 as a live possibility at the preliminary stage. Quesnel’s defense explains why he thought his account differed from a denial of the power of resistance. His proposition was still censured. The force of “necessary” in proposition 79 explains its distance from Dei Verbum §25. For proposition 80, the original gloss explicitly values ecclesial teaching. The precise ground for the censure remains open.",
    "verdict": "plausible_concord",
    "confidence": "medium",
-   "stage": 9,
+   "stage": 11,
    "gaps": [
     {
-     "what": "Quesnel's text for each disputed proposition, in its setting",
-     "source": "Réflexions morales (1699 edition)",
-     "settles": "The condemned sense of propositions 12, 13, 23 and 33."
+     "what": "The grounds for the censures on propositions 13 and 80",
+     "source": "Ceyssens’s edition of the Roman judgments and votes, contemporary episcopal explanations, and earlier French editions of the glosses.",
+     "settles": "Which implications were objected to and whether any contemporary source accounts for the overlap with Augustine or later teaching on Scripture."
+    },
+    {
+     "what": "Quesnel’s theory of sufficient grace",
+     "source": "The rest of the Explication apologétique, the glosses underlying propositions 9–16, and Roman examinations of those passages.",
+     "settles": "Whether his distinction between immediate and final effects preserves the ability to dissent in the sense affirmed by Trent."
     }
    ],
-   "next_source": "Ceyssens's edition of the Roman preparatory documents, cited by Gres-Gayer.",
+   "next_source": "Locate the votes on propositions 13 and 80 and compare them with Quesnel’s account of the two passages and his defense of sufficient grace.",
    "audio": {
-    "taught": "Clement XI condemned 101 statements from a book by Pasquier Quesnel, all together, with a list of censures.",
-    "authority": "A papal constitution. Because the censures are given together, each statement deserves at least one of them, not necessarily the worst.",
-    "permanence": "Permanent: the doctrines defended, such as that grace is given outside the visible Church. Not settled by the bull: which censure fits each statement, and some cases were close even for the Pope."
+    "taught": "Clement the Eleventh condemned all one hundred and one propositions of Quesnel and also condemned his book.",
+    "authority": "The papal constitution names a list of censures applied respectively. It gives no individual grade for proposition thirteen or proposition eighty.",
+    "permanence": "The censure stands. The meaning and grounds of individual censures remain questions for the original text and its reception."
    },
    "related_disputed": [
     "quesnel"
@@ -1303,10 +1504,45 @@
     {
      "date": "2026-11-18",
      "change": "Draft created from the texts the site holds; primary sources not yet verified against critical editions."
+    },
+    {
+     "date": "2026-11-18",
+     "change": "Checked the Latin of Unigenitus §4, Augustine’s text, the published account of the Roman preparation, and Lumen Gentium §16 and Dei Verbum §25. Added separate comparisons for propositions 13, 29, 79 and 80. Read the French glosses on Luke 5:13 and Acts 8:28–31 and Quesnel’s 1712 defense."
     }
    ],
    "last_reviewed": "2026-11-18",
-   "gate": null
+   "gate": null,
+   "evidence_reviews": [
+    {
+     "question": "What does the Latin say about the sense condemned?",
+     "finding": "Section 4 names every proposition and uses respective. It singles out renewals of Jansenius’s propositions in the sense in which those earlier propositions were condemned. It then condemns the book as a whole.",
+     "test": "Use the express sense clause for the connection to Jansenius. Establish any further contextual qualification from the proposition and the evidence about its use."
+    },
+    {
+     "question": "Does proposition 13 condemn Augustine’s teaching on efficacious grace?",
+     "finding": "Quesnel applies the healing of the leper to the Church’s ministry. In 1712 he invoked absolutely efficacious grace and stated that a grace may be resisted as to its further effect. Gres-Gayer reports Clement’s preliminary suspension of judgment. The proposition was included in the final list.",
+     "test": "Compare Quesnel’s own account of sufficient grace with Trent and the second Jansenist proposition. Use the Roman votes to assess what drew censure. Quesnel’s defense records his position in the controversy."
+    },
+    {
+     "question": "What does proposition 29 clarify about grace and the Church?",
+     "finding": "Lumen Gentium §16 speaks both of grace reaching people who have yet to hear the Gospel and of their relation to God’s people.",
+     "test": "Distinguish absence of visible communion from separation in every sense when comparing the two texts."
+    },
+    {
+     "question": "Does the censure of propositions 79 and 80 conflict with Vatican II on Scripture?",
+     "finding": "Proposition 79 asserts an unrestricted necessity. The gloss behind proposition 80 commends reading even among those occupied with public affairs. The comment on Acts 8:31 calls for the help of the Church’s teachers. Dei Verbum §25 also joins wide access to pastoral instruction.",
+     "test": "Auctorem fidei 67 confirms that an obligation with virtually no exceptions was at issue in the reception of Quesnel. It gives no Unigenitus proposition number. Check the Roman and early reception evidence for the specific objection to proposition 80."
+    }
+   ],
+   "research_sources": [
+    {
+     "title": "J. M. Gres-Gayer, The Unigenitus of Clement XI",
+     "role": "Historical study",
+     "citation": "Theological Studies 49 (1988), pp. 259–282, especially pp. 267–270.",
+     "note": "The study reports Clement’s preliminary suspension on proposition 13, the discussions of other selected propositions, and the collective censure of the final bull.",
+     "url": "https://theologicalstudies.net/wp-content/uploads/2022/08/49.2.2.pdf"
+    }
+   ]
   },
   {
    "id": "A4",
@@ -1466,11 +1702,11 @@
   {
    "id": "A5",
    "group": "A",
-   "title": "Baius, Trent and concupiscence",
-   "question": "How do the condemnation of Baius, Trent's teaching on original sin, and later accounts of remaining concupiscence fit together, and what was left to the schools?",
+   "title": "Baius on concupiscence and the gratuity of grace",
+   "question": "What do Trent and the condemnation of Baius establish about remaining concupiscence and the gratuity of the supernatural order?",
    "period": [
     1546,
-    1567
+    1950
    ],
    "themes": [
     "grace",
@@ -1479,12 +1715,14 @@
    ],
    "issuers": [
     "Council of Trent",
-    "Pius V"
+    "Pius V",
+    "Gregory XIII",
+    "Pius XII"
    ],
-   "summary": "Trent taught that baptism takes away everything that has the true and proper nature of sin, and that the concupiscence that remains is called sin by Paul only because it comes from sin and inclines to it. Pius V condemned 79 propositions of Michael du Bay, among them that concupiscence is itself a sin or a transgression of the commandment, \"respectively\" and \"in the strict and proper sense intended by\" their authors, granting that some could be held in some sense. The two acts agree: Trent defined, Pius V condemned a system that contradicted it. What the schools may still dispute is how nature, grace and the state of integrity relate, and which of the 79 might bear an orthodox sense.",
+   "summary": "Trent says that baptism remits the guilt of original sin. Remaining concupiscence comes from sin and inclines to it, and does no harm to people who withhold consent and resist with grace. Pius V censures 79 propositions respectively. Proposition 75 calls the felt impulse a breach of the commandment while withholding imputation as sin. Propositions 21, 24 and 26 raise a different question about what nature is owed. The scope of the concession in the censure clause depends on the disputed punctuation called the Comma Pianum.",
    "texts": [
     {
-     "label": "Trent, session 5, decree on original sin (17 June 1546)",
+     "label": "Trent, session V, decree on original sin (17 June 1546)",
      "refs": [
       "787",
       "788",
@@ -1494,18 +1732,47 @@
       "792"
      ],
      "local": "excerpt",
-     "verified": false
+     "verified": true,
+     "edition": "Decree on Original Sin, canon 5. J. Waterworth, 1848 English edition, and the Denzinger Latin at DS 1515.",
+     "checked": "The decree distinguishes the guilt remitted in baptism from concupiscence that remains, and names non-consent and resistance by grace.",
+     "url": "https://history.hanover.edu/texts/trent/ct05.html"
     },
     {
      "label": "Pius V, Ex omnibus afflictionibus (1 October 1567)",
      "refs": [
       "1001",
+      "1021",
+      "1024",
+      "1026",
       "1074",
       "1075",
       "1080"
      ],
      "local": "excerpt",
-     "verified": false
+     "verified": true,
+     "edition": "Bullarium Romanum, Turin ed., VIII (1863), Pius V’s bull as inserted in Provisionis nostrae, especially p. 319.",
+     "checked": "The printed witness places a comma after possent, unlike the site’s Denzinger Latin. Its proposition 75 also lacks the explicit “and does not consent” found in Denzinger.",
+     "url": "https://archive.org/details/bullarumdiplomat08cath/page/319/mode/2up"
+    },
+    {
+     "label": "Gregory XIII, Provisionis nostrae (1580)",
+     "refs": [],
+     "local": "none",
+     "verified": true,
+     "edition": "Bullarium Romanum, Turin ed., VIII (1863), pp. 314–320. The Roman text dates the constitution January 1579 by the Incarnation year.",
+     "checked": "Gregory confirms Pius V’s letters, inserts their text, and orders that the inserted tenor carry the same evidentiary force as the earlier letters.",
+     "url": "https://archive.org/details/bullarumdiplomat08cath/page/314/mode/2up"
+    },
+    {
+     "label": "Pius XII, Humani generis §26 (1950)",
+     "refs": [
+      "2318"
+     ],
+     "local": "excerpt",
+     "verified": true,
+     "edition": "Vatican English edition, §26.",
+     "checked": "Pius XII defends the gratuity of the supernatural order against the claim that God cannot create intellectual beings without ordering and calling them to the beatific vision.",
+     "url": "https://www.vatican.va/content/pius-xii/en/encyclicals/documents/hf_p-xii_enc_12081950_humani-generis.html"
     }
    ],
    "propositions": [
@@ -1518,7 +1785,7 @@
      "binding_status": "not_juridical",
      "evidence": "D",
      "quote": "the whole of that which has the true and proper nature of sin is not taken away",
-     "says": "Anathema to whoever says that baptism does not take away the whole of what has the true and proper nature of sin; concupiscence that remains is not sin properly so called."
+     "says": "Trent says baptism removes original guilt. Concupiscence remains, comes from sin, and inclines to sin. It is not properly sin in the reborn and cannot harm those who withhold consent and resist with Christ’s grace."
     },
     {
      "id": "a5-74",
@@ -1528,7 +1795,8 @@
      "assent": "disputed",
      "binding_status": "not_juridical",
      "evidence": "D",
-     "says": "Baius 74: concupiscence in the regenerate who fall back into mortal sin, and in whom it dominates, is a sin."
+     "says": "Proposition 74 calls concupiscence itself sin in the baptized who have relapsed into mortal sin and in whom it dominates, comparing it to vicious habits.",
+     "note": "The Latin in quibus refers back to the baptized who have relapsed."
     },
     {
      "id": "a5-75",
@@ -1538,18 +1806,59 @@
      "assent": "disputed",
      "binding_status": "not_juridical",
      "evidence": "D",
-     "says": "Baius 75: the bad impulses of concupiscence are forbidden by \"Thou shalt not covet\", so a man aware of them who does not consent transgresses the precept, though not sinfully."
+     "says": "Proposition 75 calls the felt impulse a breach of “Thou shalt not covet,” although the breach is not reckoned as sin.",
+     "note": "The Denzinger witness explicitly adds that the person does not consent. The Turin text goes directly from feeling the impulse to transgressing the commandment."
     },
     {
      "id": "a5-cens",
      "ref": "1080",
      "year": 1567,
      "formal_object": "disputed",
+     "assent": "disputed",
+     "binding_status": "not_juridical",
+     "evidence": "D",
+     "says": "Pius V condemns the propositions respectively under a list of censures. The clause refers both to possible ways of defending some propositions and to their proper and strict sense as intended by their proponents.",
+     "note": "The Denzinger English takes the latter phrase with the censure. The placement of the comma is historically disputed."
+    },
+    {
+     "id": "a5-21",
+     "ref": "1021",
+     "year": 1567,
+     "formal_object": "disputed",
+     "assent": "disputed",
+     "binding_status": "not_juridical",
+     "evidence": "D",
+     "says": "Proposition 21 makes participation in divine nature due to original integrity and calls it natural."
+    },
+    {
+     "id": "a5-24",
+     "ref": "1024",
+     "year": 1567,
+     "formal_object": "disputed",
+     "assent": "disputed",
+     "binding_status": "not_juridical",
+     "evidence": "D",
+     "says": "Proposition 24 calls it Pelagian to say that gifts superadded to nature raised humanity to adoptive sonship."
+    },
+    {
+     "id": "a5-26",
+     "ref": "1026",
+     "year": 1567,
+     "formal_object": "disputed",
+     "assent": "disputed",
+     "binding_status": "not_juridical",
+     "evidence": "D",
+     "says": "Proposition 26 calls original integrity the natural condition of humanity and denies that this integrity was an undeserved elevation."
+    },
+    {
+     "id": "a5-hg",
+     "ref": "2318",
+     "year": 1950,
+     "formal_object": "authentic",
      "assent": "religious_submission",
      "binding_status": "not_juridical",
      "evidence": "D",
-     "quote": "in the strict and proper sense intended by those asserting them",
-     "says": "The propositions are condemned respectively, with notes from heretical to offensive, in their authors' sense; some could be maintained in some way."
+     "says": "Pius XII rejects the thesis that God cannot create intellectual beings without ordering and calling them to the beatific vision."
     }
    ],
    "matrix": [
@@ -1557,29 +1866,34 @@
      "a": "a5-tr",
      "b": "a5-75",
      "level": "doctrinal",
-     "result": "contradiction",
-     "why": "Trent: remaining concupiscence is not sin properly speaking. Baius 75: unconsented impulses transgress a commandment. A transgression of a commandment of God is what Trent calls sin; the condemnation removes the conflict by rejecting Baius.",
-     "same_subject": true,
-     "same_sense": true,
-     "same_time": false
+     "result": "potential_contradiction",
+     "why": "Trent says concupiscence cannot harm the baptized who withhold consent and resist by grace. Proposition 75 predicates transgression of the felt impulse, while expressly withholding imputation as sin. There would be a conflict if that transgression meant a culpable violation by the person.",
+     "same_subject": "disputed",
+     "same_sense": "disputed",
+     "same_time": true
     },
     {
-     "a": "a5-74",
-     "b": "a5-cens",
-     "level": "logical",
+     "a": "a5-tr",
+     "b": "a5-74",
+     "level": "doctrinal",
      "result": "undetermined",
-     "why": "Which note falls on 74 is not said; read of habitual sin in the relapsed, it could bear a sense close to ordinary teaching on vicious habits. The famous \"comma\" in 1080 leaves unclear which clause the concession belongs to.",
-     "same_subject": true,
+     "why": "Proposition 74 concerns people in mortal sin. The comparison turns on whether it attributes sin to the inclination itself or is speaking of a habit formed or sustained by voluntary acts. The text expressly calls concupiscence sin in that setting.",
+     "same_subject": "disputed",
      "same_sense": "disputed",
+     "same_time": true
+    },
+    {
+     "a": "a5-21",
+     "b": "a5-hg",
+     "level": "doctrinal",
+     "result": "no_conflict",
+     "why": "Both acts bear on the gratuity of supernatural elevation. The bull censures a proposition that makes participation in divine nature due to original integrity. Humani generis rejects a claim about what God must give any intellect he creates.",
+     "same_subject": false,
+     "same_sense": false,
      "same_time": true
     }
    ],
    "edges": [
-    [
-     "a5-tr",
-     "a5-cens",
-     "reaffirms"
-    ],
     [
      "a5-75",
      "a5-tr",
@@ -1587,32 +1901,52 @@
     ],
     [
      "a5-74",
-     "a5-cens",
+     "a5-tr",
+     "potential_contradiction"
+    ],
+    [
+     "a5-21",
+     "a5-hg",
+     "qualifies"
+    ],
+    [
+     "a5-24",
+     "a5-hg",
+     "qualifies"
+    ],
+    [
+     "a5-26",
+     "a5-hg",
      "qualifies"
     ]
    ],
-   "qualifications": "\"Respectively\"; \"in the strict and proper sense intended\"; \"although some could be maintained in some way\".",
-   "reception": "The placement of the comma in 1080 (the comma Pianum) was argued for a century; Louvain resisted; Gregory XIII renewed the bull. Augustinian and Thomist schools continued to dispute pure nature, which later Henri de Lubac's work reopened.",
-   "contingency": "Not applicable: doctrinal definitions and condemnations.",
-   "development": "Trent's doctrine stands unchanged in the Catechism (CCC 1264, 405).",
-   "hypothesis": "Trent defines; the bull condemns Baius's system in his sense with graded notes; the schools stay free on the nature–grace questions the bull does not decide. (T)",
-   "objection": "If some propositions \"could be maintained in some way\", the condemnation does not fix a doctrine for them; and later Augustinian theology, including de Lubac on the natural desire for God, comes close to propositions the bull condemned.",
-   "rebuttal": "The bull fixes which sense is condemned, the author's; it does not need to condemn every sense. Whether de Lubac's thesis reproduces a condemned sense was itself argued (Humani generis 26 warned against denying the gratuity of the supernatural); that is a live school dispute, not a reversal.",
+   "qualifications": "Respective assigns a range of censures to the list without naming the grade of any numbered proposition. The disputed phrase in rigore et proprio verborum sensu ab assertoribus intento can be attached to the censure or to the preceding concession, depending on punctuation.",
+   "reception": "Gregory XIII confirmed and reissued Pius V’s text in Provisionis nostrae. The punctuation dispute persisted. Later debate about the natural desire for God raised a distinct question about the meaning of an elevation being due to nature.",
+   "contingency": "The act’s doctrinal censures and its disciplinary restrictions on disputation carry different kinds of force.",
+   "development": "The Catechism §1264 repeats Trent’s teaching that concupiscence cannot harm those who resist it by grace. Humani generis §26 specifies a limit for theology of the supernatural order by rejecting any requirement that God call every intellectual creature to the beatific vision.",
+   "hypothesis": "The distinction between inclination and culpable consent clarifies the relation to Trent. The distinction between a natural desire and a claim of entitlement clarifies the relation to later theology of grace. Which censures apply to specific propositions and which words the concession governs require separate evidence. (T)",
+   "objection": "If proposition 75 denies imputation as sin, what exactly drew censure? If the human intellect naturally desires God, does that desire make supernatural elevation due?",
+   "rebuttal": "The site can identify the question raised by calling involuntary experience a transgression. The individual censure remains unstated. A desire for God and an obligation on God are distinct claims. The named propositions and Humani generis give evidence for assessing the second claim. The first requires a further theological argument.",
    "verdict": "plausible_concord",
    "confidence": "medium",
-   "stage": 9,
+   "stage": 11,
    "gaps": [
     {
-     "what": "The Latin of 1080 with the disputed comma",
-     "source": "The bull in Bullarium Romanum; Le Bachelet's study",
-     "settles": "Which clause the concession qualifies."
+     "what": "Early textual witnesses to Ex omnibus and the scope of the concession",
+     "source": "Contemporary copies of the 1567 bull, Denzinger’s source and apparatus, and the Louvain and Roman transmission of the text.",
+     "settles": "The authority of the competing punctuation and wording, including the non-consent line in proposition 75."
+    },
+    {
+     "what": "The grounds for individual censures on concupiscence and original integrity",
+     "source": "Baius’s original treatises, the propositions submitted to Rome, and contemporary accounts of examination and reception.",
+     "settles": "Whether individual propositions are judged for a claim of culpability, a claim about what is due to nature, or another implication."
     }
    ],
-   "next_source": "The Latin of Ex omnibus afflictionibus, closing clause.",
+   "next_source": "Compare the 1567 witnesses and Baius’s treatises with the Gregorian reissue and the Denzinger apparatus for propositions 74 and 75 and the closing clause.",
    "audio": {
-    "taught": "Trent taught that baptism removes everything that is truly sin, and that the leftover inclination to sin is not itself sin. Pius V condemned propositions of Michael du Bay, including that this inclination is a sin or breaks a commandment.",
-    "authority": "Trent's canon is a definition. Pius V's bull condemns 79 propositions with graded censures, in the sense their authors meant.",
-    "permanence": "Permanent: Trent's teaching on original sin and concupiscence. Still open: how nature and grace relate, which the schools continue to argue."
+    "taught": "Trent says baptism remits original sin while concupiscence remains. Pius the Fifth censured propositions of Baius on concupiscence, original integrity, and grace.",
+    "authority": "The bull applies censures respectively. Its concession about the possible defense of some propositions is subject to a dispute about punctuation.",
+    "permanence": "Trent’s teaching and the gratuity of the supernatural order give limits for comparison. The grades of particular censures and the full account of natural desire require further evidence."
    },
    "related_disputed": [
     "baius"
@@ -1627,10 +1961,40 @@
     {
      "date": "2026-11-18",
      "change": "Draft created from the texts the site holds; primary sources not yet verified against critical editions."
+    },
+    {
+     "date": "2026-11-18",
+     "change": "Compared Trent’s canon, Pius V’s Latin as printed in the Gregorian reissue, and the Denzinger witness. Added the comparison with Humani generis §26 on gratuity."
     }
    ],
    "last_reviewed": "2026-11-18",
-   "gate": null
+   "gate": null,
+   "evidence_reviews": [
+    {
+     "question": "What does the Comma Pianum change?",
+     "finding": "The Gregorian reissue as printed in the Turin Bullarium puts a comma after possent. On the reading reflected by the Denzinger English, the strict sense specifies the condemnation. On the other attachment, it qualifies the concession about what some propositions might sustain.",
+     "test": "Compare earlier textual witnesses and their reception. Neither attachment gives the individual note for any one proposition."
+    },
+    {
+     "question": "Do propositions 74 and 75 predicate the same thing as Trent?",
+     "finding": "Trent speaks of the inclination persisting in the baptized. Proposition 74 specifies relapse and domination. Proposition 75 calls the felt impulse a transgression while saying that it is not imputed as sin. The Denzinger Latin explicitly adds non-consent.",
+     "test": "Check whether Baius understands transgression as culpable consent, involuntary disorder, or another kind of breach. Keep the subjects of each proposition distinct."
+    },
+    {
+     "question": "Which claims about nature and grace are actually at issue?",
+     "finding": "Proposition 21 calls participation in divine nature due to original integrity. Propositions 24 and 26 challenge the language of superadded gift and undeserved elevation. Pius XII rejects the necessity of a supernatural call for any creature with intellect.",
+     "test": "Ask whether a proposed account of natural desire entails that God owes the supernatural end. Assess that implication before comparing the account with Baius."
+    }
+   ],
+   "research_sources": [
+    {
+     "title": "E. Boissard, Note sur le sens « propre et rigoureux » de certaines propositions de Baius",
+     "role": "Historical study",
+     "citation": "Revue des sciences religieuses 36 (1962), pp. 140–153.",
+     "note": "Boissard examines how a censure can stand even if a proposition once had a defensible proper sense in a different linguistic or theological setting.",
+     "url": "https://www.persee.fr/doc/rscir_0035-2217_1962_num_36_2_2316"
+    }
+   ]
   },
   {
    "id": "B1",
