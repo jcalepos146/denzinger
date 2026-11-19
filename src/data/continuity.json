@@ -1950,6 +1950,30 @@
      "local": "none",
      "verified": false,
      "edition": "Two short quotations posted on X by @ScholasticsFan (24 May and 19 November 2026), with images of the title pages; page references not given."
+    },
+    {
+     "label": "Augustine, De civitate Dei I.25",
+     "refs": [],
+     "local": "none",
+     "url": "https://augustinus.cc/la/en/~deCiv.Bk1.n25.2",
+     "verified": false,
+     "edition": "Latin and English as given on augustinus.cc (supplied by the user); to be checked against CCSL 47."
+    },
+    {
+     "label": "Pius V, Ex omnibus afflictionibus: Baius 27 and 35; Trent, session 6, canon 7 on justification",
+     "refs": [
+      "1027",
+      "1035",
+      "817"
+     ],
+     "local": "excerpt",
+     "verified": false
+    },
+    {
+     "label": "Aquinas, Summa theologiae I-II q. 74 a. 3 (sin in sensuality; first motions)",
+     "refs": [],
+     "local": "none",
+     "verified": false
     }
    ],
    "propositions": [
@@ -2142,6 +2166,75 @@
      "says": "It cannot be objected that the motions of concupiscence are not free in Adam's descendants, for they are free by the freedom of Adam sinning in the name of all.",
      "note": "Voluntariness is kept (against Baius 46) but placed in Adam's will, not in the child's (against Baius 48), as in Aquinas, I-II q. 81 a. 1 (\"voluntarium voluntate primi parentis\").",
      "ext": "Scheeben, notes to Casini, Quid est homo (Mainz, 1862) (quoted on X; page to be checked)"
+    },
+    {
+     "id": "a5-obj",
+     "ref": null,
+     "year": 2026,
+     "formal_object": "opinion",
+     "assent": "none",
+     "binding_status": "not_juridical",
+     "evidence": "U",
+     "says": "Baius 74 should be read of the second-first (semi-deliberate) motions of concupiscence, not of the habit, in the baptized who are in mortal sin: mortal sin expels charity, the will is then no longer ordered to God but conformed to the law of fleshly concupiscence, and so these motions are sins.",
+     "note": "Recorded as the strongest form of the defence of Baius 74 met so far.",
+     "ext": "Objection put to the site (19 November 2026)"
+    },
+    {
+     "id": "a5-cd125",
+     "ref": null,
+     "year": 426,
+     "formal_object": "opinion",
+     "assent": "none",
+     "binding_status": "not_juridical",
+     "evidence": "H",
+     "says": "\"Quod si illa concupiscentialis inoboedientia, quae adhuc in membris moribundis habitat, praeter nostrae voluntatis legem quasi lege sua movetur, quanto magis absque culpa est in corpore non consentientis, si absque culpa est in corpore dormientis!\"",
+     "note": "Fault lies in consent. Augustine makes no exception for the state of the person: the sleeper is his test because a sleeper cannot consent.",
+     "ext": "Augustine, De civitate Dei I.25"
+    },
+    {
+     "id": "a5-aq",
+     "ref": null,
+     "year": 1271,
+     "formal_object": "opinion",
+     "assent": "none",
+     "binding_status": "not_juridical",
+     "evidence": "T",
+     "says": "There can be sin in sensuality, but only venial, because its motions are not fully deliberate; the first motions are sins only insofar as reason could have checked them.",
+     "note": "The common scholastic account: a semi-deliberate motion is at most a venial sin, in anyone, by reason of its partial voluntariness, not of the person's state.",
+     "ext": "Aquinas, Summa theologiae I-II q. 74 a. 3"
+    },
+    {
+     "id": "a5-35",
+     "ref": "1035",
+     "year": 1567,
+     "formal_object": "disputed",
+     "assent": "religious_submission",
+     "binding_status": "not_juridical",
+     "evidence": "D",
+     "quote": "Every action which a sinner, or a slave of sin performs is a sin",
+     "says": "Baius 35, condemned: every action of a sinner, or of a slave of sin, is a sin."
+    },
+    {
+     "id": "a5-27",
+     "ref": "1027",
+     "year": 1567,
+     "formal_object": "disputed",
+     "assent": "religious_submission",
+     "binding_status": "not_juridical",
+     "evidence": "D",
+     "quote": "Free will, without the help of God's grace, has only power for sin",
+     "says": "Baius 27, condemned: free will without grace has power only for sin."
+    },
+    {
+     "id": "a5-t7",
+     "ref": "817",
+     "year": 1547,
+     "formal_object": "revealed",
+     "assent": "faith",
+     "binding_status": "not_juridical",
+     "evidence": "D",
+     "quote": "all works that are done before justification, in whatever manner they have been done, are truly sins",
+     "says": "Trent, canon 7 on justification: anathema to whoever says that all works done before justification, in whatever manner, are truly sins."
     }
    ],
    "matrix": [
@@ -2234,6 +2327,46 @@
      "same_subject": true,
      "same_sense": false,
      "same_time": false
+    },
+    {
+     "a": "a5-obj",
+     "b": "a5-74",
+     "level": "logical",
+     "result": "no_conflict",
+     "why": "Baius 74 condemns a proposition about the habit: concupiscence \"is a sin, as also are other bad habits\". An argument about second-first motions does not defend that proposition; it raises a different question, which the bull does not decide.",
+     "same_subject": false,
+     "same_sense": false,
+     "same_time": true
+    },
+    {
+     "a": "a5-obj",
+     "b": "a5-cd125",
+     "level": "doctrinal",
+     "result": "contradiction",
+     "why": "If the motions are sins because charity is absent, a motion without consent is faulty in a person in mortal sin. Augustine: the disobedience of concupiscence is without fault in the non-consenting, as in the sleeper, and he makes no exception for the state of the person.",
+     "same_subject": true,
+     "same_sense": true,
+     "same_time": false
+    },
+    {
+     "a": "a5-obj",
+     "b": "a5-aq",
+     "level": "doctrinal",
+     "result": "apparent",
+     "why": "Granted in part: second-first motions can be venial sins. But the ground is their partial voluntariness, which holds in anyone; it does not depend on the loss of charity, and it does not make concupiscence itself a sin.",
+     "same_subject": true,
+     "same_sense": false,
+     "same_time": false
+    },
+    {
+     "a": "a5-obj",
+     "b": "a5-35",
+     "level": "doctrinal",
+     "result": "potential_contradiction",
+     "why": "The objection's principle, that without charity the will's movements are sins because of the state they come from, is the principle of Baius 35 and 27, and of the view Trent condemns in canon 7 on justification. It can stand only if limited to motions with some consent, which removes its reliance on the absence of charity.",
+     "same_subject": true,
+     "same_sense": "disputed",
+     "same_time": false
     }
    ],
    "edges": [
@@ -2311,6 +2444,36 @@
      "a5-sch1",
      "a5-tr",
      "specifies"
+    ],
+    [
+     "a5-cd125",
+     "a5-obj",
+     "potential_contradiction"
+    ],
+    [
+     "a5-aq",
+     "a5-obj",
+     "qualifies"
+    ],
+    [
+     "a5-35",
+     "a5-obj",
+     "potential_contradiction"
+    ],
+    [
+     "a5-t7",
+     "a5-35",
+     "reaffirms"
+    ],
+    [
+     "a5-27",
+     "a5-35",
+     "reaffirms"
+    ],
+    [
+     "a5-cd125",
+     "a5-dn1",
+     "reaffirms"
     ]
    ],
    "qualifications": "Respective assigns a range of censures to the list without naming the grade of any numbered proposition. The disputed phrase in rigore et proprio verborum sensu ab assertoribus intento can be attached to the censure or to the preceding concession, depending on punctuation.",
@@ -2318,8 +2481,8 @@
    "contingency": "The act’s doctrinal censures and its disciplinary restrictions on disputation carry different kinds of force.",
    "development": "The Catechism §1264 repeats Trent’s teaching that concupiscence cannot harm those who resist it by grace. Humani generis §26 specifies a limit for theology of the supernatural order by rejecting any requirement that God call every intellectual creature to the beatific vision.",
    "hypothesis": "The distinction between inclination and culpable consent clarifies the relation to Trent. The distinction between a natural desire and a claim of entitlement clarifies the relation to later theology of grace. Which censures apply to specific propositions and which words the concession governs require separate evidence. (T) The Augustine test (19 November 2026): the condemned senses are absent from Augustine once his own qualifications govern his strongest sentence (Contra Iulianum V.3.8, restricted by VI.19.60–61 and read with Estius); proposition 75 differs from Augustine by the distinction between not fulfilling and transgressing a commandment.",
-   "objection": "If proposition 75 denies imputation as sin, what exactly drew censure? If the human intellect naturally desires God, does that desire make supernatural elevation due? Augustine himself wrote \"concupiscentia carnis … et peccatum est\" (Contra Iulianum V.3.8), and that the non-consenting man \"non implet … Non concupiscas\" (De nuptiis I.29.32). Baius could fairly claim both; the line between \"is sin\" and \"is called sin\", and between \"not fulfilled\" and \"transgressed\", was drawn by the interpreters, not by Augustine.",
-   "rebuttal": "The site can identify the question raised by calling involuntary experience a transgression. The individual censure remains unstated. A desire for God and an obligation on God are distinct claims. The named propositions and Humani generis give evidence for assessing the second claim. The first requires a further theological argument. Augustine drew the first line himself, in the same work (VI.19.60–61) and earlier (De nuptiis I.23.25: \"in regeneratis non sit ipsa peccatum\"). The second is drawn by his reason for the commandment: it is to be fulfilled in immortality, \"nisi enim quandoque perficiendum esset, numquam iubendum esset\", which excludes a standing transgression by the just. The objection is right that 75 is close, and the graded censures of 1080 allow for it.",
+   "objection": "If proposition 75 denies imputation as sin, what exactly drew censure? If the human intellect naturally desires God, does that desire make supernatural elevation due? Augustine himself wrote \"concupiscentia carnis … et peccatum est\" (Contra Iulianum V.3.8), and that the non-consenting man \"non implet … Non concupiscas\" (De nuptiis I.29.32). Baius could fairly claim both; the line between \"is sin\" and \"is called sin\", and between \"not fulfilled\" and \"transgressed\", was drawn by the interpreters, not by Augustine. A stronger form, put to the site on 19 November 2026: read 74 of the second-first motions in the baptized who are in mortal sin; since mortal sin expels charity, the will is conformed to the law of concupiscence and these motions are sins.",
+   "rebuttal": "The site can identify the question raised by calling involuntary experience a transgression. The individual censure remains unstated. A desire for God and an obligation on God are distinct claims. The named propositions and Humani generis give evidence for assessing the second claim. The first requires a further theological argument. Augustine drew the first line himself, in the same work (VI.19.60–61) and earlier (De nuptiis I.23.25: \"in regeneratis non sit ipsa peccatum\"). The second is drawn by his reason for the commandment: it is to be fulfilled in immortality, \"nisi enim quandoque perficiendum esset, numquam iubendum esset\", which excludes a standing transgression by the just. The objection is right that 75 is close, and the graded censures of 1080 allow for it. To that form: it no longer defends 74, which speaks of the habit. Second-first motions can be venial sins, but by their partial voluntariness, in anyone (Aquinas, I-II q. 74 a. 3). To make them sins because charity is absent contradicts Augustine (De civitate Dei I.25: without fault in the non-consenting, as in the sleeper) and relies on the principle of Baius 35 and 27, which Trent's canon 7 on justification also excludes.",
    "verdict": "plausible_concord",
    "confidence": "high",
    "stage": 11,
@@ -2353,6 +2516,11 @@
      "what": "Scheeben's two passages with page references",
      "source": "Handbook of Catholic Dogmatics, Book Four (English translation); Casini, Quid est homo, ed. Scheeben (Mainz, 1862); Scheeben, Handbuch der katholischen Dogmatik II",
      "settles": "The exact wording and context of the quotations posted on X."
+    },
+    {
+     "what": "De civitate Dei I.25 in the critical edition",
+     "source": "CCSL 47 (Dombart and Kalb)",
+     "settles": "The Latin supplied from augustinus.cc."
     }
    ],
    "next_source": "Compare the 1567 witnesses and Baius’s treatises with the Gregorian reissue and the Denzinger apparatus for propositions 74 and 75 and the closing clause.",
@@ -2390,6 +2558,10 @@
     {
      "date": "2026-11-19",
      "change": "Confidence raised from medium to high on the convergence of Augustine's own restriction, Aquinas, Estius and Scheeben; verdict history added."
+    },
+    {
+     "date": "2026-11-19",
+     "change": "Added a tested objection: Baius 74 read of second-first motions in the baptized in mortal sin. Added De civitate Dei I.25, Aquinas I-II q. 74 a. 3, Baius 27 and 35, and Trent's canon 7 on justification; four comparisons. Verdict and confidence unchanged."
     }
    ],
    "last_reviewed": "2026-11-18",
