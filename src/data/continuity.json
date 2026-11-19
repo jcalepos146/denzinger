@@ -1857,7 +1857,7 @@
     "Gregory XIII",
     "Pius XII"
    ],
-   "summary": "Trent says that baptism remits the guilt of original sin. Remaining concupiscence comes from sin and inclines to it, and does no harm to people who withhold consent and resist with grace. Pius V censures 79 propositions respectively. Proposition 75 calls the felt impulse a breach of the commandment while withholding imputation as sin. Propositions 21, 24 and 26 raise a different question about what nature is owed. The scope of the concession in the censure clause depends on the disputed punctuation called the Comma Pianum.",
+   "summary": "Trent says that baptism remits the guilt of original sin. Remaining concupiscence comes from sin and inclines to it, and does no harm to people who withhold consent and resist with grace. Pius V censures 79 propositions respectively. Proposition 75 calls the felt impulse a breach of the commandment while withholding imputation as sin. Propositions 21, 24 and 26 raise a different question about what nature is owed. The scope of the concession in the censure clause depends on the disputed punctuation called the Comma Pianum. Tested against Augustine himself: De nuptiis et concupiscentia says concupiscence is \"called\" sin and is not sin in the regenerate, while Contra Iulianum V.3.8 says it \"is sin\". Augustine's own later restriction, and Estius's reading of Trent (concupiscence is sin in the unregenerate, not in the reborn), reconcile the two; Baius 74 then falls outside Augustine. Baius 75 is the closest case: Augustine says the commandment \"Thou shalt not covet\" is not yet fulfilled, Baius that it is transgressed. Scheeben completes the account: concupiscence in the unregenerate is free \"by the freedom of Adam sinning in the name of all\", so it can be sin without Baius's theses that sin need not be voluntary (46) or that original sin is voluntary in the child's own will (48).",
    "texts": [
     {
      "label": "Trent, session V, decree on original sin (17 June 1546)",
@@ -1911,6 +1911,45 @@
      "edition": "Vatican English edition, §26.",
      "checked": "Pius XII defends the gratuity of the supernatural order against the claim that God cannot create intellectual beings without ordering and calling them to the beatific vision.",
      "url": "https://www.vatican.va/content/pius-xii/en/encyclicals/documents/hf_p-xii_enc_12081950_humani-generis.html"
+    },
+    {
+     "label": "Augustine, De nuptiis et concupiscentia I (418–419), §§23.25, 25.28, 26.29, 27.30, 29.32",
+     "refs": [],
+     "local": "none",
+     "edition": "Latin as printed on augustinus.it (Nuova Biblioteca Agostiniana); to be checked against CSEL 42 (De nuptiis) and PL 44 (Contra Iulianum)",
+     "verified": false,
+     "checked": "2026-11-19: read in the Latin online; not yet compared with CSEL 42."
+    },
+    {
+     "label": "Augustine, Contra Iulianum V.3.8–12 and VI.16.49–19.61 (c. 421)",
+     "refs": [],
+     "local": "none",
+     "edition": "Latin as printed on augustinus.it (Nuova Biblioteca Agostiniana); to be checked against CSEL 42 (De nuptiis) and PL 44 (Contra Iulianum)",
+     "verified": false,
+     "checked": "2026-11-19: read in the Latin online; not yet compared with PL 44."
+    },
+    {
+     "label": "Estius (Willem Hessels van Est), In IV libros Sententiarum commentaria, II, dist. 30, §9, no. 41",
+     "refs": [],
+     "local": "none",
+     "verified": false,
+     "edition": "English translation supplied by the user; the Latin and the edition (Paris, 1696, or Naples, 1777) are still to be checked."
+    },
+    {
+     "label": "Pius V, Ex omnibus afflictionibus: Baius 46 and 48 (on voluntariness and original sin)",
+     "refs": [
+      "1046",
+      "1048"
+     ],
+     "local": "excerpt",
+     "verified": false
+    },
+    {
+     "label": "M. J. Scheeben, Handbook of Catholic Dogmatics, Book Four (English translation), and his notes to A. Casini, Quid est homo (Mainz, 1862)",
+     "refs": [],
+     "local": "none",
+     "verified": false,
+     "edition": "Two short quotations posted on X by @ScholasticsFan (24 May and 19 November 2026), with images of the title pages; page references not given."
     }
    ],
    "propositions": [
@@ -1924,6 +1963,66 @@
      "evidence": "D",
      "quote": "the whole of that which has the true and proper nature of sin is not taken away",
      "says": "Trent says baptism removes original guilt. Concupiscence remains, comes from sin, and inclines to sin. It is not properly sin in the reborn and cannot harm those who withhold consent and resist with Christ’s grace."
+    },
+    {
+     "id": "a5-dn1",
+     "ref": null,
+     "year": 419,
+     "formal_object": "opinion",
+     "assent": "none",
+     "binding_status": "not_juridical",
+     "evidence": "H",
+     "says": "Concupiscence \"sic … vocatur peccatum, quia peccato facta est, cum iam in regeneratis non sit ipsa peccatum\", as speech is called a tongue and writing a hand; it is called sin also \"quia peccatum, si vincit, facit\". \"Ipsa quidem concupiscentia iam non est peccatum in regeneratis, quando illi ad illicita opera non consentitur.\" It is remitted in baptism \"non ut non sit, sed ut in peccatum non imputetur\"; it \"maneat actu, praetereat reatu\".",
+     "note": "Augustine is not a magisterial author; his texts are the authority the condemned propositions claimed. The Church received this account (Trent, n. 792).",
+     "ext": "Augustine, De nuptiis et concupiscentia I, §§23.25, 25.28, 26.29"
+    },
+    {
+     "id": "a5-dn2",
+     "ref": null,
+     "year": 419,
+     "formal_object": "opinion",
+     "assent": "none",
+     "binding_status": "not_juridical",
+     "evidence": "H",
+     "says": "The regenerate who does not consent \"multum boni facit … sed non perficit, quia non implet quod scriptum est: Non concupiscas\"; \"ex aliqua parte remanet malum, quia vel concupiscitur\". The commandment is a goal for this life and its fulfilment for immortality: \"nisi enim quandoque perficiendum esset, numquam iubendum esset.\"",
+     "note": "Augustine says the commandment is not yet fulfilled (non implet, non perficit); he does not say it is transgressed.",
+     "ext": "Augustine, De nuptiis et concupiscentia I, §§27.30, 29.32"
+    },
+    {
+     "id": "a5-cj5",
+     "ref": null,
+     "year": 421,
+     "formal_object": "opinion",
+     "assent": "none",
+     "binding_status": "not_juridical",
+     "evidence": "H",
+     "says": "\"Concupiscentia carnis, adversus quam bonus concupiscit spiritus, et peccatum est, quia inest illi inoboedientia contra dominatum mentis; et poena peccati est, quia reddita est meritis inoboedientis; et causa peccati est, defectione consentientis vel contagione nascentis.\"",
+     "note": "The hardest text for the test: concupiscence \"is sin\". It speaks of concupiscence in fallen nature, without distinguishing the baptized; it is the strongest sentence Baius could have claimed.",
+     "ext": "Augustine, Contra Iulianum V.3.8"
+    },
+    {
+     "id": "a5-cj6",
+     "ref": null,
+     "year": 421,
+     "formal_object": "opinion",
+     "assent": "none",
+     "binding_status": "not_juridical",
+     "evidence": "H",
+     "says": "Defending his own earlier words against Julian: concupiscence is remitted in baptism \"non ut non sit, sed ut in peccatum non imputetur\"; \"quamvis reatus malae concupiscentiae eodem Baptismate sit solutus; manet tamen ipsa\"; the baptized \"omni … peccato caret, non omni malo\".",
+     "note": "Augustine's own qualification of V.3.8, in the same work.",
+     "ext": "Augustine, Contra Iulianum VI.16.49, 17.51, 19.60–61"
+    },
+    {
+     "id": "a5-est",
+     "ref": null,
+     "year": 1613,
+     "formal_object": "opinion",
+     "assent": "none",
+     "binding_status": "not_juridical",
+     "evidence": "T",
+     "says": "Trent did not define whether the formal character of original sin lies in the privation of justice or in concupiscence; but by teaching that concupiscence is not sin in the regenerate, and that God hates nothing in them, it indicates by the contrary sense that in the non-regenerate concupiscence is sin and there is something God hates.",
+     "note": "Estius reads Trent's \"in renatis\" restrictively: what is denied of the reborn is implied of the unborn. That is the school reading that reconciles Contra Iulianum V.3.8 with Trent: Augustine's \"et peccatum est\" holds of the unregenerate. Wording and edition to be checked.",
+     "ext": "Estius, In II Sententiarum, dist. 30, §9, no. 41 (English supplied by the user)"
     },
     {
      "id": "a5-74",
@@ -1997,6 +2096,52 @@
      "binding_status": "not_juridical",
      "evidence": "D",
      "says": "Pius XII rejects the thesis that God cannot create intellectual beings without ordering and calling them to the beatific vision."
+    },
+    {
+     "id": "a5-46",
+     "ref": "1046",
+     "year": 1567,
+     "formal_object": "disputed",
+     "assent": "religious_submission",
+     "binding_status": "not_juridical",
+     "evidence": "D",
+     "quote": "Voluntariness does not pertain to the essence and definition of sin",
+     "says": "Baius 46, condemned: voluntariness does not belong to the essence and definition of sin."
+    },
+    {
+     "id": "a5-48",
+     "ref": "1048",
+     "year": 1567,
+     "formal_object": "disputed",
+     "assent": "religious_submission",
+     "binding_status": "not_juridical",
+     "evidence": "D",
+     "quote": "Original sin is voluntary in the habitual will of a child",
+     "says": "Baius 48, condemned: original sin is voluntary in the habitual will of the child and habitually dominates it."
+    },
+    {
+     "id": "a5-sch1",
+     "ref": null,
+     "year": 1880,
+     "formal_object": "opinion",
+     "assent": "none",
+     "binding_status": "not_juridical",
+     "evidence": "T",
+     "says": "Trent's \"from sin\" includes that habitual concupiscence was originally, before regeneration, at least a formal sin or a material component of one.",
+     "note": "The same reading as Estius and Aquinas (concupiscence the material element of original sin): Trent's explanation of the word \"sin\" is not merely etymological.",
+     "ext": "Scheeben, Handbook of Catholic Dogmatics, Book Four (quoted on X; page to be checked)"
+    },
+    {
+     "id": "a5-sch2",
+     "ref": null,
+     "year": 1862,
+     "formal_object": "opinion",
+     "assent": "none",
+     "binding_status": "not_juridical",
+     "evidence": "T",
+     "says": "It cannot be objected that the motions of concupiscence are not free in Adam's descendants, for they are free by the freedom of Adam sinning in the name of all.",
+     "note": "Voluntariness is kept (against Baius 46) but placed in Adam's will, not in the child's (against Baius 48), as in Aquinas, I-II q. 81 a. 1 (\"voluntarium voluntate primi parentis\").",
+     "ext": "Scheeben, notes to Casini, Quid est homo (Mainz, 1862) (quoted on X; page to be checked)"
     }
    ],
    "matrix": [
@@ -2029,6 +2174,66 @@
      "same_subject": false,
      "same_sense": false,
      "same_time": true
+    },
+    {
+     "a": "a5-cj5",
+     "b": "a5-74",
+     "level": "doctrinal",
+     "result": "apparent",
+     "why": "Augustine: concupiscence \"is sin\" by its disobedience to the mind. Baius 74: concupiscence is sin in the relapsed and in those in whom it dominates. Read alone, V.3.8 supports Baius. But Augustine restricts it himself: in the regenerate it is not sin, its guilt is loosed, and sin is the consent (\"si vincit, facit\"; VI.19.61). Estius supplies the reading: what Trent denies of the reborn it implies of the unregenerate, so V.3.8 holds of the unbaptized. The relapsed are still reborn by baptism; Baius makes their concupiscence itself a sin, which neither Augustine's restriction nor Trent's \"in renatis\" allows.",
+     "same_subject": true,
+     "same_sense": false,
+     "same_time": false
+    },
+    {
+     "a": "a5-dn2",
+     "b": "a5-75",
+     "level": "doctrinal",
+     "result": "apparent",
+     "why": "The closest case. Augustine: the regenerate who does not consent \"does not fulfil\" (non implet) \"Thou shalt not covet\"; some evil remains. Baius 75: he \"transgresses\" the commandment, though not sinfully. The difference is one word and a whole theory: for Augustine the commandment is a goal fulfilled in immortality; for Baius the just constantly violate a commandment they cannot keep, which is what Cum occasione 1 asserted and what Augustine and Trent (n. 804) deny. Pius V granted that some propositions \"could be maintained in some way\" (n. 1080); 75 is a natural candidate.",
+     "same_subject": true,
+     "same_sense": false,
+     "same_time": false
+    },
+    {
+     "a": "a5-est",
+     "b": "a5-tr",
+     "level": "doctrinal",
+     "result": "no_conflict",
+     "why": "Estius draws out Trent's restriction \"in renatis\" without contradicting it, and leaves undefined, as Trent did, whether the formal ratio of original sin is the privation of justice or concupiscence.",
+     "same_subject": true,
+     "same_sense": true,
+     "same_time": false
+    },
+    {
+     "a": "a5-sch2",
+     "b": "a5-46",
+     "level": "doctrinal",
+     "result": "no_conflict",
+     "why": "Scheeben holds that the motions of concupiscence in the unregenerate are free, by Adam's freedom; so sin keeps its essential note of voluntariness, which Baius 46 denied. Calling concupiscence sin in the unregenerate (Estius, Augustine V.3.8) therefore does not require Baius's thesis that sin can be involuntary.",
+     "same_subject": false,
+     "same_sense": false,
+     "same_time": false
+    },
+    {
+     "a": "a5-sch2",
+     "b": "a5-48",
+     "level": "doctrinal",
+     "result": "no_conflict",
+     "why": "Both make original sin voluntary, but in different wills: Scheeben in Adam's, \"sinning in the name of all\"; Baius 48 in the child's own habitual will. The condemned proposition places the voluntariness where the received doctrine does not.",
+     "same_subject": true,
+     "same_sense": false,
+     "same_time": false
+    },
+    {
+     "a": "a5-sch1",
+     "b": "a5-74",
+     "level": "doctrinal",
+     "result": "apparent",
+     "why": "Scheeben: habitual concupiscence was a formal sin or its material component before regeneration. Baius 74: it is sin in the relapsed. The relapsed are reborn; their original guilt, remitted in baptism, does not revive by later sin, so the sinfulness Scheeben grants to unregenerate concupiscence does not return to it.",
+     "same_subject": true,
+     "same_sense": false,
+     "same_time": false
     }
    ],
    "edges": [
@@ -2056,17 +2261,67 @@
      "a5-26",
      "a5-hg",
      "qualifies"
+    ],
+    [
+     "a5-dn1",
+     "a5-tr",
+     "reaffirms"
+    ],
+    [
+     "a5-cj6",
+     "a5-cj5",
+     "qualifies"
+    ],
+    [
+     "a5-est",
+     "a5-cj5",
+     "specifies"
+    ],
+    [
+     "a5-est",
+     "a5-tr",
+     "specifies"
+    ],
+    [
+     "a5-cj5",
+     "a5-74",
+     "disputed_reception"
+    ],
+    [
+     "a5-dn2",
+     "a5-75",
+     "qualifies"
+    ],
+    [
+     "a5-sch1",
+     "a5-est",
+     "reaffirms"
+    ],
+    [
+     "a5-sch2",
+     "a5-46",
+     "contrasts_prudentially"
+    ],
+    [
+     "a5-sch2",
+     "a5-48",
+     "qualifies"
+    ],
+    [
+     "a5-sch1",
+     "a5-tr",
+     "specifies"
     ]
    ],
    "qualifications": "Respective assigns a range of censures to the list without naming the grade of any numbered proposition. The disputed phrase in rigore et proprio verborum sensu ab assertoribus intento can be attached to the censure or to the preceding concession, depending on punctuation.",
    "reception": "Gregory XIII confirmed and reissued Pius V’s text in Provisionis nostrae. The punctuation dispute persisted. Later debate about the natural desire for God raised a distinct question about the meaning of an elevation being due to nature.",
    "contingency": "The act’s doctrinal censures and its disciplinary restrictions on disputation carry different kinds of force.",
    "development": "The Catechism §1264 repeats Trent’s teaching that concupiscence cannot harm those who resist it by grace. Humani generis §26 specifies a limit for theology of the supernatural order by rejecting any requirement that God call every intellectual creature to the beatific vision.",
-   "hypothesis": "The distinction between inclination and culpable consent clarifies the relation to Trent. The distinction between a natural desire and a claim of entitlement clarifies the relation to later theology of grace. Which censures apply to specific propositions and which words the concession governs require separate evidence. (T)",
-   "objection": "If proposition 75 denies imputation as sin, what exactly drew censure? If the human intellect naturally desires God, does that desire make supernatural elevation due?",
-   "rebuttal": "The site can identify the question raised by calling involuntary experience a transgression. The individual censure remains unstated. A desire for God and an obligation on God are distinct claims. The named propositions and Humani generis give evidence for assessing the second claim. The first requires a further theological argument.",
+   "hypothesis": "The distinction between inclination and culpable consent clarifies the relation to Trent. The distinction between a natural desire and a claim of entitlement clarifies the relation to later theology of grace. Which censures apply to specific propositions and which words the concession governs require separate evidence. (T) The Augustine test (19 November 2026): the condemned senses are absent from Augustine once his own qualifications govern his strongest sentence (Contra Iulianum V.3.8, restricted by VI.19.60–61 and read with Estius); proposition 75 differs from Augustine by the distinction between not fulfilling and transgressing a commandment.",
+   "objection": "If proposition 75 denies imputation as sin, what exactly drew censure? If the human intellect naturally desires God, does that desire make supernatural elevation due? Augustine himself wrote \"concupiscentia carnis … et peccatum est\" (Contra Iulianum V.3.8), and that the non-consenting man \"non implet … Non concupiscas\" (De nuptiis I.29.32). Baius could fairly claim both; the line between \"is sin\" and \"is called sin\", and between \"not fulfilled\" and \"transgressed\", was drawn by the interpreters, not by Augustine.",
+   "rebuttal": "The site can identify the question raised by calling involuntary experience a transgression. The individual censure remains unstated. A desire for God and an obligation on God are distinct claims. The named propositions and Humani generis give evidence for assessing the second claim. The first requires a further theological argument. Augustine drew the first line himself, in the same work (VI.19.60–61) and earlier (De nuptiis I.23.25: \"in regeneratis non sit ipsa peccatum\"). The second is drawn by his reason for the commandment: it is to be fulfilled in immortality, \"nisi enim quandoque perficiendum esset, numquam iubendum esset\", which excludes a standing transgression by the just. The objection is right that 75 is close, and the graded censures of 1080 allow for it.",
    "verdict": "plausible_concord",
-   "confidence": "medium",
+   "confidence": "high",
    "stage": 11,
    "gaps": [
     {
@@ -2078,6 +2333,26 @@
      "what": "The grounds for individual censures on concupiscence and original integrity",
      "source": "Baius’s original treatises, the propositions submitted to Rome, and contemporary accounts of examination and reception.",
      "settles": "Whether individual propositions are judged for a claim of culpability, a claim about what is due to nature, or another implication."
+    },
+    {
+     "what": "Augustine's texts in the critical editions",
+     "source": "CSEL 42 (De nuptiis et concupiscentia, ed. Urba and Zycha, 1902); PL 44 (Contra Iulianum)",
+     "settles": "The exact wording and paragraph numbers of the quotations."
+    },
+    {
+     "what": "Estius, In II Sententiarum, dist. 30, §9, no. 41, in the Latin",
+     "source": "Estius, In quatuor libros Sententiarum commentaria (Paris, 1696; Naples, 1777)",
+     "settles": "The wording of the translation supplied, and its context."
+    },
+    {
+     "what": "Which censure Pius V's bull assigns, or may assign, to propositions 74 and 75",
+     "source": "The Latin of Ex omnibus afflictionibus; Le Bachelet, \"Baius\", DTC II",
+     "settles": "Whether 75 was condemned as heresy or under a lighter note."
+    },
+    {
+     "what": "Scheeben's two passages with page references",
+     "source": "Handbook of Catholic Dogmatics, Book Four (English translation); Casini, Quid est homo, ed. Scheeben (Mainz, 1862); Scheeben, Handbuch der katholischen Dogmatik II",
+     "settles": "The exact wording and context of the quotations posted on X."
     }
    ],
    "next_source": "Compare the 1567 witnesses and Baius’s treatises with the Gregorian reissue and the Denzinger apparatus for propositions 74 and 75 and the closing clause.",
@@ -2103,6 +2378,18 @@
     {
      "date": "2026-11-18",
      "change": "Compared Trent’s canon, Pius V’s Latin as printed in the Gregorian reissue, and the Denzinger witness. Added the comparison with Humani generis §26 on gratuity."
+    },
+    {
+     "date": "2026-11-19",
+     "change": "Augustine test applied to Baius 74–75: added De nuptiis et concupiscentia I and Contra Iulianum V–VI (Latin from augustinus.it) and Estius on Trent's \"in renatis\" (translation supplied by the user); three comparisons; objection and rebuttal extended. Verdict unchanged (plausible concord, medium)."
+    },
+    {
+     "date": "2026-11-19",
+     "change": "Added Scheeben (two quotations posted on X, pages to be checked) and Baius 46 and 48; three comparisons placing the voluntariness of original sin in Adam's will, against 46 and 48."
+    },
+    {
+     "date": "2026-11-19",
+     "change": "Confidence raised from medium to high on the convergence of Augustine's own restriction, Aquinas, Estius and Scheeben; verdict history added."
     }
    ],
    "last_reviewed": "2026-11-18",
@@ -2131,6 +2418,22 @@
      "citation": "Revue des sciences religieuses 36 (1962), pp. 140–153.",
      "note": "Boissard examines how a censure can stand even if a proposition once had a defensible proper sense in a different linguistic or theological setting.",
      "url": "https://www.persee.fr/doc/rscir_0035-2217_1962_num_36_2_2316"
+    }
+   ],
+   "verdict_history": [
+    {
+     "protocol": "0.4.1",
+     "verdict": "plausible_concord",
+     "confidence": "medium",
+     "date": "2026-11-18",
+     "why": "Review of Pius V's Latin in the Gregorian reissue, the Denzinger witness and Humani generis §26; Augustine not yet tested."
+    },
+    {
+     "protocol": "0.4.1",
+     "verdict": "plausible_concord",
+     "confidence": "high",
+     "date": "2026-11-19",
+     "why": "The Augustine test: the condemned senses of 74 are absent from Augustine once his own restriction governs Contra Iulianum V.3.8, and the same reading is held independently by Aquinas, Estius (Louvain–Douai, of the Augustinian school) and Scheeben (of the Roman school, the leading German defender of Vatican I). Confidence rises because readers of opposed schools converge on the same distinction, which shows it is the received reading and not one devised for this case; not because of any one author's standing. It stays plausible, not demonstrated: proposition 75 remains a close case, and the Estius and Scheeben quotations still need their pages checked."
     }
    ]
   },
