@@ -6990,13 +6990,6 @@
    ],
    "research_sources": [
     {
-     "title": "Zinelli on chapter 3 of Pastor aeternus",
-     "role": "Official report to Vatican I",
-     "citation": "Mansi 52, cols. 1109–1110. Cited in Lumen gentium 22, Latin notes 63–64.",
-     "url": "https://archive.org/details/sacrorum-conciliorum-nova-et-amplissima-collectio-52-mansi/page/n570/mode/1up",
-     "note": "Checked in Mansi. Zinelli distinguishes the pope’s full power as head from its exercise together with the bishops. He says means would be available in the hypothetical cases of heresy or incapacity and leaves them unspecified. Lumen gentium cites the report on the pope and bishops."
-    },
-    {
      "title": "Kleutgen on the revised schema on the Church",
      "role": "Report on the revised, unpromulgated conciliar schema",
      "citation": "Mansi 53, cols. 321–322. Cited in Lumen gentium 22, Latin note 64.",
@@ -7139,7 +7132,7 @@
     },
     {
      "question": "What does Vatican I permit the historical explanations to claim?",
-     "finding": "Pastor aeternus excludes a higher court over the reigning pope. Zinelli’s report explains the pope’s authority alone and with the bishops. It anticipates that remedies would be available in hypothetical emergencies and leaves them unspecified. The proposed extension of Pierre de Versailles’s habitual mediation to a coercive remedy remains a theological inference.",
+     "finding": "Pastor aeternus excludes a higher court over the reigning pope. The proposed extension of Pierre de Versailles’s habitual mediation to a coercive remedy remains a theological inference.",
      "test": "Test a procedure for restoring the office and an appeal from the judgment of its lawful holder separately. An appeal that falls under chapter 3’s prohibition cannot be justified by the emergency itself or by appealing to habitual mediation."
     }
    ]
