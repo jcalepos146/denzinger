@@ -15,6 +15,16 @@ python3 tools/sources/sources.py status
 | `extract` | `raw/` | `text/<id>.json`: the page split into numbered articles (with `paras.py`); scanned books are kept as plain text |
 | `diff` | `text/`, `entries.json` | `report.md` and `report.json`: articles missing locally, numbering to check, local text that differs from its source; `drafts/<id>.json`: draft entries for the missing articles |
 
+## What to find first
+
+`python3 tools/sources/priorities.py` ranks everything missing by how much it could change a continuity verdict, into `.sources/priorities.md`: the cases by urgency, then each item (a case's research gap, a text not yet checked against a critical edition, an unresolved claim, Latin to proofread, the research backlog, missing articles) with its score. Unresolved tensions and low-confidence cases come first, because new evidence is most likely to change them; a text that binds in faith counts more than a disciplinary one; coverage that no case cites comes last.
+
+## Primary-source editions
+
+`python3 tools/sources/sources.py editions` fetches the editions listed in `editions.json`: for each text a continuity case still needs (Ad extirpanda, Dum diversas, Sublimis Deus, In supremo apostolatus, Nicholas I's Responsa, the Waldensian profession, Exsurge Domine, Mansi 27 and 29, Finke's Acta, the 2018 letter on the death penalty, Mortalium animos), the volumes to try and the words that identify it. It downloads the OCR text of each archive.org volume once (`.sources/editions/`), finds the words, tolerating OCR spelling (u for v, e for ae, words split across lines), and asks archive.org's search inside the book for the page, so `.sources/editions.md` links each hit to its page scan. Read the scan before citing: OCR is not a transcription.
+
+Only volumes published before 1931 (public domain in the United States) and official vatican.va pages are fetched; a test enforces it. Editions still in copyright, or not found online, are listed under `manual` with where to consult them.
+
 ## What it will and will not do
 
 - **Sources.** It downloads only from the hosts listed in `HOSTS` in `sources.py` (vatican.va, archive.org and a few reference sites). Everything else, and the research backlog, is listed under "Needs finding by hand". It does not use shadow libraries, and a book still in copyright is for a library or a purchase, not this tool.

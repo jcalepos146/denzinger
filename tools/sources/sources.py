@@ -489,6 +489,152 @@ def write_report(rows, unstructured, todo, prov):
         fh.write('\n'.join(L))
 
 
+# ---------------------------------------------------------------- editions
+
+PD_BEFORE = 1931  # published before this year: public domain in the United States, where archive.org serves it
+
+
+def phrase(words):
+    """A pattern for a phrase in OCR text: any spacing, u for v, ae printed as æ or e, and the long s
+    of older printings, which OCR reads as f (Haec fancta)."""
+    parts = []
+    for w in words.split():
+        parts.append(re.escape(w.lower()).replace('v', '[uv]').replace('ae', '(?:ae|æ|e)').replace('s', '[sfſ]'))
+    return re.compile(r'[\s\-]+'.join(parts), re.I)
+
+
+def locate(text, finds, pages=None, limit=5):
+    """How often each phrase occurs in the text, with the words around it. `pages(words)`, when given,
+    returns the page (leaf) of each hit from archive.org's own search inside the book."""
+    text = re.sub(r'(\w)-[ \t]*\r?\n\s*(\w)', r'\1\2', text)  # rejoin words hyphenated across lines
+    out = {}
+    for words in finds:
+        found = list(phrase(words).finditer(text))
+        hits = [{'snippet': re.sub(r'\s+', ' ', text[max(0, m.start() - 120):m.end() + 200]).strip()} for m in found[:limit]]
+        if found and pages:
+            try:  # ask for the spellings the OCR actually has (Dudum facrum), not the modern one
+                leaves, seen = [], set()
+                for m in found:
+                    s = re.sub(r'\s+', ' ', m.group(0))
+                    if s.lower() not in seen and len(leaves) < limit:
+                        seen.add(s.lower())
+                        leaves += [x for x in pages(s) if x['leaf'] not in {y['leaf'] for y in leaves}]
+                leaves = leaves[:limit]
+                for h, leaf in zip(hits, leaves):
+                    h.update(leaf)
+                hits += leaves[len(hits):]
+            except Exception as err:  # the search service is optional: the count stands without it
+                hits.append({'note': f'page search unavailable: {str(err)[:80]}'})
+        out[words] = {'count': len(found), 'hits': hits}
+    return out
+
+
+def inside(f, meta):
+    """archive.org's search inside a book (what its viewer uses): the leaf of each hit and a link to its scan."""
+    def pages(words):
+        q = urllib.parse.urlencode({'item_id': meta['item'], 'doc': meta['doc'], 'path': meta['dir'], 'q': f'"{words}"'})
+        d = json.loads(f.get(f'https://{meta["server"]}/fulltext/inside.php?{q}', check=False))
+        out = []
+        for m in d.get('matches', []):
+            leaf = m['par'][0]['page']
+            out.append({'leaf': leaf, 'scan': f'https://archive.org/details/{meta["item"]}/page/n{leaf}/mode/1up',
+                        'ocr': re.sub(r'</?IA_FTS_MATCH>', '', m['text'])[:300]})
+        return out
+    return pages
+
+
+def editions(args):
+    spec = json.load(open(os.path.join(HERE, 'editions.json'), encoding='utf-8'))
+    done = read_json(path('editions.json'), {})
+    f = Fetcher()
+    for t in spec['targets']:
+        if args.only and t['id'] not in args.only:
+            continue
+        res = {'title': t['title'], 'cases': t['cases'], 'sources': []}
+        for s in t['sources']:
+            r = {'label': s['label']}
+            try:
+                if 'archive' in s:
+                    item = s['archive']
+                    r['source'] = f'https://archive.org/details/{item}'
+                    if s.get('published', 0) >= PD_BEFORE:
+                        raise PermissionError(f'published {s["published"]}: not certainly in the public domain; consult it by hand')
+                    fn = path('editions', safe(item) + '.txt')
+                    meta_fn = fn + '.meta.json'
+                    if not os.path.exists(fn) or not os.path.exists(meta_fn) or 'server' not in read_json(meta_fn, {}) or args.refresh:
+                        md = json.loads(f.get(f'https://archive.org/metadata/{item}'))
+                        m = md.get('metadata', {})
+                        txt = next((x['name'] for x in md.get('files', []) if x['name'].endswith('_djvu.txt')), None)
+                        if not txt:
+                            raise ValueError('no OCR text (_djvu.txt) in this item')
+                        body = f.get(f'https://archive.org/download/{item}/{urllib.parse.quote(txt)}')
+                        os.makedirs(path('editions'), exist_ok=True)
+                        with open(fn, 'wb') as out:
+                            out.write(body)
+                        write_json(meta_fn, {'item': item, 'server': md.get('server'), 'dir': md.get('dir'), 'doc': txt[:-len('_djvu.txt')],
+                                             'title': m.get('title'), 'volume': m.get('volume'),
+                                             'date': m.get('date') or m.get('year'), 'copyright': m.get('possible-copyright-status'),
+                                             'fetched': datetime.datetime.now(datetime.timezone.utc).isoformat(timespec='seconds'),
+                                             'bytes': len(body), 'sha256': hashlib.sha256(body).hexdigest()})
+                        print(f'  fetched {item:32} {len(body):>11,} bytes')
+                    r['meta'] = read_json(meta_fn)
+                    with open(fn, 'rb') as fh:
+                        text = fh.read().decode('utf-8', 'replace')
+                    r['file'] = os.path.relpath(fn, OUT).replace(os.sep, '/')
+                    r['rights'] = f'Published {s["published"]}; public domain in the United States.'
+                    r['found'] = locate(text, t['find'], inside(f, r['meta']) if r['meta'].get('server') else None)
+                else:
+                    r['source'] = s['url']
+                    fn = path('editions', safe(t['id']) + '.html')
+                    if not os.path.exists(fn) or args.refresh:
+                        body = f.get(s['url'])
+                        os.makedirs(path('editions'), exist_ok=True)
+                        with open(fn, 'wb') as out:
+                            out.write(body)
+                        print(f'  fetched {t["id"]:32} {len(body):>11,} bytes')
+                    with open(fn, 'rb') as fh:
+                        text = '\n'.join(P.blocks(fh.read().decode('utf-8', 'replace')))
+                    r['file'] = os.path.relpath(fn, OUT).replace(os.sep, '/')
+                    r['rights'] = HOSTS.get(urllib.parse.urlparse(s['url']).netloc, {}).get(
+                        'rights', 'Official Holy See text; reuse permission not established. Kept locally for checking.')
+                    r['found'] = locate(text, t['find'])
+            except Exception as err:
+                r['error'] = str(err)[:200]
+                print(f'  failed  {t["id"]:32} {r["error"]}')
+            res['sources'].append(r)
+        res['located'] = any(any(v['count'] for v in r.get('found', {}).values()) for r in res['sources'])
+        done[t['id']] = res
+        write_json(path('editions.json'), done)
+    write_editions_report(done, spec)
+    print(f'{sum(r["located"] for r in done.values())} of {len(done)} texts located; see .sources/editions.md')
+
+
+def write_editions_report(done, spec):
+    L = ['# Primary-source editions', '', 'Generated by `tools/sources/sources.py editions` from `tools/sources/editions.json`. '
+         'OCR of old printings is imperfect: a phrase not found may still be there in another spelling, and a hit '
+         'must be read on the page scan before it is cited.', '']
+    for tid, r in done.items():
+        L.append(f'## {r["title"]} ({", ".join(r["cases"])})')
+        L.append('')
+        L.append('Located.' if r['located'] else '**Not located** in the sources tried.')
+        for s in r['sources']:
+            L.append(f'- {s["label"]}: {s["source"]}' + (f' (error: {s["error"]})' if s.get('error') else ''))
+            for words, v in s.get('found', {}).items():
+                if v['count']:
+                    first = v['hits'][0]
+                    where = f'[page n{first["leaf"]}]({first["scan"]})' if first.get('scan') else 'in the page'
+                    L.append(f'  - "{words}": {v["count"]} times; first {where}: "...{first["snippet"][:220]}..."')
+                else:
+                    L.append(f'  - "{words}": not found')
+        L.append('')
+    L += ['## To consult by hand', '']
+    for m in spec.get('manual', []):
+        L.append(f'- **{m["title"]}** ({", ".join(m["cases"])}): {m["where"]}')
+    L.append('')
+    with open(path('editions.md'), 'w', encoding='utf-8') as fh:
+        fh.write('\n'.join(L))
+
+
 # ---------------------------------------------------------------- cli
 
 def status(args):
@@ -500,7 +646,7 @@ def status(args):
 
 def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument('command', choices=['gaps', 'fetch', 'extract', 'diff', 'all', 'status'])
+    ap.add_argument('command', choices=['gaps', 'fetch', 'extract', 'diff', 'all', 'status', 'editions'])
     ap.add_argument('--only', nargs='+', help='record ids to work on')
     ap.add_argument('--limit', type=int, help='fetch at most this many documents')
     ap.add_argument('--refresh', action='store_true', help='download again even if cached')
@@ -513,6 +659,8 @@ def main(argv=None):
         extract(a)
     if a.command in ('diff', 'all'):
         diff(a)
+    if a.command == 'editions':
+        editions(a)
     if a.command == 'status':
         status(a)
 
