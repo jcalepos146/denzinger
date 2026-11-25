@@ -12,17 +12,29 @@ import unittest
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'build'))
 from build import load_all, check, Problems
 from continuity import CASE_IDS, validate_continuity, case_refs, norm
+from sealed import merge_sealed
 
 
 class ContinuityTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.data = load_all()
+        private = cls.data.get('_private')
         cls.order, problems = check(cls.data)
         assert not problems, problems
+        if private is not None:  # the sealed research is present: test the whole layer, as the build checks it
+            merge_sealed(cls.data, private)
+        cls.sealed = any(c.get('sealed') for c in cls.data['continuity']['cases'])
         cls.k = cls.data['continuity']
         cls.cases = {c['id']: c for c in cls.k['cases']}
         cls.entries = {e['id']: e for e in cls.data['entries']}
+
+    def open_cases(self):
+        return [c for c in self.k['cases'] if not c.get('sealed')]
+
+    def need_d1(self):
+        if self.sealed:
+            self.skipTest('case D1 is sealed and private/ is not present')
 
     def problems_after(self, change):
         d = copy.deepcopy(self.data)
@@ -36,10 +48,11 @@ class ContinuityTests(unittest.TestCase):
         self.assertEqual(len(CASE_IDS), 26)
 
     def test_every_case_rests_on_some_text_or_names_its_gap(self):
-        for c in self.k['cases']:
+        for c in self.open_cases():
             self.assertTrue(case_refs(c) or c['gaps'], c['id'])
 
     def test_d1_is_the_hard_gate_and_provisional(self):
+        self.need_d1()
         d1 = self.cases['D1']
         self.assertTrue(d1.get('hard_gate'))
         self.assertEqual([g['n'] for g in d1['gate']], list(range(1, 8)))
@@ -47,6 +60,7 @@ class ContinuityTests(unittest.TestCase):
         self.assertNotEqual(d1['verdict'], 'demonstrated_concord')
 
     def test_d1_cannot_be_declared_demonstrated_by_analogy(self):
+        self.need_d1()
         def promote(k):
             for c in k['cases']:
                 if c['id'] == 'D1':
@@ -54,6 +68,7 @@ class ContinuityTests(unittest.TestCase):
         self.assertTrue(any('demonstrated concord' in p or 'unresolved, not reconciled' in p for p in self.problems_after(promote)))
 
     def test_failed_condition_blocks_concord(self):
+        self.need_d1()
         def fail(k):
             for c in k['cases']:
                 if c['id'] == 'D1':
@@ -62,13 +77,13 @@ class ContinuityTests(unittest.TestCase):
         self.assertTrue(any('failed pass condition' in p for p in self.problems_after(fail)))
 
     def test_no_case_is_demonstrated_while_sources_unverified(self):
-        for c in self.k['cases']:
+        for c in self.open_cases():
             if c['verdict'] == 'demonstrated_concord':
                 self.assertTrue(c['source_verified'] and not c['provisional'], c['id'])
 
     def test_quotations_are_word_for_word(self):
         n = 0
-        for c in self.k['cases']:
+        for c in self.open_cases():
             for p in c['propositions']:
                 if p.get('quote'):
                     n += 1
@@ -107,21 +122,23 @@ class ContinuityTests(unittest.TestCase):
         self.assertIn('not his judgment', self.k['benedict']['inference_note'])
 
     def test_doctrinal_grade_and_legal_force_are_separate_fields(self):
-        for c in self.k['cases']:
+        for c in self.open_cases():
             for p in c['propositions']:
                 self.assertIn('assent', p)
                 self.assertIn('binding_status', p)
 
     def test_audio_summary_answers_the_three_questions(self):
-        for c in self.k['cases']:
+        for c in self.open_cases():
             self.assertEqual(set(c['audio']), {'taught', 'authority', 'permanence'}, c['id'])
 
     def test_protocol_change_keeps_the_earlier_wording(self):
+        self.need_d1()
         self.assertEqual(self.k['meta']['changes'][0]['version'], self.k['meta']['version'])
         h = [x for x in self.k['gate'].get('history', []) if x['n'] == 4]
         self.assertTrue(h and h[0]['version'] == '0.2' and 'Specify who discerns' in h[0]['text'])
 
     def test_d1_shows_its_verdict_under_each_protocol(self):
+        self.need_d1()
         case = self.cases['D1']
         history = case['verdict_history']
         self.assertEqual(history[0]['protocol'], '0.2')
@@ -133,6 +150,7 @@ class ContinuityTests(unittest.TestCase):
         self.assertEqual(history[-1]['confidence'], case['confidence'])
 
     def test_d1_rejects_confidence_out_of_sync_with_history(self):
+        self.need_d1()
         def change_confidence(k):
             history = next(c for c in k['cases'] if c['id'] == 'D1')['verdict_history']
             history[-1]['confidence'] = 'high'
@@ -141,6 +159,7 @@ class ContinuityTests(unittest.TestCase):
                             for p in self.problems_after(change_confidence)))
 
     def test_d1_tests_every_papal_line(self):
+        self.need_d1()
         rows = self.cases['D1']['counterfactuals']['rows']
         self.assertEqual([r['id'] for r in rows], ['A', 'B', 'C', 'D'])
         joined = ' '.join(r['label'] for r in rows)

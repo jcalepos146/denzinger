@@ -23,6 +23,8 @@ import sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 from sources import OUT, data, path, read_json, write_json  # noqa: E402
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(HERE)), 'build'))
+from sealed import load_private, merge_sealed  # noqa: E402
 
 URGENCY = {  # how likely new evidence is to change the verdict
     ('unresolved_tension', 'low'): 3.0, ('unresolved_tension', 'medium'): 2.8, ('unresolved_tension', 'high'): 2.5,
@@ -39,6 +41,11 @@ def urgency(case):
 
 def build():
     cont = data('continuity.json')
+    private = load_private()
+    if private is not None:  # the sealed research, on the machine that holds it (the report stays in .sources/)
+        cont = merge_sealed({'continuity': cont, 'disputed': []}, private)['continuity']
+    cont['cases'] = [c for c in cont['cases'] if not c.get('sealed')]
+    cont['backlog'] = cont.get('backlog', [])
     cases = {c['id']: c for c in cont['cases']}
     latin = data('latin.json')
     entries = {e['id']: e for e in data('entries.json')}
@@ -53,7 +60,7 @@ def build():
                           score=round(u * KIND[kind] * factor + 0.1 * (len(cs) - 1), 2), **extra))
 
     for c in cont['cases']:
-        binding_refs = {p['ref'] for p in c['propositions']
+        binding_refs = {p.get('ref') for p in c['propositions']
                         if p.get('assent') in BINDING_ASSENT or p.get('binding_status') == 'disputed'}
         for g in c.get('gaps', []):
             add('gap', [c['id']], g['what'], f'Source: {g.get("source", "?")}. Settles: {g.get("settles", "?")}')

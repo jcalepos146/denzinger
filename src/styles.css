@@ -616,3 +616,9 @@ h1[tabindex="-1"]:focus, .entry[tabindex="-1"]:focus { outline: none; }
 .cftable td { font-size: .88rem; min-width: 10rem; }
 .cftable td:first-child { white-space: normal; min-width: 12rem; }
 @media (max-width: 640px) { .cftable thead { display: none; } .cftable tr { display: block; padding: .55rem 0; border-bottom: 1px solid var(--rule); } .cftable td { display: block; border: 0; padding: .15rem 0; min-width: 0; } }
+
+/* sealed research: the password form */
+.sealform { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; font-family: var(--sans); margin: 1rem 0 .4rem; }
+.sealform label { font-weight: 600; }
+.sealform input { flex: 1 1 16rem; font: inherit; padding: .5rem .6rem; border: 1px solid var(--rule); border-radius: 6px; background: var(--surface); color: var(--ink); }
+.seal-list { font-family: var(--sans); }

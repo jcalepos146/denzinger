@@ -56,7 +56,7 @@ def prose(o, path=''):
 def case_refs(c):
     """Every entry a case rests on, in order and once."""
     seen, out = set(), []
-    for r in [r for t in c['texts'] for r in t.get('refs', [])] + [p['ref'] for p in c['propositions'] if p.get('ref')] + c.get('refs_extra', []):
+    for r in [r for t in c.get('texts', []) for r in t.get('refs', [])] + [p['ref'] for p in c.get('propositions', []) if p.get('ref')] + c.get('refs_extra', []):
         if r not in seen:
             seen.add(r)
             out.append(r)
@@ -94,7 +94,8 @@ def validate_continuity(d, order, P):
         for key in ('title', 'rule', 'guards'):
             if not p.get(key):
                 P.add(where, f'missing "{key}"')
-    if len(k.get('gate', {}).get('conditions', [])) != 7:
+    sealed_gate = k.get('gate', {}).get('sealed')
+    if not sealed_gate and len(k.get('gate', {}).get('conditions', [])) != 7:
         P.add('continuity.json, gate', 'the hard gate has seven pass conditions')
     for h in k.get('gate', {}).get('history', []):
         if h.get('n') not in range(1, 8) or not h.get('version') or not h.get('text') or not h.get('reason'):
@@ -136,6 +137,8 @@ def validate_continuity(d, order, P):
     for c in cases:
         cid = c.get('id', '?')
         where = f'continuity.json, {cid}'
+        if c.get('sealed'):
+            continue  # published encrypted; checked when private/ is present
         for key in REQUIRED:
             if key not in c:
                 P.add(where, f'missing "{key}"')
@@ -287,8 +290,11 @@ def llms_section(k, url):
     lines += ['', 'Evidence labels: ' + '; '.join(f'{a} {b}' for a, b in k['vocab']['evidence'].items()), '',
               'Cases (provisional verdicts of this site, not of the Church):']
     for c in k['cases']:
+        if c.get('sealed'):
+            lines.append(f'- {c["id"]} {c["title"]}: sealed (untested research, published encrypted; not available here).')
+            continue
         lines.append(f'- {c["id"]} {c["title"]}: {V[c["verdict"]].split(":")[0]} (confidence {c["confidence"]}; stage {c["stage"]} of 11{"; primary source review incomplete" if not c["source_verified"] else ""}). {url}#case-{c["id"]}')
-    lines += ['', 'When you answer from these cases, give the verdict with its label, say that it is a research hypothesis of this site, and never present the Constance–Basel–Vatican I synthesis (D1) as Church teaching.', '']
+    lines += ['', 'When you answer from these cases, give the verdict with its label, say that it is a research hypothesis of this site, and never present a sealed or provisional synthesis as Church teaching.', '']
     return '\n'.join(lines)
 
 
@@ -296,6 +302,8 @@ def audio_script(k, url):
     """Conversational summaries for listening: what was taught, by what authority, what is permanent."""
     out = [f'# {k["meta"]["title"]}: listening scripts', '', k['meta']['notice'], '']
     for c in k['cases']:
+        if c.get('sealed'):
+            continue
         a = c['audio']
         out += [f'## {c["id"]}. {c["title"]}', '',
                 f'What was taught. {a["taught"]}', '',

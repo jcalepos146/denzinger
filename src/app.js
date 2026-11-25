@@ -6,14 +6,34 @@ let SITE = {};
 try { SITE = DATA('site-data') || {}; } catch (_) {}
 const PAGES = SITE.mode === 'pages';
 const ARTIFACT_URL = PAGES ? (SITE.url || location.href.split('#')[0]) : 'https://claude.ai/artifact/7zZixgAnh8J2dPf5MX9Hdq';
+/* Sealed research: untested work published only encrypted (data/sealed.json). Once opened with the password it is
+   kept for this tab only (sessionStorage) and merged in here, before anything is indexed. */
+const SEAL_KEY = 'dz-sealed-research';
+const UNSEALED = (() => { try { const s = sessionStorage.getItem(SEAL_KEY); return s ? JSON.parse(s) : null; } catch (_) { return null; } })();
 const RAW = DATA('data');
 const SINCE = DATA('since-data').sort((a, b) => a.date.localeCompare(b.date));
-const DISPUTED = DATA('disputed-data');
+const DISPUTED = (() => {
+  const list = DATA('disputed-data');
+  if (!UNSEALED) return list;
+  const rel = UNSEALED.disputed_related || {};
+  for (const q of list) if (rel[q.id]) q.related = rel[q.id];
+  return list.concat(UNSEALED.disputed || []);
+})();
 const THREADS = DATA('threads-data');
 const CHANGES = (() => { try { return DATA('changes-data'); } catch (_) { return []; } })();
 const HERM = (() => { try { return DATA('hermeneutics-data'); } catch (_) { return { principles: [], method: [] }; } })();
 const CONT = (() => { try { return DATA('continuity-data'); } catch (_) { return null; } })();
-const CASES = CONT ? CONT.cases : [];
+const SEALED = CONT && CONT.sealed ? CONT.sealed : null;
+if (CONT && UNSEALED && UNSEALED.continuity) {
+  const s = UNSEALED.continuity, full = new Map(s.cases.map(c => [c.id, c]));
+  const refsOf = c => [...new Set([...c.texts.flatMap(t => t.refs || []), ...c.propositions.map(p => p.ref).filter(Boolean), ...(c.refs_extra || [])])];
+  CONT.cases = CONT.cases.map(c => c.sealed && full.has(c.id) ? { ...full.get(c.id), refs: refsOf(full.get(c.id)) } : c);
+  CONT.gate = s.gate;
+  CONT.backlog = CONT.backlog.concat(s.backlog || []).sort((a, b) => parseInt(a.id.slice(2), 10) - parseInt(b.id.slice(2), 10));
+  for (const ch of CONT.meta.changes) if (s.meta_changes && s.meta_changes[ch.version]) ch.change = s.meta_changes[ch.version];
+}
+const SEALED_TARGETS = new Set(SEALED ? [...SEALED.cases.map(c => 'case-' + c.id), ...SEALED.disputed.map(q => 'q-' + q.id)] : []);
+const CASES = CONT ? CONT.cases.filter(c => !c.sealed) : [];
 const CASE_BY_ID = new Map(CASES.map(c => [c.id, c]));
 const PROP_INDEX = new Map(); for (const c of CASES) for (const p of c.propositions) PROP_INDEX.set(p.id, [c, p]);
 const LIBRARY = DATA('library-data');
@@ -1633,7 +1653,7 @@ function renderContinuity(focus) {
     <nav class="toc" aria-label="On this page"><ol>
       <li><a href="#cont-plain">In plain words</a></li><li><a href="#cont-benedict">The guiding light: Benedict XVI, 2005</a></li>
       <li><a href="#cont-principles">Eight principles</a></li><li><a href="#cont-levels">Four levels of continuity</a></li>
-      <li><a href="#cont-cases">The 24 cases</a></li><li><a href="#case-D1">The hard gate: Constance, Basel and Vatican I</a></li>
+      <li><a href="#cont-cases">The 24 cases</a></li>${CASE_BY_ID.has('D1') ? '<li><a href="#case-D1">The hard gate: Constance, Basel and Vatican I</a></li>' : ''}${SEALED ? '<li><a href="#sealed">Sealed research' + (UNSEALED ? ' (open in this tab)' : ' (password)') + '</a></li>' : ''}
       <li><a href="#cont-graph">Cross-reference graph</a></li><li><a href="#cont-backlog">Verification backlog</a></li>
       <li><a href="#cont-method">Method, labels and tests</a></li></ol></nav>
     <h2 class="sect-h" id="cont-plain">In plain words</h2>
@@ -1769,6 +1789,56 @@ function contBacklog() {
 let speaking = null;
 function stopSpeech() { if (window.speechSynthesis && speaking) { speechSynthesis.cancel(); speaking = null; } }
 function caseAudioText(c) { const a = c.audio; return `${c.id}. ${c.title}. What was taught. ${a.taught} By what authority. ${a.authority} What is permanent, and what was determined for its time. ${a.permanence} The site's provisional verdict is ${vLabel(c.verdict).toLowerCase()}, with ${c.confidence} confidence. This is a research judgment of the site, not a judgment of the Church.`; }
+/* The password form for the sealed research, and the way to lock it again. */
+function renderSealed(h) {
+  view.className = 'col';
+  const items = [...SEALED.cases.map(c => ['#case-' + c.id, 'Case ' + c.id + ': ' + c.title]), ...SEALED.disputed.map(q => ['#q-' + q.id, 'Disputed question: ' + q.title])];
+  const list = `<ul class="seal-list">${items.map(([href, l]) => UNSEALED ? `<li><a href="${href}">${esc(l)}</a></li>` : `<li>${esc(l)}</li>`).join('')}</ul>`;
+  if (UNSEALED) {
+    view.innerHTML = `<div class="eyebrow"><a href="#continuity">Hermeneutic of ecclesial continuity</a></div><h1 class="page-h">Sealed research</h1>
+      <div class="cnotice" role="note"><b>Open in this tab only.</b> This research is untested and not Church teaching. It was decrypted in this browser; closing the tab locks it again.</div>
+      ${list}<p><button class="btn" id="sealLock" type="button">Lock it again now</button></p>`;
+    $('sealLock').onclick = () => { sessionStorage.removeItem(SEAL_KEY); location.hash = 'sealed'; location.reload(); };
+    return;
+  }
+  const want = h && h !== 'sealed' ? h : 'sealed';
+  view.innerHTML = `<div class="eyebrow"><a href="#continuity">Hermeneutic of ecclesial continuity</a></div><h1 class="page-h">Sealed research</h1>
+    <div class="cnotice" role="note"><b>Untested research, kept encrypted.</b> ${esc(SEALED.note)}</div>
+    ${list}
+    ${PAGES ? `<form id="sealForm" class="sealform" autocomplete="off"><label for="sealPw">Password</label>
+      <input id="sealPw" type="password" autocomplete="off" spellcheck="false" required><button class="btn primary" type="submit">Open</button></form>
+      <p id="sealMsg" class="cite" role="status" aria-live="polite"></p>
+      <p class="cite">The password never leaves this browser. The file is decrypted here (AES-256-GCM, with the key derived from the password by PBKDF2-SHA-256), and nothing is kept once the tab is closed.</p>`
+      : '<p class="cite">Open the online reader to unlock it.</p>'}`;
+  if (!PAGES) return;
+  $('sealPw').focus();
+  $('sealForm').onsubmit = async ev => {
+    ev.preventDefault();
+    const msg = $('sealMsg'), btn = ev.target.querySelector('button');
+    btn.disabled = true; msg.textContent = 'Opening…';
+    try {
+      sessionStorage.setItem(SEAL_KEY, await unseal($('sealPw').value));
+      location.hash = want; location.reload();
+    } catch (e) {
+      msg.textContent = e.message === 'wrong' ? 'That password does not open it.' : 'It could not be opened: ' + e.message + '.';
+      btn.disabled = false; $('sealPw').select();
+    }
+  };
+}
+async function unseal(pw) {
+  if (!window.crypto || !crypto.subtle || !window.DecompressionStream) throw new Error('this browser cannot decrypt it here (a secure https page and a current browser are needed)');
+  const res = await fetch(new URL(SEALED.file, document.baseURI), { cache: 'no-store' });
+  if (!res.ok) throw new Error('the sealed file is not available');
+  const f = await res.json();
+  if (f.format !== 'eodem-sealed' || f.version !== 1) throw new Error('the sealed file has an unknown format');
+  const b64 = s => Uint8Array.from(atob(s), ch => ch.charCodeAt(0));
+  const base = await crypto.subtle.importKey('raw', new TextEncoder().encode(pw.normalize('NFC')), 'PBKDF2', false, ['deriveKey']);
+  const key = await crypto.subtle.deriveKey({ name: 'PBKDF2', hash: 'SHA-256', salt: b64(f.kdf.salt), iterations: f.kdf.iterations },
+    base, { name: 'AES-GCM', length: 256 }, false, ['decrypt']);
+  let plain;
+  try { plain = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: b64(f.cipher.iv), tagLength: 128 }, key, b64(f.data)); } catch (_) { throw new Error('wrong'); }
+  return await new Response(new Blob([plain]).stream().pipeThrough(new DecompressionStream('gzip'))).text();
+}
 function renderCase(id) {
   const c = CASE_BY_ID.get(id);
   view.className = 'col wide';
@@ -1781,6 +1851,7 @@ function renderCase(id) {
   const blk = (label, text, cls = '') => text ? `<div class="blk ${cls}"><b>${label}</b><div>${renderText(text, null)}</div></div>` : '';
   view.innerHTML = `<div class="eyebrow"><a href="#continuity">Hermeneutic of ecclesial continuity</a> · ${esc(c.group)}. ${esc(G)}</div>
     <h1 class="page-h">${esc(c.id)}. ${esc(c.title)}</h1>
+    ${SEALED_TARGETS.has('case-' + c.id) ? '<div class="cnotice" role="note"><b>Sealed research, open in this tab only.</b> Untested and not for citation. <a href="#sealed">Lock it again</a>.</div>' : ''}
     <div class="cnotice" role="note"><b>${c.provisional ? 'Provisional research verdict' : 'Research verdict'} of this site, not Church teaching.</b> ${c.hard_gate ? 'The synthesis tested here is a novel and disputed theological hypothesis (label N), not an official interpretation.' : 'Verdicts and confidence describe the state of the research, not the authority of any text.'}</div>
     <div class="doc cdoc" style="border:0;padding-top:.2rem"><div class="meta">${verdictPill(c.verdict)}<span>confidence ${esc(c.confidence)}</span><span>stage ${c.stage} of 11 ${stageBar(c.stage)}</span><span>${c.source_verified ? 'primary sources verified' : 'primary source review incomplete'}</span><span>last reviewed ${esc(c.last_reviewed)}</span></div>
     <p class="q">${esc(c.question)}</p></div>
@@ -2716,7 +2787,9 @@ function route() {
   const h = decodeURIComponent(location.hash.slice(1));
   let m;
   Marks.editing = null; Cite.open = null; stopSpeech();
-  if ((m = h.match(/^n(.+)$/)) && byId.has(m[1])) {
+  if (SEALED && (h === 'sealed' || (!UNSEALED && SEALED_TARGETS.has(h.replace(/-(gate|sources)$/, ''))))) {
+    setView('sealed'); highlightTerms = []; renderSealed(h); window.scrollTo(0, 0);
+  } else if ((m = h.match(/^n(.+)$/)) && byId.has(m[1])) {
     const e = byId.get(m[1]); state.era = e.era; setView('read'); renderEra(e.era, e.id);
   } else if ((m = h.match(/^e(\d+)$/)) && ERAS[+m[1]]) {
     state.era = ERAS[+m[1]]; setView('read'); renderEra(state.era, null);
