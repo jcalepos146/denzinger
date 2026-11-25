@@ -1,19 +1,18 @@
 # Eodem Sensu
 
-*Sources of Catholic Dogma: Denzinger in English, continued to Leo XIV.* The name is the rule of Vincent of Lérins, taken up by Vatican I: doctrine grows only *eodem sensu*, "in the same dogma, the same sense and the same meaning". It is the rule the reading principles start from and the one the continuity research tests.
+**[Open the Denzinger reader](https://jcalepos146.github.io/denzinger/)**
 
-**Read it here: <https://jcalepos146.github.io/denzinger1.0/>**
+Eodem Sensu is a searchable English edition of Denzinger’s *Enchiridion Symbolorum*, with the older Denzinger numbering, the Denzinger–Schönmetzer (DS) concordance, and selected Catholic teaching documents through Leo XIV.
 
-A searchable, organized reader for Denzinger's *Enchiridion Symbolorum* in English, with the older numbering (before the 32nd edition of 1963), continued with the documents of the Church to October 2026. It is a static site with no accounts, server or tracking, and it works offline once opened.
-
-| | |
+| Start here | Try this |
 |---|---|
-| Reader | <https://jcalepos146.github.io/denzinger1.0/> |
-| One entry (e.g. Vatican I on papal infallibility) | <https://jcalepos146.github.io/denzinger1.0/n/1839/> |
-| Open data | <https://jcalepos146.github.io/denzinger1.0/data/entries.json> |
-| For AI clients | <https://jcalepos146.github.io/denzinger1.0/llms.txt> |
-| Short links | `ds/3074/` (by DS number), `lg/25/` (by document and article), `lg/` (a whole document) |
-| Feed of additions | <https://jcalepos146.github.io/denzinger1.0/feed.xml> |
+| Find an entry | [Old no. 1839](https://jcalepos146.github.io/denzinger/n/1839/) or [DS 3074](https://jcalepos146.github.io/denzinger/ds/3074/) |
+| Read a document | [Lumen gentium §25](https://jcalepos146.github.io/denzinger/lg/25/) or [all included passages](https://jcalepos146.github.io/denzinger/lg/) |
+| Verify a source | [Sources and coverage](https://jcalepos146.github.io/denzinger/#library) and [Source editions](https://jcalepos146.github.io/denzinger/editions/) |
+| Browse a teaching | [Doctrinal threads](https://jcalepos146.github.io/denzinger/#threads) and [continuity research](https://jcalepos146.github.io/denzinger/#continuity) |
+| Use the data | [Export index](https://jcalepos146.github.io/denzinger/data/index.json), [AI client guide](https://jcalepos146.github.io/denzinger/llms.txt), and [Atom feed](https://jcalepos146.github.io/denzinger/feed.xml) |
+
+The name comes from Vincent of Lérins’s rule, taken up by Vatican I, that doctrine grows *eodem sensu*, “in the same dogma, the same sense and the same meaning.” Doctrinal grades and the continuity studies are editorial aids. The research on Constance, Basel, and Vatican I remains [sealed](#sealed-research).
 
 ## What it has
 
@@ -110,7 +109,7 @@ python3 build/build.py        # writes the site to dist/
 python3 -m http.server -d dist
 ```
 
-A GitHub Action runs the same script on every push to `main` and publishes `dist/` to GitHub Pages at <https://jcalepos146.github.io/denzinger1.0/>, with a `sitemap.xml` of every entry page. It also checks pull requests, so a change that breaks the data never reaches the site.
+The build writes the reader, standalone entry pages, the source editions and the public exports. The repository currently includes a generated copy for GitHub Pages branch publishing. See [deployment instructions](DEPLOYMENT.md) to refresh it or return to automatic publishing with GitHub Actions.
 
 The build stops on problems (a reference to an entry that does not exist, an unknown grade) and prints notes on things worth a look (an "n." reference that points nowhere, a DS number given to two entries, a weight range that can never apply); `--strict` makes the notes stop it too. The reader's page is small: the app, styles and data are separate files named by their content, so browsers keep them until they change. Once a month another Action runs `tools/check_links.py`, which checks the external links.
 
@@ -145,7 +144,7 @@ Run `python3 tools/audit_library.py` for a reproducible coverage report and `pyt
 
 Document title searches also show matching source records, including external-only texts. Those texts are not part of local passage search. `kind:encyclical`, `kind:cdf` and `kind:papal-address` complement the existing structural filters. See [the editorial workflow](docs/EDITORIAL-WORKFLOW.md) and [collection roadmap](docs/COLLECTION-ROADMAP.md).
 
-The [Papal definition collection](https://jcalepos146.github.io/denzinger1.0/#weight-papal-def) includes received papal letters, Roman synodal acts and definitions promulgated with a council. The source records give the basis for inclusion, and each entry retains its own genre and editorial grade.
+The [Papal definition collection](https://jcalepos146.github.io/denzinger/#weight-papal-def) includes received papal letters, Roman synodal acts and definitions promulgated with a council. The source records give the basis for inclusion, and each entry retains its own genre and editorial grade.
 
 Evidence-backed relationships appear alongside passages and relevant doctrinal threads. `src/data/relations.json` stores direction, kind, editorial explanation and quotations from both endpoints; the build rejects missing references or quotations absent from the text. **Coverage and requests** publishes the backlog and offers explicitly saved, browser-local research gaps. GitHub proposals are opened by the reader; no search history is transmitted automatically. The monthly link checker now includes catalogue sources and saves a downloadable availability report.
 

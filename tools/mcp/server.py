@@ -25,7 +25,7 @@ import unicodedata
 import urllib.request
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-SITE = 'https://jcalepos146.github.io/denzinger1.0/'
+SITE = 'https://jcalepos146.github.io/denzinger/'
 FILES = ['entries.json', 'latin.json', 'guides.json', 'continuity.json', 'documents.json']
 MAX_AGE = 7 * 24 * 3600
 NAME, VERSION = 'eodem-sensu', '1.0.0'

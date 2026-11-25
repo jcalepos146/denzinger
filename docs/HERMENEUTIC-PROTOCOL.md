@@ -1,6 +1,6 @@
 # Hermeneutic of ecclesial continuity: the research protocol
 
-Version 0.4.1, 18 November 2026. Reader: <https://jcalepos146.github.io/denzinger1.0/#continuity>
+Version 0.4.1, 18 November 2026. Reader: <https://jcalepos146.github.io/denzinger/#continuity>
 
 This is a research layer, kept apart from the texts. It does not change any entry, its numbering or its weight. Its verdicts, confidence levels and the synthesis proposed for Constance, Basel and Vatican I are scholarly hypotheses, not teaching of the Church and not a judgment of any office of the Holy See.
 

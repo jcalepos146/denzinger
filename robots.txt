@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://jcalepos146.github.io/denzinger/sitemap.xml

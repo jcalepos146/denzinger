@@ -1,0 +1,60 @@
+{
+ "built": "2026-11-25",
+ "files": [
+  {
+   "file": "coverage.csv",
+   "url": "https://jcalepos146.github.io/denzinger/data/coverage.csv",
+   "about": "Source inventory as a spreadsheet, including coverage and provenance."
+  },
+  {
+   "file": "documents.json",
+   "url": "https://jcalepos146.github.io/denzinger/data/documents.json",
+   "about": "Source inventory: local coverage, external full texts, provenance and review status. Inferred groups require review."
+  },
+  {
+   "file": "entries.json",
+   "url": "https://jcalepos146.github.io/denzinger/data/entries.json",
+   "about": "Every entry with its text, DS numbers, era, year, weight, hand-checked grade, censure, cross-references and Roman Catechism chapters."
+  },
+  {
+   "file": "crosswalk.csv",
+   "url": "https://jcalepos146.github.io/denzinger/data/crosswalk.csv",
+   "about": "Old number, DS number and how the pair was matched (printed, series = inferred, checked = by hand, none)."
+  },
+  {
+   "file": "weights.csv",
+   "url": "https://jcalepos146.github.io/denzinger/data/weights.csv",
+   "about": "The hand-checked weight ranges with the note on each."
+  },
+  {
+   "file": "latin.json",
+   "url": "https://jcalepos146.github.io/denzinger/data/latin.json",
+   "about": "The Latin text by DS number, as the source page gives it (not proofread)."
+  },
+  {
+   "file": "roman-catechism.json",
+   "url": "https://jcalepos146.github.io/denzinger/data/roman-catechism.json",
+   "about": "The chapters of the Roman Catechism with the entries matched to each."
+  },
+  {
+   "file": "guides.json",
+   "url": "https://jcalepos146.github.io/denzinger/data/guides.json",
+   "about": "Since 1950, the disputed questions, the doctrinal threads and the principles of hermeneutics."
+  },
+  {
+   "file": "continuity.json",
+   "url": "https://jcalepos146.github.io/denzinger/data/continuity.json",
+   "about": "The hermeneutic of ecclesial continuity: principles P1-P8 and the 24 research cases with propositions, comparisons, verdicts and evidence gaps. A research layer, not Church teaching."
+  },
+  {
+   "file": "continuity-audio.md",
+   "url": "https://jcalepos146.github.io/denzinger/data/continuity-audio.md",
+   "about": "Listening scripts for the 24 cases: what was taught, by what authority, what is permanent and what was a determination for its time."
+  },
+  {
+   "file": "sealed.json",
+   "url": "https://jcalepos146.github.io/denzinger/data/sealed.json",
+   "about": "Untested research on Constance, Basel and Vatican I, encrypted (AES-256-GCM, key from a password by PBKDF2-SHA-256). It opens with a password in the reader."
+  }
+ ]
+}

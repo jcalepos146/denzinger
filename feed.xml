@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+<title>Eodem Sensu: additions</title>
+<subtitle>Denzinger's Enchiridion in English (older numbering), searchable, with DS numbers, the Latin text, hand-checked weights, the Roman Catechism, doctrinal threads and guides to disputed questions.</subtitle>
+<link href="https://jcalepos146.github.io/denzinger/"/>
+<link rel="self" href="https://jcalepos146.github.io/denzinger/feed.xml"/>
+<id>https://jcalepos146.github.io/denzinger/</id>
+<updated>2026-11-25T00:00:00Z</updated>
+<author><name>Eodem Sensu</name></author>
+<entry>
+<title>A new name: Eodem Sensu</title>
+<link href="https://jcalepos146.github.io/denzinger/"/>
+<id>https://jcalepos146.github.io/denzinger/changes/2026-11-25/12</id>
+<updated>2026-11-25T00:00:00Z</updated>
+<summary>The reader is now called Eodem Sensu, after the rule of Vincent of Lérins that Vatican I takes up: doctrine grows only in the same dogma, the same sense and the same meaning. It is the rule the reading principles start from and the one the continuity research tests. Sources of Catholic Dogma remains its subtitle, and every link still works.</summary>
+</entry>
+<entry>
+<title>Continuity research: 24 hard cases, tested</title>
+<link href="https://jcalepos146.github.io/denzinger/#continuity"/>
+<id>https://jcalepos146.github.io/denzinger/changes/2026-11-18/11</id>
+<updated>2026-11-18T00:00:00Z</updated>
+<summary>A research layer on the hermeneutic of ecclesial continuity, kept apart from the texts and labelled as not Church teaching: Benedict XVI's method, eight principles for testing a conflict, and 24 cases broken into propositions with a contradiction matrix, a graph of relations, the strongest objection and a provisional verdict. A verification backlog lists what still needs a checked source.</summary>
+</entry>
+<entry>
+<title>Sources, coverage and research requests</title>
+<link href="https://jcalepos146.github.io/denzinger/#library"/>
+<id>https://jcalepos146.github.io/denzinger/changes/2026-11-17/10</id>
+<updated>2026-11-17T00:00:00Z</updated>
+<summary>Every entry now has a source record with provenance and local coverage. All 16 Vatican II documents have complete-source links. Document searches distinguish local passages from external texts; editorial connections include quotation evidence, and research gaps can be saved locally.</summary>
+</entry>
+<entry>
+<title>Hermeneutics, every hand-checked weight, and whole documents</title>
+<link href="https://jcalepos146.github.io/denzinger/#hermeneutics"/>
+<id>https://jcalepos146.github.io/denzinger/changes/2026-11-11/9</id>
+<updated>2026-11-11T00:00:00Z</updated>
+<summary>A guide to reading magisterial texts in ten principles, each grounded in texts of the collection; a list of all the hand-checked weight ranges with their reasons; a chart for each doctrinal thread; a view of each document after 1958 as a whole; short links such as ds/3074/ and lg/25/; a faster first load, with the Latin fetched only when needed; clearer contrast and focus for every reader; and a correction to the grade of n. 723a.</summary>
+</entry>
+<entry>
+<title>The Synod of Sutri (1046)</title>
+<link href="https://jcalepos146.github.io/denzinger/#e135"/>
+<id>https://jcalepos146.github.io/denzinger/changes/2026-11-10/8</id>
+<updated>2026-11-10T00:00:00Z</updated>
+<summary>The witnesses to the Synod of Sutri and the deposition of Gregory VI, with a disputed question on whether a synod can judge a pope.</summary>
+</entry>
+<entry>
+<title>Moyses vir Dei, the last bulls of union of Florence, and the confirmation of Trent</title>
+<link href="https://jcalepos146.github.io/denzinger/#e133"/>
+<id>https://jcalepos146.github.io/denzinger/changes/2026-11-04/7</id>
+<updated>2026-11-04T00:00:00Z</updated>
+<summary>Moyses vir Dei in full, the bulls of union with the Syrians and with the Chaldeans and Maronites of Cyprus, and Pius IV's bull confirming the Council of Trent.</summary>
+</entry>
+<entry>
+<title>Ask chooses better texts</title>
+<link href="https://jcalepos146.github.io/denzinger/#ask"/>
+<id>https://jcalepos146.github.io/denzinger/changes/2026-11-01/6</id>
+<updated>2026-11-01T00:00:00Z</updated>
+<summary>Ask and the statement check choose texts by the doctrines a question names and the guides that discuss them, list them with the reason for each, and let the reader add or remove texts before asking.</summary>
+</entry>
+<entry>
+<title>Reading a condemnation</title>
+<link href="https://jcalepos146.github.io/denzinger/#reading"/>
+<id>https://jcalepos146.github.io/denzinger/changes/2026-10-30/5</id>
+<updated>2026-10-30T00:00:00Z</updated>
+<summary>A guide to reading condemned propositions in the sense they were condemned, with Unigenitus and ten more cases, and a statement check for any AI client.</summary>
+</entry>
+<entry>
+<title>From 2000 to Leo XIV</title>
+<link href="https://jcalepos146.github.io/denzinger/#e125"/>
+<id>https://jcalepos146.github.io/denzinger/changes/2026-10-30/4</id>
+<updated>2026-10-30T00:00:00Z</updated>
+<summary>John Paul II's last years, Benedict XVI, Francis and Leo XIV to October 2026, one entry per article of each document.</summary>
+</entry>
+<entry>
+<title>Paul VI and John Paul II to 1999</title>
+<link href="https://jcalepos146.github.io/denzinger/#e122"/>
+<id>https://jcalepos146.github.io/denzinger/changes/2026-10-30/3</id>
+<updated>2026-10-30T00:00:00Z</updated>
+<summary>The documents of Paul VI and John Paul II to 1999, the Catechism of the Catholic Church and the documents of other Vatican bodies, labelled by kind and graded by hand.</summary>
+</entry>
+<entry>
+<title>John XXIII and the Second Vatican Council</title>
+<link href="https://jcalepos146.github.io/denzinger/#e120"/>
+<id>https://jcalepos146.github.io/denzinger/changes/2026-10-29/2</id>
+<updated>2026-10-29T00:00:00Z</updated>
+<summary>The documents of John XXIII and the Second Vatican Council, one entry per article, graded by hand.</summary>
+</entry>
+<entry>
+<title>Sources of Catholic Dogma</title>
+<link href="https://jcalepos146.github.io/denzinger/"/>
+<id>https://jcalepos146.github.io/denzinger/changes/2026-10-15/1</id>
+<updated>2026-10-15T00:00:00Z</updated>
+<summary>The reader: Denzinger's Enchiridion in English with the older numbering, DS numbers, the Latin text, hand-checked weights, the Roman Catechism, a timeline, entry pages and open data.</summary>
+</entry>
+</feed>

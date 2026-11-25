@@ -1,0 +1,14 @@
+# The Pages branch serves only the generated site and the repository README.
+exclude:
+  - build
+  - docs
+  - src
+  - tests
+  - tools
+  - private
+  - source-archives
+  - Denzinger_*.zip
+  - dist
+  - .sources
+  - CONTRIBUTING.md
+  - DEPLOYMENT.md

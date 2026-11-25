@@ -1,0 +1,514 @@
+from,to,grade,note
+39,40,profession,"The Athanasian Creed is not a conciliar text, but it was received in the Latin liturgy as a rule of faith; its doctrine of the Trinity and the Incarnation is of faith."
+54,54,dogma,The creed of the first ecumenical council; its confession that the Son is of one substance with the Father is defined dogma.
+58,82,authentic,"The anathemas of Pope Damasus's Roman synod (382); widely received as a statement of faith, though not an ecumenical definition."
+86,86-2,dogma,"The creed of Constantinople I, received at Chalcedon; defined dogma, including the divinity of the Holy Spirit."
+101,108,definitive,"Canons of an African council, confirmed by Pope Zosimus and received by the whole Church against Pelagius. Their teaching on the necessity of grace was later defined at Trent."
+111a,111a,dogma,"Cyril's second letter to Nestorius, read and approved at Ephesus as agreeing with Nicaea: the hypostatic union and Mary as Mother of God."
+113,124,disputed,Cyril's twelve anathemas were read at Ephesus; whether the council formally adopted them is debated. Constantinople II later endorsed their doctrine.
+129,142,authentic,"The Indiculus on grace, compiled about 435–442 (probably by Prosper of Aquitaine) from papal and African statements; later treated as an authoritative papal summary against Semipelagianism."
+143,144,authentic,"Leo the Great's Tome, acclaimed at Chalcedon; its doctrine was taken into the council's definition."
+148,148-2,dogma,The definition of Chalcedon: one person in two natures. Defined dogma.
+174,199,definitive,"Canons of the regional Council of Orange (529), confirmed by Boniface II (n. 200a). Received as binding against Semipelagianism; their core was later taken up by Trent."
+200a,200b,authentic,Boniface II's letter confirming Orange II.
+213,227,dogma,Anathemas of Constantinople II. The Christological canons are defined dogma; the condemnation of the Three Chapters is a judgment on particular persons and writings.
+289,293,dogma,The definition of Constantinople III: two natural wills and operations in Christ. Defined dogma.
+302,304,dogma,The definition of Nicaea II on the veneration of images. Defined dogma.
+428,430,dogma,"Lateran IV's profession Firmiter: the Trinity, creation, the Incarnation, the one Church and transubstantiation. Defined dogma."
+431,433,condemned,"Lateran IV's condemnation of Abbot Joachim's account of the divine unity, with an explicit refusal to condemn his monastery or person."
+437,437,discipline,"The precept of annual confession and Easter Communion is Church law. That mortal sins must be confessed is divine law, as Trent teaches (n. 916)."
+460,460,dogma,Lyons II defines that the Spirit proceeds from the Father and the Son as from one principle and one spiration.
+461,466,profession,The profession of faith required of Emperor Michael Palaeologus and accepted at Lyons II.
+469,469,dogma,"Unam Sanctam. Only its final sentence, on the necessity of subjection to the Roman Pontiff for salvation, is generally held to be the definition; the argument from the two swords is not."
+480,481,dogma,The Council of Vienne: the rational soul is of itself and essentially the form of the body. Defined dogma.
+501,529,condemned,"John XXII's bull against Eckhart: seventeen articles condemned as heretical, eleven as evil-sounding, rash and suspect of heresy (n. 529)."
+530,531,dogma,Benedictus Deus: the immediate vision of God for the purified and immediate punishment for those dying in mortal sin. A papal definition.
+581,625,condemned,"Wycliffe's 45 articles, condemned at Constance and by Martin V with graded censures."
+626,626,discipline,"Constance defends Communion under one kind as a lawful custom and condemns calling it sacrilegious; the practice itself is discipline, which later councils adjusted."
+627,656,condemned,"Hus's 30 articles, condemned at Constance."
+691,694,dogma,"Florence's decree of union with the Greeks: the procession of the Spirit, the Eucharist, the last things and the primacy. Defined dogma."
+695,702,authentic,"The Decree for the Armenians, an instruction on the sacraments ""for the sake of an easier instruction of the Armenians"" (n. 695). What it proposes as doctrine: that there are seven sacraments of the New Law, which contain grace and confer it on those who receive them worthily; that the minister must intend to do what the Church does; and that baptism, confirmation and orders imprint an indelible character and are not repeated. Trent later defined each of these (n. 844, 849, 852, 854). The matter and form it gives for each sacrament are instruction for practice, not definition: Pius XII settled the matter of ordination differently (n. 2301)."
+703,714,dogma,"Florence's decree for the Jacobites: the Trinity, the canon, and the necessity of the Church. Its statement on salvation is read with Pius IX on invincible ignorance (n. 1677)."
+738,738,dogma,Lateran V: the individual human soul is immortal and is the form of the body. Defined dogma.
+741,781,condemned,"Leo X's Exsurge Domine against Luther: 41 propositions condemned respectively, without assigning a censure to each (n. 781)."
+782,782,profession,Trent receives the Nicene-Constantinopolitan Creed as the foundation of its work.
+783,784,dogma,"Trent on Scripture and Tradition and the canon of Scripture, with an anathema. Defined dogma."
+785,785,discipline,"The Vulgate declared authentic for public use: a juridical judgment about the Latin text, not a critical one (compare Pius XII, n. 2292)."
+786,786,authentic,The rule that Scripture is not to be interpreted against the sense of the Church or the consent of the Fathers.
+787,792,dogma,Trent's decree on original sin. Defined dogma; it deliberately leaves Mary out of its scope (n. 792).
+792a,810,authentic,"The doctrinal chapters of the decree on justification. Authoritative, and much of their content is of faith, but the defining texts are the canons that follow."
+811,843,dogma,Trent's 33 canons on justification. Defined dogma.
+843a,873,dogma,"Trent's canons on the sacraments in general, baptism and confirmation. Defined dogma."
+873a,882,authentic,The doctrinal chapters on the Eucharist; the corresponding canons (n. 883–893) are the definitions.
+883,893,dogma,"Trent's canons on the Eucharist, including transubstantiation (n. 884). Defined dogma."
+893a,910,authentic,The doctrinal chapters on penance; the canons (n. 911–925) are the definitions.
+911,929,dogma,Trent's canons on penance and on the anointing of the sick. Defined dogma.
+929a,933,authentic,Trent's teaching on Communion under both kinds and of children.
+934,937,dogma,"Trent's canons: Christ is received whole under one kind, and Communion under both is not required of all by divine law."
+937a,947,authentic,The doctrinal chapters on the sacrifice of the Mass; the canons (n. 948–956) are the definitions.
+948,956,dogma,Trent's canons on the sacrifice of the Mass. Defined dogma; canon 9 (n. 956) concerns the Church's authority over rites and language.
+956-2,960,authentic,The doctrinal chapters on holy orders.
+961,968,dogma,Trent's canons on holy orders. Defined dogma.
+969,970,authentic,The doctrinal chapters on matrimony.
+971,982,dogma,Trent's canons on matrimony. Canon 7 (n. 977) is worded to defend the Church's teaching without condemning Eastern practice directly.
+983,983,dogma,Trent's decree on purgatory. Defined dogma.
+984,988,dogma,"Trent on the invocation of saints, relics and images: their veneration is good and useful. The instructions against abuses are discipline."
+989,989,dogma,"Trent: the Church has the power to grant indulgences, and their use is salutary."
+990,990,discipline,Tametsi: clandestine marriages declared invalid for the future. Church law on the form of marriage.
+1001,1080,condemned,Pius V applies a list of censures respectively to the propositions of Baius. The Comma Pianum affects how the concession in the censure clause is read (n. 1080).
+1092,1095,condemned-heresy,"Innocent X’s Cum occasione pronounces a note of heresy on each of the first four propositions, with other censures on the first and fourth."
+1096,1096,condemned,"Innocent X censures the charge of Semipelagianism as false, rash and scandalous. He gives the further notes, including heresy, to the sense that Christ died for the salvation of the predestined alone."
+1098,1098,definitive,"Alexander VII: the five propositions are in Jansen's book and condemned in his sense. A dogmatic fact, held definitively."
+1221,1288,condemned,"Innocent XI's condemnation of Molinos's quietism, with graded censures applied respectively (n. 1288)."
+1327,1349,condemned,"Innocent XII's condemnation of Fénelon's propositions on pure love, in their obvious sense (n. 1349); Fénelon submitted."
+1351,1451,condemned,Clement XI's Unigenitus applies a list of censures respectively to all 101 propositions. The bull gives no individual grades.
+1475,1479,authentic,Benedict XIV's Vix pervenit on usury. Its principle stands; its application changed with the economy (see the disputed question).
+1501,1599,condemned,"Pius VI's Auctorem fidei against the Synod of Pistoia. Each proposition carries its own censure, often conditional on a stated sense."
+1641,1641,dogma,"The Immaculate Conception, defined by Pius IX in 1854."
+1688,1699,disputed,Quanta Cura. Some theologians held it to be ex cathedra; others treat it as authoritative teaching. Its relation to Dignitatis Humanae is a disputed question.
+1701,1780,disputed,The Syllabus of Errors. Each proposition is condemned in the sense of the document it is drawn from; theologians differ on the binding force of the Syllabus as a collection.
+1781,1800,authentic,The doctrinal chapters of Vatican I's Dei Filius. Authoritative; the canons that follow are the definitions.
+1801,1818,dogma,"Vatican I's canons on God, revelation, faith and reason. Defined dogma."
+1821,1822,authentic,The preface and first chapter of Pastor Aeternus.
+1823,1823,dogma,Canon: Peter received a true primacy of jurisdiction from Christ.
+1824,1824,authentic,Chapter 2 of Pastor Aeternus.
+1825,1825,dogma,"Canon: Peter has perpetual successors in the primacy, the Roman Pontiffs."
+1826,1830,authentic,Chapter 3 of Pastor Aeternus; the canon that follows is the definition.
+1831,1831,dogma,"Canon: the Pope's jurisdiction is full, supreme, ordinary and immediate over all the faithful."
+1832,1838,authentic,"Chapter 4 of Pastor Aeternus, the historical and theological case for infallibility."
+1839,1840,dogma,The definition of papal infallibility and its canon.
+1891,1930,condemned,The forty propositions drawn from Rosmini. In 2001 the Congregation for the Doctrine of the Faith judged the concerns superseded when read within his own system.
+1963,1966,definitive,"Leo XIII's judgment that Anglican orders are invalid, listed in 1998 among truths to be held definitively."
+2001,2065,condemned,Lamentabili: 65 Modernist propositions condemned by the Holy Office and approved by Pius X.
+2145,2147,profession,"The Oath against Modernism, required of clergy from 1910 until 1967."
+2240,2241,disputed,"Casti Connubii on contraception. Authoritative teaching, repeated in Humanae Vitae; some theologians hold it is also infallible by the ordinary universal magisterium."
+2333,2333,dogma,"The Assumption, defined by Pius XII in 1950."
+1,18,profession,"Early forms of the creed and related formulas, collected by the editors as witnesses to the baptismal faith."
+19,38,profession,"The creed of the councils of Toledo (400, revised 447) with its anathemas against the Priscillianists; a regional profession, widely received."
+41,42,witness,"Clement of Rome's letter to Corinth: the earliest witness to Roman intervention in another church, not a decree."
+42a,43,witness,"Reports by Hippolytus and Tertullian, both hostile witnesses, of the teaching and decisions of popes Zephyrinus and Callistus."
+44,45,authentic,Letters of Pope Cornelius on the unity of the episcopate and the Roman clergy.
+46,47,authentic,"Pope Stephen's rule that those baptized by heretics are not rebaptized; later confirmed by Arles, Nicaea and Trent (n. 860)."
+48,51,authentic,"Pope Dionysius against tritheism and Sabellianism, a precursor of Nicaea."
+52a,52e,discipline,"Canons of the regional Council of Elvira: early Spanish discipline on marriage, clerical continence and baptism."
+53*,53,discipline,The Council of Arles (314) against rebaptizing those baptized by heretics in the name of the Trinity.
+55,57*,discipline,Disciplinary canons of Nicaea on receiving heretics and on viaticum for the dying.
+57a,57a,authentic,Pope Julius I on referring disputed cases to Rome.
+57b,57e,authentic,Canons of the Western Council of Serdica on appeals to the bishop of Rome; later sometimes cited as Nicene.
+83,84,authentic,The Roman synod under Damasus on the Holy Spirit and the canon of Scripture (part of the later Decretum Gelasianum tradition); the canon was later defined at Trent (n. 783–784).
+85,85-2,dogma,Constantinople I's first canon: the Nicene faith confirmed and the heresies of the time anathematized.
+87,87,authentic,"Siricius's decretal to Himerius, the first surviving papal decretal: Peter bears the burdens of all in his successor."
+88,88,authentic,"Siricius: Arians are received by the laying on of hands, not rebaptized."
+88a,88*,discipline,Siricius on betrothal and the marriage blessing.
+89,90,discipline,Siricius on the continence of the higher clergy and the ordination of monks.
+91,91,authentic,"Siricius defends Mary's perpetual virginity, which the Church holds as of faith."
+92,92,authentic,The African canon of Scripture; later defined at Trent (n. 783–784).
+93,93*,witness,Anastasius I names Liberius among the confessors for the Nicene faith.
+94,100*,authentic,"Decretals of Innocent I on baptism, reconciliation of the dying, the canon, confirmation, anointing of the sick and the authority of the Apostolic See."
+109,109a,authentic,"Zosimus: the authority of the Apostolic See, and his Tractoria against Pelagius on original sin."
+110,111,authentic,Boniface I on the finality of Rome's judgments; Celestine I on penance for the dying.
+112,112,witness,"The speech of the papal legate at Ephesus, recorded in its acts; not a decree of the council. Vatican I cites it (n. 1824)."
+125,125,authentic,Ephesus forbids composing a creed other than that of Nicaea.
+126,127,definitive,Ephesus confirms the condemnation of the followers of Celestius and Nestorius.
+128,128,authentic,Celestine I commends the authority of Augustine.
+144*,144*,editorial,An editorial cross-reference.
+145,145,discipline,Leo the Great: sins are confessed secretly to priests; public reading of them is forbidden.
+146,147,authentic,Leo the Great on the sacrament of penance.
+149,149-2,witness,"Chalcedon's letter to Pope Leo, acknowledging him as head of the council."
+150,158,discipline,Chalcedon's disciplinary canons on ordinations and the clergy.
+159,160,authentic,Simplicius on guarding the faith handed down and the unchangeableness of doctrine.
+160a,160b,profession,The retraction required of the priest Lucidus at Arles (475) on grace and predestination.
+161,161,authentic,Gelasius: what has been condemned is not to be reopened.
+161*,161*,editorial,An editorial cross-reference.
+162,162,disputed,The Decretum Gelasianum's canon. Its attribution to Gelasius is doubtful (it is probably a sixth-century compilation); its canon agrees with later definitions.
+163,165,authentic,"Gelasius on the Roman see and the patriarchal sees, and on the authority of councils and Fathers."
+166,166,disputed,The Decretum Gelasianum's list of books not received; attribution doubtful.
+167,168,authentic,Gelasius on the remission of sins and the two natures of Christ.
+169,170,authentic,Anastasius II on the validity of ordinations by schismatics and on the origin of souls.
+171,172,profession,"The Formula of Hormisdas (519), signed by the Eastern bishops to end the Acacian schism; cited by Vatican I for the infallibility of the Roman see (n. 1833)."
+173,173a,authentic,"Hormisdas on the canon, the primacy, the councils and the authority of Augustine."
+173b,173b,definitive,Orange II on original sin and grace (see n. 174–199).
+201,202,authentic,"John II approves the formula that one of the Trinity suffered in the flesh, and confesses Mary as Mother of God."
+203,211,definitive,"Anathemas against Origenism from the synod of Constantinople (543), accepted by Pope Vigilius; whether Constantinople II adopted them is debated. Their teaching that the punishment of the damned has no end is of faith."
+212,212,dogma,Constantinople II confesses the faith of the four previous councils.
+228,228,dogma,The closing of Constantinople II's anathemas.
+228a,228a,profession,Pelagius I's profession of faith on the last things.
+229,230,authentic,Pelagius I on the form of baptism and the primacy.
+231,245,authentic,Anathemas of the regional Council of Braga (561) against Priscillianism.
+246,247,authentic,Pelagius II on the unity of the Church and the necessity of union with it.
+248,250*,authentic,"Gregory the Great on Christ's knowledge (against the Agnoetae), on the baptism and orders of heretics, and on the moment of the hypostatic union."
+251,252,disputed,"Honorius I's letters to Sergius, later condemned at Constantinople III; whether they taught monothelitism or only spoke loosely is a historical question."
+253,253,authentic,John IV's defense of the sense of Honorius's words.
+254,274,definitive,"The canons of the Lateran Synod of 649 under Martin I against monothelitism. Received by Constantinople III; their doctrine, including Mary's perpetual virginity (n. 256), is held as of faith."
+275,287,profession,"The creed of Toledo XI (675): a regional profession, long esteemed as an exact statement of Trinitarian and Christological doctrine."
+288,288,authentic,"Pope Agatho's Roman council (680) on the hypostatic union, sent to Constantinople III."
+294,295,authentic,Toledo XV's defense of its Trinitarian and Christological formulas.
+296,296,profession,The profession of faith of Toledo XVI.
+296a,297a,authentic,"Gregory II, Gregory III and Zachary on the form and minister of baptism and on confirmation."
+298,301,authentic,"Hadrian I on the primacy, against Adoptionism, and against abuses in Spain."
+305,308,discipline,Disciplinary canons of Nicaea II.
+309,310,authentic,Hadrian I against the Adoptionists.
+311,314a,authentic,The regional councils of Frankfurt (794) and Friuli (796) against Adoptionism.
+315,315,authentic,The Council of Pavia (850) on the anointing of the sick.
+316,325,authentic,The regional councils of Quiersy (853) and Valence (855) on predestination and grace. They differ in emphasis and were not ratified as definitions.
+326,335,authentic,"Roman councils and letters of Nicholas I on the primacy, the freedom of the Church, marriage and baptism."
+336,341,definitive,"Canons of Constantinople IV (869–870), counted in the West as the eighth ecumenical council: canon 3 on images and canon 11 on the one rational soul (n. 338) are doctrinal; others concern church order."
+342,342,act,"The canonization of Ulrich of Augsburg (993), the first known papal canonization."
+343,349,profession,The profession of faith of Leo IX (1053).
+350,354,authentic,"Leo IX on the primacy, and the Roman council on ordinations by simoniacs."
+355,355,profession,The oath imposed on Berengarius (1079): the bread and wine are substantially changed into Christ's body and blood.
+356,358,authentic,"Regional councils on the diaconate, obedience to the Church, and ordinations by heretics and simoniacs."
+359,367,discipline,"Canons of Lateran I and II on simony, celibacy, investiture and usury; Lateran II's canon against those who reject the sacraments (n. 367) is doctrinal."
+368,387,condemned,"The errors of Peter Abelard, condemned at Sens and by Innocent II (1140 or 1141)."
+388,388,authentic,Innocent III's reply: an unbaptized priest who died confessing the faith attained heaven by the baptism of desire.
+389,392,profession,The profession at Rheims (1148) against Gilbert de la Porrée on the Trinity.
+393,393,condemned,Alexander III condemns the proposition that Christ as man is not something (Christological nihilism).
+394,399,authentic,"Alexander III on contracts, the bond of marriage and the form of baptism."
+400,401,discipline,Lateran III on simony and against heretics.
+402,402,authentic,"The Council of Verona (1184) on the sacraments, against the Cathars."
+403,419,authentic,"Decretals of Urban III and Innocent III on usury, marriage, the Pauline privilege, baptism, the Eucharist and confirmation."
+420,427,profession,"The profession of faith prescribed by Innocent III for returning Waldensians, including n. 425 on civil power."
+434,440,discipline,"Lateran IV's decrees against heretics, on the Greeks, the patriarchs, good faith in prescription and relics; mostly church law."
+441,448,authentic,"Decretals of Honorius III and Gregory IX on the sacraments and usury, and Gregory IX on keeping to the tradition of theological language."
+449,457,authentic,"Innocent IV's letter to the Greeks (1254), tolerating their rites and teaching on purgatory and hell (n. 456–457)."
+458,459,condemned,Alexander IV condemns William of St. Amour's attack on the mendicant orders.
+467,468,authentic,"Boniface VIII on the jubilee indulgence, and the opening of Unam Sanctam (its final sentence, n. 469, is the definition)."
+470,470,authentic,Benedict XI on repeating confession of sins already absolved.
+471,478,condemned,The Council of Vienne condemns eight errors of the Beghards and Beguines.
+479,479,authentic,Vienne: whoever obstinately holds that usury is no sin is to be punished as a heretic.
+482,482,dogma,Vienne: one baptism regenerating all who are baptized is to be confessed by all.
+483,483,authentic,"Vienne calls the view that grace and virtues are infused in baptized infants the more probable opinion, without defining it."
+484,493,condemned,John XXII condemns errors of the Fraticelli and of John of Pouilly.
+493a,493a,authentic,John XXII to the Armenians on hell and the punishment of original sin.
+494,500,condemned-heresy,John XXII's Cum inter nonnullos (1323): the assertion that Christ and the apostles owned nothing at all is declared heretical.
+532,549,condemned,Benedict XII's list of errors attributed to the Armenians.
+550,552,authentic,Clement VI's Unigenitus (1343) on the treasury of the Church and indulgences.
+553,570,condemned,Clement VI's condemnation of Nicholas of Autrecourt's philosophical theses.
+570a,574a,authentic,"Clement VI's questions to the Armenians on the primacy, purgatory and confirmation."
+575,580,condemned,Urban V and Gregory XI condemn errors on poverty and on the Eucharist.
+657,689,authentic,"Martin V's questions for suspected Wycliffites and Hussites (Inter Cunctas, 1418), approved with the council's condemnations."
+690,690,condemned-heresy,Constance condemns as heretical Jean Petit's thesis that any tyrant may be killed by any subject.
+715,715,authentic,Florence's note that the Roman Church's form of consecration is the words of Christ.
+716,716,authentic,Callistus III approves the rent contract (census) as lawful.
+717,717,authentic,Pius II's Execrabilis: appeals from the pope to a future council are forbidden under excommunication.
+717a,717i,condemned,Pius II condemns the errors of Zanini de Solcia.
+718,718,authentic,Pius II forbids Franciscans and Dominicans to call each other heretics over Christ's blood during the three days; the question is left open.
+723a,723a,authentic,"Sixtus IV on indulgences for the dead, applied by way of suffrage."
+719,733,condemned,Sixtus IV condemns errors of Peter de Rivo (future contingents) and Peter de Osma (penance).
+734,735,authentic,Sixtus IV approves the feast of the Immaculate Conception and forbids each side to call the other heretical; the question is left open until 1854.
+739,739,authentic,"Lateran V judges the Mountains of Piety, with their modest charges, not usurious."
+740,740,authentic,"Lateran V's Pastor Aeternus (1516): the pope alone convokes, transfers and dissolves councils; Basel's later acts have no weight."
+740a,740b,authentic,Leo X on the doctrine of indulgences (1518).
+991,992,discipline,Pius IV on clandestine marriages.
+993,993,authentic,"Paul IV against the Unitarians, renewed by Pius IV."
+994,1000,profession,"The Tridentine Profession of Faith (1564), required of clergy and teachers."
+1081,1082,authentic,Pius V on exchanges of money.
+1083,1085,profession,The profession of faith prescribed by Gregory XIII for the Greeks.
+1086,1087,authentic,Clement VIII on priests blessing oils and on ordinations of schismatics.
+1088,1089,condemned,Clement VIII condemns sacramental confession and absolution by letter or messenger.
+1090,1090,authentic,"Paul V ends the controversy on grace: Thomists and Molinists may each teach their view, and neither may call the other heretical."
+1091,1091,condemned-heresy,Innocent X condemns as heretical the claim that Peter and Paul are two equal heads of the Church.
+1097,1097,authentic,Innocent X on the controversy over grace.
+1099,1099,profession,The formulary of submission required of Jansenists.
+1100,1100,authentic,"Alexander VII's Sollicitudo (1661) on the Immaculate Conception, forbidding attacks on the belief."
+1101,1145,condemned,Alexander VII condemns 45 propositions of moral laxism.
+1146,1146,authentic,Alexander VII forbids each side in the dispute over imperfect contrition to censure the other.
+1147,1150,authentic,Innocent XI on frequent and daily Communion.
+1151,1218,condemned,Innocent XI condemns 65 propositions of moral laxism and errors on 'donated omnipotence'.
+1219,1219,authentic,Innocent XI permits defending probabiliorism against probabilism.
+1220,1220,condemned,Innocent XI condemns using knowledge from confession to the penitent's harm.
+1289,1290,condemned,Alexander VIII condemns the doctrine of 'philosophical sin'.
+1291,1326,condemned,Alexander VIII condemns 31 Jansenist propositions.
+1349a,1349b,authentic,Holy Office replies (1703) on what an adult must explicitly believe before baptism.
+1350,1350,definitive,Clement XI's Vineam Domini: respectful silence does not satisfy the obedience due to the condemnation of Jansen's sense.
+1452,1457,discipline,Benedict XIV's declaration on clandestine and mixed marriages in Belgium and Holland.
+1458,1458,authentic,Benedict XIV on priests as extraordinary ministers of confirmation in the East.
+1459,1473,profession,The profession of faith prescribed for the Maronites and other Orientals.
+1474,1474,authentic,Benedict XIV forbids confessors to demand the name of an accomplice.
+1480,1490,authentic,"Benedict XIV on the baptism of Jewish children, rules of their time."
+1491,1495,condemned,Benedict XIV condemns propositions excusing duelling.
+1496,1500a,discipline,"Pius VI on mixed marriages, and on the Church's power over the marriages of the baptized."
+1600,1601,authentic,Pius VII on the indissolubility of marriage.
+1602,1608,discipline,Pius VII and Leo XII on vernacular versions of Scripture without approved notes.
+1609,1612,prudential,Replies of Pius VIII and the Holy Office: penitents taking moderate legal interest are not to be disturbed while the question is pending.
+1613,1616,authentic,Gregory XVI's Mirari vos (1832) against indifferentism and Lamennais's views.
+1617,1617,condemned,Gregory XVI's Singulari nos condemns Lamennais's Paroles d'un croyant.
+1618,1621,condemned,Gregory XVI condemns the works of Georg Hermes.
+1622,1627,profession,"Propositions Louis Bautain was required to sign, against fideism."
+1628,1633,authentic,Gregory XVI on the matter of anointing and on Bible societies.
+1634,1640,authentic,"Pius IX's Qui pluribus on faith and reason, and on civil marriage."
+1642,1648,authentic,"Pius IX's Singulari quadam (1854) on rationalism, indifferentism and invincible ignorance."
+1649,1652,profession,"Propositions Augustin Bonnetty was required to sign, against traditionalism."
+1653,1654,prudential,The Holy Office on the misuse of magnetism (1856).
+1655,1665,condemned,"Pius IX against Anton Günther, and the Holy Office against the ontologists."
+1666,1676,authentic,Pius IX's Gravissimas inter against Frohschammer on the freedom of science.
+1677,1678,authentic,Pius IX's Quanto conficiamur (1863) on indifferentism and invincible ignorance.
+1679,1687,authentic,"Pius IX's Tuas libenter on the ordinary magisterium, and the Holy Office against the branch theory of the Church."
+1700,1700,editorial,The index of the documents from which the Syllabus is drawn.
+1819,1820,authentic,The closing exhortations of Dei Filius.
+1841,1842,authentic,Pius IX on the two powers and the freedom of the Church in Prussia.
+1843,1846,condemned,The Holy Office rejects a proposed explanation of transubstantiation as intolerable (1875).
+1847,1847,authentic,Pius IX on royal assent to papal acts.
+1848,1862,authentic,"Leo XIII and the Holy Office on receiving converts, socialism, marriage, political power, secret societies and assistance at duels."
+1863,1864,discipline,"The Holy Office's prohibition of cremation (1886), a discipline relaxed in 1963 while the Church still prefers burial."
+1865,1888,authentic,Leo XIII on civil divorce and Immortale Dei on the Christian constitution of states.
+1889,1890-2,authentic,Holy Office replies: it cannot be safely taught that craniotomy or any operation directly killing the fetus or the mother is lawful.
+1930a,1930a,condemned,The closing of the Rosmini decree.
+1931,1940a,authentic,"Leo XIII's encyclicals on liberty, the laity, the Eucharist, Rerum Novarum and Mary as Mediatrix."
+1941,1953,authentic,Leo XIII's Providentissimus Deus on the study of Scripture and its inerrancy.
+1954,1962,authentic,Leo XIII's Satis cognitum on the unity of the Church.
+1966a,1966a,authentic,The Holy Office on the faith and intention required for baptism.
+1967,1976,condemned,"Leo XIII's Testem benevolentiae: the opinions called Americanism, condemned in the sense described."
+1977,1978,authentic,Leo XIII on the matter of baptism and on the Eucharist.
+1978a,1978a,authentic,Pius X's Ad diem illum: Mary as dispenser of graces.
+1979,1980,prudential,Biblical Commission replies on implicit citations and on historical narratives in Scripture.
+1981,1990,discipline,Pius X's decree on frequent and daily Communion.
+1991,1994,discipline,"Pius X's Ne temere on the form of marriage, and on mixed marriages in Germany."
+1995,1995,authentic,Pius X's Vehementer nos against the separation of Church and state in France.
+1996,1996,discipline,The short form of anointing in urgent cases.
+1997,2000,prudential,Biblical Commission replies on the Mosaic authorship of the Pentateuch.
+2065a,2065a,condemned,The closing of Lamentabili.
+2066,2070,discipline,Ne temere on betrothal and marriage.
+2071,2109,authentic,Pius X's Pascendi on the doctrines of the Modernists.
+2110,2112,prudential,Biblical Commission replies on the Fourth Gospel.
+2113,2114,discipline,"Pius X's Praestantia Scripturae: obedience to the Biblical Commission's decisions is required, with penalties."
+2115,2119,prudential,Biblical Commission replies on Isaiah.
+2120,2120,authentic,Pius X on the relation of philosophy and theology.
+2121,2136,prudential,Biblical Commission replies on Genesis 1–3 and on the Psalms.
+2137,2144,discipline,Pius X's Quam singulari on the age for first Communion.
+2147a,2147a,condemned,Pius X condemns certain errors of the Orientals.
+2148,2181,prudential,"Biblical Commission replies on the Gospels, Acts, the Pastoral Epistles, Hebrews and the Parousia."
+2181a,2181a,discipline,The Holy Office on absolving dying schismatics in good faith.
+2182,2189,authentic,"Benedict XV and the Holy Office on spiritism, Christ's knowledge, inerrancy (Spiritus Paraclitus) and theosophy."
+2190,2197,authentic,"Pius XI on Church and state, St. Thomas, the revival of merits, the kingship of Christ and laicism."
+2198,2198,prudential,"The Holy Office on the Johannine Comma (1897), clarified in 1927 to allow scholars to investigate it."
+2199,2199,discipline,"The Holy Office forbids Catholics to take part in non-Catholic unity conferences (1927), a discipline later changed."
+2200,2239,authentic,"Pius XI on the liturgy, education (Divini illius magistri) and Christian marriage (Casti Connubii)."
+2242,2271,authentic,"Pius XI and the Holy Office on abortion, sterilization, the family, social order (Quadragesimo Anno) and Mary's motherhood."
+2272,2273,prudential,Biblical Commission reply against two misinterpretations of Scripture.
+2274,2300,authentic,"Pius XI and Pius XII on the priesthood, social justice, the natural law, the Mystical Body, Scripture (Divino afflante), marriage and the liturgy (Mediator Dei)."
+2301,2301,definitive,"Pius XII's Sacramentum ordinis (1947), deciding with supreme authority the matter and form of holy orders."
+2302,2302,prudential,The Biblical Commission's letter to Cardinal Suhard on the Pentateuch.
+2303,2304,authentic,Pius XII on artificial fertilization and the Holy Office on the intention in baptism.
+2305,2330,authentic,Pius XII's Humani generis on errors threatening the foundations of doctrine.
+2331,2332,authentic,The opening of Munificentissimus Deus; the definition follows (n. 2333).
+5000,5001,authentic,Boniface I on the primacy (appendix).
+5002,5003,profession,"The Formula of Union (433) between Cyril and the Antiochenes, approved by Sixtus III."
+5004,5006,authentic,"Urban IV on the Eucharistic feast, and Holy Office replies on impurity and marriage."
+S1,S1,witness,"The fullest near-contemporary narrative, by a chronicler at the imperial court's side. It says Gregory VI was convicted and that the king took his pastoral staff, which puts the act in Henry III's hands; other sources say the synod deposed him (S7) or that he deposed himself (S2)."
+S2,S2,witness,"The self-deposition account, from two writers of the Gregorian party. If it is right, the synod honoured the axiom that the first see is judged by no one: it established the facts, and the pope judged his own case. Summary only; read Bonizo and Desiderius before citing."
+S3,S3,witness,"A monastic chronicle that names Gregory VI as deposed and Benedict IX and Sylvester III as simoniacs and invaders, and records the bishops present from Burgundy."
+S4,S4,witness,"The new pope's own account, a few weeks after the synod: the three claimants were expelled, and he calls their claim to the name of pope the fruit of plunder. It treats the removal of Gregory VI as removing a simoniac, not as judging a lawful pope."
+S5,S5,witness,"Odilo of Cluny, the leading reformer of his day, took part in the election of Clement II and saw it as the end of a crisis. Witness to how the reform party received Sutri."
+S6,S6,witness,"Shows the role the Romans gave the emperor at Sutri: protector who grants them a shepherd at their request. Written in praise of the reform, after the fact."
+S7,S7,witness,"Peter Damian says the council deposed Gregory VI because money had passed, and that Benedict IX, who had abdicated, was not excommunicated. Benedict received the payment and Gregory made it, so ""he who accepted the money"" probably means the one who received the papacy; check the Latin in PL 145."
+S8,S8,witness,"The principal contemporary objection. Wazo holds that the pope is judged by God alone, so the deposition was unlawful and the see remains Gregory VI's while he lives. Most Catholic historians reject this, since it would make Clement II, Benedict IX's third term and Damasus II invalid; it still shows that Sutri was understood as deposing Gregory."
+S9,S9,witness,"A second contemporary objection from another angle: simony made Gregory VI's election null, so there was no pope to depose; and whatever judgment was needed belonged to the bishops, not the emperor."
+S10,S10,witness,"Hildebrand went into exile with Gregory VI and, as pope, called him ""the lord Pope Gregory""; he took the name Gregory in 1073. The Annuario Pontificio counts Gregory VI as a legitimate pope."
+S11,S11,witness,"Background to Sutri: how reformers looked to the emperor to drive simony out of Italy. If the letter is to Henry II, it predates Sutri by a generation; either way it is about simony, not about judging a pope."
+C1,C1,disputed,"Adopted while three men claimed the papacy and the claimant who had convoked the council, John XXIII, had fled. No pope confirmed it as such: Martin V approved what the council decided conciliariter in matters of faith, and Eugene IV accepted Constance only without prejudice to the rights, dignity and pre-eminence of the Apostolic See. Vatican I's definitions on the primacy exclude the conciliarist reading. Whether it was a dogmatic claim, an emergency measure for a schism, or a legal decree is still argued."
+C2,C2,act,"Juridical acts that ended the schism. Many historians and canonists date the council's ecumenical standing from Gregory XII's convocation in session 14, which is one reason the earlier sessions, including Haec Sancta, are judged differently."
+C3,C3,discipline,"A disciplinary law on the frequency of councils. It was followed once (Pavia–Siena 1423–1424, then Basel 1431) and then lapsed; later popes did not treat it as binding."
+C4,C4,discipline,Disciplinary and constitutional measures. The profession of faith is in line with the older papal professions; the rest lapsed with Frequens.
+C5,C5,discipline,Measures for the election that ended the schism. The reform points were taken up in session 43 and in concordats with the nations.
+C8,C8,act,"A juridical act of Martin V, promulgated in the council after his election. In his own words the deposition of session 12 (C2) was ""canonical"" and ""from the papacy"" by ""definitive sentence."" It shows how Martin regarded the council's acts against the claimants; by itself it says nothing about Haec Sancta (C1)."
+C6,C6,discipline,"Disciplinary reform, approved by Martin V."
+C9,C9,act,"The text on which every later judgment of Constance turns. The approval is limited twice: to matters of faith, and to what was done conciliariter. Most Catholic theologians hold that Haec Sancta, passed when the assembly was not yet undisputedly a general council, falls outside it; conciliarists hold that it was a decree on faith passed in full session. The occasion was the Falkenberg case, which the council had treated in committee rather than in session."
+C7,C7,act,The papal acts that decided how far Constance's decrees bind. The documents follow this summary.
+C10,C10,witness,"Chancery usage of Martin V himself: the Pisan pope Alexander V is ""our predecessor,"" John XXIII ""succeeded him in the papacy,"" and Martin was elected after John's deposition ""from the papacy."" The Annuario Pontificio now lists both Pisan popes as antipopes, and Angelo Roncalli took the name John XXIII in 1958. See the disputed question on the Pisan popes."
+C11,C11,act,"Martin V protects the acts that ended the schism (the depositions and his own election) from review by the next council. It is a papal act about Constance, not a conciliar decree."
+C12,C12,authentic,"The appeal was the Polish appeal to a future council in the Falkenberg affair (see C9). Martin V had rejected such appeals in consistory on 10 March 1418; here he praises the king for holding that there is no appeal from the pope, the principle later fixed by Pius II (n. 717)."
+C13,C13,witness,"Written against Alfonso's support for the Luna party. Martin V calls Constance a general council that ""represented the universal Church"" and treats its sentence against Benedict XIII (session 37) as due process."
+C15,C15,witness,"The synod met as the last remnant of the Avignon obedience in Aragon came to an end, with the abdication of Gil Sánchez Muñoz (""Clement VIII"") that year. Under a papal legate it calls Constance a general council ""gathered in the Holy Spirit."" Its wording is careful on the old question of legitimacy: John XXIII and Benedict XIII lost whatever right ""they claimed to have,"" and Gregory XII renounced ""whatever right belonged to him,"" without saying which of them was pope."
+C14,C14,witness,Martin V says he has altered nothing in the reform decrees published at Constance (see C6).
+B1,B1,disputed,Enacted against an express papal dissolution. Its force depends on how one judges Haec Sancta and Eugene IV's later recognition of the council.
+B2,B2,disputed,"Conciliarists read it as papal approval of Basel and its claims. Others note that it recognized the council's legitimacy without ratifying its decrees or accepting its supremacy, and that the pope later reserved the rights of the Apostolic See."
+B3,B3,disputed,Repeats the claim of session 2.
+B4,B4,discipline,"A disciplinary concession that kept the doctrine defined at Constance (n. 626) and later at Trent (n. 930–937): Communion under one kind is complete, and the chalice for the laity is a matter of the Church's discipline."
+B5,B5,discipline,Disciplinary measures of their time. The Church's later teaching rejects contempt for the Jewish people and every form of antisemitism (Nostra Aetate 4).
+B6,B6,discipline,"Reform law. Some of it, such as the rule on shunning excommunicates, matched what Martin V had already granted; much of it entered national settlements such as the Pragmatic Sanction of Bourges (1438), which Lateran V later annulled (n. 740)."
+B7,B7,act,Most Catholic historians treat Basel as without authority from the transfer onward; Lateran V gives this as the reason its later acts have no weight (n. 740).
+B8,B8,condemned-heresy,"Enacted after the transfer, and condemned by the Council of Florence in Moyses vir Dei as contrary to Scripture, the Fathers and the true sense of Constance."
+B9,B9,void,"Acts of a schismatic assembly, annulled by Florence. Felix V is counted an antipope."
+B10,B10,void,"Without authority, because enacted by the assembly after the transfer; Sixtus IV still allowed both opinions (n. 734–735). The doctrine itself was defined by Pius IX in 1854 (n. 1641)."
+B11,B11,definitive,"Eugene IV's decree, with the approval of the Council of Florence. It condemns Basel's three propositions ""according to the perverse understanding"" of Basel, shown by its deeds, as contrary to the sound sense of Scripture, the Fathers ""and the council of Constance itself,"" and declares their authors schismatics and heretics. It condemns Basel's reading of Constance, not Constance, and notes that the decrees Basel relied on were issued at Constance by one of three obediences while the schism lasted. Vatican I excludes the same claim (n. 1830)."
+B13,B13,act,"Two limits are written into the reception: Basel only up to its transfer (B7), and nothing against the rights of the Apostolic See and the power given to Peter and his successor."
+B14,B14,disputed,"The strongest papal language about Constance. It receives the council ""as all other councils"" and as its predecessors did, so it adds nothing beyond what earlier popes had approved; read with B13 and with the protest issued the same day (B15). Conciliarists read it as acceptance of Constance's claims on councils; others as a concession of form, limited by the reservation."
+B15,B15,act,This is why historians call the 1447 settlement clouded: the concessions (B14) and the reservation were issued together. Summary only; check the text in Mercati before citing.
+B16,B16,act,"Whether it names Ad ea ex debito, or the reservation (B15), has still to be read in Mercati. Nicholas V then concluded the Concordat of Vienna (1448), confirmed by the bull Ad sacram Petri sedem of 19 March 1448."
+B12,B12,act,The settlement that closed the conciliar crisis.
+B17,B17,witness,"How the papal side read Haec Sancta after Basel, from the man who as Pius II forbade appeals to a council in 1460 (n. 717) and in 1463 retracted his own Basel-era conciliarism in In minoribus agentes (B18). He limits the decree to a pope who is not certain or has ceased to be pope: the old canonists' exception for heresy (Gratian, D. 40 c. 6, ""unless he is found to have strayed from the faith""), widened to grave scandal to the whole Church. That second case is his own reading; later teaching holds that the First See is judged by no one (Vatican I, n. 1830; canon 1404 of the 1983 Code)."
+B18,B18,authentic,"Pius II retracts the conciliarism of his Basel years and states his settled view as pope, three years after Execrabilis (n. 717). In one passage he both recognizes the authority of a general council ""as it was declared and defined"" at Constance and says no approved council met without papal authority while there was an unquestioned pope. Read together with his 1452 oration (B17): what Constance declared holds for a Church whose head was in doubt, and does not set a council over a certain pope."
+C16,C16,discipline,"A penal decree protecting the council until the election, passed at the session in which Gregory XII's representative convoked the council and his resignation was received (C2). Some read its sanction on whoever violates the council's statutes as covering Haec Sancta; others note that it is a disciplinary measure for the council's duration, and that a penal law does not define doctrine."
+B20,B20,witness,"In his own words Eugene IV yielded to the council and assented to its decree ""as you dictated,"" having differed only over the place. Conciliarists read this as acceptance of Basel's earlier sessions, including the renewal of Haec Sancta (B1). Others read the yielding as about the council's continuation, which is what Dudum sacrum declared (B2), and point to his later transfer of the council (B7), Moyses vir Dei (B11) and his reservation of 1447 (B15)."
+PRP18,PRP29,prudential,"Directions for the missions: the training of native clergy and the place of the laity. Practical applications of the Church's missionary duty, not new doctrine."
+PRP34,PRP34,authentic,"Every Christian's duty to bear witness to the faith, restated from the common teaching."
+PRP44,PRP49,prudential,How Catholic Action and lay work in public life should be adapted in mission countries: pastoral judgment about circumstances.
+MM51,MM64,authentic,"Personal initiative first, the State's subsidiary role, and the principle of subsidiarity as Quadragesimo Anno stated it; then a reading of the growth of social relationships (""socialization"") and the conditions for it to serve persons. The principles are teaching; the description of the age is an assessment."
+MM71,MM71,authentic,"A just wage is not left to the market: it is set by justice and equity, with the criteria the encyclical lists."
+MM73,MM73,prudential,Balancing economic growth with social progress across sectors: an application to the conditions of 1961.
+MM82,MM82,authentic,"Justice applies to the conditions of work as well as the distribution of wealth: a system that lowers human dignity is unjust, however productive."
+MM91,MM106,prudential,"Workers' share in the running of firms and in economic decisions, and observations on insurance and skills as forms of security. Concrete arrangements and readings of the time; the encyclical leaves the forms to circumstances."
+MM108,MM117,authentic,"The natural right of private property, including productive goods, restated against the doubt that it had lost its importance; its wider distribution; and the limits within which public ownership is lawful, under subsidiarity."
+MM157,MM204,prudential,"Aid from rich to poor nations, without political strings, and cooperation among states. Moral duties in principle; the means proposed are applications to the world of 1961."
+MM207,MM207,authentic,Trust between nations rests on a moral order whose foundation is God.
+PT5,PT61,authentic,"The order written in human nature; the rights and duties that flow from personal dignity; authority as coming from God, binding in conscience only within the moral order; the common good as the reason for civil authority. The natural law teaching of the encyclical. Its list of rights is teaching; how each is to be secured is left to circumstances."
+PT73,PT98,authentic,"Citizens' right to take part in public life, and relations between states governed by truth, justice and active solidarity."
+PT112,PT126,prudential,"The call to stop the arms race, ban nuclear weapons and disarm by mutual trust; and the judgment that in the atomic age war is hardly a fit instrument for repairing rights. A moral appeal applied to the situation of 1963; how it bears on the just war tradition is discussed."
+PT130,PT146,prudential,"That the universal common good now calls for a public authority of world-wide competence, set up by common accord, and under subsidiarity; and an exhortation to Catholics to take part in public life. The principle is the common good; the institution proposed is a prudential judgment."
+PT157,PT158,authentic,"Catholics may cooperate with others on the basis of natural principles; error is always to be distinguished from the person who errs, who keeps his dignity."
+PT159,PT159,prudential,False philosophies are to be distinguished from historical movements that drew on them; whether a given cooperation is opportune is left to prudence and to those with authority. Widely read as bearing on dealings with Communist states.
+SC2,SC10,authentic,"The liturgy as the work of Christ and the Church: Christ's presences, and the liturgy as summit and font of the Church's activity."
+SC37,SC38,discipline,Room for legitimate variety and adaptation to peoples within the substantial unity of the Roman rite. Liturgical law.
+SC47,SC47,dogma,"Restates Trent on the eucharistic sacrifice, which perpetuates the sacrifice of the cross (cf. n. 938, 940)."
+SC59,SC59,authentic,"The purposes of the sacraments, and that they presuppose and nourish faith."
+SC72,SC75,discipline,"Revision of the rites of penance and of the anointing of the sick, which ""may also and more fittingly"" be so called: liturgical reform."
+SC83,SC104,authentic,"The Divine Office as the prayer of Christ and his Body, and the meaning of the liturgical year and the feasts of the saints."
+LG1,LG8,authentic,"The Church as sacrament and mystery; LG 8 teaches that the Church of Christ ""subsists in"" the Catholic Church, while elements of sanctification and truth exist outside it. On the sense of subsistit see the disputed question; the CDF explained it in 2007."
+LG10,LG12,authentic,"The common priesthood of the faithful and the ministerial priesthood, differing in essence and not only in degree; the sacraments; the supernatural sense of faith of the whole people, which cannot err in believing when it shows universal agreement."
+LG14,LG14,dogma,"Restates the necessity of the Church for salvation: those who know it was made necessary by Christ and refuse to enter or remain in it cannot be saved (cf. n. 468, 1647)."
+LG15,LG17,authentic,"How Christians not in full communion, and those who have not received the Gospel, are related to the Church; the possibility of salvation for those who without fault do not know Christ."
+LG18,LG18,dogma,"The Council repeats Vatican I on the institution, perpetuity and nature of the primacy and on the pope's infallible magisterium, ""to be firmly believed by all the faithful"" (cf. n. 1821-1840)."
+LG19,LG24,authentic,"The apostles and bishops as their successors; the sacramentality of episcopal consecration, the fulness of orders (LG 21); the college of bishops, which has supreme power only together with its head and never without him (LG 22). Read with the Preliminary Note of Explanation. Whether LG 21 settles the sacramentality of the episcopate as definitive is discussed; the Council defined nothing."
+LG25,LG25,dogma,Restates Vatican I on papal infallibility and teaches the infallibility of the bishops' ordinary and universal magisterium and of an ecumenical council; it also states the religious submission of mind and will owed to non-definitive teaching. The infallibility repeated here is dogma; the rest is authoritative teaching on the Magisterium.
+LG28,LG63,authentic,"Priests and deacons (the restoration of the permanent diaconate), the laity, the universal call to holiness, religious, the pilgrim Church and the saints, and Mary in the mystery of Christ and the Church, with her motherhood in the order of grace subordinate to the one Mediator (LG 60-62)."
+LGNP,LGNP,authentic,"Communicated by the Secretary General ""from higher authority"" and attached to the Constitution: chapter III is to be read and understood by it. The college is not a group of equals; hierarchical communion with the head is required; the pope may act alone at will."
+OE2,UR22,authentic,"The communion of the particular Churches or rites, and the Catholic principles of ecumenism: elements of the Church outside its visible bounds, conversion of heart, limits of worship in common, the ""hierarchy"" of truths (UR 11), and baptism as a bond of unity."
+NA1,NA4,authentic,"The Church's relation to other religions: it rejects nothing true and holy in them, while proclaiming Christ; esteem for Muslims; the bond with the Jewish people, and the rejection of the charge of deicide against all Jews of any time."
+DV2,DV26,authentic,"Revelation in deeds and words; Tradition, Scripture and the Magisterium, which is not above the word of God but serves it; the inspiration of Scripture and the truth it teaches ""for the sake of salvation"" (DV 11; see the disputed question on inerrancy); the historicity of the Gospels (DV 19). Restates Trent and Vatican I where it repeats them."
+AA3,AA8,authentic,The lay apostolate rests on baptism and confirmation; charity and justice in the works of the laity.
+DH1,DH4,authentic,"The right to religious freedom as immunity from coercion, founded on human dignity as known by reason and revelation, within due limits; DH 1 says it ""leaves untouched traditional Catholic doctrine on the moral duty of men and societies toward the true religion and toward the one Church of Christ."" How it relates to the teaching of the nineteenth-century popes is a disputed question."
+AG3,AG11,authentic,"The Church is missionary by its nature; the necessity of the Church and of missionary activity, even though God can lead the inculpably ignorant to faith (AG 7); witness and presence among peoples."
+AG14,AG22,discipline,"The catechumenate, the restoration of the diaconate in missions, religious institutes, and the growth of young Churches: pastoral and canonical provisions."
+PO2,PO6,authentic,The ministerial priesthood and the Eucharist as source and summit of evangelization.
+GS12,GS69,authentic,"The human person made in God's image, one in body and soul; conscience; freedom; death; atheism; Christ who reveals man to himself (GS 22); the human community, the autonomy of earthly realities rightly understood, the Church and the world; marriage and conjugal love, with the rejection of abortion and of methods of regulating birth the Magisterium disapproves (GS 51); the universal destination of goods (GS 69)."
+GS79,GS80,authentic,"Legitimate defence, and the Council's condemnation of acts of war aimed indiscriminately at whole cities as ""a crime against God and man"" (GS 80)."
+GS81,GS92,prudential,"The arms race and deterrence, international cooperation and population policy, and dialogue: judgments about the world of 1965 that apply the principles above."
+ES99,ES108,authentic,"The Church's dialogue with the world, other religions and other Christians, and its conditions: clarity, meekness, trust, prudence."
+MF11,MF69,authentic,"Against opinions that weakened faith in the Eucharist: the sacrifice of the Mass, the real presence and transubstantiation restated in the words of Trent (cf. n. 877, 884), the worship due to the sacrament. Restates dogma in substance; the encyclical defines nothing new."
+ID5,ID12,authentic,"The doctrine of indulgences: the treasury of the Church and the remission of temporal punishment due to sin forgiven (cf. n. 550-552, 989). The norms that follow the doctrine are discipline."
+PP9,PP31,authentic,"Development as the new name of peace's preconditions: integral development of the whole person; the universal destination of goods to which property and trade are subordinate; the critique of unchecked liberal capitalism; revolution excluded save in the case of manifest, long-standing tyranny (PP 31)."
+PP32,PP59,prudential,"Programs of reform, planning, a world fund for development, fair terms of trade and the duty of rich nations to aid the poor: the moral duty is taught; the means proposed are applications to the world of 1967."
+SACC14,SACC14,discipline,Priestly celibacy in the Latin Church is confirmed as law; its fittingness is argued from Christ and the Kingdom. A discipline the Church can change; the encyclical decides to keep it.
+CPG8,CPG30,profession,"Paul VI's Credo of the People of God, said at the close of the Year of Faith. Not a definition, but a profession that repeats the faith already defined: the Trinity, original sin transmitted ""by propagation, not by imitation"", transubstantiation, the Church, the last things."
+HV12,HV14,disputed,The inseparable connection between the unitive and procreative meanings of the conjugal act; every action that renders procreation impossible is excluded; direct abortion and sterilization excluded. Taught as the constant teaching of the Church and reaffirmed by later popes and the CDF; it is owed at least religious submission. Whether it is also taught infallibly by the ordinary and universal magisterium is debated among theologians.
+HV15,HV16,authentic,"Therapeutic means that are licit even if they impede procreation as an unintended effect, and recourse to infertile periods when there are serious reasons."
+OA4,OA49,prudential,"Christian communities must analyse their own situation in the light of the Gospel and of social teaching; urbanization, new social questions, ideologies (Marxist and liberal) and the limits of each; a legitimate plurality of political options among Christians. Principles restated; their application is left to judgment."
+DCN,DCN,discipline,"Paul VI fixes the essential rite of Confirmation for the Latin Church: anointing with chrism on the forehead, done by the laying on of the hand, with the words ""Accipe signaculum doni Spiritus Sancti"", taken from the Byzantine rite. A papal act on the sacramental sign; the doctrine of the sacrament it states is the Church's teaching."
+MFD3,MFD6,dogma,"The Congregation restates the dogmas of the Incarnation and the Trinity against errors that denied the eternal pre-existence of the Son as a distinct Person or the personal reality of the Holy Spirit (cf. n. 54, 148)."
+MQ,MQ,discipline,"Minor orders and the subdiaconate abolished in the Latin Church; lector and acolyte become ministries conferred by institution and open to lay people; clerical status begins with the diaconate. Discipline. Norm VII, reserving the ministries to men, was changed by Francis in Spiritus Domini (2021)."
+SUI,SUI,discipline,Paul VI establishes the sacramental form and matter of the anointing of the sick for the Latin rite. A papal act governing the sacrament's celebration.
+MEC4,MEC6,authentic,"Infallibility of the Church and of the Magisterium; the deposit of faith; and the historical conditioning of dogmatic formulas, which nonetheless express determinate truth and keep their meaning."
+MC34,MC57,authentic,"Right devotion to Mary, its Christological and ecclesial norms, and the rosary."
+QDA12,QDA26,authentic,"Human life from conception is to be protected; procured abortion is gravely wrong, and civil law may not authorize it. Later confirmed as definitive by Evangelium Vitae 62."
+EN9,EN73,authentic,"Evangelization as the Church's deepest identity; the Kingdom and salvation in Christ; liberation in its relation to evangelization, never reduced to a temporal project; popular piety; the role of all in the Church."
+PH5,PH13,authentic,"Moral norms grounded in human nature and revelation; premarital relations, homosexual acts and masturbation are grave disorders; the criteria of mortal sin in this matter."
+II4,II4,authentic,The Church does not consider herself authorized to admit women to priestly ordination: the constant tradition and the example of Christ. Confirmed as definitive by Ordinatio Sacerdotalis (1994).
+CI,CI,discipline,"Marriage is not to be impeded for men who have had a vasectomy or similar condition, provided they can perform the conjugal act. A juridical decision."
+RH6,RH21,authentic,"Christ the Redeemer reveals man to himself; the Church's way is man; human rights, the threats of the age, and the Church as guardian of the truth."
+LP8,LP8,authentic,"The priest as a man for others, configured to Christ; the value of celibacy."
+SCH6,SCH6,discipline,The norms of ecclesiastical universities and faculties.
+RES,RES,dogma,"The Congregation lists articles of faith on the last things: the resurrection of the whole person, the survival of a spiritual element after death, the parousia, the Assumption, and the possibility of purification (cf. n. 530, 693, 2333)."
+CT27,DM12,authentic,"Catechesis, the Eucharist, euthanasia (the Congregation's declaration Iura et Bona: no one may directly kill an innocent person; proportionate means), infant baptism, and divine mercy."
+LE6,LE27,authentic,Work in its subjective sense; the priority of labour over capital; the just wage and the family; trade unions as indispensable; the spirituality of work. Principles are teaching; the particular means are left to circumstances.
+FC13,FC32,authentic,Marriage as covenant and sacrament; the family as a communion of persons; the transmission of life restated with Humanae Vitae.
+SDL,SDL,act,The promulgation of the 1983 Code of Canon Law.
+SMIN1,SMIN4,dogma,"Only a validly ordained priest can confect the Eucharist: restates Lateran IV and Trent (cf. n. 430, 949, 961)."
+LN3,SA18,authentic,"The instruction Libertatis Nuntius against borrowing uncritically from Marxist analysis and class struggle; Reconciliatio et Paenitentia on sin, social sin, the distinction of mortal and venial sin and the sacrament of penance; Slavorum Apostoli on Cyril and Methodius."
+LC61,LC96,authentic,"The instruction Libertatis Conscientia: Christian freedom and liberation set out positively, the preferential love for the poor, and the social teaching as principles for reflection, criteria for judgment and directives for action."
+DEV10,DVI8,authentic,"The Holy Spirit and the sin against the Spirit (Dominum et Vivificantem); the homosexual inclination as objectively disordered and homosexual acts as sinful, with respect owed to persons (Homosexualitatis Problema); the embryo to be respected as a person from conception, and techniques that separate procreation from the conjugal act excluded, including in vitro fertilization (Donum Vitae)."
+RMA19,DSA11,authentic,Mary in the life of the pilgrim Church; and the theology of the icon for the twelfth centenary of Nicaea II (cf. n. 302).
+SRS21,SRS48,prudential,"The gap between rich and poor, the two blocs, structures of sin, the option for the poor. Its principles restate the Church's teaching; its analysis of the world of 1987 is a judgment of circumstances."
+PF,PF,profession,"The Profession of Faith required on taking ecclesiastical office: three paragraphs distinguishing what is believed as revealed, what is held definitively, and what receives religious submission of intellect and will."
+MD5,CL51,authentic,"The dignity and vocation of women, the liturgy twenty-five years after Sacrosanctum Concilium, and the vocation of the lay faithful."
+DVER6,DVER24,authentic,"The theologian's vocation; the levels of magisterial teaching and the assent due to each (faith, firm acceptance, religious submission, and for prudential interventions a judgment that may find them deficient without dissent); dissent excluded as a public stance."
+RM5,RM92,authentic,Christ the one Saviour and the universal salvific will; the Kingdom not separable from Christ or the Church; the permanent validity of the mission ad gentes; dialogue as part of mission.
+CA5,CA29,authentic,"Rerum Novarum re-read: the dignity of work, private property and its social mortgage, the State's role; the causes of 1989."
+CA32,CA58,prudential,"On the market economy, profit, the welfare state and consumerism: John Paul II accepts a free economy within a juridical framework and rejects the ""social assistance state"" that displaces subsidiarity. The principles are teaching; the assessment of economic systems is a judgment the encyclical says the Church offers as no model of its own (CA 43)."
+PDV51,PDV52,authentic,Theology and its relation to faith and the Magisterium in the formation of priests.
+CN8,CN13,authentic,The universal Church is not the sum of particular Churches but is ontologically and temporally prior to every particular Church; communion as the key to the Church's mystery.
+DEC9,DEC145,discipline,"Norms for ecumenical practice approved by John Paul II: what Catholics share with other Christians, including the conditions under which the sacraments of penance, Eucharist and anointing may be given to other Christians and received from Eastern Churches (DEC 122-136). Binding norms; the principles restate Unitatis Redintegratio."
+VS22,VS120,authentic,"The foundations of moral theology: freedom and law, conscience, the fundamental option, and intrinsically evil acts which no intention or circumstance can make good (VS 80). Many theologians hold the teaching on intrinsically evil acts to be definitive; the encyclical presents it as the constant teaching of the Church."
+GRS7,GRS10,authentic,The family as a communion of persons and the civilization of love.
+OS4,OS4,definitive,"""I declare that the Church has no authority whatsoever to confer priestly ordination on women and that this judgment is to be definitively held by all the Church's faithful."" The CDF stated in 1995 that this teaching belongs to the deposit of faith and has been set forth infallibly by the ordinary and universal magisterium."
+RCD3,TMA36,authentic,"The divorced and civilly remarried may not receive communion while the situation lasts, though they remain part of the Church; and the preparation of the Jubilee, including the examination of conscience for the sins of the Church's members."
+EV12,EV56,authentic,"The culture of death, the dignity of life, and (EV 56) the death penalty, to be used only in cases of absolute necessity, which are very rare if not practically non-existent; the Catechism was revised in 2018 to call it inadmissible."
+EV57,EV57,definitive,"""By the authority which Christ conferred upon Peter and his Successors, and in communion with the Bishops... I confirm that the direct and voluntary killing of an innocent human being is always gravely immoral."" A formal confirmation of a teaching proposed by the ordinary and universal magisterium."
+EV62,EV62,definitive,"Direct abortion, willed as an end or a means, is always a grave moral disorder: confirmed in the same form as EV 57."
+EV63,EV63,authentic,The evaluation of procedures using embryos follows from EV 62.
+EV65,EV65,definitive,Euthanasia is a grave violation of the law of God: confirmed in the same form as EV 57.
+EV70,LW8,authentic,"Civil law and the moral law, conscientious objection, and the duty to oppose laws against life; Eastern traditions; Ut Unum Sint on ecumenism and on the papacy, with the invitation to find a way of exercising the primacy open to a new situation (UUS 95); the Letter to Women."
+RDOS,RDOS,definitive,"The Congregation's reply: the teaching of Ordinatio Sacerdotalis belongs to the deposit of faith, requires definitive assent, and has been set forth infallibly by the ordinary and universal magisterium; the pope confirmed it by a formal declaration."
+EDM4,EDM4,discipline,"Collaboration of the non-ordained faithful in the ministry of priests: the essential difference of the ministerial priesthood, and norms against confusing lay functions with the ordained ministry. Approved in specific form by John Paul II."
+DCPF11,DCPF11,authentic,"The Congregation's commentary on the three paragraphs of the Profession of Faith, with examples of truths held definitively. The examples illustrate; they are not themselves new definitions."
+ATF4,ATF4,act,Canon law is amended to require assent to truths held definitively and to provide a penalty for those who reject them. A juridical act.
+DD9,DD84,authentic,The Lord's Day: its meaning and the obligation of Sunday Mass.
+AS8,AS24,authentic,The theological and juridical nature of episcopal conferences: they do not teach with the authority of the college of bishops; each bishop remains the authentic teacher of his faithful.
+ASN,ASN,discipline,"Norms: a conference's doctrinal declarations are authentic magisterium only if approved unanimously, or by two thirds and given the recognitio of the Apostolic See."
+FR14,FR98,authentic,"Faith and reason, the autonomy of philosophy and its service to theology, and the errors of fideism, rationalism and historicism."
+PSP4,PSP15,authentic,The Congregation's considerations on the primacy: of divine institution and not a mere primacy of honour; its essential content distinguished from the changing ways it has been exercised; in view of John Paul II's invitation in Ut Unum Sint 95.
+IM2,IM12,authentic,"The Jubilee and its indulgence, with the purification of memory."
+EAM20,EAM22,authentic,"The post-synodal exhortation for America: conversion, communion and solidarity."
+EAS22,EAS22,authentic,"The post-synodal exhortation for Asia: Jesus Christ as the one Saviour, proclaimed amid the religions of Asia."
+DI4,DI4,authentic,"Relativistic theories that would justify religious pluralism in principle, and the presuppositions behind them."
+DI5,DI6,dogma,"""It must be firmly believed"" that the full and complete revelation of God is given in Jesus Christ; the theory of its limited or incomplete character is contrary to the Church's faith."
+DI7,DI7,definitive,"The distinction between theological faith and belief in other religions ""must be firmly held""."
+DI9,DI9,authentic,Against approaches that make Jesus one historical figure among others.
+DI10,DI11,dogma,"""Must be firmly believed"": Jesus of Nazareth is the Word and Son of the Father; there is no separate economy of the Word or of the Spirit apart from the incarnate Word; the salvific economy is one."
+DI14,DI14,dogma,"""Must be firmly believed as a truth of Catholic faith"": the universal salvific will of God is offered and accomplished once for all in the mystery of the Son incarnate. Participated mediations are not excluded but draw their meaning from his alone."
+DI15,DI15,authentic,"Why the terms unicity, universality and absoluteness are to be kept."
+DI16,DI16,dogma,"""The unicity of the Church founded by him must be firmly believed as a truth of Catholic faith""; the faithful are required to profess the historical continuity between the Church Christ founded and the Catholic Church."
+DI17,DI17,authentic,The Church of Christ subsists in the Catholic Church; the Eastern Churches not in full communion are true particular Churches; ecclesial communities without a valid episcopate and the genuine and integral Eucharistic mystery are not Churches in the proper sense.
+DI20,DI20,dogma,"""It must be firmly believed"" that the Church is necessary for salvation (cf. n. 1647, LG 14), a necessity that does not contradict God's universal salvific will."
+DI21,DI23,authentic,"Other religions as ways of salvation are excluded, though grace reaches people in ways known to God; their followers are, objectively, in a gravely deficient situation compared with those in the Church. John Paul II ratified and confirmed the Declaration ""with sure knowledge and by his apostolic authority"" and ordered its publication."
+NMI29,NMI43,authentic,The programme of the new millennium is Christ himself; a spirituality of communion.
+DNP3,DNP4,authentic,"Legitimate freedom of Catholics in political choices does not extend to laws that attack fundamental ethical demands: abortion, euthanasia, the family founded on marriage, freedom of education, religious freedom. A well-formed conscience cannot support them."
+EDE12,EDE12,authentic,The sacrifice of the Mass is the one sacrifice of the cross made present.
+EDE15,EDE15,dogma,"Transubstantiation, restated in the words of Trent (cf. n. 877)."
+EDE29,EDE46,authentic,"The ordained priest is necessary for a valid Eucharist; communion presupposes communion of faith and of the hierarchy, and the state of grace (confession for grave sin); concelebration excluded without full communion; the conditions for giving the sacraments to individual non-Catholic Christians."
+CPU4,CPU10,authentic,"There are no grounds for considering homosexual unions analogous to marriage; legal recognition is to be opposed, and Catholic legislators have a moral duty to vote against it."
+DCE1,DCE31,authentic,"God is love; eros and agape; charity as the Church's own task; justice is the work of politics, which the Church informs but does not take over."
+RQ,RQ,authentic,"The Council did not change the doctrine on the Church; ""subsists in"" expresses the full identity of the Church of Christ with the Catholic Church and the presence of elements of the Church outside it; the Eastern Churches are Churches; the communities born of the Reformation are not Churches in the proper sense. Approved by Benedict XVI, who ordered its publication."
+SUMP,SUMP,discipline,"The Missal of 1962 may be used as the extraordinary form of the one Roman rite, without further permission for private Masses, and for stable groups on request. Superseded by Traditionis Custodes (2021)."
+SS2,SS48,authentic,Christian hope; the last judgment as a place of learning and practising hope; purgatory understood with the image of the purifying fire; prayer for the dead.
+DPER4,DPER34,authentic,"The embryo has the dignity of a person from conception; in vitro fertilization, the freezing of embryos, the destruction of embryos and preimplantation diagnosis are excluded; on cell lines of illicit origin, a duty to avoid them that admits of graver reasons."
+CIV2,CIV57,authentic,Charity in truth as the principle of social doctrine; gratuitousness in economic life; the market needs the logic of gift and justice; subsidiarity and solidarity.
+CIV67,CIV67,prudential,"A reformed United Nations and a true world political authority, governed by law and subsidiarity. The principle is the universal common good; the institution proposed is a prudential judgment, as in Pacem in Terris."
+ANC,ANC,discipline,Personal ordinariates for Anglicans entering full communion: a juridical structure. Its preamble restates that the Church of Christ subsists in the Catholic Church.
+VD19,VD19,authentic,Inspiration and truth of Scripture: the two belong together; the truth of the Scriptures is to be understood with the Council's hermeneutic.
+REN,REN,act,"Benedict XVI declares that he renounces the ministry of Bishop of Rome, Successor of Peter, with effect from 28 February 2013 at 20:00, ""with full freedom"" (cf. can. 332 §2). A juridical act."
+EG36,EG47,authentic,"The hierarchy of truths; the Church as a house with open doors, and the Eucharist ""not a prize for the perfect"", while the sacraments remain doors not to be closed lightly."
+EG104,EG104,definitive,"""The reservation of the priesthood to males... is not a question open to discussion"": Francis repeats the definitive teaching of Ordinatio Sacerdotalis, distinguishing it from questions of power and the place of women."
+EG222,EG234,prudential,"Principles for social coexistence: time is greater than space, realities are more important than ideas, the whole is greater than the part. Reflective guidelines, not doctrine."
+EG247,EG247,authentic,God's covenant with the Jewish people has never been revoked (Rom 11:29).
+LS23,LS23,prudential,"The climate as a common good and the scientific consensus that recent warming is mainly due to human activity. The moral duty is taught; the reading of the science is a judgment Francis adopts, and the encyclical says the Church does not presume to settle scientific questions (LS 61)."
+LS67,LS155,authentic,We are not God; dominion is not absolute; concern for nature is incompatible with the justification of abortion; human ecology and respect for one's body as male or female.
+AL300,AL305,disputed,"Discernment in ""irregular"" situations: mitigating factors, conscience, and the possibility of living in grace in an objective situation of sin, with the Church's help, which note 351 says can in certain cases include the sacraments. Francis approved the Buenos Aires bishops' reading (which allows access to the sacraments in some cases) as the only interpretation, and had that exchange published in the Acta Apostolicae Sedis. Others hold that it must be read in continuity with Familiaris Consortio 84 and Veritatis Splendor; four cardinals' dubia of 2016 were not answered. How it binds is disputed."
+PD2,PD15,authentic,Salvation in Christ against neo-Pelagian individualism and neo-Gnostic disregard of the body; the Church as the place where salvation is received. Approved by Francis.
+GE36,GE102,authentic,"Two subtle enemies of holiness, contemporary gnosticism and pelagianism; and the defence of the innocent unborn and of the poor and migrants as equally sacred duties."
+CCC2267,CCC2267,authentic,"The new text of the Catechism, approved by Francis: ""the death penalty is inadmissible because it is an attack on the inviolability and dignity of the person"", and the Church works for its abolition. The Congregation presents it as a development of doctrine; some theologians argue it cannot be reconciled with earlier teaching that the State may in principle use it."
+LDP2,LDP8,authentic,The Congregation's letter explaining the revision of 2267 as an authentic development in continuity with John Paul II and Benedict XVI.
+RBF,RBF,authentic,"Baptism given with the formula ""We baptize you"" is invalid; those so baptized must be baptized absolutely. Approved by Francis, who ordered its publication."
+SB,SB,definitive,"""Euthanasia... is an intrinsically evil act, in every situation or circumstance"": the Letter repeats the teaching Evangelium Vitae 65 confirmed as definitive."
+FT120,FT120,authentic,The universal destination of goods: the right to private property is secondary and derived.
+FT256,FT258,prudential,"Given modern weapons, it is very difficult today to invoke the rational criteria once elaborated to speak of a possible ""just war""; ""never again war"". How this bears on the Catechism's teaching on legitimate defence (2309) is discussed."
+FT263,FT269,authentic,The death penalty is inadmissible and the Church is committed to its abolition.
+SDOM,SDOM,discipline,Canon 230 §1 amended: the stable ministries of lector and acolyte are opened to women. Changes norm VII of Ministeria Quaedam.
+RBU,RBU,authentic,The Church does not have the power to bless unions of persons of the same sex: a blessing presupposes that what is blessed is ordered to God's plan. Persons may be blessed. Francis was informed and gave his assent to its publication.
+TC,TC,discipline,The liturgical books of Paul VI and John Paul II are the unique expression of the lex orandi of the Roman rite; the use of the 1962 Missal depends on the diocesan bishop; earlier norms contrary to this are abrogated.
+FS4,FS11,authentic,The Church's doctrine on marriage is unchanged; no rite or liturgical blessing may suggest otherwise.
+FS31,FS41,prudential,"Spontaneous, non-liturgical pastoral blessings for couples in irregular situations and same-sex couples, without approving the union. A pastoral provision; several episcopal conferences declined to apply it, and the Dicastery's press release of January 2024 allowed for prudence in local application."
+FSPR1,FSPR1,authentic,The Declaration remains firm on the doctrine of marriage; local application may vary; doctrinal distancing from it is excluded.
+GV11,GV26,authentic,"The Church is the minister of the sacraments, not their owner; altering their matter or form endangers validity; the minister acts in persona Christi and nomine Ecclesiae. Approved by Francis."
+DIN1,DIN60,authentic,"Infinite ontological dignity of every person, distinct from moral, social and existential dignity; grave violations: poverty, war, migrants' suffering, trafficking, abuse, violence against women, abortion, surrogacy, euthanasia and assisted suicide, the marginalization of the disabled, gender theory and sex change, digital violence. Approved by Francis."
+ANO30,ANO117,authentic,Human intelligence is not reducible to computation; AI is not intelligence in the human sense; the use of AI must serve the person and remain under human responsibility.
+DT16,DT110,authentic,God's preferential love for the poor; care for the poor belongs to the very heart of the faith; structures of sin.
+MPF17,MPF29,authentic,"The title ""Co-redemptrix"" is always inappropriate, given the need to explain Mary's subordinate role; ""Mediatrix"" is to be used with care, Christ being the only Mediator, whose mediation is inclusive. Approved by Leo XIV."
+UIF2,UIF8,authentic,"The faith of Nicaea in the Son, one in being with the Father, on its 1700th anniversary."
+UC1,UC155,authentic,"Monogamy, exclusive and mutual belonging, as of the nature of marriage. Approved by Leo XIV."
+MH48,MH68,authentic,"The principles of social doctrine restated: the person in God's image, equal dignity and human rights, the common good, the universal destination of goods, subsidiarity."
+MH100,MH197,prudential,"AI as a tool needing vigilance, its governance and responsibility, and weapons systems with autonomous functions. Moral principles applied to new technologies; the proposals for governance are prudential."
+VAM2,VAM74,authentic,The transmission of the faith in an epochal change: the centrality of the kerygma and of the encounter with Christ. Approved by Leo XIV.
+F1,F1,dogma,"Eugene IV, with the approval of the council in its Lateran sessions, hands on to the Syrians the faith on the three articles in question. Each restates defined doctrine: the procession of the Holy Spirit as in the decree for the Greeks (n. 691), the two natures as at Chalcedon (n. 148), and the two wills and operations as at Constantinople III (n. 290–291). It also binds them to the decrees for the Greeks, Armenians and Jacobites."
+F2,F2,profession,"A profession of faith made before Eugene IV and the council, and received by him: the procession of the Spirit, two natures and two wills in Christ, the seven sacraments, and the rejection of Nestorius and of Macarius's single will. Its articles restate defined doctrine. The privileges granted at the end (no one may call them heretics or Nestorians; precedence, censures, shared churches, burial and marriage) are discipline."
+T1,T1,act,"Pius IV, at the council's request, confirms by apostolic authority all the decrees of Trent issued under Paul III, Julius III and himself, commands that they be received and observed, and reserves their interpretation to the Holy See, forbidding commentaries published without its authority. It defines nothing of its own: each decree keeps the weight graded for it (n. 782–993)."
