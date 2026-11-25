@@ -14,6 +14,7 @@ first and stops with a list of problems if anything does not line up.
 import argparse, csv, datetime, html, io, json, os, re, shutil, struct, sys, zlib
 from library import inventory, validate_library, validate_relations
 from continuity import validate_continuity, compact_continuity, llms_section, audio_script, case_refs
+from sealed import load_private, merge_sealed, validate_sealed, stale_note, SEALED_FILE
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SRC = os.path.join(ROOT, 'src')
@@ -131,6 +132,9 @@ def load_all():
         'relations': load('relations.json'), 'roadmap': load('roadmap.json'),
         'continuity': load('continuity.json'),
     }
+    private = load_private()
+    if private is not None:
+        d['_private'] = private
     return d
 
 
@@ -156,6 +160,8 @@ ID_AT = []
 
 
 def check(d):
+    private = d.pop('_private', None)
+    pristine = json.loads(json.dumps(d)) if private is not None else None
     P = Problems()
     E, eras = d['entries'], d['eras']
     order = {}
@@ -266,6 +272,10 @@ def check(d):
     validate_library(d, order, P)
     validate_relations(d, order, P)
     validate_continuity(d, order, P)
+    validate_sealed(d, P)
+    if private is not None:  # check the sealed research too, merged in as the reader merges it
+        _, P2 = check(merge_sealed(pristine, private))
+        P.extend(f'sealed research (private/), {x}' for x in P2)
     return order, P
 
 
@@ -854,6 +864,8 @@ def open_data(d, raw, derived, out, url, built):
         json.dump(compact_continuity(d), f, ensure_ascii=False, indent=1)
     with open(os.path.join(dd, 'continuity-audio.md'), 'w', encoding='utf-8') as f:
         f.write(audio_script(d['continuity'], url or './'))
+    if os.path.exists(SEALED_FILE):  # published only encrypted; opened with a password in the reader
+        shutil.copy(SEALED_FILE, os.path.join(dd, 'sealed.json'))
     with open(os.path.join(dd, 'guides.json'), 'w', encoding='utf-8') as f:
         json.dump(guides, f, ensure_ascii=False, indent=1)
     with open(os.path.join(dd, 'documents.json'), 'w', encoding='utf-8') as f:
@@ -874,6 +886,7 @@ def open_data(d, raw, derived, out, url, built):
         ('guides.json', 'Since 1950, the disputed questions, the doctrinal threads and the principles of hermeneutics.'),
         ('continuity.json', 'The hermeneutic of ecclesial continuity: principles P1-P8 and the 24 research cases with propositions, comparisons, verdicts and evidence gaps. A research layer, not Church teaching.'),
         ('continuity-audio.md', 'Listening scripts for the 24 cases: what was taught, by what authority, what is permanent and what was a determination for its time.'),
+        ('sealed.json', 'Untested research on Constance, Basel and Vatican I, encrypted (AES-256-GCM, key from a password by PBKDF2-SHA-256). It opens with a password in the reader.'),
     ]
     with open(os.path.join(dd, 'index.json'), 'w', encoding='utf-8') as f:
         json.dump({'built': built, 'files': [{'file': a, 'url': f'{url}data/{a}' if url else f'data/{a}', 'about': b} for a, b in files]},
@@ -912,6 +925,8 @@ def pages_build(args):
         print('The data has problems; nothing was built:\n  ' + '\n  '.join(P), file=sys.stderr)
         sys.exit(1)
     W = warnings(d, order)
+    if stale_note():
+        W.append(stale_note())
     if W:
         print(f'{len(W)} notes on the data (the build continues):\n  ' + '\n  '.join(W))
         if args.strict:
