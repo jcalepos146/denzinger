@@ -544,7 +544,14 @@ def inside(f, meta):
 
 
 def editions(args):
-    spec = json.load(open(os.path.join(HERE, 'editions.json'), encoding='utf-8'))
+    with open(os.path.join(HERE, 'editions.json'), encoding='utf-8') as fh:
+        spec = json.load(fh)
+    extra = os.path.join(ROOT, 'private', 'editions-sealed.json')  # editions for sealed research, on the machine that holds it
+    if os.path.exists(extra):
+        with open(extra, encoding='utf-8') as fh:
+            more = json.load(fh)
+        spec['targets'] += more.get('targets', [])
+        spec['manual'] += more.get('manual', [])
     done = read_json(path('editions.json'), {})
     f = Fetcher()
     for t in spec['targets']:

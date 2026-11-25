@@ -65,7 +65,7 @@ def main():
         visit('n/1839/')
         assert page.locator('details:has-text("Editorial relationship")').count()==2
         visit('#thread-orders')
-        assert page.locator('h1').inner_text()!='Sources of Catholic Dogma'
+        assert page.locator('h1').inner_text()!='Eodem Sensu'
         visit('#source-mediator-dei','.source-details')
         page.click('#n2297 [data-latin]')
         page.wait_for_selector('#n2297 .latin', timeout=15000)

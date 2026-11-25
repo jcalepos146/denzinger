@@ -102,7 +102,8 @@ class Editions(unittest.TestCase):
 
     def test_editions_list_is_public_domain_or_official(self):
         import json
-        spec = json.load(open(os.path.join(S.HERE, 'editions.json'), encoding='utf-8'))
+        with open(os.path.join(S.HERE, 'editions.json'), encoding='utf-8') as fh:
+            spec = json.load(fh)
         for t in spec['targets']:
             for s in t['sources']:
                 if 'archive' in s:

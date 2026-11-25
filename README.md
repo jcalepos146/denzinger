@@ -1,17 +1,19 @@
-# Sources of Catholic Dogma
+# Eodem Sensu
 
-**Read it here: <https://jcalepos146.github.io/denzinger/>**
+*Sources of Catholic Dogma: Denzinger in English, continued to Leo XIV.* The name is the rule of Vincent of Lérins, taken up by Vatican I: doctrine grows only *eodem sensu*, "in the same dogma, the same sense and the same meaning". It is the rule the reading principles start from and the one the continuity research tests.
+
+**Read it here: <https://jcalepos146.github.io/denzinger1.0/>**
 
 A searchable, organized reader for Denzinger's *Enchiridion Symbolorum* in English, with the older numbering (before the 32nd edition of 1963), continued with the documents of the Church to October 2026. It is a static site with no accounts, server or tracking, and it works offline once opened.
 
 | | |
 |---|---|
-| Reader | <https://jcalepos146.github.io/denzinger/> |
-| One entry (e.g. Vatican I on papal infallibility) | <https://jcalepos146.github.io/denzinger/n/1839/> |
-| Open data | <https://jcalepos146.github.io/denzinger/data/entries.json> |
-| For AI clients | <https://jcalepos146.github.io/denzinger/llms.txt> |
+| Reader | <https://jcalepos146.github.io/denzinger1.0/> |
+| One entry (e.g. Vatican I on papal infallibility) | <https://jcalepos146.github.io/denzinger1.0/n/1839/> |
+| Open data | <https://jcalepos146.github.io/denzinger1.0/data/entries.json> |
+| For AI clients | <https://jcalepos146.github.io/denzinger1.0/llms.txt> |
 | Short links | `ds/3074/` (by DS number), `lg/25/` (by document and article), `lg/` (a whole document) |
-| Feed of additions | <https://jcalepos146.github.io/denzinger/feed.xml> |
+| Feed of additions | <https://jcalepos146.github.io/denzinger1.0/feed.xml> |
 
 ## What it has
 
@@ -71,7 +73,7 @@ Each build publishes the data at `/data/`:
 
 The data was made to be read by machines as well as people: every text carries its source, its kind of document, often a hand-checked grade with the reason for it, censures, cross-references and both numbering systems, and `llms.txt` gives an AI client the reading rules. That makes it suited to two uses.
 
-- **A wrapper around an existing model (recommended).** The model answers from entries looked up for each question and cites them by number, as **Ask** already does in the reader. The wording stays exact, the weight of each text travels with it, a correction reaches every answer at once, and nothing needs retraining. `entries.json`, `latin.json`, `guides.json` and `llms.txt` are what such a wrapper needs; `tools/sources/` can add the complete official texts as a local reference collection.
+- **A wrapper around an existing model (recommended).** `tools/mcp/server.py` is one, ready to use: an MCP server that lets Claude Desktop, Claude Code or another MCP client search the entries, quote them with their weight, follow the continuity cases and cite by number (see [its README](tools/mcp/README.md); Claude Code finds it through `.mcp.json`). More generally: The model answers from entries looked up for each question and cites them by number, as **Ask** already does in the reader. The wording stays exact, the weight of each text travels with it, a correction reaches every answer at once, and nothing needs retraining. `entries.json`, `latin.json`, `guides.json` and `llms.txt` are what such a wrapper needs; `tools/sources/` can add the complete official texts as a local reference collection.
 - **Training or fine-tuning a model.** The grades, censures, disputed questions and cross-references are labelled examples (what kind of act is this text, what assent does it ask, which text defines this doctrine). A trained model can still misquote or blur a text's weight, so answers should cite and be checked against the entries.
 
 Before training on the texts or publishing a dataset, settle their rights. This repository has no licence. The pre-1958 English appears to be Deferrari's translation (1957), whose copyright status is uncertain; reuse permission for the Holy See's texts has not been established; the guides, grades and continuity research were written for this site. The grades are a reading aid, not an official classification, and the continuity layer is research, not Church teaching: a dataset should keep those labels.
@@ -108,7 +110,7 @@ python3 build/build.py        # writes the site to dist/
 python3 -m http.server -d dist
 ```
 
-A GitHub Action runs the same script on every push to `main` and publishes `dist/` to GitHub Pages at <https://jcalepos146.github.io/denzinger/>, with a `sitemap.xml` of every entry page. It also checks pull requests, so a change that breaks the data never reaches the site.
+A GitHub Action runs the same script on every push to `main` and publishes `dist/` to GitHub Pages at <https://jcalepos146.github.io/denzinger1.0/>, with a `sitemap.xml` of every entry page. It also checks pull requests, so a change that breaks the data never reaches the site.
 
 The build stops on problems (a reference to an entry that does not exist, an unknown grade) and prints notes on things worth a look (an "n." reference that points nowhere, a DS number given to two entries, a weight range that can never apply); `--strict` makes the notes stop it too. The reader's page is small: the app, styles and data are separate files named by their content, so browsers keep them until they change. Once a month another Action runs `tools/check_links.py`, which checks the external links.
 
@@ -131,17 +133,30 @@ The build stops on problems (a reference to an entry that does not exist, an unk
 | `src/sw.js` | Offline support |
 | `build/build.py` | Checks the data and builds everything |
 | `tools/check_links.py` | Checks the external links (not part of the build) |
-| `tools/sources/` | Downloads the complete texts of partly covered documents and reports what is missing, with draft entries for review (not part of the build; see its README) |
+| `tools/sources/` | Finds what the collection lacks, downloads complete texts and public-domain editions, and ranks the gaps for the continuity research (not part of the build; see [Finding what is missing](#finding-what-is-missing)) |
+| `tools/mcp/` | An MCP server so an AI assistant can look up, quote and cite the texts (not part of the build; see its README) |
 | `tools/post1958/` | The scripts that imported and aligned the texts after 1958 (see its README) |
 
 ## Source inventory
 
 `src/data/documents.json` holds explicit source records. Unassigned entries are conservatively grouped by their inherited source headings; these groups are marked unreviewed, not counted as verified documents. An abbreviation is scoped to its era to prevent collisions such as DCE. Passage grades are editorial assessments, distinct from genre labels. No new document-level grades are inferred from titles.
 
-Run `python3 tools/audit_library.py` for a reproducible coverage report, `python3 tools/sources/sources.py all` to download the complete texts of partly covered documents and list the articles missing locally (with draft entries to review; see [its README](tools/sources/README.md)), and `python3 -m unittest discover -s tests` for source-integrity regression checks.
+Run `python3 tools/audit_library.py` for a reproducible coverage report and `python3 -m unittest discover -s tests` for source-integrity regression checks.
 
 Document title searches also show matching source records, including external-only texts. Those texts are not part of local passage search. `kind:encyclical`, `kind:cdf` and `kind:papal-address` complement the existing structural filters. See [the editorial workflow](docs/EDITORIAL-WORKFLOW.md) and [collection roadmap](docs/COLLECTION-ROADMAP.md).
 
-The [Papal definition collection](https://jcalepos146.github.io/denzinger/#weight-papal-def) includes received papal letters, Roman synodal acts and definitions promulgated with a council. The source records give the basis for inclusion, and each entry retains its own genre and editorial grade.
+The [Papal definition collection](https://jcalepos146.github.io/denzinger1.0/#weight-papal-def) includes received papal letters, Roman synodal acts and definitions promulgated with a council. The source records give the basis for inclusion, and each entry retains its own genre and editorial grade.
 
 Evidence-backed relationships appear alongside passages and relevant doctrinal threads. `src/data/relations.json` stores direction, kind, editorial explanation and quotations from both endpoints; the build rejects missing references or quotations absent from the text. **Coverage and requests** publishes the backlog and offers explicitly saved, browser-local research gaps. GitHub proposals are opened by the reader; no search history is transmitted automatically. The monthly link checker now includes catalogue sources and saves a downloadable availability report.
+
+## Finding what is missing
+
+Three tools in `tools/sources/` keep track of what the collection still lacks. None is part of the build, and none writes to `src/data`: what they download and draft stays in `.sources/`, which git ignores, for an editor to check. See [their README](tools/sources/README.md).
+
+| Command | What it does |
+|---|---|
+| `python3 tools/sources/sources.py all` | Downloads the complete text of every catalogued document the site holds only in part or not at all, compares it article by article with the local entries, and drafts entries for the missing articles (`.sources/report.md`). |
+| `python3 tools/sources/sources.py editions` | Fetches the public-domain editions the continuity cases need (Bullarium Romanum, Migne, Davenport, Hernáez, the Acta of Gregory XVI and others, all printed before 1931), finds each text in the scan and links to its page (`.sources/editions.md`). |
+| `python3 tools/sources/priorities.py` | Ranks everything missing by how much it could change a continuity verdict: unresolved tensions first, texts that bind in faith before disciplinary ones, uncited coverage last (`.sources/priorities.md`). |
+
+The first full run (25 November 2026) found 13 catalogued documents with no local text, and 4,745 articles missing in all; every passage already taken from vatican.va matched the official text. Of 238 ranked gaps, 12 are critical, chiefly the primary texts behind the five unresolved tensions (Lateran IV beside Dignitatis Humanae, slavery, torture, Quierzy and Valence, the death penalty). Twelve of the editions they need were found in public-domain scans or on vatican.va; eight more, still in copyright or not online, are listed for consultation in a library.

@@ -63,7 +63,8 @@ def build():
         binding_refs = {p.get('ref') for p in c['propositions']
                         if p.get('assent') in BINDING_ASSENT or p.get('binding_status') == 'disputed'}
         for g in c.get('gaps', []):
-            add('gap', [c['id']], g['what'], f'Source: {g.get("source", "?")}. Settles: {g.get("settles", "?")}')
+            add('gap', [c['id']], g['what'],
+                f'Source: {g.get("source", "?").rstrip(". ")}. Settles: {g.get("settles", "?")}')
         for t in c['texts']:
             if t.get('verified'):
                 continue

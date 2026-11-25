@@ -460,9 +460,9 @@ function renderHome() {
   view.className = 'col';
   view.innerHTML = `
     <section class="hero">
-      <div class="eyebrow">Enchiridion Symbolorum · English translation · older numbering</div>
-      <h1>Sources of Catholic Dogma</h1>
-      <p>Denzinger's handbook of creeds, conciliar definitions and papal documents, from the Apostles' Creed to Pius XII, with guides to what has been taught since 1950 and to the questions still argued over.</p>
+      <div class="eyebrow">Sources of Catholic Dogma · Enchiridion Symbolorum in English · older numbering</div>
+      <h1>Eodem Sensu</h1>
+      <p>Denzinger's handbook of creeds, conciliar definitions and papal documents, from the Apostles' Creed to Pius XII, with guides to what has been taught since 1950 and to the questions still argued over. <i>Eodem sensu</i>, “in the same sense”: Vincent of Lérins’ rule, taken up by Vatican I, that doctrine grows only in the same dogma, the same sense and the same meaning.</p>
       <div class="stats">
         <div><b>${fmt(ENTRIES.length)}</b>numbered entries</div>
         <div><b>${ERAS.length}</b>pontificates, councils and creeds</div>
@@ -682,7 +682,7 @@ function renderLibrary(fixedRecords) {
     <label>Collection<select id="libraryCollection"><option value="">All collections</option>${collections.map(c => `<option ${LIB_FILTER.collection === c ? 'selected' : ''}>${esc(c)}</option>`).join('')}</select></label>
     <label>Local coverage<select id="libraryCoverage"><option value="">All coverage</option>${Object.entries(COVERAGE_LABEL).map(([k,v]) => `<option value="${k}" ${LIB_FILTER.coverage === k ? 'selected' : ''}>${v}</option>`).join('')}</select></label></div>
     ${PAGES ? '<p class="count">Download the <a href="data/documents.json">complete source inventory (JSON)</a> or <a href="data/coverage.csv">coverage spreadsheet (CSV)</a>.</p>' : ''}
-    <p><a href="#coverage">See coverage priorities or propose a missing source</a>.</p>
+    <p>${PAGES ? '<a href="editions/">Browse source editions and transcriptions</a> · ' : ''}<a href="#coverage">See coverage priorities or propose a missing source</a>.</p>
     <div id="libraryList" aria-live="polite"></div>`;
   function update() {
     const rows = (fixedRecords || LIBRARY.records).filter(r => libraryMatches(r, LIB_FILTER.q) && (!LIB_FILTER.collection || r.collection === LIB_FILTER.collection) && (!LIB_FILTER.coverage || r.coverage === LIB_FILTER.coverage));
@@ -805,7 +805,7 @@ function citeFormats(e) {
   const dsp = e.ds.length ? ` (${dsText(e)})` : '';
   const short = e.sup ? `Suppl. ${e.id}` : `D ${dispId(e.id)}${e.ds.length ? '; ' + dsText(e) : ''}`;
   const where = `${e.era.name}${e.ses ? ', ' + e.ses.replace(/\s*\(.*\)$/, '') : ''}`;
-  const site = `“${e.sup ? 'Supplement ' + e.id : nlab(e.id)}${e.topic ? ': ' + e.topic.replace(/\s+/g, ' ') : ''},” <i>Sources of Catholic Dogma</i> (online reader), ${where}, accessed ${acc}, ${url}.`;
+  const site = `“${e.sup ? 'Supplement ' + e.id : nlab(e.id)}${e.topic ? ': ' + e.topic.replace(/\s+/g, ' ') : ''},” <i>Eodem Sensu: Sources of Catholic Dogma</i> (online reader), ${where}, accessed ${acc}, ${url}.`;
   const f = [];
   f.push({ label: 'Short reference', html: esc(short) });
   if (!e.sup) {
@@ -833,7 +833,7 @@ async function copyRich(htmlStr, okMsg, el) {
   copy(plain, okMsg, el);
 }
 function citation(e) {
-  if (e.sup) return `${e.topic} (${e.era.name.replace(/:.*$/, '')}, ${e.ses}); Sources of Catholic Dogma reader, supplement ${e.id}.`;
+  if (e.sup) return `${e.topic} (${e.era.name.replace(/:.*$/, '')}, ${e.ses}); Eodem Sensu reader, supplement ${e.id}.`;
   const where = [e.era.name, e.ses ? e.ses.replace(/\s*\(.*\)$/, '') : null].filter(Boolean).join(', ');
   return `Denzinger, Sources of Catholic Dogma, ${nlab(e.id)}${e.ds.length ? ` [${dsText(e)}]` : ''} (${where}${e.era.dates ? ', ' + e.era.dates : ''}).`;
 }
@@ -2030,11 +2030,11 @@ function entryMd(e, note) {
 }
 function savedPacket() {
   const list = Marks.list();
-  const head = `# Study packet: Sources of Catholic Dogma\n\nSaved entries in the order of the collection, ${new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}. Text: Denzinger, English translation, older numbering.\n\n---\n\n`;
+  const head = `# Study packet: Eodem Sensu\n\nSaved entries in the order of the collection, ${new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}. Text: Denzinger, English translation, older numbering.\n\n---\n\n`;
   return head + list.map(x => entryMd(x.e, x.note)).join('\n');
 }
 function threadPacket(t) {
-  let md = `# ${t.title}\n\n${t.summary}\n\nA doctrinal thread from the Sources of Catholic Dogma reader. Notes are summaries; the texts are Denzinger's English translation, older numbering.\n\n---\n\n`;
+  let md = `# ${t.title}\n\n${t.summary}\n\nA doctrinal thread from the Eodem Sensu reader. Notes are summaries; the texts are Denzinger's English translation, older numbering.\n\n---\n\n`;
   for (const st of t.steps) {
     if (st.since) { const s = SINCE_BY_ID.get(st.since); if (s) md += `## ${s.title} (${s.date.slice(0, 4)}, ${s.pope})\n\n*${LEVELS[s.level][0]} · ${s.kind}*\n\n**Step:** ${st.note}\n\n${s.summary}\n\nOfficial text: ${s.url}\n\n---\n\n`; }
     else { const e = byId.get(st.ref); if (e) md += `**Step:** ${st.note}\n\n` + entryMd(e, (Marks.get(e.id) || {}).note) + '\n'; }
@@ -2640,7 +2640,7 @@ async function runSysCheck(which) {
     } catch (err) { sysResult['Notes and saved'] = 'Your account refused the test write, so notes are kept in this browser only.'; Marks.mode = 'local'; }
   }
   if (which === 'dl') {
-    try { await Downloads.save({ filename: 'denzinger-download-test.txt', data: 'This file confirms that downloads work from the Sources of Catholic Dogma reader.\n' }); sysResult['Downloads'] = 'Download accepted.'; }
+    try { await Downloads.save({ filename: 'denzinger-download-test.txt', data: 'This file confirms that downloads work from the Eodem Sensu reader.\n' }); sysResult['Downloads'] = 'Download accepted.'; }
     catch (err) { sysResult['Downloads'] = err && err.code === 'declined' ? 'You declined the test download.' : 'The download did not go through (' + (err && err.code || 'unknown') + ').'; }
   }
   const p = $('sysPanel'); if (p) p.innerHTML = sysRows();
@@ -2868,7 +2868,7 @@ function announceView(h) {
   const h1 = view.querySelector('h1');
   const name = h1 ? h1.textContent.trim().replace(/\s+/g, ' ') : '';
   const ent = h.startsWith('n') ? document.getElementById(h) : null;
-  document.title = (ent ? nlab(h.slice(1)) + ' · ' : '') + (name && state.view !== 'home' ? name + ' · ' : '') + 'Sources of Catholic Dogma';
+  document.title = (ent ? nlab(h.slice(1)) + ' · ' : '') + (name && state.view !== 'home' ? name + ' · ' : '') + 'Eodem Sensu';
   const first = !routedOnce; routedOnce = true;
   if (first || document.activeElement === qInput || (document.activeElement && view.contains(document.activeElement) && state.view === 'search')) return;
   const target = ent || h1;

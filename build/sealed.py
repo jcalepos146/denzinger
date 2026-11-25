@@ -75,7 +75,9 @@ def stale_note():
     """A note when private/ has changed since the encrypted file was written."""
     if not os.path.exists(PRIVATE_FILE) or not os.path.exists(SEALED_FILE):
         return None
-    newest = max(os.path.getmtime(os.path.join(dp, f)) for dp, _, fs in os.walk(PRIVATE_DIR) for f in fs)
+    docs = os.path.join(PRIVATE_DIR, 'docs')  # what seal.mjs puts in the sealed file
+    files = [PRIVATE_FILE] + ([os.path.join(docs, f) for f in os.listdir(docs) if f.endswith('.md')] if os.path.isdir(docs) else [])
+    newest = max(os.path.getmtime(f) for f in files)
     if newest > os.path.getmtime(SEALED_FILE):
         return 'private/ has changed since src/data/sealed.json was sealed: run node tools/seal/seal.mjs seal'
     return None

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build the Sources of Catholic Dogma site from the files in src/.
+"""Build the Eodem Sensu site (Sources of Catholic Dogma) from the files in src/.
 
     python3 build/build.py                      # GitHub Pages site, written to dist/
     python3 build/build.py --claude page.html   # the single-page version for Claude
@@ -14,6 +14,7 @@ first and stops with a list of problems if anything does not line up.
 import argparse, csv, datetime, html, io, json, os, re, shutil, struct, sys, zlib
 from library import inventory, validate_library, validate_relations
 from continuity import validate_continuity, compact_continuity, llms_section, audio_script, case_refs
+from source_editions import load_editions, render_editions
 from sealed import load_private, merge_sealed, validate_sealed, stale_note, SEALED_FILE
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -24,14 +25,18 @@ FONTS = ('<link rel="preconnect" href="https://fonts.googleapis.com">\n'
          '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n'
          '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400;0,500;0,700;1,400'
          '&family=Alegreya+SC:wght@500;700&family=Alegreya+Sans:wght@400;500;700&display=swap">\n')
-TITLE = 'Sources of Catholic Dogma'
+TITLE = 'Eodem Sensu'
+SUBTITLE = 'Sources of Catholic Dogma'  # the former name, kept so search results and links still make sense
+FULL_TITLE = f'{TITLE}: {SUBTITLE}'
 DESC = ("Denzinger's Enchiridion in English (older numbering), searchable, with DS numbers, the Latin text, "
         "hand-checked weights, the Roman Catechism, doctrinal threads and guides to disputed questions.")
 WEIGHT_KEYS = {'papal-def', 'conc-def', 'conc-canon', 'conc-decree', 'papal', 'papal-teaching', 'particular',
                'curia', 'pbc', 'condemned', 'creed', 'note', 'supplement', 'cdf', 'liturgy', 'catechism',
                'papal-address', 'interview', 'commission', 'synod', 'bishops', 'ecumenical'}
 # For AI clients and agents that read the site: what the data is, how to cite it, and how to read condemnations.
-LLMS = """# Sources of Catholic Dogma
+LLMS = """# Eodem Sensu: Sources of Catholic Dogma
+
+> Eodem sensu, "in the same sense": the rule of Vincent of Lérins, quoted by Vatican I, that doctrine develops only in the same dogma, the same sense and the same meaning.
 
 > Denzinger's Enchiridion in English (older numbering) from the creeds to Pius XII, and the documents of the Church from John XXIII to Leo XIV, with each text labelled by the kind of document it comes from and many graded by hand.
 
@@ -941,22 +946,28 @@ def pages_build(args):
     site = {'mode': 'pages', 'repo': args.repo or '', 'url': url, 'built': built}
     if args.claude:
         site = {'mode': 'claude', 'repo': args.repo or '', 'url': url, 'built': built}
-        page = f'<title>{TITLE}</title>\n' + FONTS + '\n' + reader_body(raw, d, site)
+        page = f'<title>{FULL_TITLE}</title>\n' + FONTS + '\n' + reader_body(raw, d, site)
         write(args.claude, page)
         print('Claude page:', args.claude, f'{len(page.encode()) // 1024} KB')
         return
+    editions = load_editions()
     out = os.path.abspath(args.out)
     if os.path.isdir(out):
         shutil.rmtree(out)
     os.makedirs(out)
     head_extra, body, assets = reader_split(raw, d, site, out)
-    ld = {'@context': 'https://schema.org', '@type': 'WebSite', 'name': TITLE, 'description': DESC, 'url': url, 'inLanguage': 'en',
+    ld = {'@context': 'https://schema.org', '@type': 'WebSite', 'name': TITLE, 'alternateName': SUBTITLE, 'description': DESC, 'url': url, 'inLanguage': 'en',
           'potentialAction': {'@type': 'SearchAction', 'target': url + '?q={search_term_string}', 'query-input': 'required name=search_term_string'}}
     if url:
         head_extra += f'<script type="application/ld+json">{dump(ld)}</script>\n'
         head_extra += f'<link rel="alternate" type="application/atom+xml" title="{TITLE}: additions" href="{url}feed.xml">\n'
-    index = head(TITLE, DESC, url, '', head_extra, url) + body + '</body>\n</html>\n'
+    index = head(FULL_TITLE, DESC, url, '', head_extra, url) + body + '</body>\n</html>\n'
     write(os.path.join(out, 'index.html'), index)
+    editions_url = url + 'editions/' if url else ''
+    editions_head = head('Source editions · ' + TITLE, 'Source texts and edition references.',
+                         editions_url, '../', '<link rel="stylesheet" href="../assets/entry.css">', url)
+    editions_page = render_editions(editions, editions_head)
+    write(os.path.join(out, 'editions', 'index.html'), editions_page)
     write(os.path.join(out, 'assets', 'entry.css'), read_src('entry.css'))
     shutil.copy(os.path.join(SRC, 'og.png'), os.path.join(out, OG_IMAGE))
     urls = entry_pages(d, raw, derived, out, url)
@@ -971,7 +982,7 @@ def pages_build(args):
         'icons': [{'src': 'icons/icon-192.png', 'sizes': '192x192', 'type': 'image/png'},
                   {'src': 'icons/icon-512.png', 'sizes': '512x512', 'type': 'image/png'},
                   {'src': 'icons/icon-512.png', 'sizes': '512x512', 'type': 'image/png', 'purpose': 'maskable'}]}, indent=1))
-    version = f'{built}-{zlib.crc32((index + "".join(assets)).encode()) & 0xffffffff:08x}'
+    version = f'{built}-{zlib.crc32((index + editions_page + "".join(assets)).encode()) & 0xffffffff:08x}'
     write(os.path.join(out, 'sw.js'), read_src('sw.js').replace('__VERSION__', version).replace("'__ASSETS__'", ', '.join(json.dumps(a) for a in assets)))
     write(os.path.join(out, '.nojekyll'), '')
     write(os.path.join(out, 'llms.txt'), LLMS.replace('{herm}', '\n'.join('- ' + p['rule'] for p in d['herm']['principles'])).replace('{url}', url or './')
@@ -981,7 +992,8 @@ def pages_build(args):
     write(os.path.join(out, 'robots.txt'), 'User-agent: *\nAllow: /\n' + (f'Sitemap: {url}sitemap.xml\n' if url else ''))
     if url:
         sm = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
-              f'<url><loc>{esc(url)}</loc><lastmod>{built}</lastmod></url>']
+              f'<url><loc>{esc(url)}</loc><lastmod>{built}</lastmod></url>',
+              f'<url><loc>{esc(editions_url)}</loc></url>']
         sm += [f'<url><loc>{esc(u)}</loc></url>' for u in urls]
         write(os.path.join(out, 'sitemap.xml'), '\n'.join(sm + ['</urlset>', '']))
     write(os.path.join(out, '404.html'), head('Page not found · ' + TITLE, DESC, '', './') +
