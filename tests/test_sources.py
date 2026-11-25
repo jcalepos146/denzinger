@@ -82,5 +82,44 @@ class Helpers(unittest.TestCase):
         self.assertIsNone(S.archive_item('https://www.vatican.va/x.html'))
 
 
+class Editions(unittest.TestCase):
+    OCR = 'Paulus III. Bulla Ueritas ip-\nsa qua Indi ... SUBLIMIS   Deus sic dilexit ... Haec  sancta synodus ... Hec fancta'
+
+    def test_phrase_tolerates_ocr(self):
+        found = S.locate(self.OCR, ['Veritas ipsa', 'Sublimis Deus', 'Haec sancta', 'Dum diversas'])
+        self.assertEqual(found['Veritas ipsa']['count'], 1)    # u for v, hyphen across a line
+        self.assertEqual(found['Sublimis Deus']['count'], 1)   # case and spacing
+        self.assertEqual(found['Haec sancta']['count'], 2)     # ae printed as e
+        self.assertEqual(found['Dum diversas']['count'], 0)
+        self.assertIn('Indi', found['Veritas ipsa']['hits'][0]['snippet'])
+
+    def test_page_lookup_is_optional(self):
+        def broken(words):
+            raise OSError('offline')
+        found = S.locate(self.OCR, ['Sublimis Deus'], pages=broken)
+        self.assertEqual(found['Sublimis Deus']['count'], 1)
+        self.assertIn('note', found['Sublimis Deus']['hits'][-1])
+
+    def test_editions_list_is_public_domain_or_official(self):
+        import json
+        spec = json.load(open(os.path.join(S.HERE, 'editions.json'), encoding='utf-8'))
+        for t in spec['targets']:
+            for s in t['sources']:
+                if 'archive' in s:
+                    self.assertLess(s['published'], S.PD_BEFORE, s['archive'])
+                else:
+                    self.assertIn('vatican.va', s['url'])
+
+
+class Priorities(unittest.TestCase):
+    def test_weakest_verdicts_rank_first(self):
+        import priorities as PR
+        items, cases = PR.build()
+        self.assertTrue(items)
+        self.assertEqual(items, sorted(items, key=lambda i: -i['score']))
+        top = cases[items[0]['cases'][0]]
+        self.assertTrue(top['verdict'] == 'unresolved_tension' or top['confidence'] == 'low')
+
+
 if __name__ == '__main__':
     unittest.main()
