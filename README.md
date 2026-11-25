@@ -67,6 +67,15 @@ Each build publishes the data at `/data/`:
 | `continuity.json` | The continuity research layer: principles, cases, propositions, comparisons, verdicts and evidence gaps |
 | `continuity-audio.md` | Listening scripts for each case: what was taught, by what authority, what is permanent |
 
+## Using the collection with AI
+
+The data was made to be read by machines as well as people: every text carries its source, its kind of document, often a hand-checked grade with the reason for it, censures, cross-references and both numbering systems, and `llms.txt` gives an AI client the reading rules. That makes it suited to two uses.
+
+- **A wrapper around an existing model (recommended).** The model answers from entries looked up for each question and cites them by number, as **Ask** already does in the reader. The wording stays exact, the weight of each text travels with it, a correction reaches every answer at once, and nothing needs retraining. `entries.json`, `latin.json`, `guides.json` and `llms.txt` are what such a wrapper needs; `tools/sources/` can add the complete official texts as a local reference collection.
+- **Training or fine-tuning a model.** The grades, censures, disputed questions and cross-references are labelled examples (what kind of act is this text, what assent does it ask, which text defines this doctrine). A trained model can still misquote or blur a text's weight, so answers should cite and be checked against the entries.
+
+Before training on the texts or publishing a dataset, settle their rights. This repository has no licence. The pre-1958 English appears to be Deferrari's translation (1957), whose copyright status is uncertain; reuse permission for the Holy See's texts has not been established; the guides, grades and continuity research were written for this site. The grades are a reading aid, not an official classification, and the continuity layer is research, not Church teaching: a dataset should keep those labels.
+
 ## Corrections
 
 Every entry and guide item has a link that opens an issue here with the item filled in. See [CONTRIBUTING.md](CONTRIBUTING.md) to fix something directly.
@@ -113,13 +122,14 @@ The build stops on problems (a reference to an entry that does not exist, an unk
 | `src/sw.js` | Offline support |
 | `build/build.py` | Checks the data and builds everything |
 | `tools/check_links.py` | Checks the external links (not part of the build) |
+| `tools/sources/` | Downloads the complete texts of partly covered documents and reports what is missing, with draft entries for review (not part of the build; see its README) |
 | `tools/post1958/` | The scripts that imported and aligned the texts after 1958 (see its README) |
 
 ## Source inventory
 
 `src/data/documents.json` holds explicit source records. Unassigned entries are conservatively grouped by their inherited source headings; these groups are marked unreviewed, not counted as verified documents. An abbreviation is scoped to its era to prevent collisions such as DCE. Passage grades are editorial assessments, distinct from genre labels. No new document-level grades are inferred from titles.
 
-Run `python3 tools/audit_library.py` for a reproducible coverage report, and `python3 -m unittest discover -s tests` for source-integrity regression checks.
+Run `python3 tools/audit_library.py` for a reproducible coverage report, `python3 tools/sources/sources.py all` to download the complete texts of partly covered documents and list the articles missing locally (with draft entries to review; see [its README](tools/sources/README.md)), and `python3 -m unittest discover -s tests` for source-integrity regression checks.
 
 Document title searches also show matching source records, including external-only texts. Those texts are not part of local passage search. `kind:encyclical`, `kind:cdf` and `kind:papal-address` complement the existing structural filters. See [the editorial workflow](docs/EDITORIAL-WORKFLOW.md) and [collection roadmap](docs/COLLECTION-ROADMAP.md).
 
